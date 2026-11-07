@@ -1,0 +1,58 @@
+// Fit-Wochenplan – Offline-Zwischenspeicher
+// Bei jeder neuen App-Fassung diese Kennung hochzählen (v2, v3, ...).
+// Dann wirft der Browser die alte Fassung weg und lädt die neue.
+const CACHE = "fitplan-v2";
+const DATEIEN = ["./", "./index.html", "./essensplan.html"];
+
+self.addEventListener("install", e => {
+  self.skipWaiting();
+  e.waitUntil(
+    caches.open(CACHE).then(c => c.addAll(DATEIEN).catch(() => {}))
+  );
+});
+
+self.addEventListener("activate", e => {
+  e.waitUntil((async () => {
+    const namen = await caches.keys();
+    await Promise.all(namen.filter(n => n !== CACHE).map(n => caches.delete(n)));
+    await self.clients.claim();
+  })());
+});
+
+self.addEventListener("fetch", e => {
+  const req = e.request;
+  if (req.method !== "GET") return;
+  const url = new URL(req.url);
+  if (url.origin !== location.origin) return;
+
+  // Seiten immer zuerst aus dem Netz holen, damit Änderungen sofort ankommen.
+  const istSeite = req.mode === "navigate" || /\.html?$/.test(url.pathname) || url.pathname.endsWith("/");
+  if (istSeite) {
+    e.respondWith((async () => {
+      try {
+        const frisch = await fetch(req);
+        const c = await caches.open(CACHE);
+        c.put(req, frisch.clone()).catch(() => {});
+        return frisch;
+      } catch (err) {
+        const treffer = await caches.match(req);
+        return treffer || caches.match("./essensplan.html");
+      }
+    })());
+    return;
+  }
+
+  // Übriges aus dem Zwischenspeicher, sonst aus dem Netz.
+  e.respondWith(
+    caches.match(req).then(treffer => treffer || fetch(req).then(a => {
+      const kopie = a.clone();
+      caches.open(CACHE).then(c => c.put(req, kopie)).catch(() => {});
+      return a;
+    }))
+  );
+});
+
+// Meldung an die App, wenn der Zwischenspeicher erneuert wurde
+self.addEventListener("message", e => {
+  if (e.data === "update") self.skipWaiting();
+});
