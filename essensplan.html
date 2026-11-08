@@ -199,6 +199,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--brand);outline-offs
 .gcol.r{background:#e25555}.gcol.b{background:#4a8cf0}.gcol.y{background:#e8bd3f}.gcol.g{background:#3cbf7a}
 .gtile{height:62px;border:0;border-radius:12px;background:var(--line);color:var(--txt);font-size:22px;font-weight:700;font-family:inherit;touch-action:manipulation}
 .gtile.lit{background:var(--brand);color:#fff}.gtile:disabled{opacity:.6}
+.gword{font-size:44px;font-weight:800;text-align:center;margin:16px 0;min-height:56px;letter-spacing:-.5px}
+.gopts{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:10px}
+.gopts button{padding:16px 6px;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--txt);font-size:18px;font-weight:700;font-family:inherit;touch-action:manipulation}
+.gopts button:active{background:var(--brand-l)}
 </style>
 </head>
 <body>
@@ -212,6 +216,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--brand);outline-offs
 <button data-t="more"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="18.5" cy="12" r="1.3"/></svg></span>Mehr</button>
 </nav>
 <script src="rezepte.js"></script>
+<script src="trainingssysteme.js"></script>
+<script src="laufplaene.js"></script>
 <script>
 const DAYS=["Mo","Di","Mi","Do","Fr","Sa","So"];
 const MON=["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
@@ -298,7 +304,7 @@ if(typeof RDB!=="undefined"&&typeof FOODS_NEU!=="undefined")(function(){
   if(dup)return;FOODS.push({n:a[0],k:a[1],p:a[2],h:a[3],f:a[4],g:a[5]});bases.push(w);});
 })();
 const fitsSlot=(m,s)=>m.c==s||(m.x&&m.x.indexOf(s)>=0);
-const PUBLIC_V="2.3";
+const PUBLIC_V="2.5";
 const LOGKEY="fitplan_log";
 let LOGS=[],LSEQ=0;
 (function(){try{LOGS=JSON.parse(localStorage.getItem(LOGKEY)||"[]")}catch(e){LOGS=[]}})();
@@ -488,6 +494,12 @@ const SPLITS={
   ["Pull",[["Klimmzüge",4,8],["Rudern mit Langhantel",4,10],["Latzug",3,10],["Face Pulls",3,15],["Bizepscurls",3,12]]],
   ["Beine",[["Kniebeugen",4,8],["Beinpresse",3,12],["Beinbeuger",3,12],["Wadenheben",4,15],["Plank",3,"45 s"]]]]}
 };
+(function(){if(typeof TS_DB==="undefined")return;TS_DB.forEach(q=>{SPLITS[q.n]={einheiten:q.e,meta:q};});})();
+const fmtPause=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
+function planInfo(key,n){return((S.trSets&&S.trSets[key])||[]).find(x=>x.n==n)||null;}
+function restSek(pi){return S.restPlan===false?(S.restSek||90):((pi&&pi.p)||S.restSek||90);}
+function restSetzen(v){v=Math.round(+v);if(!(v>=10&&v<=900)){alert('Bitte eine Dauer zwischen 10 und 900 Sekunden eingeben.');render();return;}S.restSek=v;save();render();}
+const trSatz=x=>({n:x[0],saetze:x[1],wieder:x[2],p:x[3]||0,r:x[4]==null?null:x[4]});
 const ALT_SPLITS={
  "Ganzkörper (3x/Woche)":[["Kniebeugen",3,8],["Bankdrücken",3,8],["Rudern mit Langhantel",3,10],["Schulterdrücken",3,10],["Plank",3,"30 s"]],
  "Oberkörper / Unterkörper":[["Bankdrücken",4,8],["Rudern mit Langhantel",4,10],["Schulterdrücken",3,10],["Klimmzüge",3,8],["Bizepscurls",3,12]],
@@ -1350,7 +1362,7 @@ function planWeek(wk,still){
   if(!still&&(S.train[key]||[]).length&&!S.trForce)continue;   // vorhandenes nicht überschreiben
   S.train[key]=e[1].map(x=>x[0]);
   S.trSets=S.trSets||{};
-  S.trSets[key]=e[1].map(x=>({n:x[0],saetze:x[1],wieder:x[2]}));
+  S.trSets[key]=e[1].map(trSatz);
  }
  S.trPlan=splitName();
  if(!still)logInfo("training","Woche geplant",{woche:wk,vorlage:splitName(),tage:trDays().join(",")});
@@ -1360,9 +1372,8 @@ function viewTrainPlan(){
  let h=`<div class="card"><h4>Standardplan</h4>
  <small style="display:block;color:var(--mut);margin:-4px 0 10px">Lege einmal fest, an welchen Tagen du trainierst und welche Vorlage gilt. Danach wird jede Woche automatisch geplant.</small>
  <label>Vorlage</label>
- <select class="n" onchange="S.split=this.value;planWeek(S.wk,true);planAllFuture(true);save();render()">
-  ${Object.keys(SPLITS).map(k=>`<option value="${esc(k)}" ${splitName()==k?"selected":""}>${esc(k)}</option>`).join("")}
- </select>
+ <button class="btn g" style="display:block;width:100%;text-align:left;margin:5px 0 10px" onclick="vorlagenSheet()"><b>${esc(splitName())}</b><small style="display:block;color:var(--mut);font-weight:500">${(SPLITS[splitName()]||{}).meta?vorlMeta(SPLITS[splitName()].meta):"Eigene Vorlage"} · ändern</small></button>
+ ${(SPLITS[splitName()]||{}).meta?vorlInfo(SPLITS[splitName()].meta):""}
  <label>Trainingstage</label>
  <div class="tabs" style="margin-bottom:10px">${WOCHENTAGE.map((n,i)=>`<button class="${trDays().includes(i)?'on':''}" onclick="trToggle(${i})">${n}</button>`).join("")}</div>
  <div class="row"><span>Einheiten der Vorlage</span><span>${einheiten().length}</span></div>
@@ -1380,7 +1391,7 @@ function viewTrainPlan(){
    h+=`<small style="color:var(--mut)">${sets.map(x=>esc(x.n)+" "+x.saetze+"×"+(typeof x.wieder=="number"?(x.wieder+" Wdh"):x.wieder)).join(" · ")}</small>`;}
   h+=`</div>`;}
  h+=`</div>`;
- h+=`<div class="card"><h4>Vorlagen ansehen</h4>${Object.keys(SPLITS).map(k=>`<div class="opt" onclick="showSplit('${jq(k)}')"><b>${esc(k)}</b><small>${SPLITS[k].einheiten.length} Einheiten: ${SPLITS[k].einheiten.map(e=>esc(e[0])).join(", ")}</small></div>`).join("")}</div>`;
+ h+=`<button class="btn g" style="width:100%" onclick="vorlagenSheet()">Alle Vorlagen durchsuchen</button>`;
  return h;
 }
 function trToggle(i){const d=trDays().slice();const x=d.indexOf(i);
@@ -1390,11 +1401,40 @@ function planAllFuture(force){const jetzt=weekOf(0);
  for(let n=force?1:0;n<8;n++){const dd=dateOf(jetzt,0);dd.setDate(dd.getDate()+n*7);const wk=iso(dd);
   if(force||!Object.keys(S.train).some(k=>k.startsWith(wk+"|")))planWeek(wk,true);}
  save();}
+function vorlMeta(m){return `${m.l} · ${m.t} Tage pro Woche · ca. ${m.min} Min.`;}
+function vorlInfo(m){return `<details class="card" style="margin-bottom:10px"><summary>Über dieses System</summary>
+ <p style="margin:0 0 8px">${esc(m.d)}</p><div class="row"><span>Ziel</span><span>${esc(m.g)}</span></div><div class="row"><span>Methode</span><span>${esc(m.m)}</span></div><div class="row"><span>Tage</span><span>${esc(m.sc.join(", "))}</span></div>
+ <small style="display:block;color:var(--mut);margin-top:8px"><b>Steigern:</b> ${esc(m.pr)}</small><small style="display:block;color:var(--mut);margin-top:6px"><b>Entlastung:</b> ${esc(m.dl)}</small><small style="display:block;color:var(--mut);margin-top:6px"><b>Erholung:</b> ${esc(m.rc)}</small>
+ <small style="display:block;color:var(--mut);margin-top:6px">Vorlagen sind Orientierung, keine individuelle Freigabe. Bei Schmerzen abbrechen.</small></details>`;}
 function showSplit(k){const t=SPLITS[k];if(!t)return;
- sheet(`<h4>${esc(k)}</h4>${t.einheiten.map(e=>`<b style="display:block;margin-top:10px">${esc(e[0])}</b>
- <small style="color:var(--mut)">${e[1].map(x=>esc(x[0])+" "+x[1]+"×"+(typeof x[2]=="number"?x[2]+" Wdh":x[2])).join(" · ")}</small>`).join("")}
- <button class="btn g" style="margin-top:12px" onclick="closeSheet()">Schließen</button>`);}
-// Standardplan für neue Wochen anwenden, sofern noch nichts geplant ist
+ sheet(`<h4>${esc(k)}</h4>${t.meta?`<small style="display:block;color:var(--mut);margin:-4px 0 6px">${esc(vorlMeta(t.meta))}</small><p style="margin:0 0 6px;font-size:14px">${esc(t.meta.d)}</p>`:""}
+ ${t.einheiten.map(e=>`<b style="display:block;margin-top:10px">${esc(e[0])}</b>
+ <small style="color:var(--mut)">${e[1].map(x=>esc(x[0])+" "+x[1]+"×"+(typeof x[2]=="number"?x[2]:x[2])+(x[3]?" ("+fmtPause(x[3])+")":"")).join(" · ")}</small>`).join("")}
+ <div style="margin-top:14px">${splitName()==k?"":`<button class="btn" onclick="vorlageWaehlen('${jq(k)}')">Diese Vorlage verwenden</button>`}<button class="btn g" onclick="${VF.back?"vorlagenSheet(VF.fam)":"closeSheet()"}">Zurück</button></div>`);}
+const VF={t:0,l:"",fam:null,back:false};
+const VTAGE=["Mo","Di","Mi","Do","Fr","Sa","So"];
+function vorlagenSheet(fam){
+ if(fam===undefined)VF.fam=null;else VF.fam=fam;VF.back=true;
+ const alle=Object.keys(SPLITS).map(k=>({k,m:SPLITS[k].meta,s:SPLITS[k].meta?SPLITS[k].meta.s:"Grundvorlagen"}));
+ const ok=x=>(!VF.t||(x.m?x.m.t==VF.t:false)||(!x.m&&false))&&(!VF.l||(x.m&&x.m.l==VF.l));
+ const chip=(txt,on,js)=>`<button class="${on?'p':''}" onclick="${js}">${txt}</button>`;
+ let h=`<h4>Trainingsvorlage wählen</h4><div class="chips" style="margin-bottom:8px">${chip("Alle Tage",!VF.t,"VF.t=0;vorlagenSheet(VF.fam)")}${[2,3,4,5,6].map(n=>chip(n+" Tage",VF.t==n,`VF.t=${n};vorlagenSheet(VF.fam)`)).join("")}</div>
+ <div class="chips" style="margin-bottom:12px">${chip("Jedes Niveau",!VF.l,"VF.l='';vorlagenSheet(VF.fam)")}${["Anfänger","Fortgeschritten","Erfahren"].map(n=>chip(n,VF.l==n,`VF.l='${n}';vorlagenSheet(VF.fam)`)).join("")}</div>`;
+ const row=x=>`<div class="opt" onclick="showSplit('${jq(x.k)}')"><div><b>${esc(x.k)}${splitName()==x.k?' <span class="tag">aktiv</span>':""}</b><small>${x.m?esc(vorlMeta(x.m)):SPLITS[x.k].einheiten.length+" Einheiten"} ${x.m?"· "+esc(x.m.g):""}</small></div></div>`;
+ if(VF.fam==null){
+  const fams=[...new Set(alle.map(x=>x.s))];
+  fams.forEach(f=>{const l=alle.filter(x=>x.s==f&&(f=="Grundvorlagen"||ok(x)));if(!l.length)return;
+   h+=`<div class="opt" onclick="vorlagenSheet(${f=="Grundvorlagen"?"'Grundvorlagen'":"'"+jq(f)+"'"})"><div><b>${esc(f)}</b><small>${l.length} Varianten</small></div><span style="color:var(--mut);font-size:20px">›</span></div>`;});
+ }else{
+  h+=`<button class="lnk" onclick="vorlagenSheet(null)">‹ Alle Systeme</button><h4 style="margin-top:4px">${esc(VF.fam)}</h4>`;
+  const l=alle.filter(x=>x.s==VF.fam&&(VF.fam=="Grundvorlagen"||ok(x)));
+  h+=l.length?l.map(row).join(""):`<div class="empty">Keine Variante passt zu den Filtern.</div>`;
+ }
+ sheet(h+`<button class="btn g" style="width:100%;margin-top:10px" onclick="closeSheet()">Schließen</button>`);}
+function vorlageWaehlen(k){const t=SPLITS[k];if(!t)return;
+ const tage=t.meta?t.meta.sc.map(x=>VTAGE.indexOf(x)).filter(x=>x>=0):null;
+ if(!confirm("„"+k+"“ verwenden?"+(tage&&tage.length?" Trainingstage werden auf "+tage.map(i=>VTAGE[i]).join(", ")+" gesetzt.":"")+" Kommende Wochen werden neu geplant."))return;
+ S.split=k;if(tage&&tage.length)S.trDays=tage;S.trForce=true;planWeek(S.wk,true);planAllFuture(true);S.trForce=false;save();closeSheet();render();}
 function autoPlanWeeks(){
  const jetzt=weekOf(0);
  let geaendert=false;
@@ -1418,9 +1458,10 @@ function volOf(d,wk,i){ // Gesamtvolumen eines Tages in kg
  return {kg:Math.round(kg),reps:reps};
 }
 function viewTrain(){
+ if(S.tmode=="lauf")return trModus()+viewRun();
  let sub2=(S.tsub||"day");if(sub2=="weight"){S.tsub="day";sub2="day";}
  const on=sub2=="lib"?"prog":sub2;
- let h=`<div class="sub">${[["day","Heute"],["plan","Woche"],["prog","Übungen"],["stdplan","Plan"]].map(([k,n])=>`<button class="${on==k?'on':''}" onclick="S.tsub='${k}';save();render()">${n}</button>`).join("")}</div>`;
+ let h=trModus()+`<div class="sub">${[["day","Heute"],["plan","Woche"],["prog","Übungen"],["stdplan","Plan"]].map(([k,n])=>`<button class="${on==k?'on':''}" onclick="S.tsub='${k}';save();render()">${n}</button>`).join("")}</div>`;
  h+={day:tDay,plan:tPlan,stdplan:viewTrainPlan,prog:tProg,lib:tLib}[sub2]();
  return h;
 }
@@ -1482,19 +1523,164 @@ function restStart(sek){
  upd();restT=setInterval(upd,500);
 }
 function restStop(){try{if(restT)clearInterval(restT);}catch(e){}restT=null;const b=document.getElementById("restbar");if(b)b.style.display="none";}
+/* ---------- Laufen ---------- */
+const RTAGE=["Mo","Di","Mi","Do","Fr","Sa","So"];
+const RDIST={"5 km":5,"10 km":10,"Halbmarathon":21.0975,"Marathon":42.195};
+const RF={l:"",ds:[]};
+const fmtDat=d=>{const x=new Date(d+"T12:00:00");return x.getDate()+"."+(x.getMonth()+1)+"."+x.getFullYear();};
+const tageBis=d=>Math.round((new Date(d+"T12:00:00")-new Date(todayISO()+"T12:00:00"))/864e5);
+function fmtDur(s){s=Math.round(s);const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return h?h+":"+String(m).padStart(2,"0")+":"+String(x).padStart(2,"0"):m+":"+String(x).padStart(2,"0");}
+function parseDur(t){t=String(t||"").trim().replace(",",".");if(!t)return 0;if(/^\d+(\.\d+)?$/.test(t))return Math.round(+t*60);const q=t.split(":").map(Number);if(q.some(isNaN)||q.length>3)return 0;return q.length==3?q[0]*3600+q[1]*60+q[2]:q[0]*60+(q[1]||0);}
+const fmtKm=k=>(Math.round(k*100)/100).toString().replace(".",",");
+const rPace=(sec,km)=>km>0?fmtDur(sec/km)+" /km":"–";
+const rLogs=()=>(S.runs=S.runs||[]);
+const rFor=ref=>rLogs().find(x=>x.ref==ref);
+function rProg(){const r=S.run;if(typeof RUN_DB==="undefined"||!r||!r.prog)return null;return RUN_DB.find(q=>q.id==r.prog)||null;}
+function rRaceWeek(){const r=S.run,q=rProg();if(!q)return null;
+ if(r.date)return weekKey(new Date(r.date+"T12:00:00"));
+ const d=dateOf(r.start||weekOf(0),0);d.setDate(d.getDate()+(q.w.length-1)*7);return iso(d);}
+function rWeekNr(wk){const q=rProg();if(!q)return 0;return q.w.length-Math.round((dateOf(rRaceWeek(),0)-dateOf(wk,0))/604800000);}
+function rDays(){const r=S.run,q=rProg();return(r&&r.days&&r.days.length==q.t)?r.days:q.sc.map(x=>RTAGE.indexOf(x));}
+function rSessions(wk){const q=rProg(),n=rWeekNr(wk);if(!q||n<1||n>q.w.length)return[];
+ const w=q.w[n-1],days=rDays();
+ return w[1].map(([di,f],k)=>{const d=q.df[di],day=days[k]!=null?days[k]:k;
+  return {k,day,date:dISO(wk,day),ref:dISO(wk,day)+"|"+k,name:d[0],warm:d[1],main:d[2],cool:d[3],int:d[5],notes:d[6],min:Math.max(10,Math.round(d[4]*f/5)*5),wkNr:n,focus:w[0]};});}
+function rStartDat(N,raceWk){const d=dateOf(raceWk,0);d.setDate(d.getDate()-(N-1)*7);return iso(d);}
+function rWeeksAvail(){const r=S.run;if(!r||!r.date)return 999;return Math.max(0,Math.round((dateOf(weekKey(new Date(r.date+"T12:00:00")),0)-dateOf(weekOf(0),0))/604800000)+1);}
+function rAvgPace(){const ab=tagMinus(todayISO(),28),l=rLogs().filter(x=>x.d>=ab&&x.km>=3);if(!l.length)return 0;return l.reduce((a,x)=>a+x.sec,0)/l.reduce((a,x)=>a+x.km,0);}
+function rRaceInfo(){const r=S.run||{};if(!r.dist||!r.date)return "";
+ const km=RDIST[r.dist],pace=r.goalSec&&km?r.goalSec/km:0,avg=rAvgPace();
+ return pace?`<div class="row"><span>Zielpace</span><span>${fmtDur(pace)} /km${avg?" · aktuell "+fmtDur(avg):""}</span></div>`:"";}
+function trModus(){const m=S.tmode=="lauf";return `<div class="chips" style="margin-bottom:10px"><button class="${!m?'p':''}" onclick="S.tmode='kraft';save();render()">Kraft</button><button class="${m?'p':''}" onclick="S.tmode='lauf';save();render()">Laufen</button></div>`;}
+function viewRun(){
+ if(typeof RUN_DB==="undefined")return `<div class="card"><b>Laufpläne nicht geladen</b><small style="display:block;color:var(--mut);margin-top:4px">Die Datei laufplaene.js fehlt. Lade sie neben essensplan.html hoch und öffne die App neu.</small></div>`;
+ let s3=S.rsub||"week";if(!rProg()&&s3=="week")s3="goal";
+ return `<div class="sub">${[["week","Woche"],["log","Verlauf"],["goal","Ziel & Plan"]].map(([k,n])=>`<button class="${s3==k?'on':''}" onclick="S.rsub='${k}';save();render()">${n}</button>`).join("")}</div>`+{week:runWeek,log:runHist,goal:runGoal}[s3]();}
+function runKopf(wk,n){const r=S.run,q=rProg(),R=r.dist||"Lauftraining";
+ const tage=r.date?tageBis(r.date):null,N=q.w.length;
+ const wochen=rSessions(wk),soll=wochen.reduce((a,x)=>a+x.min,0),ist=rLogs().filter(x=>x.d>=dISO(wk,0)&&x.d<=dISO(wk,6));
+ return `<div class="card"><div class="row" style="margin-top:0"><b style="font-size:16px">${esc(R)}${r.date?" am "+fmtDat(r.date):""}</b><span>${tage==null?"":(tage>0?"noch "+tage+" Tage":(tage==0?"heute":"vorbei"))}</span></div>
+ ${n>=1&&n<=N?`<div class="bar"><i style="width:${Math.round(n/N*100)}%"></i></div><div class="row"><span>Woche ${n} von ${N}</span><span>${esc(wochen.length?wochen[0].focus.replace(/ – Woche \d+$/,""):"")}</span></div>`:`<div class="row"><span>${n<1?"Der Plan startet in "+(1-n)+" Wochen":"Plan abgeschlossen"}</span><span></span></div>`}
+ ${rRaceInfo()}
+ ${soll?`<div class="row"><span>Diese Woche</span><span>${ist.reduce((a,x)=>a+x.sec,0)>0?Math.round(ist.reduce((a,x)=>a+x.sec,0)/60):0} von ca. ${soll} Min. · ${fmtKm(ist.reduce((a,x)=>a+x.km,0))} km</span></div>`:""}</div>`;}
+function runWeek(){const q=rProg();if(!q)return runGoal();
+ const wk=S.wk,n=rWeekNr(wk),r=S.run;
+ let h=`<div class="wkpick"><button class="nav" aria-label="Vorherige Woche" onclick="wkShift(-1)">‹</button><span>${fmtWeek(wk)}${isThisWeek()?'':'<button class="heute" onclick="goToday()">Heute</button>'}</span><button class="nav" aria-label="Nächste Woche" onclick="wkShift(1)">›</button></div>`;
+ h+=runKopf(wk,n);
+ const ss=rSessions(wk).sort((a,b)=>a.day-b.day),heute=todayISO();
+ ss.forEach(s=>{const l=rFor(s.ref),kraft=(S.train[wk+"|"+s.day]||[]).length;
+  h+=`<div class="card" ${s.date==heute?'style="border-color:var(--brand)"':""}><div class="row" style="margin-top:0"><b>${fmtDay(wk,s.day)}</b><span class="badge">${l?"✓ erledigt":"geplant"}</span></div>
+  <div style="font-size:16px;font-weight:650">${esc(s.name)}</div><small style="display:block;color:var(--mut)">ca. ${s.min} Min. · ${esc(s.int)}</small>
+  ${l?`<div class="row"><span>${fmtKm(l.km)} km in ${fmtDur(l.sec)}</span><span>${rPace(l.sec,l.km)}${l.hr?" · "+l.hr+" bpm":""}</span></div>`:""}
+  <details style="margin:8px 0"><summary style="cursor:pointer;color:var(--brand);font-weight:650;font-size:14px">Ablauf</summary>
+  <div class="row"><span>Aufwärmen</span><span style="max-width:62%">${esc(s.warm)}</span></div><div class="row"><span>Hauptteil</span><span style="max-width:62%">${esc(s.main)}</span></div><div class="row"><span>Auslaufen</span><span style="max-width:62%">${esc(s.cool)}</span></div>
+  <small style="display:block;color:var(--mut);margin-top:6px">${esc(s.notes)}</small></details>
+  ${kraft?`<small style="display:block;color:var(--warn-t);margin-bottom:6px">An diesem Tag steht auch Krafttraining im Plan.</small>`:""}
+  <button class="btn ${l?'g':''}" style="margin:0" onclick="runLogSheet('${s.ref}','${s.date}','${jq(s.name)}',${s.min})">${l?"Bearbeiten":"Lauf eintragen"}</button></div>`;});
+ if(r.date&&r.date>=dISO(wk,0)&&r.date<=dISO(wk,6)){const l=rFor("race|"+r.date);
+  h+=`<div class="card" style="border-color:var(--heat)"><div class="row" style="margin-top:0"><b>🏁 Wettkampf: ${esc(r.dist||"Lauf")}</b><span class="badge">${l?"✓ geschafft":fmtDat(r.date)}</span></div>
+  ${l?`<div class="row"><span>${fmtKm(l.km)} km in ${fmtDur(l.sec)}</span><span>${rPace(l.sec,l.km)}</span></div>`:`<small style="display:block;color:var(--mut)">${r.goalSec?"Zielzeit "+fmtDur(r.goalSec)+". ":""}Trage das Ergebnis nach dem Lauf ein.</small>`}
+  <button class="btn ${l?'g':''}" style="margin:8px 0 0" onclick="runLogSheet('race|${r.date}','${r.date}','Wettkampf ${jq(r.dist||"")}',${r.goalSec?Math.round(r.goalSec/60):0},${RDIST[r.dist]||0})">${l?"Bearbeiten":"Ergebnis eintragen"}</button></div>`;}
+ if(!ss.length&&!(r.date&&r.date>=dISO(wk,0)&&r.date<=dISO(wk,6)))h+=`<div class="card"><div class="empty">${n<1?"In dieser Woche startet der Plan noch nicht.":"In dieser Woche ist kein Lauf geplant."}</div></div>`;
+ h+=`<button class="btn g" style="width:100%" onclick="runLogSheet('', '${todayISO()}','Freier Lauf',0)">+ Freien Lauf eintragen</button>`;
+ return h;}
+function runLogSheet(key,d,name,min,km){const old=rLogs().find(x=>x.ref==key&&key||String(x.id)==String(key));
+ RL.ref=old?old.ref:key;RL.id=old?old.id:0;
+ sheet(`<h4>${esc(name||"Lauf eintragen")}</h4>
+ <div class="g2"><div><label>Datum</label><input class="n" type="date" id="rd" value="${old?old.d:(d||todayISO())}"></div><div><label>Distanz (km)</label><input class="n" id="rk" type="text" inputmode="decimal" value="${old?old.km:(km||"")}" placeholder="z. B. 5,2"></div></div>
+ <div class="g2"><div><label>Dauer (Min. oder mm:ss)</label><input class="n" id="rt" value="${old?fmtDur(old.sec):(min||"")}" placeholder="45 oder 45:30"></div><div><label>Ø Puls (optional)</label><input class="n" id="rh" type="number" inputmode="numeric" value="${old&&old.hr||""}"></div></div>
+ <label>Anstrengung (1 locker bis 10 am Limit)</label><select class="n" id="rr"><option value="">–</option>${[1,2,3,4,5,6,7,8,9,10].map(x=>`<option ${old&&old.rpe==x?"selected":""}>${x}</option>`).join("")}</select>
+ <label>Notiz</label><input class="n" id="rn" value="${old?esc(old.note||""):""}" placeholder="Strecke, Wetter, Gefühl">
+ <button class="btn" onclick="runSave()">Speichern</button>${old?`<button class="btn g" style="color:var(--danger)" onclick="runDel(${old.id})">Löschen</button>`:""}<button class="btn g" onclick="closeSheet()">Abbrechen</button>`);}
+const RL={ref:"",id:0};
+function runSave(){const d=$("#rd").value,km=parseFloat(String($("#rk").value).replace(",",".")),sec=parseDur($("#rt").value);
+ if(!d||!(km>0)||!(sec>0)){alert("Bitte Datum, Distanz und Dauer eintragen.");return;}
+ if(km>250||sec>86400*2){alert("Die Werte sehen unrealistisch aus. Bitte prüfen.");return;}
+ const e={id:RL.id||Date.now(),d,km:Math.round(km*100)/100,sec,hr:+$("#rh").value||0,rpe:+$("#rr").value||0,note:$("#rn").value.trim(),ref:RL.ref||""};
+ const l=rLogs(),i=l.findIndex(x=>x.id==e.id);if(i>=0)l[i]=e;else l.push(e);
+ l.sort((a,b)=>a.d<b.d?-1:a.d>b.d?1:a.id-b.id);save();logInfo("laufen","Lauf gespeichert",{km:e.km,d:e.d});closeSheet();render();}
+function runDel(id){if(!confirm("Diesen Lauf löschen?"))return;S.runs=rLogs().filter(x=>x.id!=id);save();closeSheet();render();}
+function runHist(){const l=rLogs();
+ if(!l.length)return `<div class="card"><div class="empty">Noch kein Lauf eingetragen. Im Reiter Woche trägst du Läufe ein.</div></div>`;
+ const tot=l.reduce((a,x)=>a+x.km,0),zeit=l.reduce((a,x)=>a+x.sec,0);
+ const wk0=weekOf(0),wochen=[];for(let i=7;i>=0;i--){const d=dateOf(wk0,0);d.setDate(d.getDate()-i*7);const w=iso(d),a=dISO(w,0),b=dISO(w,6);wochen.push({w,km:l.filter(x=>x.d>=a&&x.d<=b).reduce((s,x)=>s+x.km,0)});}
+ const mx=Math.max(1,...wochen.map(x=>x.km)),lang=l.reduce((a,x)=>x.km>a.km?x:a,l[0]),sch=l.filter(x=>x.km>=3).reduce((a,x)=>!a||x.sec/x.km<a.sec/a.km?x:a,null);
+ let h=`<div class="card"><h4>Kilometer pro Woche</h4><div style="display:flex;align-items:flex-end;gap:6px;height:110px">${wochen.map(x=>`<div style="flex:1;text-align:center;font-size:11px;color:var(--mut)"><div style="height:${Math.round(x.km/mx*80)}px;background:${x.w==wk0?'var(--brand)':'var(--brand-l)'};border-radius:6px 6px 2px 2px;margin-top:${80-Math.round(x.km/mx*80)}px"></div>${x.km?fmtKm(Math.round(x.km*10)/10):"–"}</div>`).join("")}</div></div>
+ <div class="card"><h4>Bestwerte</h4><div class="row"><span>Gesamt</span><span>${fmtKm(Math.round(tot*10)/10)} km · ${l.length} Läufe · ${fmtDur(zeit)}</span></div>
+ <div class="row"><span>Längster Lauf</span><span>${fmtKm(lang.km)} km (${fmtDat(lang.d)})</span></div>
+ ${sch?`<div class="row"><span>Schnellstes Tempo (ab 3 km)</span><span>${rPace(sch.sec,sch.km)} (${fmtKm(sch.km)} km)</span></div>`:""}</div>
+ <div class="card"><h4>Alle Läufe</h4>${l.slice().reverse().slice(0,40).map(x=>`<div class="mrow" onclick="runLogSheet('${x.id}')" style="cursor:pointer"><div class="t"><b>${fmtKm(x.km)} km · ${fmtDur(x.sec)}</b><small>${fmtDat(x.d)} · ${rPace(x.sec,x.km)}${x.hr?" · "+x.hr+" bpm":""}${x.rpe?" · RPE "+x.rpe:""}${x.note?" · "+esc(x.note):""}</small></div></div>`).join("")}</div>`;
+ return h;}
+function runGoal(){const r=S.run||{},q=rProg();
+ let h=`<div class="card"><h4>Mein Laufziel</h4>
+ <label>Strecke</label><select class="n" onchange="runSet('dist',this.value)"><option value="">Kein Wettkampf, nur trainieren</option>${Object.keys(RDIST).map(k=>`<option ${r.dist==k?"selected":""}>${k}</option>`).join("")}</select>
+ <label>Wann willst du es laufen?</label><input class="n" type="date" value="${r.date||""}" min="${todayISO()}" onchange="runSet('date',this.value)">
+ <label>Zielzeit (optional, z. B. 1:55:00)</label><input class="n" value="${r.goalSec?fmtDur(r.goalSec):""}" placeholder="h:mm:ss" onchange="runSet('goal',this.value)">
+ ${r.date?`<div class="row"><span>Bis dahin</span><span>${tageBis(r.date)} Tage · ${Math.floor(tageBis(r.date)/7)} Wochen</span></div>`:""}${rRaceInfo()}</div>`;
+ if(q){const N=q.w.length,n=rWeekNr(weekOf(0));
+  h+=`<div class="card"><h4>Aktueller Plan</h4><div style="font-size:16px;font-weight:650">${esc(q.n)}</div><small style="display:block;color:var(--mut)">${q.l} · ${N} Wochen · ${q.t} Läufe pro Woche · ${rDays().map(i=>RTAGE[i]).join(", ")}</small>
+  ${r.date&&n>1?`<small style="display:block;color:var(--warn-t);margin-top:6px">Bis zum Termin bleiben nur ${rWeeksAvail()} Wochen. Du steigst in Woche ${n} von ${N} ein, die ersten Wochen entfallen.</small>`:""}
+  ${r.date&&n<1?`<small style="display:block;color:var(--mut);margin-top:6px">Der Plan beginnt am ${fmtDat(rStartDat(N,rRaceWeek()))}.</small>`:""}
+  <div style="margin-top:10px"><button class="btn" onclick="runPlanSheet()">Plan wechseln</button><button class="btn g" onclick="runDaysSheet()">Lauftage ändern</button><button class="btn g" style="color:var(--danger)" onclick="runPlanOff()">Plan entfernen</button></div></div>
+  <details class="card"><summary>Über diesen Plan</summary><p style="margin:0 0 8px">${esc(q.d)}</p><div class="row"><span>Ziel</span><span>${esc(q.g)}</span></div>
+  <small style="display:block;color:var(--mut);margin-top:8px"><b>Steigern:</b> ${esc(q.pr)}</small><small style="display:block;color:var(--mut);margin-top:6px"><b>Entlastung:</b> ${esc(q.dl)}</small><small style="display:block;color:var(--mut);margin-top:6px"><b>Intensität:</b> ${esc(q.ig)}</small><small style="display:block;color:var(--mut);margin-top:6px"><b>Erholung:</b> ${esc(q.rc)} ${esc(q.pn)}</small>
+  <small style="display:block;color:var(--mut);margin-top:6px">Pläne sind Orientierung, keine individuelle Freigabe. Bei Schmerzen abbrechen und abklären lassen.</small></details>`;}
+ else h+=`<div class="card"><h4>Trainingsplan</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">${r.dist?"Wähle einen Plan, der zu "+esc(r.dist)+(r.date?" am "+fmtDat(r.date):"")+" passt.":"Wähle einen Plan oder lege oben dein Ziel fest."}</small><button class="btn" style="margin:0" onclick="runPlanSheet()">Plan wählen</button></div>`;
+ return h;}
+function runSet(k,v){S.run=S.run||{};
+ if(k=="dist")S.run.dist=v;
+ else if(k=="date"){if(v&&v<todayISO()){alert("Das Datum liegt in der Vergangenheit.");render();return;}S.run.date=v;}
+ else if(k=="goal"){const s=parseDur(v);if(v&&!s){alert("Bitte die Zielzeit als h:mm:ss eingeben, z. B. 1:55:00.");render();return;}S.run.goalSec=s||0;}
+ save();render();}
+function runPlanOff(){if(!confirm("Plan entfernen? Eingetragene Läufe bleiben erhalten."))return;if(S.run){S.run.prog=null;S.run.days=null;}save();render();}
+function runPlanSheet(){const r=S.run||{},av=rWeeksAvail();
+ const L=RUN_DB.filter(x=>!RF.l||x.l==RF.l),pass=L.filter(x=>r.dist&&x.r==r.dist),rest=L.filter(x=>!(r.dist&&x.r==r.dist)&&(!x.r||!r.dist||false)),andere=L.filter(x=>x.r&&x.r!=r.dist&&r.dist);
+ const chip=(t,on,js)=>`<button class="${on?'p':''}" onclick="${js}">${t}</button>`;
+ const row=x=>{const N=x.w.length,fit=r.date?(N<=av?"passt: Start am "+fmtDat(rStartDat(N,weekKey(new Date(r.date+"T12:00:00")))):"zu kurz: Einstieg in Woche "+(N-av+1)):"";
+  return `<div class="opt" onclick="runPlanDetail('${x.id}')"><div><b>${esc(x.n.replace(/^[^–]+ – /,""))}${S.run&&S.run.prog==x.id?' <span class="tag">aktiv</span>':""}</b><small>${x.l} · ${N} Wochen · ${x.t} Läufe pro Woche</small>${fit?`<small style="color:${N<=av?'var(--brand-d)':'var(--warn-t)'}">${fit}</small>`:""}</div></div>`;};
+ let h=`<h4>Laufplan wählen</h4><div class="chips" style="margin-bottom:12px">${chip("Jedes Niveau",!RF.l,"RF.l='';runPlanSheet()")}${["Anfänger","Fortgeschritten","Erfahren"].map(n=>chip(n,RF.l==n,`RF.l='${n}';runPlanSheet()`)).join("")}</div>`;
+ if(r.dist){h+=`<b style="display:block;margin:4px 0">Passend zu ${esc(r.dist)}</b>`+(pass.length?pass.map(row).join(""):`<div class="empty">Kein Plan für dieses Niveau.</div>`);}
+ const frei=L.filter(x=>!x.r);h+=`<b style="display:block;margin:14px 0 4px">${r.dist?"Weitere Pläne zum Aufbauen":"Pläne ohne Wettkampf"}</b>`+(frei.length?frei.map(row).join(""):`<div class="empty">Kein Plan für dieses Niveau.</div>`);
+ const ander=L.filter(x=>x.r&&x.r!=r.dist);if(ander.length)h+=`<b style="display:block;margin:14px 0 4px">${r.dist?"Andere Wettkampfstrecken":"Wettkampfvorbereitung"}</b>`+ander.map(row).join("");
+ sheet(h+`<button class="btn g" style="width:100%;margin-top:10px" onclick="closeSheet()">Schließen</button>`);}
+function runPlanDetail(id){const q=RUN_DB.find(x=>x.id==id);if(!q)return;const r=S.run||{};
+ const w1=q.w[0];
+ sheet(`<h4>${esc(q.n)}</h4><small style="display:block;color:var(--mut);margin:-4px 0 6px">${q.l} · ${q.w.length} Wochen · ${q.t} Läufe pro Woche · ${q.sc.join(", ")}</small><p style="margin:0 0 8px;font-size:14px">${esc(q.d)}</p>
+ <b>Woche 1</b>${w1[1].map(([di,f])=>`<div class="row"><span>${esc(q.df[di][0])}</span><span>ca. ${Math.max(10,Math.round(q.df[di][4]*f/5)*5)} Min.</span></div>`).join("")}
+ <b style="display:block;margin-top:10px">Aufbau</b><small style="display:block;color:var(--mut)">${q.w.map((w,i)=>(i+1)+": "+esc(w[0].replace(/^.* – Woche \d+$/,"Aufbau"))).join(" · ")}</small>
+ <div style="margin-top:14px"><button class="btn" onclick="runPlanUse('${q.id}')">Diesen Plan verwenden</button><button class="btn g" onclick="runPlanSheet()">Zurück</button></div>`);}
+function runPlanUse(id){const q=RUN_DB.find(x=>x.id==id);if(!q)return;const r=S.run=S.run||{},N=q.w.length;
+ if(r.date){const av=rWeeksAvail();if(N>av&&!confirm("Bis zum "+fmtDat(r.date)+" bleiben nur "+av+" Wochen, der Plan hat "+N+". Du steigst in Woche "+(N-av+1)+" ein und lässt die ersten Wochen aus. Trotzdem verwenden?"))return;}
+ r.prog=id;r.days=null;r.start=weekOf(0);S.rsub="week";S.tmode="lauf";save();closeSheet();render();}
+function runDaysSheet(){const q=rProg();if(!q)return;RF.ds=rDays().slice();
+ const draw=()=>`<h4>Lauftage</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">Wähle ${q.t} Tage pro Woche. Zwischen harten Läufen sollte ein lockerer Tag oder Ruhetag liegen.</small>
+ <div class="chips" style="margin-bottom:12px">${RTAGE.map((t,i)=>`<button class="${RF.ds.includes(i)?'p':''}" onclick="runDayTog(${i})">${t}</button>`).join("")}</div>
+ <button class="btn" onclick="runDaysSave()">Speichern</button><button class="btn g" onclick="closeSheet()">Abbrechen</button>`;
+ window.runDaysDraw=()=>sheet(draw());sheet(draw());}
+function runDayTog(i){const x=RF.ds.indexOf(i);if(x>=0)RF.ds.splice(x,1);else RF.ds.push(i);RF.ds.sort((a,b)=>a-b);window.runDaysDraw();}
+function runDaysSave(){const q=rProg();if(RF.ds.length!=q.t){alert("Bitte genau "+q.t+" Tage wählen.");return;}S.run.days=RF.ds.slice();save();closeSheet();render();}
+function runHeute(){const q=rProg();if(!q)return "";const wk=S.wk,i=S.day,d=dISO(wk,i),s=rSessions(wk).find(x=>x.day==i),r=S.run;
+ const race=r.date==d;if(!s&&!race)return "";
+ const l=s?rFor(s.ref):null,lr=race?rFor("race|"+d):null;
+ if(race)return `<div class="card" onclick="S.tmode='lauf';S.rsub='week';tab='fit';render()" style="cursor:pointer;border-color:var(--heat)"><div class="row" style="margin-top:0"><b style="font-size:16px">🏁 Wettkampftag: ${esc(r.dist||"Lauf")}</b><span>${lr?"✓ geschafft":"Ergebnis eintragen ›"}</span></div></div>`;
+ return `<div class="card" onclick="S.tmode='lauf';S.rsub='week';tab='fit';render()" style="cursor:pointer"><div class="row" style="margin-top:0"><b style="font-size:16px">Laufen: ${esc(s.name)}</b><span>${l?"✓ "+fmtKm(l.km)+" km":"ca. "+s.min+" Min. ›"}</span></div><small style="color:var(--mut)">${esc(s.int)}</small></div>`;}
 /* ---------- Pausenspiele ---------- */
 const G={pi:null,run:null,tm:[],iv:[],hadRest:false,over:false};
 function gS(){S.games=S.games||{xp:0,plays:0,best:{},daily:{}};S.games.best=S.games.best||{};S.games.daily=S.games.daily||{};return S.games;}
-function gLevel(){const x=gS().xp;return {lv:Math.floor(x/150)+1,in:x%150};}
-function gDaily(){const d=todayISO();let h=0;for(const c of d)h=(h*31+c.charCodeAt(0))>>>0;const g=h%3,v=Math.floor(h/3)%4;
- const def=[{g:"reaction",t:60+v*20,txt:`Reaction Rush: mindestens ${60+v*20} Punkte`},{g:"memory",t:4+v,txt:`Memory: mindestens Level ${4+v}`},{g:"numbers",t:60-v*8,txt:`Number Blitz: in höchstens ${60-v*8} Sekunden`}][g];
+const GTITEL=["Aufwärmer","Pumper","Eisenfreund","Stemmer","Hantelheld","Kraftprotz","Legende"];
+function gLevel(){const x=gS().xp,lv=Math.floor(x/150)+1;return {lv,in:x%150,t:GTITEL[Math.min(lv-1,GTITEL.length-1)]};}
+function gDaily(){const d=todayISO();let h=0;for(const c of d)h=(h*31+c.charCodeAt(0))>>>0;const g=h%5,v=Math.floor(h/5)%4;
+ const def=[{g:"reaction",t:60+v*20,txt:`Reaction Rush: mindestens ${60+v*20} Punkte`},{g:"memory",t:4+v,txt:`Memory: mindestens Level ${4+v}`},{g:"numbers",t:60-v*8,txt:`Number Blitz: in höchstens ${60-v*8} Sekunden`},{g:"stroop",t:80+v*20,txt:`Farbwort: mindestens ${80+v*20} Punkte`},{g:"math",t:80+v*20,txt:`Kopfrechnen: mindestens ${80+v*20} Punkte`}][g];
  const dl=gS().daily;def.done=dl.d==d&&!!dl.done;return def;}
-function gAward(game,val,xp){const g=gS(),b=g.best;g.plays++;let neu=false;
+function gAward(game,val,xp){const g=gS(),b=g.best,heute=todayISO();g.plays++;let neu=false;
+ g.n=g.n||{};g.n[game]=(g.n[game]||0)+1;
  if(game=="numbers"){if(val>0&&(!b.numbers||val<b.numbers)){b.numbers=val;neu=true;}}
  else if(val>(b[game]||0)){b[game]=val;neu=true;}
+ let serie=0;
+ if(g.last!=heute){g.streak=(g.last==tagMinus(heute,1))?(g.streak||0)+1:1;g.last=heute;if(g.streak>=2)serie=Math.min(g.streak,7)*2;}
  const dc=gDaily();let bonus=0;
- if(!dc.done&&dc.g==game&&val>0&&(game=="numbers"?val<=dc.t:val>=dc.t)){bonus=50;g.daily={d:todayISO(),done:true};}
- g.xp+=xp+bonus;save();return {xp,bonus,neu};}
+ if(!dc.done&&dc.g==game&&val>0&&(game=="numbers"?val<=dc.t:val>=dc.t)){bonus=50;g.daily={d:heute,done:true};}
+ g.xp+=xp+bonus+serie;save();return {xp,bonus,serie,neu};}
 function gm(h){const e=document.getElementById("gm");if(e)e.innerHTML=h;}
 function gStopRun(){G.run=null;G.tm.forEach(clearTimeout);G.iv.forEach(clearInterval);G.tm=[];G.iv=[];}
 function gStop(){gStopRun();if(G.pi){clearInterval(G.pi);G.pi=null;const rb=document.getElementById("restbar");if(rb&&restT)rb.style.display="flex";}}
@@ -1506,21 +1692,45 @@ function gPause(){const e=document.getElementById("gp");if(!e){gStop();return;}
  else if(G.hadRest&&!G.over){G.over=true;const res=G.run?gEnd(G.run,true):"";gStopRun();e.innerHTML="";
   gm(`<div class="gover"><b>Pause vorbei</b><p>Der nächste Satz wartet.</p>${res}<button class="btn" style="width:100%;margin:12px 0 0" onclick="closeSheet()">Zum Training</button></div>`);}
  else e.innerHTML="";}
-function gHome(){gStopRun();const g=gS(),L=gLevel(),dc=gDaily(),b=g.best;
+function gHome(){gStopRun();const g=gS(),L=gLevel(),dc=gDaily(),b=g.best,n=g.n||{};
+ const GL={reaction:["⚡","Reaction Rush","30 Sekunden, Treffer zählen",b.reaction?b.reaction+" Punkte":"–"],stroop:["🎨","Farbwort","30 Sekunden, Farbe statt Wort",b.stroop?b.stroop+" Punkte":"–"],math:["➕","Kopfrechnen","30 Sekunden, Ergebnis wählen",b.math?b.math+" Punkte":"–"],memory:["🧠","Memory","Farbfolge merken",b.memory?"Level "+b.memory:"–"],numbers:["🔢","Number Blitz","1 bis 16, Fehler kosten 2 s",b.numbers?b.numbers+" s":"–"]};
+ const aktiv=g.last==todayISO()||g.last==tagMinus(todayISO(),1)?(g.streak||0):0;
  gm(`<h4>Pausenspiele</h4>
- <div class="row" style="margin-top:0"><b>Level ${L.lv}</b><span>${g.xp} XP</span></div><div class="bar"><i style="width:${L.in/150*100}%"></i></div>
+ <div class="row" style="margin-top:0"><b>Level ${L.lv} · ${L.t}</b><span>${g.xp} XP</span></div><div class="bar"><i style="width:${L.in/150*100}%"></i></div>
+ ${aktiv>=2?`<small style="display:block;margin:-6px 0 10px;color:var(--mut)">🔥 ${aktiv} Tage in Folge gespielt</small>`:""}
  <div class="gdaily"><b>Tages-Challenge</b><small>${dc.txt}${dc.done?" · geschafft ✓":" · +50 XP"}</small></div>
- ${[["reaction","⚡","Reaction Rush","30 Sekunden, Treffer zählen",b.reaction?b.reaction+" Punkte":"–"],["memory","🧠","Memory","Farbfolge merken",b.memory?"Level "+b.memory:"–"],["numbers","🔢","Number Blitz","1 bis 16 der Reihe nach",b.numbers?b.numbers+" s":"–"]].map(([k,ic,n,sm,bs])=>`<div class="opt" onclick="gStart('${k}')"><span class="ic2">${ic}</span><div><b>${n}</b><small>${sm} · Rekord: ${bs}</small></div></div>`).join("")}
+ ${Object.keys(GL).map(k=>`<div class="opt" onclick="gStart('${k}')"><span class="ic2">${GL[k][0]}</span><div><b>${GL[k][1]}${dc.g==k&&!dc.done?' <span class="tag">Challenge</span>':""}</b><small>${GL[k][2]} · Rekord: ${GL[k][3]}${n[k]?" · "+n[k]+"× gespielt":""}</small></div></div>`).join("")}
  <small class="sum">${g.plays} Spiele gespielt</small>
  <button class="btn g" style="width:100%;margin:10px 0 0" onclick="closeSheet()">Schließen</button>`);}
-function gStart(k){({reaction:gReaction,memory:gMemory,numbers:gNumbers})[k]();}
+function gStart(k){({reaction:gReaction,memory:gMemory,numbers:gNumbers,stroop:gStroop,math:gMath})[k]();}
+const gBuzz=ms=>{try{if(navigator.vibrate)navigator.vibrate(ms);}catch(e){}};
+function gTimer(run){G.iv.push(setInterval(()=>{if(G.run!==run)return;run.left--;const e=$("#gl");if(e)e.textContent=run.left+" Sekunden";if(run.left<=0)gEnd(run);},1000));}
+const GSTR=[["Rot","#e25555"],["Blau","#4a8cf0"],["Gelb","#e8bd3f"],["Grün","#3cbf7a"]];
+function gStroop(){gStopRun();const run=G.run={game:"stroop",score:0,left:30,ink:0};
+ gm(`<h4>🎨 Farbwort</h4><div class="gscore" id="gs">0 Punkte</div><p class="sum" id="gi">Tippe die Farbe, in der das Wort geschrieben ist.</p><div class="gword" id="gw"></div><div class="gopts">${GSTR.map((c,i)=>`<button onclick="gStr(${i})">${c[0]}</button>`).join("")}</div><p class="sum" id="gl">30 Sekunden</p>`);
+ gStrNext(run);gTimer(run);}
+function gStrNext(run){const w=Math.floor(Math.random()*4);let c=Math.floor(Math.random()*4);if(Math.random()<.8&&c==w)c=(c+1+Math.floor(Math.random()*3))%4;run.ink=c;const e=$("#gw");if(e){e.textContent=GSTR[w][0];e.style.color=GSTR[c][1];}}
+function gStr(i){const run=G.run;if(!run||run.game!="stroop")return;
+ if(i==run.ink){run.score+=10;$("#gi").textContent="Richtig! +10";gBuzz(12);}else{run.score=Math.max(0,run.score-5);$("#gi").textContent="Falsch, −5";gBuzz(40);}
+ $("#gs").textContent=run.score+" Punkte";gStrNext(run);}
+function gMath(){gStopRun();const run=G.run={game:"math",score:0,left:30,ans:0};
+ gm(`<h4>➕ Kopfrechnen</h4><div class="gscore" id="gs">0 Punkte</div><p class="sum" id="gi">Wähle das richtige Ergebnis.</p><div class="gword" id="gw"></div><div class="gopts" id="go"></div><p class="sum" id="gl">30 Sekunden</p>`);
+ gMathNext(run);gTimer(run);}
+function gMathNext(run){const r=n=>Math.floor(Math.random()*n),k=r(3);let a,b,q,t;
+ if(k==0){a=5+r(40);b=5+r(40);q=a+" + "+b;t=a+b;}else if(k==1){a=15+r(60);b=3+r(Math.min(a-3,40));q=a+" − "+b;t=a-b;}else{a=2+r(11);b=2+r(11);q=a+" × "+b;t=a*b;}
+ const o=[t];while(o.length<3){const v=t+(1+r(9))*(r(2)?1:-1);if(v>=0&&!o.includes(v))o.push(v);}
+ o.sort(()=>Math.random()-.5);run.ans=t;const w=$("#gw");if(w)w.textContent=q+" = ?";const g=$("#go");if(g)g.innerHTML=o.map(v=>`<button onclick="gMa(${v})">${v}</button>`).join("");}
+function gMa(v){const run=G.run;if(!run||run.game!="math")return;
+ if(v==run.ans){run.score+=10;$("#gi").textContent="Richtig! +10";gBuzz(12);}else{run.score=Math.max(0,run.score-5);$("#gi").textContent="Falsch, −5";gBuzz(40);}
+ $("#gs").textContent=run.score+" Punkte";gMathNext(run);}
 function gEnd(run,partial){if(!run||(G.run!==run&&!partial))return "";
  let val,xp,txt;
  if(run.game=="reaction"){val=run.score;xp=Math.round(val/5);txt=val+" Punkte";}
+ else if(run.game=="stroop"||run.game=="math"){val=run.score;xp=Math.round(val/5);txt=val+" Punkte";}
  else if(run.game=="memory"){val=run.level!=null?run.level:Math.max(0,run.seq.length-1);xp=val*6;txt="Level "+val;}
  else{const done=run.next==17;val=done?run.sec:0;xp=done?20+Math.max(0,Math.round((60-val)/3)):Math.floor((run.next-1)/2);txt=done?val+" Sekunden":(run.next-1)+" von 16";}
  const a=(val>0||xp>0)?gAward(run.game,val,xp):{xp:0,bonus:0,neu:false};
- const html=`<div class="gres"><div class="gscore">${txt}</div>${a.neu?"<p><b>🏆 Neuer Rekord</b></p>":""}<p class="sum">+${a.xp} XP${a.bonus?" · +"+a.bonus+" XP Tages-Challenge geschafft":""}</p></div>`;
+ const html=`<div class="gres"><div class="gscore">${txt}</div>${a.neu?"<p><b>🏆 Neuer Rekord</b></p>":""}<p class="sum">+${a.xp} XP${a.bonus?" · +"+a.bonus+" XP Tages-Challenge geschafft":""}${a.serie?" · +"+a.serie+" XP Serie":""}</p></div>`;
  if(partial)return html;
  gStopRun();gm(html+`<button class="btn" style="width:100%;margin:12px 0 6px" onclick="gStart('${run.game}')">Nochmal</button><button class="btn g" style="width:100%;margin:0" onclick="gHome()">Spielemenü</button>`);return "";}
 function gReaction(){gStopRun();const run=G.run={game:"reaction",score:0,left:30,can:false,arm:0};
@@ -1567,15 +1777,17 @@ function tDay(){
   const e=exById(n),sets=(S.sets[d]&&S.sets[d][n])||[];
   const lz=letzteSaetze(n,d),best0=bestesE1(n,d),jetzt=Math.max(0,...sets.map(x=>e1rm(x.kg,x.reps)));
   const rekord=best0>0&&jetzt>best0+0.05&&echteEinheit(d,n);
+  const pi=planInfo(key,n),ps=restSek(pi);
+  const planTxt=pi?`Plan: ${pi.saetze} × ${pi.wieder}${pi.r!=null?" · "+pi.r+" Wdh. im Tank":""}${pi.p?" · Pause "+fmtPause(pi.p):""}`:"";
   const lzTxt=lz?`Letztes Mal (${lz.d.slice(8,10)}.${lz.d.slice(5,7)}.): ${lz.sets.map(x=>satzText(n,x)).join(", ")}`:"Noch kein früheres Training dieser Übung.";
   h+=`<div class="card"><div class="row"><b>${esc(e?e.n:n)}</b><button class="x" onclick="exRemove('${d}','${jq(n)}')">✕</button></div>
   ${e?`<small style="color:var(--mut);display:block;margin-bottom:2px">${esc(e.m)} · ${esc(e.g.join(", "))}</small>`:""}
-  <small style="color:var(--mut);display:block;margin-bottom:8px">${lzTxt}${uebHinweis(n)}${rekord?' <b style="color:var(--brand)">· 🏆 Neuer Rekord (geschätztes 1RM '+Math.round(jetzt*10)/10+' kg)</b>':""}</small>
+  <small style="color:var(--mut);display:block;margin-bottom:8px">${planTxt?"<b>"+planTxt+"</b><br>":""}${lzTxt}${uebHinweis(n)}${rekord?' <b style="color:var(--brand)">· 🏆 Neuer Rekord (geschätztes 1RM '+Math.round(jetzt*10)/10+' kg)</b>':""}</small>
   ${sets.map((x,k)=>`<div class="row" style="align-items:center"><span>Satz ${k+1}</span><span><input class="n" style="width:74px;display:inline-block;margin:0 4px 0 0" type="number" inputmode="decimal" value="${x.kg}" onchange="setEdit('${d}','${jq(n)}',${k},'kg',this.value)" onfocus="this.select()">${uebArt(n)=="gewicht"?"kg":"kg +"}
   <input class="n" style="width:66px;display:inline-block;margin:0 4px" type="number" inputmode="numeric" value="${x.reps}" onchange="setEdit('${d}','${jq(n)}',${k},'reps',this.value)">${uebArt(n)=="zeit"?"s":"Wdh"}
   <button class="x" onclick="setDel('${d}','${jq(n)}',${k})">✕</button></span></div>`).join("")}
   <button class="btn g" onclick="setAdd('${d}','${jq(n)}')">+ Satz</button>
-  <button class="btn g" onclick="restStart(90)">⏱ Pause 90 s</button>
+  <button class="btn g" onclick="restStart(${ps})">⏱ Pause ${fmtPause(ps)}</button>
   <button class="ok ${prDone(d,n)?'on':''}" style="margin-left:6px" onclick="prTick('${d}','${jq(n)}')">${prDone(d,n)?"✓ erledigt":"erledigt"}</button></div>`;});
  h+=`<div class="card"><h4>Übung hinzufügen</h4><input class="n" id="exq" oninput="exSearch()" placeholder="Übung suchen, z. B. Kniebeugen"><div id="exres"></div>
  <button class="btn g" onclick="exNewForm()">+ Eigene Übung</button><button class="btn g" onclick="S.tsub='lib';save();render()">Alle Übungen</button><button class="btn g" onclick="gOpen()">🎮 Pausenspiele</button></div>
@@ -1608,7 +1820,7 @@ function loadSplit(k,idx){
  if(!confirm("Tag mit „"+e[0]+"“ füllen? Vorhandene Übungen werden ersetzt."))return;
  const key=S.wk+"|"+S.day,d=dISO(S.wk,S.day);
  S.train[key]=e[1].map(x=>x[0]);S.sets[d]={};
- S.trSets=S.trSets||{};S.trSets[key]=e[1].map(x=>({n:x[0],saetze:x[1],wieder:x[2]}));
+ S.trSets=S.trSets||{};S.trSets[key]=e[1].map(trSatz);
  e[1].forEach(([n,sa,rp])=>{S.sets[d][n]=[];for(let x=0;x<sa;x++)S.sets[d][n].push({kg:stdKg(n),reps:repsVon(rp)});});
  save();logInfo("training","Einheit geladen",{name:e[0],tag:key});render();}
 function exNewForm(){
@@ -1817,6 +2029,13 @@ function sProfil(){
  <label>Ziel bis wann?</label><input class="n" type="date" value="${S.wGoalDate||""}" onchange="S.wGoalDate=this.value||null;save();render()">
  ${letzte?`<div class="row"><span>Aktuell</span><span>${(+letzte).toFixed(1)} kg</span></div>`:""}
  ${zielFortschritt()}
+ </div>
+ <div class="card"><h4>Satzpause</h4>
+ <small style="display:block;color:var(--mut);margin:-4px 0 10px">So lange läuft die Pause im Training, wenn du auf den Pause-Knopf tippst.</small>
+ <div class="chips" style="margin-bottom:10px"><button class="${S.restPlan!==false?'p':''}" onclick="S.restPlan=true;save();render()">Wie im Plan</button><button class="${S.restPlan===false?'p':''}" onclick="S.restPlan=false;save();render()">Immer gleich</button></div>
+ <label>${S.restPlan!==false?"Pause, wenn der Plan keine vorgibt":"Pause für alle Übungen"} (Sekunden)</label>
+ <input class="n" type="number" inputmode="numeric" min="10" max="900" value="${S.restSek||90}" onchange="restSetzen(this.value)">
+ <div class="chips">${[45,60,90,120,180,240].map(x=>`<button class="${(S.restSek||90)==x?'p':''}" onclick="restSetzen(${x})">${fmtPause(x)}</button>`).join("")}</div>
  </div>`;
 }
 function zielFortschritt(){
@@ -2189,6 +2408,7 @@ function viewEat(){
  if(extra.length){h+=`<div class="card"><h4>Zusätzlich gegessen</h4>`;
   extra.forEach(({e,i})=>{h+=`<div class="mrow"><div class="t"><b>${esc(e.n)}</b><small>${Math.round(e.k)} kcal · ${Math.round(e.p)} g Eiweiß</small></div><button class="x" aria-label="Eintrag löschen" onclick="delLog(${i})">✕</button></div>`;});
   h+=`</div>`;}
+ h+=runHeute();
  h+=wasserKarte(isoD);
  const sp=suppPlan(isoD);
  if(sp.length){const n=suppOf(isoD).filter(x=>x.taken).length;
