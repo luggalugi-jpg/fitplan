@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#16a34a">
+<meta name="theme-color" content="#1c7a4b">
 <title>Fit-Wochenplan</title>
 <link rel="manifest" href="manifest.json">
 <meta name="mobile-web-app-capable" content="yes">
@@ -17,14 +17,15 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <style>
 :root{
- --bg:#f6f7f9; --card:#ffffff; --line:#e8eaed; --txt:#16181d; --mut:#6b7280;
- --brand:#16a34a; --brand-d:#15803d; --brand-l:#e8f7ee;
- --danger:#dc2626; --warn:#f59e0b; --blue:#2563eb; --teal:#0d9488;
- --r:16px; --sh:0 1px 2px rgba(16,24,40,.06),0 4px 12px rgba(16,24,40,.04);
+ --bg:#f1f3ee; --card:#ffffff; --line:#e1e5dc; --txt:#16201a; --mut:#5d6a61;
+ --brand:#1c7a4b; --brand-d:#14573a; --brand-l:#e1f0e6;
+ --danger:#c43030; --warn:#d98a0b; --warn-t:#8f5400; --blue:#2d6bd6; --teal:#0f857a; --heat:#e8742a;
+ --r:18px; --sh:none;
 }
 @media (prefers-color-scheme:dark){:root{
- --bg:#0f1115; --card:#181b21; --line:#272b33; --txt:#eef1f5; --mut:#98a2b3;
- --brand:#22c55e; --brand-d:#16a34a; --brand-l:#14301f; --sh:0 1px 2px #0006,0 6px 16px #0004;}}
+ --bg:#0d1310; --card:#151d18; --line:#242f28; --txt:#eaf1ec; --mut:#8f9e94;
+ --brand:#3ecf86; --brand-d:#86e6b4; --brand-l:#173424; --warn-t:#f0b44c; --heat:#f08a45; --danger:#ef6464;}
+ .btn,.days button.on,.sub button.on,.tabs button.on,.ok.on,.add,.fab,.chkc.on{color:#04210f}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--txt);
@@ -114,16 +115,90 @@ label{font-size:13px;color:var(--mut);font-weight:600}
 .empty{padding:22px 14px;text-align:center;color:var(--mut);font-size:14px}
 .badge{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--brand-l);color:var(--brand-d)}
 hr{border:0;border-top:1px solid var(--line);margin:12px 0}
+
+/* ===== v2.2 Oberfläche ===== */
+body{padding-top:calc(10px + env(safe-area-inset-top));padding-bottom:calc(84px + env(safe-area-inset-bottom));font-size:15px}
+main{padding:6px 14px 4px}
+.card{padding:16px;border-radius:var(--r);box-shadow:none}
+h3,h4{text-transform:none;letter-spacing:-.1px;color:var(--txt);font-size:16px;font-weight:700;margin:0 0 10px}
+nav{padding:6px 4px calc(6px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(10px)}
+nav button{font-size:11px;font-weight:600;gap:3px;padding:4px 0;background:none!important;color:var(--mut)}
+nav button .ic{display:grid;place-items:center;width:56px;height:30px;border-radius:99px;transition:background .15s}
+nav button svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav button.on{color:var(--brand)}
+nav button.on .ic{background:var(--brand-l)}
+nav button.on svg{stroke-width:2.2}
+.sub{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:2px;overflow:hidden;padding:3px;border-radius:14px;background:var(--line);border:0;margin-bottom:12px}
+.sub button{min-width:0;padding:9px 2px;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border-radius:11px}
+.sub button.on{background:var(--card);color:var(--txt);box-shadow:0 1px 3px #0002}
+.wkpick{background:none;border:0;padding:2px 0;margin-bottom:6px}
+.wkpick .nav{background:var(--card);border:1px solid var(--line);border-radius:50%;width:36px;height:36px;font-size:18px;color:var(--txt)}
+.wkpick span{display:flex;align-items:center;gap:8px;font-size:15px}
+.wkpick .heute{border:0;background:var(--brand-l);color:var(--brand-d);font-weight:700;font-size:12px;padding:5px 10px;border-radius:99px;font-family:inherit}
+.days{gap:5px;margin-bottom:12px}
+.days button{min-width:0;padding:7px 0 6px;border-radius:14px;display:flex;flex-direction:column;align-items:center;gap:1px;background:none;border-color:transparent;color:var(--mut);font-size:12px;font-weight:600}
+.days button small{font-size:15px;font-weight:700;color:var(--txt);font-variant-numeric:tabular-nums}
+.days button i{display:block;width:5px;height:5px;border-radius:50%;background:var(--brand);font-size:0;margin-top:1px;min-height:5px;color:transparent}
+.days button:not(:has(i)){padding-bottom:12px}
+.days button.td{border-color:var(--brand)}
+.days button.on{background:var(--brand);border-color:var(--brand);color:#ffffffcc}
+.days button.on small{color:#fff}.days button.on i{background:#fff}
+.days button b{font-size:15px;font-variant-numeric:tabular-nums}
+.btn{box-shadow:none;border-radius:13px;padding:12px 16px}
+.btn.g{background:var(--card)}
+.ok{border-radius:99px}
+.hero{display:flex;gap:18px;align-items:center}
+.ring{position:relative;width:132px;height:132px;flex:none}
+.ring .c{position:absolute;inset:0;display:grid;place-content:center;text-align:center;line-height:1.1}
+.ring .c b{font-size:30px;font-weight:760;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+.ring .c span{font-size:12px;color:var(--mut);margin-top:3px}
+.mx{flex:1;min-width:0}
+.mx .r1{display:flex;justify-content:space-between;font-size:13px;gap:6px}
+.mx .r1 span{color:var(--mut);font-variant-numeric:tabular-nums}
+.mx .bar{height:6px;margin:4px 0 11px}.mx .bar:last-child{margin-bottom:0}
+.bar i.kh{background:var(--blue)}.bar i.fe{background:var(--warn)}.bar i.w{background:var(--blue)}
+.sum{font-size:13px;color:var(--mut);margin:12px 0 0;text-align:center}
+.sl{display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--mut);margin:16px 0 0}
+.sl:first-of-type{margin-top:0}
+.mrow{display:flex;align-items:center;gap:12px;padding:10px 0}
+.mrow+.mrow{border-top:1px solid var(--line)}
+.mrow .t{flex:1;min-width:0}
+.mrow .t b{display:block;font-weight:600;font-size:15px;line-height:1.3}
+.mrow .t small{display:block;color:var(--mut);font-size:12.5px;margin-top:1px}
+.chkc{width:32px;height:32px;border-radius:50%;border:2px solid var(--line);background:none;flex:none;display:grid;place-items:center;color:transparent;padding:0}
+.chkc svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.chkc.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.lnk{border:0;background:none;color:var(--brand);font-weight:650;font-size:14px;padding:8px 0;font-family:inherit}
+.add{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border-radius:16px;border:0;background:var(--brand);color:#fff;font-size:16px;font-weight:700;font-family:inherit;margin:2px 0 12px}
+.fab{position:fixed;right:16px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:5;display:flex;align-items:center;gap:7px;padding:14px 20px;border-radius:99px;border:0;background:var(--brand);color:#fff;font-size:15.5px;font-weight:700;font-family:inherit;box-shadow:0 6px 18px #0004}
+.fab svg,.add svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.6;stroke-linecap:round}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{border:1px solid var(--line);background:var(--bg);color:var(--txt);border-radius:99px;padding:8px 14px;font-size:13.5px;font-weight:600;font-family:inherit}
+.chips button.p{background:var(--brand-l);border-color:transparent;color:var(--brand-d)}
+.slim{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--warn);border-radius:14px;padding:8px 8px 8px 14px;margin:4px 0 12px;font-size:13.5px}
+.slim span{flex:1}.slim button{border:0;border-radius:99px;padding:8px 14px;font-size:13px;font-weight:700;font-family:inherit;background:var(--brand);color:#fff}
+.slim button.g{background:none;color:var(--mut);padding:8px}
+details.card>summary{font-weight:700;font-size:16px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details.card>summary::-webkit-details-marker{display:none}
+details.card>summary::after{content:"›";font-size:22px;color:var(--mut);transition:transform .15s}
+details.card[open]>summary::after{transform:rotate(90deg)}
+details.card[open]>summary{margin-bottom:10px}
+.opt .ic2{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--brand-l);color:var(--brand-d);margin-right:12px;vertical-align:middle;font-size:18px}
+.opt{display:flex;align-items:center;padding:11px 2px}
+.opt>div{flex:1;min-width:0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+button:focus-visible,a:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 </style>
 </head>
 <body>
-<header><div class="hd"><div class="logo">🥗</div><div><b id="title">Fit-Wochenplan</b><small id="subtitle">Wochenplanung</small></div></div></header>
+
 <main id="app"></main>
 <nav>
-<button data-t="plan" class="on"><i>📅</i>Planen</button>
-<button data-t="eat"><i>📝</i>Protokoll</button>
-<button data-t="fit"><i>🏋️</i>Training</button>
-<button data-t="more"><i>⚙️</i>Mehr</button>
+<button data-t="eat" class="on"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.2"/></svg></span>Heute</button>
+<button data-t="plan"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>Planen</button>
+<button data-t="fit"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 7v10M17.5 7v10M3.5 9.5v5M20.5 9.5v5M6.5 12h11"/></svg></span>Training</button>
+<button data-t="prog"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 18.5 9 12l4 3.5 7.5-9"/><path d="M15 6.5h5.5V12"/></svg></span>Fortschritt</button>
+<button data-t="more"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="18.5" cy="12" r="1.3"/></svg></span>Mehr</button>
 </nav>
 <script src="rezepte.js"></script>
 <script>
@@ -212,7 +287,7 @@ if(typeof RDB!=="undefined"&&typeof FOODS_NEU!=="undefined")(function(){
   if(dup)return;FOODS.push({n:a[0],k:a[1],p:a[2],h:a[3],f:a[4],g:a[5]});bases.push(w);});
 })();
 const fitsSlot=(m,s)=>m.c==s||(m.x&&m.x.indexOf(s)>=0);
-const PUBLIC_V="2.0";
+const PUBLIC_V="2.2";
 const LOGKEY="fitplan_log";
 let LOGS=[],LSEQ=0;
 (function(){try{LOGS=JSON.parse(localStorage.getItem(LOGKEY)||"[]")}catch(e){LOGS=[]}})();
@@ -272,7 +347,7 @@ function logCopy(){
 }
 function logShow(){
  const txt=logFile();
- sheet(`<b>Diagnoseprotokoll</b><small style="display:block;color:#666;margin:4px 0 8px">${txt.length} Zeichen · ${LOGS.length} Einträge</small>
+ sheet(`<b>Diagnoseprotokoll</b><small style="display:block;color:var(--mut);margin:4px 0 8px">${txt.length} Zeichen · ${LOGS.length} Einträge</small>
  <textarea class="n" id="ltxt" rows="14" readonly>${esc(txt)}</textarea>
  <button class="btn" onclick="logCopy()">Kopieren</button><button class="btn" onclick="logDownload()">Als Datei speichern</button>
  <button class="btn g" onclick="logClear()">Protokoll löschen</button><button class="btn g" onclick="closeSheet()">Schließen</button>`);
@@ -371,22 +446,22 @@ const EXERCISES=[
 {n:"Kabelcrunch",m:"Rumpf",g:["Bauch"],s:"Kabelzug"}
 ];
 const SUPPS=[
-{n:"Magnesium",e:"375 mg",w:"abends",z:"Muskeln, Nerven, Schlaf"},
-{n:"Vitamin D3",e:"2000 IE",w:"zum Essen",z:"Knochen, Immunsystem"},
-{n:"Vitamin K2",e:"100 µg",w:"zum Essen",z:"Knochen, mit D3"},
+{n:"Magnesium",e:"375 mg",w:"abends",z:"Muskeln, Nerven, Schlaf",h:"Bei Nierenerkrankungen vorher ärztlich klären."},
+{n:"Vitamin D3",e:"2000 IE",w:"zum Essen",z:"Knochen, Immunsystem",h:"Der Bedarf hängt von Blutwert, Sonne und Ernährung ab. Hohe Dosen nur nach ärztlicher Absprache."},
+{n:"Vitamin K2",e:"100 µg",w:"zum Essen",z:"Knochen, mit D3",h:"Bei Blutverdünnern (z. B. Marcumar) vorher ärztlich klären."},
 {n:"Vitamin C",e:"500 mg",w:"morgens",z:"Immunsystem, Bindegewebe"},
-{n:"Vitamin B12",e:"500 µg",w:"morgens",z:"Blutbildung, Nerven"},
-{n:"Omega-3 (Fischöl)",e:"1–2 g",w:"zum Essen",z:"Herz, Gelenke, Entzündung"},
-{n:"Zink",e:"15 mg",w:"zum Essen",z:"Immunsystem, Testosteron"},
-{n:"Eisen",e:"14 mg",w:"nüchtern",z:"Blutbildung, Sauerstoff"},
-{n:"Kalzium",e:"500 mg",w:"zum Essen",z:"Knochen"},
-{n:"Kreatin",e:"5 g",w:"täglich, egal wann",z:"Kraft, Muskelaufbau"},
+{n:"Vitamin B12",e:"500 µg",w:"morgens",z:"Blutbildung, Nerven",h:"Vor allem bei veganer Ernährung oder nachgewiesenem Mangel sinnvoll."},
+{n:"Omega-3 (Fischöl)",e:"1–2 g",w:"zum Essen",z:"Herz, Gelenke, Entzündung",h:"Bei Blutverdünnern oder vor Operationen ärztlich klären."},
+{n:"Zink",e:"15 mg",w:"zum Essen",z:"Immunsystem, Testosteron",h:"Dauerhaft hohe Mengen können einen Kupfermangel auslösen. Packungsangabe nicht überschreiten."},
+{n:"Eisen",e:"14 mg",w:"nüchtern",z:"Blutbildung, Sauerstoff",h:"Nur bei ärztlich bestätigtem Mangel (Blutwert) einnehmen. Zu viel Eisen kann schaden."},
+{n:"Kalzium",e:"500 mg",w:"zum Essen",z:"Knochen",h:"Ohne Mangel meist nicht nötig. Zuerst über die Ernährung decken."},
+{n:"Kreatin",e:"5 g",w:"täglich, egal wann",z:"Kraft, Muskelaufbau",h:"Bei Nierenerkrankungen vorher ärztlich klären. Ausreichend trinken."},
 {n:"Whey-Protein",e:"25–30 g",w:"nach dem Training",z:"Eiweißzufuhr"},
 {n:"Kollagen",e:"10 g",w:"täglich",z:"Gelenke, Haut"},
 {n:"Multivitamin",e:"1 Portion",w:"morgens",z:"Grundversorgung"},
 {n:"Elektrolyte",e:"1 Portion",w:"vor dem Training",z:"Flüssigkeitshaushalt"},
-{n:"Koffein",e:"100–200 mg",w:"vor dem Training",z:"Leistung, Wachheit"},
-{n:"Ashwagandha",e:"600 mg",w:"abends",z:"Stress, Erholung"}
+{n:"Koffein",e:"100–200 mg",w:"vor dem Training",z:"Leistung, Wachheit",h:"Nicht am späten Nachmittag oder abends. Bei Herz-Kreislauf-Problemen oder Schwangerschaft ärztlich klären."},
+{n:"Ashwagandha",e:"600 mg",w:"abends",z:"Stress, Erholung",h:"Nicht in Schwangerschaft und Stillzeit. Kann Schilddrüsen- und Leberwerte beeinflussen. Vorher ärztlich klären."}
 ];
 const WOCHENTAGE=["Mo","Di","Mi","Do","Fr","Sa","So"];
 // Vorlagen: Einheiten mit Übungen; Verteilung auf Trainingstage passiert beim Anwenden
@@ -423,7 +498,7 @@ const DEFAULTS=()=>({plan:{},done:{},kcal:2000,prot:150,day:0,custom:[],log:{},n
 let GESPEICHERT={};try{GESPEICHERT=JSON.parse(localStorage.getItem("fitplan")||"{}")||{}}catch(e){GESPEICHERT={};try{logErr("start","Speicher defekt, starte leer: "+e.message)}catch(_){}}
 const S=Object.assign(DEFAULTS(),GESPEICHERT);
 const save=()=>{try{localStorage.setItem("fitplan",JSON.stringify(S))}catch(e){logErr("speicher","Speichern fehlgeschlagen: "+e.message)}};
-let tab="plan",sub={plan:"plan",eat:"day"};
+let tab="eat",sub={plan:"plan",eat:"day",prog:"weight"};
 const $=s=>document.querySelector(s);
 const allMeals=()=>MEALS.concat(S.custom);
 const meal=id=>allMeals().find(m=>m.id==id);
@@ -431,8 +506,8 @@ function showRecipe(id){const m=meal(id);if(!m)return;const t=m.r||RECIPES[m.id]
  const steps=t.split("\n").filter(x=>x.trim());const z=m.z||1;
  const meta=[m.cat,m.t?("Zeit: "+m.t+" Min."):"",z>1?("Rezept für "+z+" Portionen"):"",m.gr?("ca. "+m.gr+" g pro Portion"):"",m.hn].filter(Boolean).map(esc).join(" · ");
  const zut=m.i.map(x=>`<li>${r(x[1]*z)} ${esc(x[2])} ${esc(x[0])}</li>`).join("")+(m.e||[]).map(x=>`<li>${esc(x)}</li>`).join("");
- sheet(`<b>${esc(m.n)}</b><small style="display:block;color:#666;margin:4px 0 4px">${mac(m)}${m.b?" · "+r(m.b)+" g Ballaststoffe":""}${z>1?" (je Portion)":""}</small>
- ${meta?`<small style="display:block;color:#666;margin:0 0 10px">${meta}</small>`:""}
+ sheet(`<b>${esc(m.n)}</b><small style="display:block;color:var(--mut);margin:4px 0 4px">${mac(m)}${m.b?" · "+r(m.b)+" g Ballaststoffe":""}${z>1?" (je Portion)":""}</small>
+ ${meta?`<small style="display:block;color:var(--mut);margin:0 0 10px">${meta}</small>`:""}
  <b>Zutaten (${z>1?"gesamt für "+z+" Portionen":"1 Portion"})</b><ul>${zut||"<li>–</li>"}</ul>
  <b>Zubereitung</b>${steps.length?`<ol>${steps.map(x=>`<li>${esc(x.replace(/^\d+[.)]\s*/,""))}</li>`).join("")}</ol>`:`<p>Noch kein Rezept hinterlegt. Du kannst eins unter Planen → Gerichte ergänzen.</p>`}
  <button class="btn g" onclick="toggleFav(${m.id})">${(S.fav||[]).includes(m.id)?"★ Favorit entfernen":"☆ Als Favorit merken"}</button>
@@ -447,15 +522,16 @@ function entries(wk,i){const p=pk(wk,i);return SLOTS.flatMap(([s])=>(S.plan[p+s]
 function totals(wk,i){const t={k:0,p:0,h:0,f:0};entries(wk,i).forEach(({e,m})=>["k","p","h","f"].forEach(x=>t[x]+=m[x]*e.q));return t;}
 function eaten(d){const t={k:0,p:0,h:0,f:0};(S.log[d]||[]).forEach(e=>["k","p","h","f"].forEach(x=>t[x]+=e[x]));return t;}
 function bar(l,v,max,u){const pc=Math.min(100,v/max*100);return `<div class="row"><span>${l}</span><span>${Math.round(v)} / ${max} ${u}</span></div><div class="bar"><i class="${v>max*1.05?'over':''}" style="width:${pc}%"></i></div>`;}
-function weekBar(mapDate){
- const wk=S.wk;
- const days=DAYS.map((x,i)=>{const d=dISO(wk,i),istoday=d==todayISO(),has=entries(wk,i).length||((S.log[d]||[]).length);
-  return `<button class="${i==S.day?'on':''}" onclick="S.day=${i};save();render()">${DAYS[i]}<small style="display:block;font-size:10px;opacity:.8">${+d.slice(8,10)}.${+d.slice(5,7)}.</small>${has?'<i style="display:block;font-size:9px">•</i>':(istoday?'<i style="display:block;font-size:9px">heute</i>':'')}</button>`;}).join("");
- return `<div class="wkpick"><button class="nav" onclick="wkShift(-1)">‹</button>
- <span>${fmtWeek(wk)}${isThisWeek()?' <b style="color:#16a34a">· diese Woche</b>':''}</span>
- <button class="nav" onclick="wkShift(1)">›</button></div>
- <div class="days">${days}</div>
- <div style="text-align:center;margin:-4px 0 8px"><button class="btn g" style="font-size:13px;padding:6px 10px" onclick="goToday()">Heute anzeigen</button></div>`;}
+function weekBar(){
+ const wk=S.wk,heute=todayISO(),aktiv=dISO(wk,S.day)==heute;
+ const days=DAYS.map((x,i)=>{const d=dISO(wk,i),has=entries(wk,i).length||((S.log[d]||[]).length);
+  return `<button class="${i==S.day?'on':''} ${d==heute?'td':''}" onclick="S.day=${i};save();render()">${DAYS[i]}<small>${+d.slice(8,10)}</small>${has?'<i></i>':''}</button>`;}).join("");
+ return `<div class="wkpick"><button class="nav" aria-label="Vorheriger Tag" onclick="dayShift(-1)">‹</button>
+ <span>${tagLabel(wk,S.day)}${aktiv?'':'<button class="heute" onclick="goToday()">Heute</button>'}</span>
+ <button class="nav" aria-label="Nächster Tag" onclick="dayShift(1)">›</button></div>
+ <div class="days">${days}</div>`;}
+function tagLabel(wk,i){const d=dateOf(wk,i),h=dISO(wk,i)==todayISO();
+ const t=d.toLocaleDateString("de-DE",h?{day:"numeric",month:"long"}:{weekday:"long",day:"numeric",month:"long"});return h?"Heute, "+t:t;}
 function wkShift(n){S.wkLock=true;S.wk=iso((()=>{const d=dateOf(S.wk,0);d.setDate(d.getDate()+n*7);return d})());save();render();}
 function isThisWeek(){return S.wk==weekOf(0);}
 function goToday(){S.wk=weekOf(0);S.day=dayIndex(new Date());save();render();}
@@ -468,49 +544,59 @@ function rdbHinweis(){
 }
 function render(){
  document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.t==tab));
- const T={plan:["Planen","Wochenplan, Einkauf, Gerichte und Supplements"],eat:["Protokoll","Was du tatsächlich gegessen hast"],fit:["Training","Krafttraining planen und protokollieren"],more:["Mehr","Einstellungen, Ziele, Daten und KI"]};
- $("#title").textContent=T[tab][0];$("#subtitle").textContent=T[tab][1];
  let h;
- if(tab=="plan"){h=subTabs([["plan","Wochenplan"],["shop","Einkauf"],["meals","Gerichte"],["supp","Supplements"]]);
-  h+={plan:viewPlan,shop:viewShop,meals:viewMeals,supp:viewSuppPlan}[sub.plan]();}
+ if(tab=="plan"){h=subTabs([["plan","Woche"],["shop","Einkauf"],["meals","Gerichte"]]);
+  h+={plan:viewPlan,shop:viewShop,meals:viewMeals}[sub.plan]();}
  else if(tab=="fit"){if(!S.wkLock){S.wk=weekOf(0);S.day=dayIndex(new Date());}
   h=viewTrain();}
+ else if(tab=="prog"){h=subTabs([["weight","Gewicht"],["ana","Analyse"],["week","Wochen"]]);h+={weight:viewWeight,ana:viewAnalyse,week:viewWeek}[sub.prog]();}
  else if(tab=="more"){h=viewSettings();}
  else{if(sub.eat=="day"&&!S.wkLock){S.wk=weekOf(0);S.day=dayIndex(new Date());}
-  h=subTabs([["day","Heute / Tag"],["week","Woche"],["supp","Supplements"],["weight","Gewicht"]]);h+={day:viewEat,week:viewWeek,supp:viewSupp,weight:viewWeight}[sub.eat]();}
- $("#app").innerHTML=rdbHinweis()+(tab=="more"&&(S.mtab||"profil")=="daten"?"":backupBanner())+h;
+  h=subTabs([["day","Tag"],["supp","Supplements"]]);
+  if(sub.eat=="supp")h+=viewSupp()+`<details class="card"><summary>Supplement-Plan bearbeiten</summary>${viewSuppPlan()}</details>`;
+  else h+=viewEat();}
+ const bk=(tab=="eat"&&sub.eat=="day")||(tab=="more"&&(S.mtab||"profil")!="daten")?backupBanner():"";
+ $("#app").innerHTML=rdbHinweis()+bk+h;
 }
 /* ---------- PLANEN ---------- */
 function viewPlan(){
  const wk=S.wk,d=S.day,t=totals(wk,d),key=pk(wk,d);
- let h=weekBar(false,fmtWeek(S.wk));
- h+=`<div class="card"><div class="row"><b>Tagesziel</b><span>${S.kcal} kcal · ${S.prot} g Eiweiß</span></div>
- ${bar("Kalorien",t.k,S.kcal,"kcal")}${bar("Eiweiß",t.p,S.prot,"g")}
- <div class="row"><span>Kohlenhydrate</span><span>${Math.round(t.h)} g</span></div>
- <div class="row"><span>Fett</span><span>${Math.round(t.f)} g</span></div>
- <div class="row" style="color:#666"><span>Woche gesamt</span><span>${(()=>{let x=0;for(let q=0;q<7;q++)x+=totals(wk,q).k;return Math.round(x)+" kcal";})()} (${Math.round((()=>{let x=0;for(let q=0;q<7;q++)x+=totals(wk,q).p;return x})())} g Eiweiß)</span></div></div>`;
+ let h=weekBar();
+ let wk_k=0,wk_p=0;for(let q=0;q<7;q++){const x=totals(wk,q);wk_k+=x.k;wk_p+=x.p;}
+ h+=`<div class="card"><div class="row" style="margin-top:0"><b style="font-size:16px">${fmtDay(wk,d)}</b><span>${nf(t.k)} von ${nf(S.kcal)} kcal</span></div>
+ <div class="bar"><i class="${t.k>S.kcal*1.05?'over':''}" style="width:${Math.min(100,t.k/S.kcal*100)}%"></i></div>
+ <div class="row" style="margin-bottom:0"><span>Eiweiß</span><span>${Math.round(t.p)} von ${S.prot} g</span></div>
+ <div class="row" style="margin-bottom:0"><span>Ganze Woche</span><span>${nf(wk_k)} kcal · ${nf(wk_p)} g Eiweiß</span></div></div>`;
  SLOTS.forEach(([s,name])=>{
-  h+=`<div class="card slot"><h4>${name}</h4>`;
-  if(!(S.plan[key+s]||[]).length)h+=`<div class="empty">Noch nichts eingeplant</div>`;
-  (S.plan[key+s]||[]).forEach((e,i)=>{const m=meal(e.id);if(!m)return;
-   h+=`<div class="meal"><div><b>${esc(m.n)}</b><small>${mac(m,e.q)}</small>
-   <div class="step"><button onclick="qty('${key+s}',${i},-0.5)">−</button>${e.q} Portion(en)<button onclick="qty('${key+s}',${i},0.5)">+</button> <button class="ok" onclick="showRecipe(${m.id})">Rezept</button></div></div>
-   <button class="x" onclick="del('${key+s}',${i})">✕</button></div>`;});
-  h+=`<button class="pick" onclick="choose('${key}','${s}')">+ Gericht wählen</button></div>`;
+  const items=(S.plan[key+s]||[]);
+  const sk=items.reduce((a,e)=>{const m=meal(e.id);return a+(m?m.k*e.q:0)},0);
+  h+=`<div class="card"><div class="row" style="margin-top:0"><b style="font-size:16px">${name}</b><span>${sk?nf(sk)+" kcal":""}</span></div>`;
+  items.forEach((e,i)=>{const m=meal(e.id);if(!m)return;
+   h+=`<div class="mrow"><div class="t" onclick="showRecipe(${m.id})"><b>${esc(m.n)}</b><small>${Math.round(m.k*e.q)} kcal · ${Math.round(m.p*e.q)} g Eiweiß</small></div>
+   <div class="chips" style="flex:none;gap:4px;flex-wrap:nowrap"><button aria-label="Weniger" onclick="qty('${key+s}',${i},-0.5)">−</button><span style="align-self:center;min-width:28px;text-align:center;font-weight:650">${e.q}×</span><button aria-label="Mehr" onclick="qty('${key+s}',${i},0.5)">+</button></div>
+   <button class="x" aria-label="Entfernen" onclick="del('${key+s}',${i})">✕</button></div>`;});
+  h+=`<button class="pick" onclick="choose('${key}','${s}')">+ Gericht hinzufügen</button></div>`;
  });
- h+=`<div class="card"><h4>Wochenvorschlag</h4><small style="display:block;color:var(--mut);margin:-4px 0 8px">Freiwillig: erstellt aus deinen Zielen (Kalorien und Eiweiß) einen Plan für diese Woche, den du danach anpasst.</small>
+ h+=`<div class="card"><h4>Woche automatisch füllen</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">Aus deinen Zielen entsteht ein Vorschlag, den du danach anpasst.</small>
+ <button class="btn" onclick="vorschlagSheet()">Wochenvorschlag …</button><button class="btn g" onclick="planWerkzeuge()">Kopieren & Ziele</button></div>`;
+ return h;
+}
+function vorschlagSheet(){
+ sheet(`<h4>Wochenvorschlag</h4>
  <div class="g2"><div><label>Ernährung</label><select class="n" onchange="setVf('diet',this.value)"><option value="alle" ${vf().diet=="alle"?"selected":""}>alles</option><option value="veg" ${vf().diet=="veg"?"selected":""}>vegetarisch</option><option value="vegan" ${vf().diet=="vegan"?"selected":""}>vegan</option></select></div>
  <div><label>Zubereitung</label><select class="n" onchange="setVf('maxT',this.value)">${[[0,"egal"],[15,"bis 15 Min."],[30,"bis 30 Min."],[45,"bis 45 Min."]].map(([v,t])=>`<option value="${v}" ${vf().maxT==v?"selected":""}>${t}</option>`).join("")}</select></div></div>
- <small style="display:block;color:var(--mut);margin:4px 0 8px">${(S.fav||[]).length} Favoriten · ${(S.ban||[]).length} gesperrt <a href="#" onclick="listenSheet();return false">verwalten</a></small>
- <button class="btn" onclick="vorschlagAnwenden()">Wochenvorschlag erstellen</button>
- <button class="btn g" onclick="vorschlagAnwenden(true)">Anderen Vorschlag</button></div>
- <div class="card"><h4>Aus dem Plan berechnen</h4><small style="display:block;color:var(--mut);margin:-4px 0 8px">Übernimmt die berechneten Nährwerte als Tagesziel.</small>
- <button class="btn g" onclick="uebernehmeAusTag()">Diesen Tag übernehmen</button>
- <button class="btn g" onclick="uebernehmeAusWoche()">Wochenschnitt übernehmen</button></div>
- <div class="card"><h4>Kopieren</h4>
- <button class="btn g" onclick="copyDay()">Dieser Tag → ganze Woche</button>
- <button class="btn g" onclick="copyWeek(1)">Diese Woche → nächste Woche</button></div>`;
- return h;
+ <small style="display:block;color:var(--mut);margin:0 0 10px">${(S.fav||[]).length} Favoriten · ${(S.ban||[]).length} gesperrt <a href="#" style="color:var(--brand)" onclick="listenSheet();return false">verwalten</a></small>
+ <button class="btn" onclick="closeSheet();vorschlagAnwenden()">Vorschlag erstellen</button><button class="btn g" onclick="closeSheet();vorschlagAnwenden(true)">Anderen Vorschlag</button>
+ <button class="btn g" onclick="closeSheet()">Abbrechen</button>`);
+}
+function planWerkzeuge(){
+ sheet(`<h4>Kopieren</h4>
+ <button class="btn g" onclick="closeSheet();copyDay()">Dieser Tag → ganze Woche</button>
+ <button class="btn g" onclick="closeSheet();copyWeek(1)">Diese Woche → nächste Woche</button>
+ <h4 style="margin-top:14px">Tagesziel aus dem Plan</h4>
+ <button class="btn g" onclick="closeSheet();uebernehmeAusTag()">Diesen Tag übernehmen</button>
+ <button class="btn g" onclick="closeSheet();uebernehmeAusWoche()">Wochenschnitt übernehmen</button>
+ <button class="btn g" style="display:block;margin-top:10px" onclick="closeSheet()">Schließen</button>`);
 }
 function mealText(m){return m._s||(m._s=(m.n+" "+(m.cat||"")+" "+m.i.map(x=>x[0]).join(" ")).toLowerCase());}
 function pickerItems(s,fn,q){
@@ -531,6 +617,116 @@ function sheet(html){closeSheet();const el=document.createElement("div");el.clas
  el.innerHTML=`<div class="sheet"><div style="width:44px;height:4px;background:var(--line);border-radius:99px;margin:-8px auto 14px"></div>${html}</div>`;
  document.body.appendChild(el);}
 function closeSheet(){bcStopCam();document.querySelectorAll(".modal").forEach(e=>e.remove());}
+/* ---------- FORTSCHRITTSANALYSE ---------- */
+const KCAL_PRO_KG=7700; // grobe Näherung für 1 kg Körpergewichtsänderung
+function regSteigung(pts){
+ const n=pts.length;if(n<2)return null;
+ const mx=pts.reduce((a,q)=>a+q.x,0)/n,my=pts.reduce((a,q)=>a+q.y,0)/n;
+ let sxy=0,sxx=0;pts.forEach(q=>{sxy+=(q.x-mx)*(q.y-my);sxx+=(q.x-mx)*(q.x-mx);});
+ return sxx>0?sxy/sxx:null;
+}
+function zahl1(x){return (Math.round(x*10)/10).toString().replace(".",",");}
+function analyse(tage){
+ tage=tage||S.anaTage||14;
+ const heute=todayISO(),von=tagMinus(heute,tage-1),R={tage,von,bis:heute};
+ // Gewicht
+ const alle=Object.keys(S.weight||{}).filter(d=>d<=heute).sort();
+ const wk=alle.filter(d=>d>=von);
+ R.wN=wk.length;R.wSpanne=wk.length>1?tageZw(wk[0],wk[wk.length-1]):0;
+ R.wOk=R.wN>=4&&R.wSpanne>=Math.round(tage*0.6);
+ R.aktuell=alle.length?wTrend(alle,S.weight,alle[alle.length-1]):null;
+ if(R.wOk){const st=regSteigung(wk.map(d=>({x:tageZw(von,d),y:+S.weight[d]})));R.proTag=st;R.proWoche=st*7;}
+ // Ernährung: nur Tage mit einigermaßen vollständigem Protokoll
+ const tg=[];for(let i=0;i<tage;i++){const d=tagMinus(heute,i),e=eaten(d);if(e.k>=Math.max(800,0.4*(S.kcal||2000)))tg.push(e);}
+ R.eN=tg.length;R.eOk=R.eN>=Math.min(5,Math.round(tage*0.4));
+ if(tg.length){const m=k=>tg.reduce((a,e)=>a+e[k],0)/tg.length;R.k=m("k");R.p=m("p");R.h=m("h");R.f=m("f");}
+ // geschätzter tatsächlicher Bedarf
+ if(R.wOk&&R.eOk)R.bedarf=Math.round((R.k-R.proTag*KCAL_PRO_KG)/10)*10;
+ // Ziel und Bewertung
+ const gw=+S.wGoal||0;
+ if(gw&&R.aktuell){const diff=gw-R.aktuell;R.richtung=diff<-0.5?"ab":(diff>0.5?"auf":"halten");}
+ if(R.richtung&&R.aktuell){
+  const bw=R.aktuell,pc=x=>bw*x/100;
+  R.band=R.richtung=="ab"?[-pc(0.75),-pc(0.25)]:(R.richtung=="auf"?[pc(0.1),pc(0.35)]:[-pc(0.2),pc(0.2)]);
+  R.zielRate=(R.band[0]+R.band[1])/2;
+  if(R.wOk){const r=R.proWoche;
+   R.status=r<R.band[0]?"zu schnell runter":(r>R.band[1]?"zu schnell rauf":"im Zielbereich");
+   if(R.richtung=="ab"&&r>R.band[1])R.status=r>pc(0.1)?"falsche Richtung":"zu langsam";
+   if(R.richtung=="auf"&&r<R.band[0])R.status=r<-pc(0.1)?"falsche Richtung":"zu langsam";
+   if(R.richtung=="halten")R.status=r<R.band[0]?"nimmt ab":(r>R.band[1]?"nimmt zu":"im Zielbereich");
+  }
+ }
+ // Empfehlung
+ R.empf={art:"keine",text:""};
+ if(!R.wOk)R.empf.text="Für eine Auswertung fehlen Gewichtswerte: Trage in "+tage+" Tagen mindestens 4 Messungen ein, verteilt über mehr als "+Math.round(tage*0.6)+" Tage. Du hast "+R.wN+".";
+ else if(!R.richtung)R.empf.text="Setze ein Zielgewicht (Fortschritt → Gewicht), dann kann ich bewerten, ob dein Tempo passt.";
+ else if(!R.eOk)R.empf.text="Für eine Kalorien-Empfehlung fehlen Essensprotokolle: Du hast "+R.eN+" ausreichend vollständige Tage, nötig sind mindestens "+Math.min(5,Math.round(tage*0.4))+". Der Gewichtstrend allein reicht dafür nicht.";
+ else if(R.status=="im Zielbereich"){R.empf={art:"halten",text:"Dein Tempo passt zu deinem Ziel. Bleib bei deinem Kalorienziel und prüfe in ein bis zwei Wochen erneut."};}
+ else{
+  const ziel=S.kcal||2000,abw=R.k/ziel-1;
+  const braucht_mehr=(R.status=="zu langsam"||R.status=="falsche Richtung")?(R.richtung=="auf"):(R.status=="zu schnell rauf"||R.status=="nimmt zu"?false:(R.status=="zu schnell runter"||R.status=="nimmt ab"));
+  const zuViel=(R.status=="zu langsam"||R.status=="falsche Richtung")?(R.richtung=="ab"):(R.status=="zu schnell rauf"||R.status=="nimmt zu");
+  if(zuViel&&abw>0.1)R.empf={art:"einhalten",text:"Du isst im Schnitt "+Math.round(R.k)+" kcal und damit "+Math.round(abw*100)+" % über deinem Ziel von "+ziel+" kcal. Halte zuerst das Ziel ein, bevor du es änderst."};
+  else if(braucht_mehr&&abw<-0.1)R.empf={art:"einhalten",text:"Du isst im Schnitt "+Math.round(R.k)+" kcal und damit "+Math.round(-abw*100)+" % unter deinem Ziel von "+ziel+" kcal. Komm zuerst auf dein Ziel, bevor du es änderst."};
+  else{
+   const soll=R.bedarf+R.zielRate*KCAL_PRO_KG/7;
+   let delta=Math.max(-300,Math.min(300,soll-ziel)),neu=Math.round((ziel+delta)/50)*50;
+   if(Math.abs(neu-ziel)<100)R.empf={art:"halten",text:"Dein Tempo weicht leicht ab, die nötige Änderung ist aber klein (unter 100 kcal). Bleib beim Ziel und prüfe in ein bis zwei Wochen erneut."};
+   else if(neu<1400)R.empf={art:"keine",text:"Rechnerisch würde das Ziel unter 1.400 kcal fallen. Dazu gebe ich keinen Vorschlag. Prüfe Zielgewicht und Zeitplan, bei Bedarf mit ärztlichem Rat."};
+   else R.empf={art:"anpassen",neu,delta:neu-ziel,text:"Dein geschätzter Bedarf liegt bei etwa "+R.bedarf+" kcal. Für dein Ziel ("+(R.richtung=="ab"?"abnehmen":(R.richtung=="auf"?"zunehmen":"Gewicht halten"))+") schlage ich "+neu+" kcal vor ("+(neu-ziel>0?"+":"")+(neu-ziel)+" kcal gegenüber jetzt). Größere Sprünge als 300 kcal auf einmal lasse ich bewusst aus."};
+  }
+ }
+ // Eiweiß
+ if(R.eOk&&S.prot){R.protQuote=R.p/S.prot;}
+ // Training
+ const geplant=[],fertig=[];
+ Object.keys(S.train||{}).forEach(k=>{const [w,i]=k.split("|");if(!(S.train[k]||[]).length)return;const d=dISO(w,+i);
+  if(d<von||d>heute)return;geplant.push(d);if((S.train[k]||[]).some(n=>echteEinheit(d,n)))fertig.push(d);});
+ R.tPlan=geplant.length;R.tDone=fertig.length;
+ const vol=(a,b)=>{let v=0;Object.keys(S.sets||{}).forEach(d=>{if(d<a||d>b)return;Object.keys(S.sets[d]).forEach(n=>{if(!echteEinheit(d,n))return;S.sets[d][n].forEach(x=>{v+=(+x.kg||0)*(+x.reps||0);});});});return Math.round(v);};
+ R.vol1=vol(tagMinus(heute,6),heute);R.vol0=vol(tagMinus(heute,13),tagMinus(heute,7));
+ const pr=[];const namen=new Set();
+ Object.keys(S.sets||{}).forEach(d=>{if(d<von||d>heute)return;Object.keys(S.sets[d]).forEach(n=>{if(echteEinheit(d,n))namen.add(n);});});
+ namen.forEach(n=>{let best=0;Object.keys(S.sets).forEach(d=>{if(d<von||d>heute||!echteEinheit(d,n)||!S.sets[d][n])return;S.sets[d][n].forEach(x=>{best=Math.max(best,e1rm(x.kg,x.reps));});});
+  const vor=bestesE1(n,von);if(vor>0&&best>vor+0.05)pr.push(n);});
+ R.rekorde=pr;
+ return R;
+}
+function setzeKcal(v){if(!(v>=1000&&v<=6000))return;S.kcal=v;save();logInfo("analyse","Kalorienziel angepasst",{kcal:v});alert("Kalorienziel auf "+v+" kcal gesetzt.");render();}
+function viewAnalyse(){
+ const R=analyse(),z=S.anaTage||14;
+ let h=`<div class="card"><h4>Fortschritt der letzten ${R.tage} Tage</h4>
+ <label>Zeitraum</label><select class="n" onchange="S.anaTage=+this.value;save();render()"><option value="14" ${z==14?"selected":""}>14 Tage</option><option value="28" ${z==28?"selected":""}>28 Tage</option></select>
+ <div class="row"><span>Gewichtsmessungen</span><span>${R.wN}</span></div>
+ <div class="row"><span>Tage mit Essensprotokoll</span><span>${R.eN}</span></div>
+ <div class="row"><span>Geplante Trainingstage</span><span>${R.tPlan}</span></div></div>`;
+ if(R.wOk){
+  const r=R.proWoche,sg=r>0?"+":"";
+  h+=`<div class="card"><h4>Gewicht</h4>
+  <div class="row"><span>Aktuell (7-Tage-Schnitt)</span><span>${R.aktuell?zahl1(R.aktuell)+" kg":"–"}</span></div>
+  <div class="row"><span>Trend</span><span>${sg}${zahl1(r)} kg pro Woche</span></div>
+  ${R.richtung?`<div class="row"><span>Ziel</span><span>${R.richtung=="ab"?"abnehmen":(R.richtung=="auf"?"zunehmen":"halten")} (${zahl1(+S.wGoal)} kg)</span></div>
+  <div class="row"><span>Passendes Tempo</span><span>${zahl1(R.band[0])} bis ${zahl1(R.band[1])} kg pro Woche</span></div>
+  <div class="row"><b>Bewertung</b><b style="color:${R.status=="im Zielbereich"?"var(--brand)":"var(--warn-t)"}">${esc(R.status)}</b></div>`:`<small style="color:var(--mut)">Kein Zielgewicht gesetzt.</small>`}</div>`;
+ }
+ if(R.eN){h+=`<div class="card"><h4>Ernährung</h4>
+  <div class="row"><span>Ø gegessen</span><span>${Math.round(R.k)} kcal</span></div>
+  <div class="row"><span>Ziel</span><span>${S.kcal} kcal</span></div>
+  ${R.bedarf?`<div class="row"><span>Geschätzter Bedarf</span><span>ca. ${R.bedarf} kcal</span></div>`:""}
+  <div class="row"><span>Ø Eiweiß</span><span>${Math.round(R.p)} g${S.prot?" von "+S.prot+" g":""}</span></div>
+  ${R.protQuote&&R.protQuote<0.85?`<small style="color:var(--warn-t);display:block">Du liegst beim Eiweiß unter 85 % deines Ziels.</small>`:""}</div>`;}
+ const a=R.empf;
+ h+=`<div class="card" style="${a.art=="anpassen"?"border-color:var(--brand)":""}"><h4>Empfehlung</h4><div style="font-size:15px">${esc(a.text)}</div>
+ ${a.art=="anpassen"?`<button class="btn" style="margin-top:10px" onclick="setzeKcal(${a.neu})">Kalorienziel auf ${a.neu} kcal setzen</button>`:""}</div>`;
+ h+=`<div class="card"><h4>Training</h4>
+  <div class="row"><span>Einheiten absolviert</span><span>${R.tDone} von ${R.tPlan} geplanten</span></div>
+  <div class="row"><span>Volumen letzte 7 Tage</span><span>${R.vol1} kg</span></div>
+  <div class="row"><span>Volumen davor (7 Tage)</span><span>${R.vol0} kg</span></div>
+  ${R.vol0>0?`<div class="row"><span>Veränderung</span><span>${R.vol1>=R.vol0?"+":""}${Math.round((R.vol1/R.vol0-1)*100)} %</span></div>`:""}
+  <div class="row"><span>Neue Bestwerte</span><span>${R.rekorde.length?esc(R.rekorde.join(", ")):"keine"}</span></div></div>`;
+ h+=`<small style="display:block;color:var(--mut);margin:8px 4px">Richtwerte auf Basis deiner Eintragungen. Wasser, Salz, Zyklus und unvollständige Protokolle verändern die Werte. Keine medizinische Beratung. Bei Untergewicht, Beschwerden oder Vorerkrankungen kläre Änderungen ärztlich.</small>`;
+ return h;
+}
 /* ---------- BARCODE (Open Food Facts, nur online) ---------- */
 let bcTimer=null,bcStream=null;
 function bcStopCam(){try{if(bcTimer)clearInterval(bcTimer);}catch(e){}bcTimer=null;try{if(bcStream)bcStream.getTracks().forEach(t=>t.stop());}catch(e){}bcStream=null;}
@@ -724,7 +920,7 @@ function cropB64(px){if(!photoImg)return null;const sc=Math.min(1,px/Math.max(ph
 function photoStart(){
  photoB64=null;photoImg=null;
  sheet(`<b>📷 Gericht per Foto schätzen</b>
- ${S.key?"":`<p style="font-size:14px;color:#b91c1c">Zuerst unter Planen → Ziele einen API-Schlüssel eintragen.</p>`}
+ ${S.key?"":`<p style="font-size:14px;color:var(--danger)">Zuerst unter Mehr → Ziele einen API-Schlüssel eintragen.</p>`}
  <input class="n" id="pf" type="file" accept="image/*" capture="environment" onchange="photoPicked(this)">
  <img id="pimg" class="ph" style="display:none">
  <label>Hinweis (optional, z. B. „Nudeln mit Hähnchen, ca. 400 g“)</label><input class="n" id="ph" placeholder="Hinweis zum Gericht">
@@ -772,7 +968,7 @@ async function photoRun(){
   const m=t.match(/\{[\s\S]*\}/);photoShow(JSON.parse(m?m[0]:t));
   logInfo("foto","Analyse erfolgreich",{dauer:Math.round(performance.now()-T0),weg:used});
  }catch(e){logErr("foto","Antwort nicht lesbar: "+e.message,{rohtext:(r.text||"").slice(0,400)});
-  $("#pres").innerHTML=`<p style="color:#b91c1c;font-size:14px">Die Antwort konnte nicht gelesen werden. Versuche es erneut.</p><button class="btn" onclick="photoRun()">Erneut versuchen</button>`;}
+  $("#pres").innerHTML=`<p style="color:var(--danger);font-size:14px">Die Antwort konnte nicht gelesen werden. Versuche es erneut.</p><button class="btn" onclick="photoRun()">Erneut versuchen</button>`;}
 }
 async function askText(model,prompt,tokens){
  const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),10000);
@@ -948,21 +1144,21 @@ function photoShow(a){
 /* ---------- LEBENSMITTEL-DATENBANK / MAHLZEIT-BAUKASTEN ---------- */
 let B={items:[],name:""};
 function builder(items,name,note){B={items,name:name||""};
- sheet(`<b>Mahlzeit zusammenstellen</b>${note?`<small style="display:block;color:#666;margin:4px 0">${esc(note)}</small>`:""}
+ sheet(`<b>Mahlzeit zusammenstellen</b>${note?`<small style="display:block;color:var(--mut);margin:4px 0">${esc(note)}</small>`:""}
  <label>Name</label><input class="n" id="bn" value="${esc(B.name)}" oninput="B.name=this.value" placeholder="z. B. Mittagessen Kantine">
  <div id="bl"></div>
  <label>Lebensmittel suchen (Datenbank, ${FOODS.length} Einträge, offline)</label>
  <input class="n" id="bs" oninput="bSearch()" placeholder="z. B. Reis, Pizza, Apfel">
  <button class="btn g" onclick="bcStart()">▥ Barcode scannen</button>
  <div id="bsr"></div>
- <div class="card" style="background:#f0fdf4" id="bt"></div>
+ <div class="card" style="background:var(--brand-l)" id="bt"></div>
  <button class="btn" onclick="bLog()">Ins Protokoll</button><button class="btn g" onclick="bSave()">Als Gericht speichern</button><button class="btn g" onclick="closeSheet()">Abbrechen</button>`);
  bRender();}
 function bSum(){const t={k:0,p:0,h:0,f:0,g:0};B.items.forEach(x=>{t.g+=x.g;["k","p","h","f"].forEach(m=>t[m]+=x[m]*x.g/100)});return t;}
 function bRender(){
  $("#bl").innerHTML=B.items.map((x,i)=>`<div class="meal"><div style="flex:1"><b>${esc(x.n)}</b><small>${Math.round(x.k*x.g/100)} kcal · ${Math.round(x.p*x.g/100)} g Eiweiß</small></div>
  <input class="n" style="width:78px;margin:0" type="number" inputmode="decimal" value="${Math.round(x.g)}" onchange="bG(${i},this.value)"><span>g</span><button class="x" onclick="bDel(${i})">✕</button></div>`).join("")||"<small>Noch nichts hinzugefügt.</small>";
- const t=bSum();$("#bt").innerHTML=`<b>${Math.round(t.k)} kcal</b> · ${Math.round(t.p)} g Eiweiß · ${Math.round(t.h)} g KH · ${Math.round(t.f)} g Fett<small style="display:block;color:#666">Gesamtmenge ca. ${Math.round(t.g)} g</small>`;}
+ const t=bSum();$("#bt").innerHTML=`<b>${Math.round(t.k)} kcal</b> · ${Math.round(t.p)} g Eiweiß · ${Math.round(t.h)} g KH · ${Math.round(t.f)} g Fett<small style="display:block;color:var(--mut)">Gesamtmenge ca. ${Math.round(t.g)} g</small>`;}
 function bG(i,v){B.items[i].g=parseFloat(v.replace(",","."))||0;bRender();}
 function bDel(i){B.items.splice(i,1);bRender();}
 function bSearch(){const q=$("#bs").value.toLowerCase().trim();
@@ -1029,8 +1225,11 @@ function zufall(n){return Math.floor(Math.random()*n);}
 function mische(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=zufall(i+1);const t=b[i];b[i]=b[j];b[j]=t;}return b;}
 // Bewertung eines Tages: Abstand zu Kalorien- und Eiweißziel, Eiweiß-Unterschreitung zählt mehr
 function tagFehler(ids,q,ziel,prot){
- let k=0,pr=0;ids.forEach(m=>{k+=m.k*q;pr+=m.p*q;});
- return Math.abs(k-ziel)/ziel*2+Math.max(0,prot-pr)/Math.max(1,prot)*1.6+Math.abs(pr-prot)/Math.max(1,prot)*0.3;
+ let k=0,pr=0,h=0,f=0;ids.forEach(m=>{k+=m.k*q;pr+=m.p*q;h+=(m.h||0)*q;f+=(m.f||0)*q;});
+ let e=Math.abs(k-ziel)/ziel*2+Math.max(0,prot-pr)/Math.max(1,prot)*1.6+Math.abs(pr-prot)/Math.max(1,prot)*0.3;
+ if(S.kh>0)e+=Math.abs(h-S.kh)/S.kh*0.8;
+ if(S.fett>0)e+=Math.abs(f-S.fett)/S.fett*0.8;
+ return e;
 }
 function bestQ(ids,ziel,prot){
  let best=1,bf=1e9;
@@ -1085,15 +1284,15 @@ function vorschlagAnwenden(nochmal){
  const v=vorschlagWoche(!!nochmal);
  if(!v){return;}
  let txt="Vorschlag für die Woche vom "+fmtWeek(S.wk)+":\n\n";
- let kSum=0,pSum=0;
+ let kSum=0,pSum=0,hSum=0,fSum=0;
  for(let d=0;d<7;d++){
   const {ids,q}=v.gewaehlt[d];
-  let k=0,p=0;ids.forEach(m=>{k+=m.k*q;p+=m.p*q;});
-  kSum+=k;pSum+=p;
+  let k=0,p=0,hh=0,ff=0;ids.forEach(m=>{k+=m.k*q;p+=m.p*q;hh+=m.h*q;ff+=m.f*q;});
+  kSum+=k;pSum+=p;hSum+=hh;fSum+=ff;
   txt+="▪ "+DAYS[d]+": "+ids.map(m=>m.n+" ("+q+"×)").join(", ")+"\n   "+Math.round(k)+" kcal · "+Math.round(p)+" g Eiweiß\n";
  }
- txt+="\nDurchschnitt: "+Math.round(kSum/7)+" kcal · "+Math.round(pSum/7)+" g Eiweiß\n";
- txt+="Ziel: "+S.kcal+" kcal · "+S.prot+" g Eiweiß";
+ txt+="\nDurchschnitt: "+Math.round(kSum/7)+" kcal · "+Math.round(pSum/7)+" g Eiweiß · "+Math.round(hSum/7)+" g KH · "+Math.round(fSum/7)+" g Fett\n";
+ txt+="Ziel: "+S.kcal+" kcal · "+S.prot+" g Eiweiß"+(S.kh?" · "+S.kh+" g KH":"")+(S.fett?" · "+S.fett+" g Fett":"");
  if(!confirm(txt+"\n\nAls Wochenplan übernehmen? Vorhandener Plan dieser Woche wird ersetzt."))return;
  const wk=S.wk;
  for(let d=0;d<7;d++){SLOTS.forEach(([s])=>delete S.plan[pk(wk,d)+s]);}
@@ -1157,7 +1356,7 @@ function viewTrainPlan(){
  <div class="tabs" style="margin-bottom:10px">${WOCHENTAGE.map((n,i)=>`<button class="${trDays().includes(i)?'on':''}" onclick="trToggle(${i})">${n}</button>`).join("")}</div>
  <div class="row"><span>Einheiten der Vorlage</span><span>${einheiten().length}</span></div>
  <div class="row"><span>Trainingstage</span><span>${trDays().length} pro Woche</span></div>
- ${trDays().length>einheiten().length?`<small style="color:#b45309">Es gibt mehr Trainingstage als Einheiten. Einheiten wiederholen sich dann.</small>`:""}
+ ${trDays().length>einheiten().length?`<small style="color:var(--warn-t)">Es gibt mehr Trainingstage als Einheiten. Einheiten wiederholen sich dann.</small>`:""}
  <button class="btn" onclick="planWeek(S.wk,true);planAllFuture(true);save();render();alert('Woche neu geplant.')">Woche neu planen</button>
  <button class="btn" onclick="planAllFuture(true);save();render();alert('Alle kommenden Wochen geplant.')">Auf alle kommenden Wochen</button>
  </div>`;
@@ -1208,16 +1407,17 @@ function volOf(d,wk,i){ // Gesamtvolumen eines Tages in kg
  return {kg:Math.round(kg),reps:reps};
 }
 function viewTrain(){
- const sub2=(S.tsub||"day");
- let h=`<div class="sub">${[["day","Heute"],["plan","Wochenplan"],["stdplan","Standard"],["prog","Übungen"],["lib","Liste"],["weight","Gewicht"]].map(([k,n])=>`<button class="${sub2==k?'on':''}" onclick="S.tsub='${k}';save();render()">${n}</button>`).join("")}</div>`;
- h+={day:tDay,plan:tPlan,stdplan:viewTrainPlan,prog:tProg,lib:tLib,weight:viewWeight}[sub2]();
+ let sub2=(S.tsub||"day");if(sub2=="weight"){S.tsub="day";sub2="day";}
+ const on=sub2=="lib"?"prog":sub2;
+ let h=`<div class="sub">${[["day","Heute"],["plan","Woche"],["prog","Übungen"],["stdplan","Plan"]].map(([k,n])=>`<button class="${on==k?'on':''}" onclick="S.tsub='${k}';save();render()">${n}</button>`).join("")}</div>`;
+ h+={day:tDay,plan:tPlan,stdplan:viewTrainPlan,prog:tProg,lib:tLib}[sub2]();
  return h;
 }
 function tBars(){
  const wk=S.wk;
  const days=DAYS.map((x,i)=>{const d=dISO(wk,i),t=S.train[wk+"|"+i]||[];
-  return `<button class="${i==S.day?'on':''}" onclick="S.day=${i};save();render()">${DAYS[i]}<small>${+d.slice(8,10)}.${+d.slice(5,7)}.</small>${t.length?'<i>'+t.length+'</i>':''}</button>`;}).join("");
- return `<div class="wkpick"><button class="nav" onclick="wkShift(-1)">‹</button><span>${fmtWeek(wk)}${isThisWeek()?' <b style="color:#16a34a">· diese Woche</b>':''}</span><button class="nav" onclick="wkShift(1)">›</button></div><div class="days">${days}</div>`;
+  return `<button class="${i==S.day?'on':''} ${d==todayISO()?'td':''}" onclick="S.day=${i};save();render()">${DAYS[i]}<small>${+d.slice(8,10)}</small>${t.length?'<i></i>':''}</button>`;}).join("");
+ return `<div class="wkpick"><button class="nav" aria-label="Vorheriger Tag" onclick="dayShift(-1)">‹</button><span>${tagLabel(wk,S.day)}${dISO(wk,S.day)==todayISO()?'':'<button class="heute" onclick="goToday()">Heute</button>'}</span><button class="nav" aria-label="Nächster Tag" onclick="dayShift(1)">›</button></div><div class="days">${days}</div>`;
 }
 
 /* ---------- Training: Vorbelegung, Rekorde, Pausentimer ---------- */
@@ -1238,18 +1438,25 @@ function tagVorbereiten(d,key){ // fehlende Sätze aus dem Plan anlegen, Gewicht
   S.sets[d]=S.sets[d]||{};
   if(!(S.sets[d][n]||[]).length&&!(S.prDone&&S.prDone[d+"|"+n])){
    const pl=plan.find(x=>x.n==n);
-   if(pl&&pl.saetze>0){S.sets[d][n]=[];for(let k=0;k<pl.saetze;k++)S.sets[d][n].push({kg:0,reps:typeof pl.wieder=="number"?pl.wieder:10,pf:1});geaendert=true;}
+   if(pl&&pl.saetze>0){S.sets[d][n]=[];for(let k=0;k<pl.saetze;k++)S.sets[d][n].push({kg:0,reps:repsVon(pl.wieder),pf:1});geaendert=true;}
   }
   const sets=S.sets[d][n]||[];
   if(sets.length&&sets.every(x=>!x.u&&(!x.kg||x.kg==20||x.pf))&&!(S.prDone&&S.prDone[d+"|"+n])){
-   const l=letzteSaetze(n,d);
-   if(l){sets.forEach((x,k)=>{const q=l.sets[Math.min(k,l.sets.length-1)];const kg=+q.kg||0;
-     if(kg&&x.kg!=kg){x.kg=kg;x.pf=1;geaendert=true;}});}
-   else if(!sets[0].kg){sets.forEach(x=>{x.kg=20;x.pf=1;});geaendert=true;}
+   const l=letzteSaetze(n,d),sk=stdKg(n);
+   sets.forEach((x,k)=>{const q=l?l.sets[Math.min(k,l.sets.length-1)]:null;const kg=q?(+q.kg||0):sk;
+    if(x.kg!=kg){x.kg=kg;x.pf=1;geaendert=true;}});
   }
  });
  if(geaendert)save();
 }
+function uebArt(n){const e=exById(n),s=((e&&e.s)||"").toLowerCase();
+ if(/sekunden/.test(s))return "zeit";
+ if(/ohne gerät|klimmzugstange|barren|hängend|römisches bankerl|gewicht optional/.test(s))return "koerper";
+ return "gewicht";}
+const stdKg=n=>uebArt(n)=="gewicht"?20:0;
+const repsVon=rp=>typeof rp=="number"?rp:(parseInt(rp)||10);
+function satzText(n,x){const a=uebArt(n),kg=+x.kg||0,r=+x.reps||0;return a=="zeit"?(r+" s"+(kg?" + "+kg+" kg":"")):(a=="koerper"&&!kg?r+" Wdh":kg+" kg × "+r);}
+function uebHinweis(n){const a=uebArt(n);return a=="koerper"?" · Körpergewicht: trage nur Zusatzgewicht ein, sonst 0":(a=="zeit"?" · Zeit in Sekunden eintragen":"");}
 let restT=null,restEnd=0;
 function restBar(){let b=document.getElementById("restbar");
  if(!b){b=document.createElement("div");b.id="restbar";
@@ -1276,7 +1483,7 @@ function tDay(){
  const vol=volOf(d,wk,i);
  let h=tBars();
  const fert=(S.train[key]||[]).filter(n=>prDone(d,n)).length;
- h+=`<div class="card"><div class="row"><b>${fmtDay(wk,i)}</b><span class="badge">${fert}/${(S.train[key]||[]).length} erledigt</span></div>
+ h+=`<div class="card"><div class="row" style="margin-top:0"><b style="font-size:16px">${(S.train[key]||[]).length?"Training":"Kein Training geplant"}</b><span class="badge">${fert} von ${(S.train[key]||[]).length} erledigt</span></div>
  ${(S.train[key]||[]).length?bar("",fert,(S.train[key]||[]).length,""):""}
  <div class="row"><span>Volumen</span><span>${vol.kg} kg · ${vol.reps} Wiederholungen</span></div></div>`;
  if(!(S.train[key]||[]).length)h+=`<div class="card"><div class="empty">Noch keine Übung. Wähle unten eine aus.</div></div>`;
@@ -1284,22 +1491,21 @@ function tDay(){
   const e=exById(n),sets=(S.sets[d]&&S.sets[d][n])||[];
   const lz=letzteSaetze(n,d),best0=bestesE1(n,d),jetzt=Math.max(0,...sets.map(x=>e1rm(x.kg,x.reps)));
   const rekord=best0>0&&jetzt>best0+0.05&&echteEinheit(d,n);
-  const lzTxt=lz?`Letztes Mal (${lz.d.slice(8,10)}.${lz.d.slice(5,7)}.): ${lz.sets.map(x=>(+x.kg||0)+"×"+(+x.reps||0)).join(", ")} kg×Wdh`:"Noch kein früheres Training dieser Übung.";
+  const lzTxt=lz?`Letztes Mal (${lz.d.slice(8,10)}.${lz.d.slice(5,7)}.): ${lz.sets.map(x=>satzText(n,x)).join(", ")}`:"Noch kein früheres Training dieser Übung.";
   h+=`<div class="card"><div class="row"><b>${esc(e?e.n:n)}</b><button class="x" onclick="exRemove('${d}','${jq(n)}')">✕</button></div>
   ${e?`<small style="color:var(--mut);display:block;margin-bottom:2px">${esc(e.m)} · ${esc(e.g.join(", "))}</small>`:""}
-  <small style="color:var(--mut);display:block;margin-bottom:8px">${lzTxt}${rekord?' <b style="color:#16a34a">· 🏆 Neuer Rekord (geschätztes 1RM '+Math.round(jetzt*10)/10+' kg)</b>':""}</small>
-  ${sets.map((x,k)=>`<div class="row" style="align-items:center"><span>Satz ${k+1}</span><span><input class="n" style="width:74px;display:inline-block;margin:0 4px 0 0" type="number" inputmode="decimal" value="${x.kg}" onchange="setEdit('${d}','${jq(n)}',${k},'kg',this.value)" onfocus="this.select()">kg
-  <input class="n" style="width:66px;display:inline-block;margin:0 4px" type="number" inputmode="numeric" value="${x.reps}" onchange="setEdit('${d}','${jq(n)}',${k},'reps',this.value)">Wdh
+  <small style="color:var(--mut);display:block;margin-bottom:8px">${lzTxt}${uebHinweis(n)}${rekord?' <b style="color:var(--brand)">· 🏆 Neuer Rekord (geschätztes 1RM '+Math.round(jetzt*10)/10+' kg)</b>':""}</small>
+  ${sets.map((x,k)=>`<div class="row" style="align-items:center"><span>Satz ${k+1}</span><span><input class="n" style="width:74px;display:inline-block;margin:0 4px 0 0" type="number" inputmode="decimal" value="${x.kg}" onchange="setEdit('${d}','${jq(n)}',${k},'kg',this.value)" onfocus="this.select()">${uebArt(n)=="gewicht"?"kg":"kg +"}
+  <input class="n" style="width:66px;display:inline-block;margin:0 4px" type="number" inputmode="numeric" value="${x.reps}" onchange="setEdit('${d}','${jq(n)}',${k},'reps',this.value)">${uebArt(n)=="zeit"?"s":"Wdh"}
   <button class="x" onclick="setDel('${d}','${jq(n)}',${k})">✕</button></span></div>`).join("")}
   <button class="btn g" onclick="setAdd('${d}','${jq(n)}')">+ Satz</button>
   <button class="btn g" onclick="restStart(90)">⏱ Pause 90 s</button>
   <button class="ok ${prDone(d,n)?'on':''}" style="margin-left:6px" onclick="prTick('${d}','${jq(n)}')">${prDone(d,n)?"✓ erledigt":"erledigt"}</button></div>`;});
- h+=`<div class="card"><h4>Übung hinzufügen</h4><input class="n" id="exq" oninput="exSearch()" placeholder="z. B. Kniebeugen"><div id="exres"></div>
- <button class="btn g" onclick="exNewForm()">+ Eigene Übung anlegen</button></div>`;
- h+=`<div class="card"><h4>Einheit einsetzen</h4><small style="display:block;color:var(--mut);margin:-4px 0 8px">Setzt eine fertige Einheit deiner Vorlage auf diesen Tag.</small>
- ${einheiten().map((e,ix)=>`<button class="btn g" onclick="loadSplit(splitName(),${ix})">${esc(e[0])}</button>`).join("")||"<small>Keine Vorlage gewählt.</small>"}</div>
- <div class="card"><h4>Standardplan</h4><small style="display:block;color:var(--mut);margin:-4px 0 8px">Trainingstage und Vorlage für alle Wochen festlegen.</small>
- <button class="btn g" onclick="S.tsub='stdplan';save();render()">Standardplan öffnen</button></div>`;
+ h+=`<div class="card"><h4>Übung hinzufügen</h4><input class="n" id="exq" oninput="exSearch()" placeholder="Übung suchen, z. B. Kniebeugen"><div id="exres"></div>
+ <button class="btn g" onclick="exNewForm()">+ Eigene Übung</button><button class="btn g" onclick="S.tsub='lib';save();render()">Alle Übungen</button></div>
+ <details class="card"><summary>Ganze Einheit einsetzen</summary><small style="display:block;color:var(--mut);margin:-4px 0 8px">Setzt eine fertige Einheit deiner Vorlage auf diesen Tag.</small>
+ ${einheiten().map((e,ix)=>`<button class="btn g" onclick="loadSplit(splitName(),${ix})">${esc(e[0])}</button>`).join("")||"<small>Keine Vorlage gewählt.</small>"}</details>`;
+ 
  return h;
 }
 function exSearch(){
@@ -1313,7 +1519,9 @@ function exAdd(n){const key=S.wk+"|"+S.day;S.train[key]=S.train[key]||[];if(!S.t
 function exRemove(d,n){S.train[S.wk+"|"+S.day]=(S.train[S.wk+"|"+S.day]||[]).filter(x=>x!==n);
  if(S.sets[d])delete S.sets[d][n];save();render();}
 function setAdd(d,n){S.sets[d]=S.sets[d]||{};S.sets[d][n]=S.sets[d][n]||[];
- const last=(S.sets[d][n]||[]).slice(-1)[0]||{};S.sets[d][n].push({kg:last.kg||(letzteSaetze(n,d)||{sets:[{}]}).sets.slice(-1)[0].kg||20,reps:last.reps||10,u:last.u?1:undefined});save();render();}
+ const last=S.sets[d][n].slice(-1)[0],l=letzteSaetze(n,d),std=stdKg(n),lz=l?l.sets.slice(-1)[0]:null;
+ const kg=last?(+last.kg||0):(lz?(+lz.kg||0):std),reps=last?(last.reps||10):(lz?(lz.reps||10):10);
+ S.sets[d][n].push({kg,reps,u:last&&last.u?1:undefined});save();render();}
 function setDel(d,n,k){S.sets[d][n].splice(k,1);save();render();}
 function setEdit(d,n,k,f,v){const q=S.sets[d][n][k];q[f]=parseFloat(String(v).replace(",","."))||0;q.u=1;delete q.pf;save();
  const vol=volOf(d,S.wk,S.day);const el=document.getElementById("tv");if(el)el.textContent=vol.kg+" kg";}
@@ -1325,7 +1533,7 @@ function loadSplit(k,idx){
  const key=S.wk+"|"+S.day,d=dISO(S.wk,S.day);
  S.train[key]=e[1].map(x=>x[0]);S.sets[d]={};
  S.trSets=S.trSets||{};S.trSets[key]=e[1].map(x=>({n:x[0],saetze:x[1],wieder:x[2]}));
- e[1].forEach(([n,sa,rp])=>{S.sets[d][n]=[];for(let x=0;x<sa;x++)S.sets[d][n].push({kg:20,reps:typeof rp=="number"?rp:10});});
+ e[1].forEach(([n,sa,rp])=>{S.sets[d][n]=[];for(let x=0;x<sa;x++)S.sets[d][n].push({kg:stdKg(n),reps:repsVon(rp)});});
  save();logInfo("training","Einheit geladen",{name:e[0],tag:key});render();}
 function exNewForm(){
  sheet(`<h4>Eigene Übung</h4><label>Name</label><input class="n" id="en">
@@ -1364,7 +1572,7 @@ function tPlan(){
 function prDone(d,n){return ((S.prDone&&S.prDone[d+"|"+n])||false);}
 function prSets(d,n){const s=(S.sets[d]&&S.sets[d][n])||[];if(!s.length)return "geplant";
  const best=s.reduce((a,b)=>(+b.kg||0)>(+a.kg||0)?b:a,s[0]);
- return best.kg+" kg × "+best.reps;}
+ return satzText(n,best);}
 function prTick(d,n){S.prDone=S.prDone||{};const k=d+"|"+n;
  if(S.prDone[k])delete S.prDone[k];else S.prDone[k]=1;
  logInfo("training",S.prDone[k]?"Übung abgehakt":"Haken zurückgenommen",{datum:d,uebung:n});
@@ -1382,12 +1590,12 @@ function tProg(){
  ks.forEach(n=>{exs[n]=exs[n].filter(x=>x.echt);if(!exs[n].length)return;anz++;const r=exs[n].slice(-12),erst=r[0],letzt=r.slice(-1)[0],rek=Math.max(...exs[n].map(x=>x.e1));
   const up=letzt.kg>erst.kg;
   h+=`<div class="card"><h4>${esc(n)}</h4>
-  <div class="row"><span>Letzter Eintrag</span><span>${letzt.kg} kg × ${letzt.reps}</span></div>
-  <div class="row"><span>Bestes geschätztes 1RM</span><span>${Math.round(rek*10)/10} kg${letzt.e1>=rek-0.05&&exs[n].length>1?" 🏆":""}</span></div>
+  <div class="row"><span>Letzter Eintrag</span><span>${satzText(n,letzt)}</span></div>
+  ${rek>0?`<div class="row"><span>Bestes geschätztes 1RM</span><span>${Math.round(rek*10)/10} kg${letzt.e1>=rek-0.05&&exs[n].length>1?" 🏆":""}</span></div>`:""}
   <div class="row"><span>Erster Eintrag</span><span>${erst.d}</span></div>
   <div class="row"><span>Entwicklung</span><span>${erst.kg==letzt.kg?"unverändert":(up?"+":"")+(letzt.kg-erst.kg)+" kg"}</span></div>
-  ${bar("",letzt.kg,Math.max(...r.map(x=>x.kg),letzt.kg),"")}
-  <small style="color:var(--mut)">${r.map(x=>x.d.slice(5)+": "+x.kg+" kg × "+x.reps).join(" · ")}</small></div>`;});
+  ${bar("",letzt.kg,Math.max(1,...r.map(x=>x.kg),letzt.kg),"")}
+  <small style="color:var(--mut)">${r.map(x=>x.d.slice(5)+": "+satzText(n,x)).join(" · ")}</small></div>`;});
  return anz?h:`<div class="card"><div class="empty">Noch keine trainierten Übungen. Trage Gewicht und Wiederholungen ein oder hake eine Übung ab.</div></div>`;
 }
 function tLib(){
@@ -1455,7 +1663,7 @@ function wKachel(){
  ${ziel?`<div class="row"><span>Ziel (${ziel} kg)</span><span>noch ${(letzte-ziel).toFixed(1)} kg</span></div>
  ${bar("",Math.abs(letzte-ziel),Math.abs(start-ziel)||Math.abs(letzte-ziel),"")}`:""}
  ${hinweis?`<small style="color:var(--mut)">${hinweis}</small>`:""}
- <div style="margin-top:10px"><button class="btn g" onclick="tab='eat';sub.eat='weight';save();render();setTimeout(()=>{const e=document.getElementById('wv');if(e)e.focus()},60)">Gewicht eintragen</button></div></div>`;
+ <div style="margin-top:10px"><button class="btn g" onclick="tab='prog';sub.prog='weight';save();render();setTimeout(()=>{const e=document.getElementById('wv');if(e)e.focus()},60)">Gewicht eintragen</button></div></div>`;
 }
 function viewWeight(){
  const w=S.weight||{};
@@ -1463,14 +1671,12 @@ function viewWeight(){
  const start=S.wStart||(ks.length?+w[ks[0]]:null);
  const ziel=S.wGoal||null;
  let h=`<div class="card"><h4>Gewicht eintragen</h4>
- <small style="display:block;color:var(--mut);margin:-4px 0 10px">Trage dein Gewicht ein, am besten morgens nach dem Aufstehen. Jede Messung wird gespeichert.</small>
- <label>Datum</label><input class="n" type="date" id="wd" value="${todayISO()}">
- <label>Gewicht (kg)</label><input class="n" id="wv" type="number" step="0.1" inputmode="decimal" placeholder="${ks.length?w[ks[ks.length-1]]:"z. B. 82,5"}">
- <button class="btn" onclick="wAdd()">Speichern</button></div>`;
- h+=`<div class="card"><h4>Ziele</h4>
+ <div class="g2"><div><label>Gewicht (kg)</label><input class="n" id="wv" type="number" step="0.1" inputmode="decimal" placeholder="${ks.length?w[ks[ks.length-1]]:"z. B. 82,5"}"></div>
+ <div><label>Datum</label><input class="n" type="date" id="wd" value="${todayISO()}"></div></div>
+ <button class="btn" style="width:100%;margin:0" onclick="wAdd()">Speichern</button></div>`;
+ const zielKarte=`<details class="card"><summary>Start- und Zielgewicht</summary>
  <label>Startgewicht (kg)</label><input class="n" type="number" step="0.1" id="ws" value="${start?Math.round(start*10)/10:""}" onchange="S.wStart=+this.value||null;save();render()">
- <label>Zielgewicht (kg)</label><input class="n" type="number" step="0.1" id="wg" value="${ziel||""}" onchange="S.wGoal=+this.value||null;save();render()">
- </div>`;
+ <label>Zielgewicht (kg)</label><input class="n" type="number" step="0.1" id="wg" value="${ziel||""}" onchange="S.wGoal=+this.value||null;save();render()"></details>`;
  if(ks.length){
   const letzte=+w[ks[ks.length-1]],vorher=ks.length>1?+w[ks[ks.length-2]]:letzte;
   const min=Math.min(...ks.map(k=>+w[k])),max=Math.max(...ks.map(k=>+w[k]));
@@ -1481,14 +1687,10 @@ function viewWeight(){
   ${ziel?`<div class="row"><span>Bis zum Ziel</span><span>${(letzte-ziel).toFixed(1)} kg</span></div>${(()=>{const ges=Math.abs((start||letzte)-ziel),rest=Math.abs(letzte-ziel),pc=ges>0.05?Math.max(0,Math.min(100,Math.round((1-rest/ges)*100))):100;return `<div class="row"><span>Fortschritt zum Ziel</span><span>${pc} %</span></div><div class="bar"><i style="width:${pc}%"></i></div>`;})()}`:""}
   <div class="row"><span>Spanne</span><span>${min.toFixed(1)} – ${max.toFixed(1)} kg</span></div>
   <div class="row"><span>Messungen</span><span>${ks.length}</span></div></div>`;
-  h+=`<div class="card"><h4>Verlauf</h4>${ks.slice(-20).reverse().map(k=>`<div class="row"><span>${k}</span><span>${(+w[k]).toFixed(1)} kg <button class="x" onclick="wDel('${k}')">✕</button></span></div>`).join("")}</div>`;
   h+=wChart();
-  const w7=ks.slice(-7);
-  h+=`<div class="card"><h4>Letzte sieben Messungen</h4>${w7.map(k=>{
-   const rel=(+w[k]-min)/Math.max(0.5,max-min);
-   return `<div class="row"><span>${k.slice(5)}</span><span style="flex:1;margin:0 10px"><span class="bar" style="display:block;margin:0"><i style="width:${Math.round(rel*100)}%"></i></span></span><span>${(+w[k]).toFixed(1)}</span></div>`;}).join("")}</div>`;
- }
- return h;
+  h+=`<details class="card"><summary>Alle Messungen</summary>${ks.slice(-20).reverse().map(k=>`<div class="row"><span>${k}</span><span>${(+w[k]).toFixed(1)} kg <button class="x" onclick="wDel('${k}')">✕</button></span></div>`).join("")}</details>`;
+  }
+ return h+zielKarte;
 }
 function wAdd(){const d=$("#wd").value,v=parseFloat(($("#wv").value||"").replace(",","."));
  if(!d||!isFinite(v)){alert("Bitte Datum und Gewicht eingeben.");return;}
@@ -1555,7 +1757,7 @@ function zielFortschritt(){
  }
  const heute=new Date(todayISO()),ende=new Date(dEnde);
  const tage=Math.round((ende-heute)/86400000);
- if(tage<=0){h+=`<small style="color:#b45309">Das Zieldatum liegt in der Vergangenheit. Wähle ein neues Datum.</small>`;return h;}
+ if(tage<=0){h+=`<small style="color:var(--warn-t)">Das Zieldatum liegt in der Vergangenheit. Wähle ein neues Datum.</small>`;return h;}
  const wochen=Math.max(tage/7,0.1);
  const proWoche=Math.abs(diff)/wochen;
  const gesamt=Math.abs(start-ziel);
@@ -1644,7 +1846,7 @@ function sDaten(){
  <button class="btn g" onclick="wipe('weight')">Gewichtsdaten löschen</button>
  <button class="btn g" onclick="wipe('supp')">Supplements löschen</button>
  <button class="btn g" onclick="wipe('custom')">Eigene Gerichte löschen</button>
- <button class="btn g" style="background:#fee2e2;color:#b91c1c;border-color:#fecaca" onclick="wipe('all')">Alles löschen</button></div>`;
+ <button class="btn g" style="background:#fee2e2;color:var(--danger);border-color:#fecaca" onclick="wipe('all')">Alles löschen</button></div>`;
 }
 function zahl(){let n=0;[S.plan,S.log,S.train,S.sets,S.weight,S.supp,S.suppDone,S.water].forEach(o=>{try{n+=JSON.stringify(o||{}).length}catch(e){}});return n;}
 function wipe(was){
@@ -1660,7 +1862,8 @@ function wipe(was){
   try{localStorage.removeItem("fitplan")}catch(e){};location.reload();return;}
  save();logInfo("einstellungen","Daten gelöscht: "+was);render();
 }
-function backupJson(){return JSON.stringify({app:"Fit-Wochenplan",version:PUBLIC_V,stand:new Date().toISOString(),daten:S},null,1);}
+function backupJson(){const daten=Object.assign({},S);delete daten.key; // API-Schlüssel gehört nicht in eine Sicherung
+ return JSON.stringify({app:"Fit-Wochenplan",version:PUBLIC_V,stand:new Date().toISOString(),daten},null,1);}
 async function exportData(){
  const inhalt=backupJson(),name="fitplan-sicherung-"+todayISO()+".json";
  const msg=t=>{const m=document.getElementById("dmsg");if(m)m.textContent=t;};
@@ -1690,9 +1893,7 @@ function backupFaellig(){
 }
 function backupBanner(){
  const f=backupFaellig();if(!f)return "";
- return `<div class="card" id="bkBanner" style="border-color:var(--warn)"><b>Zeit für eine Sicherung</b>
- <small style="display:block;color:var(--mut);margin:4px 0 8px">${f.nie?"Du hast noch keine Sicherung erstellt.":"Die letzte Sicherung ist "+f.tage+" Tage alt."} Deine Daten liegen nur auf diesem Gerät.</small>
- <button class="btn" onclick="exportData()">Jetzt sichern</button><button class="btn g" onclick="S.backupSnooze=Date.now()+2*864e5;save();render()">In 2 Tagen erinnern</button></div>`;
+ return `<div class="slim" id="bkBanner"><span>${f.nie?"Noch keine Sicherung vorhanden":"Letzte Sicherung vor "+f.tage+" Tagen"}</span><button onclick="exportData()">Sichern</button><button class="g" aria-label="Später erinnern" onclick="S.backupSnooze=Date.now()+2*864e5;save();render()">Später</button></div>`;
 }
 function importData(){const f=document.getElementById("impFile");if(f)f.click();}
 function importFile(inp){
@@ -1704,8 +1905,8 @@ function importFile(inp){
    const d=o&&o.daten?o.daten:(o&&o.plan!==undefined?o:null);
    if(!d)throw new Error("Keine Fit-Wochenplan-Daten gefunden.");
    if(!confirm("Vorhandene Daten überschreiben?"))return;
-   Object.keys(S).forEach(k=>delete S[k]);
-   Object.assign(S,DEFAULTS(),d);
+   const keepKey=S.key;Object.keys(S).forEach(k=>delete S[k]);
+   Object.assign(S,DEFAULTS(),d);delete S.key;if(keepKey)S.key=keepKey;
    save();logInfo("einstellungen","Sicherung eingelesen",{stand:o.stand||"?"});
    alert("Daten eingelesen.");render();
   }catch(e){alert("Datei konnte nicht gelesen werden: "+e.message);logErr("einstellungen","Import fehlgeschlagen: "+e.message);}
@@ -1739,9 +1940,14 @@ function suppPlan(d){return S.supp[d]||[];}
 function suppOf(d){
  return suppPlan(d).map(n=>{const x=suppByName(n);return {n,x,taken:!!S.suppDone[sdKey(d,n)]};});
 }
+function suppHinweisKarte(){
+ return `<div class="card" style="border-color:var(--warn)"><b>Hinweis</b><small style="display:block;color:var(--mut);margin-top:4px">Die Mengen sind übliche Richtwerte und keine Empfehlung für dich. Ob ein Präparat sinnvoll ist, hängt von Ernährung, Blutwerten und Medikamenten ab. Bei Medikamenteneinnahme, Schwangerschaft oder Erkrankungen kläre es vorher mit Arzt oder Apotheke. Die Vorlagen unten sind nur Beispiele.</small></div>`;
+}
+function suppHinweisZeile(x){return x&&x.h?`<small style="color:var(--warn-t);display:block">ℹ️ ${esc(x.h)}</small>`:"";}
 function viewSuppPlan(){
  const wk=S.wk;
  let h=`<div class="wkpick"><button class="nav" onclick="wkShift(-1)">‹</button><span>${fmtWeek(wk)}</span><button class="nav" onclick="wkShift(1)">›</button></div>`;
+ h+=suppHinweisKarte();
  const days=DAYS.map((x,i)=>{const d=dISO(wk,i),p=S.supp[d]||[];
   return `<button class="${i==S.day?'on':''}" onclick="S.day=${i};save();render()">${DAYS[i]}<small>${+d.slice(8,10)}.${+d.slice(5,7)}.</small>${p.length?'<i>'+p.length+'</i>':''}</button>`;}).join("");
  h+=`<div class="days">${days}</div>`;
@@ -1752,7 +1958,7 @@ function viewSuppPlan(){
  plan.forEach(n=>{const x=suppByName(n)||{n};
   h+=`<div class="card"><div class="meal"><div style="flex:1"><b>${esc(x.n)}</b>
   ${x.e||x.w?`<small>${x.e?esc(x.e):""}${x.e&&x.w?" · ":""}${x.w?esc(x.w):""}</small>`:""}
-  ${x.z?`<small>${esc(x.z)}</small>`:""}</div>
+  ${x.z?`<small>${esc(x.z)}</small>`:""}${suppHinweisZeile(x)}</div>
   <button class="x" onclick="suppRemove('${isoD}','${jq(x.n)}')">✕</button></div></div>`;});
  h+=`<div class="card"><h4>Präparat hinzufügen</h4><input class="n" id="sq" oninput="suppSearch()" placeholder="z. B. Magnesium"><div id="sres"></div>
  <button class="btn g" onclick="suppNewForm()">+ Eigenes Präparat</button></div>`;
@@ -1764,7 +1970,7 @@ function viewSuppPlan(){
  h+=`<div class="card"><h4>Kopieren</h4>
  <button class="btn g" onclick="suppWeek('${isoD}',true)">Dieser Tag → ganze Woche</button>
  <button class="btn g" onclick="suppWeek('${isoD}',false)">Diese Woche leeren</button></div>`;
- h+=`<div class="card"><h4>Vorlagen</h4><small style="display:block;color:var(--mut);margin:-4px 0 8px">Setzt eine übliche Auswahl auf den gewählten Tag.</small>
+ h+=`<div class="card"><h4>Vorlagen</h4><small style="display:block;color:var(--mut);margin:-4px 0 8px">Beispielauswahl, keine Empfehlung. Setzt sie auf den gewählten Tag.</small>
  ${[["Basis",["Vitamin D3","Magnesium"]],
     ["Muskelaufbau",["Kreatin","Whey-Protein","Vitamin D3","Magnesium","Omega-3 (Fischöl)"]],
     ["Abnehmen",["Whey-Protein","Multivitamin","Omega-3 (Fischöl)"]]].map(([n,l])=>`<button class="btn g" onclick="suppTemplate('${n}')">${n}</button>`).join("")}</div>`;
@@ -1796,12 +2002,12 @@ function viewSupp(){
  const gen=lst.filter(x=>x.taken).length;
  h+=`<div class="card"><div class="row"><b>Heute genommen</b><span>${plan.length?gen+" von "+plan.length:"nichts geplant"}</span></div>
  ${plan.length?bar("",gen,plan.length,""):""}
- <small style="display:block;color:var(--mut)">Tippe auf ein Präparat, sobald du es genommen hast. Den Plan änderst du im Reiter Planen unter Supplements.</small></div>`;
- if(!plan.length)h+=`<div class="card"><div class="empty">Für diesen Tag ist nichts geplant. Lege es im Reiter Planen unter Supplements an.</div></div>`;
+ <small style="display:block;color:var(--mut)">Tippe auf ein Präparat, sobald du es genommen hast. Den Plan änderst du weiter unten.</small></div>`;
+ if(!plan.length)h+=`<div class="card"><div class="empty">Für diesen Tag ist nichts geplant. Lege es unter Heute → Supplements an.</div></div>`;
  lst.forEach(x=>{const ref=sdKey(isoD,x.n);
   h+=`<div class="card"><div class="meal"><div style="flex:1"><b>${esc(x.n)}</b>
   ${x.x&&(x.x.e||x.x.w)?`<small>${x.x.e?esc(x.x.e):""}${x.x.e&&x.x.w?" · ":""}${x.x.w?esc(x.x.w):""}</small>`:""}
-  ${x.x&&x.x.z?`<small>${esc(x.x.z)}</small>`:""}${suppSerie(x.n)>=2?`<small style="color:#16a34a">🔥 ${suppSerie(x.n)} Tage in Folge</small>`:""}</div>
+  ${x.x&&x.x.z?`<small>${esc(x.x.z)}</small>`:""}${suppHinweisZeile(x.x)}${suppSerie(x.n)>=2?`<small style="color:var(--brand)">🔥 ${suppSerie(x.n)} Tage in Folge</small>`:""}</div>
   <button class="ok ${x.taken?'on':''}" onclick="suppTick('${isoD}','${jq(x.n)}')">${x.taken?"✓ genommen":"nehmen"}</button></div></div>`;});
  let hk="",genW=0;
  for(let i=0;i<7;i++){const d=dISO(S.wk,i),p=suppPlan(d),g=p.filter(n=>S.suppDone[sdKey(d,n)]).length;
@@ -1818,7 +2024,7 @@ function suppSearch(){
  const q=($("#sq")&&$("#sq").value||"").toLowerCase().trim();
  if(!q){$("#sres").innerHTML="";return;}
  const r=allSupps().filter(x=>x.n.toLowerCase().includes(q)).slice(0,6);
- $("#sres").innerHTML=r.map(x=>`<div class="opt" onclick="suppAdd('${jq(x.n)}')"><b>${esc(x.n)}</b><small>${x.e?esc(x.e):""}${x.w?" · "+esc(x.w):""}</small></div>`).join("")||"<small>Nichts gefunden.</small>";
+ $("#sres").innerHTML=r.map(x=>`<div class="opt" onclick="suppAdd('${jq(x.n)}')"><b>${esc(x.n)}</b><small>${x.e?esc(x.e):""}${x.w?" · "+esc(x.w):""}</small>${suppHinweisZeile(x)}</div>`).join("")||"<small>Nichts gefunden.</small>";
 }
 function suppAdd(n){const d=dISO(S.wk,S.day);S.supp[d]=S.supp[d]||[];if(!S.supp[d].includes(n))S.supp[d].push(n);
  logInfo("supplement","Präparat aufgenommen",{tag:d,name:n});save();render();}
@@ -1868,41 +2074,63 @@ function viewGoal(){
 function openWeek(w){S.wk=w;S.weekView=w;S.day=0;S.wkLock=true;save();tab="plan";sub.plan="plan";render();}
 function preset(k,p){S.kcal=k;S.prot=p;save();render();}
 /* ---------- GEGESSEN ---------- */
+function makroZeilen(t){
+ const z=(l,v,ziel)=>ziel>0?bar(l,v,ziel,"g"):`<div class="row"><span>${l}</span><span>${Math.round(v)} g</span></div>`;
+ return z("Kohlenhydrate",t.h,S.kh)+z("Fett",t.f,S.fett);
+}
 function wasserKarte(isoD){
- const ml=((S.water||{})[isoD])||0,ziel=S.waterGoal||2500;
- return `<div class="card"><div class="row"><b>Wasser</b><span>${(ml/1000).toFixed(2).replace(".",",")} von ${(ziel/1000).toFixed(1).replace(".",",")} l</span></div>
- <div class="bar"><i style="width:${Math.min(100,Math.round(ml/ziel*100))}%"></i></div>
- <button class="btn g" onclick="wasser(-250)">− Glas</button><button class="btn" onclick="wasser(250)">+ Glas (250 ml)</button><button class="btn g" onclick="wasser(500)">+ Flasche (500 ml)</button>
- <small style="display:block;color:var(--mut);margin-top:6px"><a href="#" style="color:var(--brand)" onclick="wasserZielForm();return false">Tagesziel ändern</a></small></div>`;
+ const ml=((S.water||{})[isoD])||0,ziel=S.waterGoal||2500,f=x=>(x/1000).toFixed(2).replace(".",",");
+ return `<div class="card"><div class="row" style="margin-top:0"><b>Wasser</b><span>${f(ml)} von ${(ziel/1000).toFixed(1).replace(".",",")} l</span></div>
+ <div class="bar"><i class="w" style="width:${Math.min(100,Math.round(ml/ziel*100))}%"></i></div>
+ <div class="chips"><button onclick="wasser(-250)" aria-label="250 ml weniger">−</button><button class="p" onclick="wasser(250)">+ Glas</button><button class="p" onclick="wasser(500)">+ Flasche</button><button onclick="wasserZielForm()">Ziel</button></div></div>`;
 }
 function wasser(dml){const d=dISO(S.wk,S.day);S.water=S.water||{};S.water[d]=Math.max(0,Math.min(10000,(S.water[d]||0)+dml));if(!S.water[d])delete S.water[d];save();render();}
 function wasserZielForm(){sheet(`<h4>Wasser-Tagesziel</h4><label>Milliliter pro Tag</label><input class="n" id="wzv" type="number" inputmode="numeric" value="${S.waterGoal||2500}">
  <button class="btn" onclick="const v=parseInt($('#wzv').value);if(v>=500&&v<=8000){S.waterGoal=v;save();closeSheet();render();}else alert('Bitte einen Wert zwischen 500 und 8000 ml eingeben.')">Speichern</button><button class="btn g" onclick="closeSheet()">Abbrechen</button>`);}
+function ringSvg(v,max){const R=54,C=2*Math.PI*R,pc=Math.max(0,Math.min(1,max>0?v/max:0)),over=v>max*1.05;
+ return `<svg viewBox="0 0 132 132" width="132" height="132" aria-hidden="true"><circle cx="66" cy="66" r="${R}" fill="none" stroke="var(--line)" stroke-width="12"/><circle cx="66" cy="66" r="${R}" fill="none" stroke="${over?'var(--danger)':'var(--heat)'}" stroke-width="12" stroke-linecap="round" stroke-dasharray="${(C*pc).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 66 66)"/></svg>`;}
+const nf=x=>Math.round(x).toLocaleString("de-DE");
+function mxRow(l,v,ziel,cls){const pc=ziel>0?Math.min(100,v/ziel*100):0;
+ return `<div class="r1"><b>${l}</b><span>${Math.round(v)}${ziel>0?" / "+Math.round(ziel):""} g</span></div><div class="bar"><i class="${cls}" style="width:${pc}%"></i></div>`;}
+const CHK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 function viewEat(){
- const isoD=dISO(S.wk,S.day),t=eaten(isoD),log=S.log[isoD]||[];
- let h=weekBar(false,fmtWeek(S.wk));
- h+=`<div class="card"><div class="row"><b>${fmtDay(S.wk,S.day)}</b><span>${isoD==todayISO()?"heute":""}</span></div>
- ${bar("Kalorien",t.k,S.kcal,"kcal")}${bar("Eiweiß",t.p,S.prot,"g")}
- <div class="row"><span>Kohlenhydrate</span><span>${Math.round(t.h)} g</span></div>
- <div class="row"><span>Fett</span><span>${Math.round(t.f)} g</span></div></div>`+wasserKarte(isoD);
- const pl=entries(S.wk,S.day);
- h+=`<div class="card"><h4>Geplant – antippen zum Abhaken</h4>`;
- if(!pl.length)h+=`<div class="empty">Für diesen Tag ist nichts geplant. Stelle im Reiter Planen etwas zusammen.</div>`;
- pl.forEach(({s,i,e,m})=>{const ref=pk(S.wk,S.day)+s+i+":"+e.id+":"+e.q,on=log.some(x=>x.ref==ref);
-  h+=`<div class="meal"><div><b>${esc(m.n)}</b><small>${e.q}× · ${mac(m,e.q)}</small><button class="ok" style="margin-top:6px" onclick="showRecipe(${m.id})">Rezept</button></div>
-  <button class="ok ${on?'on':''}" onclick="tickPlan('${s}',${i})">${on?'✓ gegessen':'gegessen'}</button></div>`;});
- h+=`</div><div class="card"><h4>Protokoll dieses Tages</h4>`;
- if(!log.length)h+=`<div class="empty">Noch nichts eingetragen.</div>`;
- log.forEach((e,i)=>{h+=`<div class="meal"><div><b>${esc(e.n)}</b>${e.ref?'':'<span class="tag">außerplanmäßig</span>'}<small>${mac(e)}</small></div><button class="x" onclick="delLog(${i})">✕</button></div>`;});
- const zuletzt=zuletztGegessen(isoD);
- h+=`</div>${zuletzt.length?`<div class="card"><h4>Zuletzt gegessen</h4>${zuletzt.map((e,i)=>`<div class="meal"><div><b>${esc(e.n)}</b><small>${mac(e)}</small></div><button class="ok" onclick="nochmal(${i})">+ nochmal</button></div>`).join("")}
- <button class="btn g" onclick="gesternNochmal()">Alles von gestern übernehmen</button></div>`:""}<div class="card"><h4>Schnell erfassen</h4>
- <button class="btn b" onclick="photoStart()">📷 Foto analysieren</button>
- <button class="btn t" onclick="builder([],'','')">🔎 Datenbank</button>
- <button class="btn t" onclick="B={items:[],name:''};bcStart()">▥ Barcode</button>
- <button class="btn g" onclick="eatPick()">+ Gericht aus Liste</button>
- <button class="btn g" onclick="freeForm()">+ Etwas anderes</button></div>`;
+ const isoD=dISO(S.wk,S.day),t=eaten(isoD),log=S.log[isoD]||[],rest=S.kcal-t.k;
+ let h=weekBar();
+ h+=`<div class="card"><div class="hero"><div class="ring">${ringSvg(t.k,S.kcal)}<div class="c"><b>${nf(Math.abs(rest))}</b><span>${rest>=0?"kcal übrig":"kcal drüber"}</span></div></div>
+ <div class="mx">${mxRow("Eiweiß",t.p,S.prot,"")}${mxRow("Kohlenhydrate",t.h,S.kh,"kh")}${mxRow("Fett",t.f,S.fett,"fe")}</div></div>
+ <div class="sum">${nf(t.k)} von ${nf(S.kcal)} kcal gegessen</div></div>`;
+ const pl=entries(S.wk,S.day),refs=pl.map(({s,i,e})=>pk(S.wk,S.day)+s+i+":"+e.id+":"+e.q);
+ const getickt=refs.filter(r=>log.some(x=>x.ref==r)).length;
+ h+=`<div class="card"><div class="row" style="margin-top:0"><b style="font-size:16px">Mahlzeiten</b><span>${pl.length?getickt+" von "+pl.length+" gegessen":""}</span></div>`;
+ if(!pl.length)h+=`<div class="empty" style="padding:14px 0 4px">Für diesen Tag ist nichts geplant.<br><button class="lnk" onclick="tab='plan';sub.plan='plan';render()">Im Wochenplan planen</button></div>`;
+ else SLOTS.forEach(([s,name])=>{const it=pl.filter(x=>x.s==s);if(!it.length)return;
+  h+=`<div class="sl"><span>${name}</span><span>${nf(it.reduce((a,{e,m})=>a+m.k*e.q,0))} kcal</span></div>`;
+  it.forEach(({i,e,m})=>{const on=log.some(x=>x.ref==pk(S.wk,S.day)+s+i+":"+e.id+":"+e.q);
+   h+=`<div class="mrow"><button class="chkc ${on?'on':''}" aria-label="${on?'Als nicht gegessen markieren':'Als gegessen markieren'}" onclick="tickPlan('${s}',${i})">${CHK}</button>
+   <div class="t" onclick="showRecipe(${m.id})"><b>${esc(m.n)}</b><small>${e.q!=1?e.q+"× · ":""}${Math.round(m.k*e.q)} kcal · ${Math.round(m.p*e.q)} g Eiweiß</small></div></div>`;});});
+ h+=`</div>`;
+ const extra=log.map((e,i)=>({e,i})).filter(({e})=>!e.ref||!refs.includes(e.ref));
+ if(extra.length){h+=`<div class="card"><h4>Zusätzlich gegessen</h4>`;
+  extra.forEach(({e,i})=>{h+=`<div class="mrow"><div class="t"><b>${esc(e.n)}</b><small>${Math.round(e.k)} kcal · ${Math.round(e.p)} g Eiweiß</small></div><button class="x" aria-label="Eintrag löschen" onclick="delLog(${i})">✕</button></div>`;});
+  h+=`</div>`;}
+ h+=wasserKarte(isoD);
+ const sp=suppPlan(isoD);
+ if(sp.length){const n=suppOf(isoD).filter(x=>x.taken).length;
+  h+=`<div class="card" onclick="sub.eat='supp';render()" style="cursor:pointer"><div class="row" style="margin-top:0"><b style="font-size:16px">Supplements</b><span>${n} von ${sp.length} genommen ›</span></div><div class="bar" style="margin-bottom:0"><i style="width:${Math.round(n/sp.length*100)}%"></i></div></div>`;}
+ h+=`<button class="fab" onclick="addSheet()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Essen</button>`;
  return h;
+}
+function addSheet(){
+ const isoD=dISO(S.wk,S.day),zl=zuletztGegessen(isoD).slice(0,4);
+ const o=(ic,t,sm,fn)=>`<div class="opt" onclick="${fn}"><span class="ic2">${ic}</span><div><b>${t}</b><small>${sm}</small></div></div>`;
+ sheet(`<h4>Essen hinzufügen</h4>
+ ${o("📷","Foto analysieren","Die KI schätzt Kalorien und Eiweiß","photoStart()")}
+ ${o("▥","Barcode scannen","Packungen aus der Datenbank","B={items:[],name:''};bcStart()")}
+ ${o("🔎","Lebensmittel suchen","Datenbank mit Mengenangabe","builder([],'','')")}
+ ${o("🍽","Gericht aus der Liste","Eigene Gerichte und Rezepte","eatPick()")}
+ ${o("✏️","Selbst eintragen","Name und Nährwerte von Hand","freeForm()")}
+ ${zl.length?`<h4 style="margin-top:14px">Zuletzt gegessen</h4>`+zl.map((e,i)=>`<div class="mrow"><div class="t"><b>${esc(e.n)}</b><small>${Math.round(e.k)} kcal · ${Math.round(e.p)} g Eiweiß</small></div><button class="ok" onclick="closeSheet();nochmal(${i})">+ nochmal</button></div>`).join("")+`<button class="btn g" onclick="closeSheet();gesternNochmal()">Alles von gestern übernehmen</button>`:""}
+ <button class="btn g" style="width:100%;margin-top:10px" onclick="closeSheet()">Schließen</button>`);
 }
 function tickPlan(s,i){
  const isoD=dISO(S.wk,S.day),key=pk(S.wk,S.day),e=(S.plan[key+s]||[])[i];
