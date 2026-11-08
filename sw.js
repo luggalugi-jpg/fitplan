@@ -1,7 +1,7 @@
 // Fit-Wochenplan – Offline-Zwischenspeicher
 // Bei jeder neuen App-Fassung diese Kennung hochzählen (v2, v3, ...).
 // Dann wirft der Browser die alte Fassung weg und lädt die neue.
-const CACHE = "fitplan-v12";
+const CACHE = "fitplan-v14";
 const DATEIEN = ["./", "./index.html", "./essensplan.html", "./rezepte.js","./trainingssysteme.js","./laufplaene.js", "./manifest.json", "./icon-180.png", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png"];
 
 self.addEventListener("install", e => {
@@ -31,12 +31,18 @@ self.addEventListener("fetch", e => {
     e.respondWith((async () => {
       try {
         const frisch = await fetch(req);
-        const c = await caches.open(CACHE);
-        c.put(req, frisch.clone()).catch(() => {});
-        return frisch;
+        if (frisch.ok) {
+          const c = await caches.open(CACHE);
+          c.put(req, frisch.clone()).catch(() => {});
+          return frisch;
+        }
+        // Server meldet Fehler (z. B. Datei fehlt): lieber die gespeicherte Fassung nehmen
+        return (await caches.match(req)) || frisch;
       } catch (err) {
         const treffer = await caches.match(req);
-        return treffer || caches.match("./essensplan.html");
+        if (treffer) return treffer;
+        if (req.mode === "navigate") return (await caches.match("./essensplan.html")) || Response.error();
+        return Response.error();
       }
     })());
     return;
@@ -45,8 +51,10 @@ self.addEventListener("fetch", e => {
   // Übriges aus dem Zwischenspeicher, sonst aus dem Netz.
   e.respondWith(
     caches.match(req).then(treffer => treffer || fetch(req).then(a => {
-      const kopie = a.clone();
-      caches.open(CACHE).then(c => c.put(req, kopie)).catch(() => {});
+      if (a.ok) {
+        const kopie = a.clone();
+        caches.open(CACHE).then(c => c.put(req, kopie)).catch(() => {});
+      }
       return a;
     }))
   );
