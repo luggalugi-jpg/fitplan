@@ -188,6 +188,17 @@ details.card[open]>summary{margin-bottom:10px}
 .opt>div{flex:1;min-width:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 button:focus-visible,a:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.gp{background:var(--brand-l);color:var(--brand-d);border-radius:12px;padding:8px 12px;margin:0 0 12px;font-size:14px;text-align:center;position:sticky;top:0}
+.gp b{font-variant-numeric:tabular-nums;font-size:16px}
+.gdaily{background:var(--brand-l);border-radius:14px;padding:12px 14px;margin:0 0 8px}.gdaily small{display:block;margin-top:2px;color:var(--brand-d)}
+.gscore{font-size:30px;font-weight:760;text-align:center;margin:8px 0;font-variant-numeric:tabular-nums}
+.gres{text-align:center}.gover{text-align:center;padding:6px 0}.gover b{font-size:20px}
+.gtarget{display:block;width:120px;height:120px;border-radius:50%;border:0;margin:22px auto;background:var(--danger);touch-action:manipulation}
+.gseq,.ggrid{display:grid;gap:10px;margin:16px auto}.gseq{grid-template-columns:1fr 1fr;max-width:300px}.ggrid{grid-template-columns:repeat(4,1fr)}
+.gcol{height:84px;border:0;border-radius:16px;opacity:.75}.gcol.lit{opacity:1;filter:brightness(1.6)}
+.gcol.r{background:#e25555}.gcol.b{background:#4a8cf0}.gcol.y{background:#e8bd3f}.gcol.g{background:#3cbf7a}
+.gtile{height:62px;border:0;border-radius:12px;background:var(--line);color:var(--txt);font-size:22px;font-weight:700;font-family:inherit;touch-action:manipulation}
+.gtile.lit{background:var(--brand);color:#fff}.gtile:disabled{opacity:.6}
 </style>
 </head>
 <body>
@@ -287,7 +298,7 @@ if(typeof RDB!=="undefined"&&typeof FOODS_NEU!=="undefined")(function(){
   if(dup)return;FOODS.push({n:a[0],k:a[1],p:a[2],h:a[3],f:a[4],g:a[5]});bases.push(w);});
 })();
 const fitsSlot=(m,s)=>m.c==s||(m.x&&m.x.indexOf(s)>=0);
-const PUBLIC_V="2.2";
+const PUBLIC_V="2.3";
 const LOGKEY="fitplan_log";
 let LOGS=[],LSEQ=0;
 (function(){try{LOGS=JSON.parse(localStorage.getItem(LOGKEY)||"[]")}catch(e){LOGS=[]}})();
@@ -616,7 +627,7 @@ function pickerList(s,fn){const el=document.getElementById("mlist");if(el)el.inn
 function sheet(html){closeSheet();const el=document.createElement("div");el.className="modal";el.onclick=e=>{if(e.target==el)closeSheet()};
  el.innerHTML=`<div class="sheet"><div style="width:44px;height:4px;background:var(--line);border-radius:99px;margin:-8px auto 14px"></div>${html}</div>`;
  document.body.appendChild(el);}
-function closeSheet(){bcStopCam();document.querySelectorAll(".modal").forEach(e=>e.remove());}
+function closeSheet(){gStop();bcStopCam();document.querySelectorAll(".modal").forEach(e=>e.remove());}
 /* ---------- FORTSCHRITTSANALYSE ---------- */
 const KCAL_PRO_KG=7700; // grobe Näherung für 1 kg Körpergewichtsänderung
 function regSteigung(pts){
@@ -1466,11 +1477,76 @@ function restStart(sek){
  try{if(restT)clearInterval(restT);}catch(e){}
  restEnd=Date.now()+sek*1000;const b=restBar();b.style.display="flex";
  const upd=()=>{const rest=Math.max(0,Math.ceil((restEnd-Date.now())/1000));
-  b.innerHTML=`<b>Pause ${Math.floor(rest/60)}:${String(rest%60).padStart(2,"0")}</b><span><button class="btn g" style="margin:0 6px 0 0" onclick="restStart(${sek})">neu</button><button class="x" onclick="restStop()">✕</button></span>`;
+  b.innerHTML=`<b>Pause ${Math.floor(rest/60)}:${String(rest%60).padStart(2,"0")}</b><span><button class="btn g" style="margin:0 6px 0 0" onclick="gOpen()">🎮 Spielen</button><button class="btn g" style="margin:0 6px 0 0" onclick="restStart(${sek})">neu</button><button class="x" onclick="restStop()">✕</button></span>`;
   if(rest<=0){clearInterval(restT);restT=null;restSignal();b.innerHTML=`<b>Pause vorbei – weiter geht's</b><button class="x" onclick="restStop()">✕</button>`;setTimeout(()=>{if(!restT)restStop()},8000);}};
  upd();restT=setInterval(upd,500);
 }
 function restStop(){try{if(restT)clearInterval(restT);}catch(e){}restT=null;const b=document.getElementById("restbar");if(b)b.style.display="none";}
+/* ---------- Pausenspiele ---------- */
+const G={pi:null,run:null,tm:[],iv:[],hadRest:false,over:false};
+function gS(){S.games=S.games||{xp:0,plays:0,best:{},daily:{}};S.games.best=S.games.best||{};S.games.daily=S.games.daily||{};return S.games;}
+function gLevel(){const x=gS().xp;return {lv:Math.floor(x/150)+1,in:x%150};}
+function gDaily(){const d=todayISO();let h=0;for(const c of d)h=(h*31+c.charCodeAt(0))>>>0;const g=h%3,v=Math.floor(h/3)%4;
+ const def=[{g:"reaction",t:60+v*20,txt:`Reaction Rush: mindestens ${60+v*20} Punkte`},{g:"memory",t:4+v,txt:`Memory: mindestens Level ${4+v}`},{g:"numbers",t:60-v*8,txt:`Number Blitz: in höchstens ${60-v*8} Sekunden`}][g];
+ const dl=gS().daily;def.done=dl.d==d&&!!dl.done;return def;}
+function gAward(game,val,xp){const g=gS(),b=g.best;g.plays++;let neu=false;
+ if(game=="numbers"){if(val>0&&(!b.numbers||val<b.numbers)){b.numbers=val;neu=true;}}
+ else if(val>(b[game]||0)){b[game]=val;neu=true;}
+ const dc=gDaily();let bonus=0;
+ if(!dc.done&&dc.g==game&&val>0&&(game=="numbers"?val<=dc.t:val>=dc.t)){bonus=50;g.daily={d:todayISO(),done:true};}
+ g.xp+=xp+bonus;save();return {xp,bonus,neu};}
+function gm(h){const e=document.getElementById("gm");if(e)e.innerHTML=h;}
+function gStopRun(){G.run=null;G.tm.forEach(clearTimeout);G.iv.forEach(clearInterval);G.tm=[];G.iv=[];}
+function gStop(){gStopRun();if(G.pi){clearInterval(G.pi);G.pi=null;const rb=document.getElementById("restbar");if(rb&&restT)rb.style.display="flex";}}
+const gw=ms=>new Promise(r=>G.tm.push(setTimeout(r,ms)));
+function gOpen(){sheet(`<div id="gp"></div><div id="gm"></div>`);
+ G.hadRest=!!restT;const rb=document.getElementById("restbar");if(rb&&restT)rb.style.display="none";G.over=false;G.pi=setInterval(gPause,500);gPause();gHome();}
+function gPause(){const e=document.getElementById("gp");if(!e){gStop();return;}
+ if(restT){const s=Math.max(0,Math.ceil((restEnd-Date.now())/1000));e.innerHTML=`<div class="gp">Pause noch <b>${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}</b></div>`;}
+ else if(G.hadRest&&!G.over){G.over=true;const res=G.run?gEnd(G.run,true):"";gStopRun();e.innerHTML="";
+  gm(`<div class="gover"><b>Pause vorbei</b><p>Der nächste Satz wartet.</p>${res}<button class="btn" style="width:100%;margin:12px 0 0" onclick="closeSheet()">Zum Training</button></div>`);}
+ else e.innerHTML="";}
+function gHome(){gStopRun();const g=gS(),L=gLevel(),dc=gDaily(),b=g.best;
+ gm(`<h4>Pausenspiele</h4>
+ <div class="row" style="margin-top:0"><b>Level ${L.lv}</b><span>${g.xp} XP</span></div><div class="bar"><i style="width:${L.in/150*100}%"></i></div>
+ <div class="gdaily"><b>Tages-Challenge</b><small>${dc.txt}${dc.done?" · geschafft ✓":" · +50 XP"}</small></div>
+ ${[["reaction","⚡","Reaction Rush","30 Sekunden, Treffer zählen",b.reaction?b.reaction+" Punkte":"–"],["memory","🧠","Memory","Farbfolge merken",b.memory?"Level "+b.memory:"–"],["numbers","🔢","Number Blitz","1 bis 16 der Reihe nach",b.numbers?b.numbers+" s":"–"]].map(([k,ic,n,sm,bs])=>`<div class="opt" onclick="gStart('${k}')"><span class="ic2">${ic}</span><div><b>${n}</b><small>${sm} · Rekord: ${bs}</small></div></div>`).join("")}
+ <small class="sum">${g.plays} Spiele gespielt</small>
+ <button class="btn g" style="width:100%;margin:10px 0 0" onclick="closeSheet()">Schließen</button>`);}
+function gStart(k){({reaction:gReaction,memory:gMemory,numbers:gNumbers})[k]();}
+function gEnd(run,partial){if(!run||(G.run!==run&&!partial))return "";
+ let val,xp,txt;
+ if(run.game=="reaction"){val=run.score;xp=Math.round(val/5);txt=val+" Punkte";}
+ else if(run.game=="memory"){val=run.level!=null?run.level:Math.max(0,run.seq.length-1);xp=val*6;txt="Level "+val;}
+ else{const done=run.next==17;val=done?run.sec:0;xp=done?20+Math.max(0,Math.round((60-val)/3)):Math.floor((run.next-1)/2);txt=done?val+" Sekunden":(run.next-1)+" von 16";}
+ const a=(val>0||xp>0)?gAward(run.game,val,xp):{xp:0,bonus:0,neu:false};
+ const html=`<div class="gres"><div class="gscore">${txt}</div>${a.neu?"<p><b>🏆 Neuer Rekord</b></p>":""}<p class="sum">+${a.xp} XP${a.bonus?" · +"+a.bonus+" XP Tages-Challenge geschafft":""}</p></div>`;
+ if(partial)return html;
+ gStopRun();gm(html+`<button class="btn" style="width:100%;margin:12px 0 6px" onclick="gStart('${run.game}')">Nochmal</button><button class="btn g" style="width:100%;margin:0" onclick="gHome()">Spielemenü</button>`);return "";}
+function gReaction(){gStopRun();const run=G.run={game:"reaction",score:0,left:30,can:false,arm:0};
+ gm(`<h4>⚡ Reaction Rush</h4><div class="gscore" id="gs">0 Punkte</div><p class="sum" id="gi">Tippe, sobald der Kreis grün wird.</p><button class="gtarget" id="gt" aria-label="Ziel" onclick="gHit()"></button><p class="sum" id="gl">30 Sekunden</p>`);
+ gArm(run);G.iv.push(setInterval(()=>{if(G.run!==run)return;run.left--;const e=$("#gl");if(e)e.textContent=run.left+" Sekunden";if(run.left<=0)gEnd(run);},1000));}
+function gArm(run){run.can=false;const id=++run.arm,t=$("#gt");if(t)t.style.background="var(--danger)";
+ G.tm.push(setTimeout(()=>{if(G.run!==run||run.arm!==id)return;run.can=true;const t=$("#gt");if(t)t.style.background="var(--brand)";},400+Math.random()*1000));}
+function gHit(){const run=G.run;if(!run||run.game!="reaction")return;
+ if(!run.can){run.score=Math.max(0,run.score-2);$("#gi").textContent="Zu früh! −2 Punkte";}else{run.score+=10;$("#gi").textContent="Treffer! +10 Punkte";}
+ $("#gs").textContent=run.score+" Punkte";gArm(run);}
+function gMemory(){gStopRun();const run=G.run={game:"memory",seq:[Math.floor(Math.random()*4)],idx:0,active:false};
+ gm(`<h4>🧠 Memory</h4><div class="gscore" id="gs">Level 1</div><p class="sum" id="gi">Schau genau hin!</p><div class="gseq">${["r","b","y","g"].map((c,i)=>`<button class="gcol ${c}" aria-label="Farbe ${i+1}" onclick="gMem(${i})"></button>`).join("")}</div>`);
+ gPlay(run);}
+async function gFlash(i){const c=document.querySelectorAll(".gcol")[i];if(!c)return;c.classList.add("lit");await gw(380);c.classList.remove("lit");await gw(160);}
+async function gPlay(run){run.active=false;const i0=$("#gi");if(i0)i0.textContent="Schau genau hin!";await gw(500);
+ for(const i of run.seq){if(G.run!==run)return;await gFlash(i);}
+ if(G.run!==run)return;run.idx=0;run.active=true;$("#gi").textContent="Jetzt du!";$("#gs").textContent="Level "+run.seq.length;}
+async function gMem(n){const run=G.run;if(!run||run.game!="memory"||!run.active)return;gFlash(n);
+ if(n!==run.seq[run.idx]){run.active=false;run.level=run.seq.length-1;gEnd(run);return;}
+ run.idx++;if(run.idx==run.seq.length){run.active=false;$("#gi").textContent="Richtig!";await gw(700);if(G.run!==run)return;run.seq.push(Math.floor(Math.random()*4));gPlay(run);}}
+function gNumbers(){gStopRun();const run=G.run={game:"numbers",next:1,t0:0,pen:0};const v=Array.from({length:16},(_,i)=>i+1).sort(()=>Math.random()-.5);
+ gm(`<h4>🔢 Number Blitz</h4><div class="gscore" id="gs">0 / 16</div><p class="sum" id="gi">Tippe 1 bis 16 der Reihe nach. Fehler kosten 2 Sekunden.</p><div class="ggrid">${v.map(n=>`<button class="gtile" onclick="gNum(this,${n})">${n}</button>`).join("")}</div>`);}
+function gNum(b,n){const run=G.run;if(!run||run.game!="numbers")return;if(!run.t0)run.t0=Date.now();
+ if(n==run.next){b.disabled=true;b.classList.add("lit");run.next++;$("#gs").textContent=(run.next-1)+" / 16";
+  if(run.next==17){run.sec=Math.round(((Date.now()-run.t0)/1000+run.pen)*10)/10;gEnd(run);}else $("#gi").textContent="Suche die "+run.next;}
+ else{run.pen+=2;$("#gi").textContent="Falsch, +2 s. Gesucht: "+run.next;}}
 function restSignal(){
  try{if(navigator.vibrate)navigator.vibrate([200,100,200]);}catch(e){}
  try{const C=window.AudioContext||window.webkitAudioContext;if(C){const c=new C(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);
@@ -1502,7 +1578,7 @@ function tDay(){
   <button class="btn g" onclick="restStart(90)">⏱ Pause 90 s</button>
   <button class="ok ${prDone(d,n)?'on':''}" style="margin-left:6px" onclick="prTick('${d}','${jq(n)}')">${prDone(d,n)?"✓ erledigt":"erledigt"}</button></div>`;});
  h+=`<div class="card"><h4>Übung hinzufügen</h4><input class="n" id="exq" oninput="exSearch()" placeholder="Übung suchen, z. B. Kniebeugen"><div id="exres"></div>
- <button class="btn g" onclick="exNewForm()">+ Eigene Übung</button><button class="btn g" onclick="S.tsub='lib';save();render()">Alle Übungen</button></div>
+ <button class="btn g" onclick="exNewForm()">+ Eigene Übung</button><button class="btn g" onclick="S.tsub='lib';save();render()">Alle Übungen</button><button class="btn g" onclick="gOpen()">🎮 Pausenspiele</button></div>
  <details class="card"><summary>Ganze Einheit einsetzen</summary><small style="display:block;color:var(--mut);margin:-4px 0 8px">Setzt eine fertige Einheit deiner Vorlage auf diesen Tag.</small>
  ${einheiten().map((e,ix)=>`<button class="btn g" onclick="loadSplit(splitName(),${ix})">${esc(e[0])}</button>`).join("")||"<small>Keine Vorlage gewählt.</small>"}</details>`;
  
