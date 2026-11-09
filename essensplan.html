@@ -283,6 +283,11 @@ small{line-height:1.4}
 .steps{list-style:none;counter-reset:st;padding:0;margin:0}.steps li{counter-increment:st;position:relative;padding:4px 0 12px 40px;font-size:14.5px;line-height:1.5}
 .steps li::before{content:counter(st);position:absolute;left:0;top:2px;width:28px;height:28px;border-radius:50%;background:var(--brand-l);color:var(--brand-d);font-weight:750;font-size:13px;display:grid;place-items:center}
 @media (prefers-color-scheme:dark){.star.on{background:#3a3214}}
+
+.recht{font-size:14.5px;line-height:1.55}.recht h2{font-size:21px;margin:0 0 10px;letter-spacing:-.3px}.recht h3{font-size:15.5px;margin:18px 0 4px}.recht p{margin:0 0 8px}.recht a{color:var(--brand)}
+.welc{text-align:left}.wl-ic{width:64px;height:64px;border-radius:20px;background:var(--brand-l);display:grid;place-items:center;font-size:32px;margin:4px 0 12px}
+.welc h3{font-size:23px;font-weight:780;letter-spacing:-.5px;margin:0 0 14px}
+.wl-pt{display:flex;gap:12px;align-items:flex-start;margin:0 0 12px}.wl-pt>span{font-size:22px;width:30px;flex:none;text-align:center}.wl-pt b{display:block;font-size:15.5px}.wl-pt small{color:var(--mut);font-size:13.5px}
 </style>
 </head>
 <body>
@@ -384,7 +389,13 @@ if(typeof RDB!=="undefined"&&typeof FOODS_NEU!=="undefined")(function(){
   if(dup)return;FOODS.push({n:a[0],k:a[1],p:a[2],h:a[3],f:a[4],g:a[5]});bases.push(w);});
 })();
 const fitsSlot=(m,s)=>m.c==s||(m.x&&m.x.indexOf(s)>=0);
-const PUBLIC_V="3.1";
+const PUBLIC_V="3.3";
+/* Anbieter für Impressum und Datenschutz – vor der Veröffentlichung ausfüllen */
+const ANBIETER={name:"",anschrift:"",mail:""};
+const RECHT={"ds": "<h2>Datenschutzerklärung</h2>\n<p><b>Stand:</b> 9. November 2026</p>\n<h3>1. Verantwortlicher</h3>\n<p>{name}<br>{anschrift}<br>E-Mail: {mail}</p>\n<h3>2. Grundsatz: Deine Daten bleiben auf deinem Gerät</h3>\n<p>Fit-Wochenplan funktioniert ohne Benutzerkonto und ohne eigenen Server. Alles, was du einträgst – Essensplan, Mahlzeiten, Gewicht, Trainings, Läufe, Supplements, Ziele und Einstellungen – wird ausschließlich lokal im Speicher der App auf deinem Gerät abgelegt. Wir erhalten diese Daten nicht und können sie nicht einsehen.</p>\n<p>Die App enthält keine Werbung, keine Analyse- oder Tracking-Werkzeuge und gibt keine Daten zu Werbezwecken weiter.</p>\n<p>Angaben wie Körpergewicht, Ernährung und Trainingsdaten können Gesundheitsdaten sein. Sie werden nur auf deinem Gerät verarbeitet, um dir die Funktionen der App bereitzustellen.</p>\n<h3>3. Funktionen mit Internetverbindung</h3>\n<p>Nur die folgenden Funktionen nehmen Verbindung zu Diensten Dritter auf, und zwar nur, wenn du sie selbst auslöst:</p>\n<p><b>Foto-Analyse (optional):</b> Wenn du unter „Foto-Analyse“ einen eigenen Schlüssel für die Google Gemini API hinterlegst und ein Foto analysieren lässt, wird das Foto zusammen mit einer Anweisung direkt von deinem Gerät an Google gesendet (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Verarbeitung auch in den USA möglich). Google verarbeitet die Daten nach den Bedingungen, die du mit Google für deinen Schlüssel vereinbart hast. Dein Schlüssel wird nur auf deinem Gerät gespeichert und nicht in Sicherungsdateien übernommen. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), die du jederzeit widerrufen kannst, indem du den Schlüssel löschst.</p>\n<p><b>Barcode-Suche:</b> Wenn du einen Barcode scannst oder eingibst, wird die Produktnummer an Open Food Facts gesendet (Open Food Facts, 21 rue des Iles, 94100 Saint-Maur-des-Fossés, Frankreich), um Nährwerte abzurufen. Dabei wird technisch bedingt deine IP-Adresse übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir gewünschten Funktion).</p>\n<p><b>Webversion:</b> Wenn du die App im Browser nutzt, wird sie über GitHub Pages ausgeliefert (GitHub B.V., Niederlande / GitHub, Inc., USA). Dabei verarbeitet GitHub technisch notwendige Zugriffsdaten wie die IP-Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (sichere Bereitstellung der Webseite).</p>\n<h3>4. Berechtigungen</h3>\n<p><b>Kamera:</b> nur zum Scannen von Barcodes und für Fotos zur Foto-Analyse, jeweils erst wenn du die Funktion startest. <b>Benachrichtigungen:</b> nur für die lokale Erinnerung am Ende einer Satzpause; sie werden auf dem Gerät erzeugt, nicht über einen Server.</p>\n<h3>5. Sicherungen und Diagnoseprotokoll</h3>\n<p>Sicherungsdateien und das Diagnoseprotokoll entstehen nur, wenn du sie selbst erstellst. Wohin du sie speicherst oder sendest, entscheidest du. Das Diagnoseprotokoll enthält technische Angaben zur Fehlersuche (z. B. App-Version, Gerätetyp, Fehlermeldungen) und bleibt auf deinem Gerät, bis du es teilst.</p>\n<h3>6. Speicherdauer und Löschung</h3>\n<p>Die Daten bleiben gespeichert, bis du sie in der App unter „Daten & Sicherung“ löschst oder die App deinstallierst.</p>\n<h3>7. Deine Rechte</h3>\n<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch und Widerruf erteilter Einwilligungen (Art. 15–21 DSGVO). Da wir deine App-Daten nicht speichern, kannst du die meisten Rechte direkt in der App ausüben. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Behörde deines Wohnorts.</p>\n<h3>8. Kinder</h3>\n<p>Die App richtet sich nicht an Kinder unter 16 Jahren.</p>\n<h3>9. Änderungen</h3>\n<p>Wir passen diese Erklärung an, wenn sich die App oder die Rechtslage ändert. Es gilt die jeweils in der App veröffentlichte Fassung.</p>", "imp": "<h2>Impressum</h2>\n<p>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>\n<p>{name}<br>{anschrift}</p>\n<p><b>Kontakt:</b> E-Mail: {mail}</p>\n<p><b>Verantwortlich für den Inhalt:</b> {name}, Anschrift wie oben</p>", "ges": "<h2>Gesundheitshinweis</h2>\n<p>Fit-Wochenplan ist ein Hilfsmittel zur Planung von Ernährung und Training. Die App ist kein Medizinprodukt und ersetzt keine ärztliche, ernährungsmedizinische oder sportmedizinische Beratung.</p>\n<p>Kalorienbedarf, Nährwerte, Portionsgrößen, Supplementmengen, Trainings- und Laufpläne sind Richtwerte und Vorlagen. Sie berücksichtigen keine Erkrankungen, Medikamente, Schwangerschaft oder individuelle Belastbarkeit. Die Bedarfsberechnung ist eine Schätzung (Mifflin-St.-Jeor-Formel). Foto-Analysen und Produktdaten aus Open Food Facts können ungenau sein.</p>\n<p>Sprich vor einer deutlichen Ernährungsumstellung, vor Nahrungsergänzungsmitteln und vor dem Beginn eines intensiven Trainings mit einer Ärztin oder einem Arzt, besonders bei Vorerkrankungen. Brich das Training bei Schmerzen, Schwindel oder Atemnot ab.</p>", "liz": "<h2>Quellen und Lizenzen</h2>\n<p><b>Produktdaten:</b> Barcode-Suche mit Daten von <a href=\"https://world.openfoodfacts.org\">Open Food Facts</a>. Die Datenbank steht unter der Open Database License (ODbL), die Inhalte unter der Database Contents License.</p>\n<p><b>Foto-Analyse:</b> Google Gemini API, nur mit deinem eigenen Schlüssel.</p>\n<p><b>Rezepte, Lebensmittel, Übungen, Trainings- und Laufpläne:</b> eigene Zusammenstellung für Fit-Wochenplan. Die Nährwerte sind aus den Zutaten berechnet.</p>\n<p><b>Spiele:</b> „Blocksturz“ und die übrigen Pausenspiele sind eigene Umsetzungen.</p>"};
+/* Läuft die Seite als installierte App (Capacitor)? */
+const NATIV=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
+const PL=n=>NATIV&&window.Capacitor.Plugins?window.Capacitor.Plugins[n]||null:null;
 const LOGKEY="fitplan_log";
 let LOGS=[],LSEQ=0;
 (function(){try{LOGS=JSON.parse(localStorage.getItem(LOGKEY)||"[]")}catch(e){LOGS=[]}})();
@@ -428,8 +439,7 @@ function logFile(){
 function logDownload(){
  const txt=logFile(),name="fitplan-log-"+new Date().toISOString().slice(0,19).replace(/[:T]/g,"-")+".txt";
  try{
-  const b=new Blob([txt],{type:"text/plain;charset=utf-8"}),u=URL.createObjectURL(b),a=document.createElement("a");
-  a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();
+  dateiTeilen(name,txt,"text/plain;charset=utf-8").catch(e=>toast("Speichern nicht möglich: "+e.message));
   setTimeout(()=>URL.revokeObjectURL(u),2000);
   logInfo("log","Protokolldatei erstellt: "+name);
  }catch(e){logErr("log","Download fehlgeschlagen: "+e.message);}
@@ -459,7 +469,7 @@ window.addEventListener("online",()=>logInfo("netz","wieder online"));
 window.addEventListener("offline",()=>logWarn("netz","offline"));
 logInfo("start","App geladen, Version "+PUBLIC_V,{ua:navigator.userAgent});
 
-if("serviceWorker" in navigator && location.protocol.startsWith("http")){
+if(!NATIV&&"serviceWorker" in navigator && location.protocol.startsWith("http")){
  navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(reg=>{
   logInfo("pwa","Service Worker aktiv, Kennung "+(reg.active&&reg.active.scriptURL||"?"));
   reg.update();
@@ -600,7 +610,20 @@ const RECIPES={"1": "Haferflocken mit 150 ml Wasser oder Milch 3 Min. in der Mik
 const DEFAULTS=()=>({plan:{},done:{},kcal:2000,prot:150,day:0,custom:[],log:{},nid:1000,wk:weekKey(new Date()),train:{},sets:{},weight:{},ex:[],supp:{},suppDone:{},suppLib:[]});
 let GESPEICHERT={};try{GESPEICHERT=JSON.parse(localStorage.getItem("fitplan")||"{}")||{}}catch(e){GESPEICHERT={};try{logErr("start","Speicher defekt, starte leer: "+e.message)}catch(_){}}
 const S=Object.assign(DEFAULTS(),GESPEICHERT);
-const save=()=>{try{localStorage.setItem("fitplan",JSON.stringify(S))}catch(e){logErr("speicher","Speichern fehlgeschlagen: "+e.message)}};
+/* ---------- Native App (Capacitor) ---------- */
+let nativTimer=null;
+function nativSichern(json){const P=PL("Preferences");if(!P)return;clearTimeout(nativTimer);nativTimer=setTimeout(()=>{P.set({key:"fitplan",value:json}).catch(e=>logWarn("speicher","Native Sicherung fehlgeschlagen: "+e.message));},400);}
+const save=()=>{try{const j=JSON.stringify(S);localStorage.setItem("fitplan",j);if(NATIV)nativSichern(j);}catch(e){logErr("speicher","Speichern fehlgeschlagen: "+e.message)}};
+// iOS kann den Web-Speicher bei Platzmangel leeren: dann aus dem nativen Speicher zurückholen
+if(NATIV&&!localStorage.getItem("fitplan")){const P=PL("Preferences");if(P)P.get({key:"fitplan"}).then(r=>{if(r&&r.value){localStorage.setItem("fitplan",r.value);location.reload();}}).catch(()=>{});}
+function haptik(ms){const H=PL("Haptics");if(H){try{if(ms>=150)H.notification({type:"SUCCESS"});else H.impact({style:ms>=40?"MEDIUM":"LIGHT"});}catch(e){}return;}try{if(navigator.vibrate)navigator.vibrate(ms);}catch(e){}}
+async function dateiTeilen(name,inhalt,mime){
+ const F=PL("Filesystem"),SH=PL("Share");
+ if(F&&SH){const w=await F.writeFile({path:name,data:inhalt,directory:"CACHE",encoding:"utf8"});await SH.share({title:name,url:w.uri,dialogTitle:"Datei sichern oder senden"});return "nativ";}
+ const f=new File([inhalt],name,{type:mime});
+ if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:name});return "geteilt";}
+ const b=new Blob([inhalt],{type:mime}),u=URL.createObjectURL(b),a=document.createElement("a");
+ a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);return "download";}
 let tab="eat",sub={plan:"plan",eat:"day",prog:"weight"};
 const $=s=>document.querySelector(s);
 const allMeals=()=>MEALS.concat(S.custom);
@@ -653,7 +676,7 @@ function rdbHinweis(){
 }
 let lastView="";
 const TITEL={plan:"Planen",fit:"Training",prog:"Fortschritt",more:"Mehr"};
-const MEHR=[["profil","Profil & Gewicht","👤"],["ziele","Ziele & Nährwerte","🎯"],["training","Training & Pausen","⏱"],["ki","Foto-Analyse","📷"],["daten","Daten & Sicherung","💾"],["info","Über die App","ℹ️"]];
+const MEHR=[["profil","Profil & Gewicht","👤"],["ziele","Ziele & Nährwerte","🎯"],["training","Training & Pausen","⏱"],["ki","Foto-Analyse","📷"],["daten","Daten & Sicherung","💾"],["info","Über die App","ℹ️"],["recht","Rechtliches","§"]];
 function kopf(){
  if(tab=="eat")return "";
  if(tab=="more"&&S.mtab){const e=MEHR.find(x=>x[0]==S.mtab);return `<div class="ph"><div class="tl"><button class="back" aria-label="Zurück zu Mehr" onclick="S.mtab=null;render()">‹</button><h1 style="font-size:22px">${e?e[1]:"Mehr"}</h1></div></div>`;}
@@ -690,7 +713,7 @@ function viewPlan(){
   h+=`<div class="card meal-c"><div class="mh"><span class="mi">${SLOT_IC[s]}</span><b>${name}</b><span class="mk">${sk?nf(sk)+" kcal":""}</span></div>`;
   items.forEach((e,i)=>{const m=meal(e.id);if(!m)return;
    h+=`<div class="mrow"><div class="t" onclick="showRecipe(${m.id})"><b>${esc(m.n)}</b><small>${Math.round(m.k*e.q)} kcal · ${Math.round(m.p*e.q)} g Eiweiß</small></div>
-   <div class="chips" style="flex:none;gap:4px;flex-wrap:nowrap"><button aria-label="Weniger" onclick="qty('${key+s}',${i},-0.5)">−</button><span style="align-self:center;min-width:28px;text-align:center;font-weight:650">${e.q}×</span><button aria-label="Mehr" onclick="qty('${key+s}',${i},0.5)">+</button></div>
+   <div class="chips" style="flex:none;gap:4px;flex-wrap:nowrap"><button aria-label="Weniger" onclick="qty('${key+s}',${i},-0.5)">−</button><span style="align-self:center;min-width:28px;text-align:center;font-weight:650">${String(e.q).replace(".",",")}×</span><button aria-label="Mehr" onclick="qty('${key+s}',${i},0.5)">+</button></div>
    <button class="x" aria-label="Entfernen" onclick="del('${key+s}',${i})">✕</button></div>`;});
   h+=`<button class="addl" onclick="choose('${key}','${s}')">+ Gericht hinzufügen</button></div>`;
  });
@@ -875,7 +898,7 @@ function viewAnalyse(){
 let bcTimer=null,bcStream=null;
 function bcStopCam(){try{if(bcTimer)clearInterval(bcTimer);}catch(e){}bcTimer=null;try{if(bcStream)bcStream.getTracks().forEach(t=>t.stop());}catch(e){}bcStream=null;}
 function bcStart(){
- const kann=("BarcodeDetector" in window)&&navigator.mediaDevices&&navigator.mediaDevices.getUserMedia;
+ const kann=!!PL("BarcodeScanner")||(("BarcodeDetector" in window)&&navigator.mediaDevices&&navigator.mediaDevices.getUserMedia);
  sheet(`<h4>Barcode</h4><small style="display:block;color:var(--mut);margin-bottom:8px">Sucht das Produkt bei Open Food Facts. Dafür brauchst du Internet.</small>
  <video id="bcv" playsinline muted style="display:none;width:100%;border-radius:12px;margin-bottom:8px;background:#000"></video>
  ${kann?`<button class="btn" onclick="bcCam()">📷 Kamera starten</button>`:`<small style="display:block;color:var(--mut)">Dein Browser kann Barcodes nicht selbst erkennen. Tippe die Nummer unter dem Strichcode ein.</small>`}
@@ -884,6 +907,12 @@ function bcStart(){
 }
 function bcMsg(t){const e=document.getElementById("bcr");if(e)e.innerHTML=`<small>${esc(t)}</small>`;}
 async function bcCam(){
+ const BS=PL("BarcodeScanner");
+ if(BS){try{const pm=await BS.requestPermissions();if(pm.camera!="granted"&&pm.camera!="limited"){bcMsg("Kein Zugriff auf die Kamera. Erlaube ihn in den Einstellungen deines Telefons oder tippe die Nummer ein.");return;}
+  if(window.Capacitor.getPlatform&&window.Capacitor.getPlatform()=="android"&&BS.isGoogleBarcodeScannerModuleAvailable){const av=await BS.isGoogleBarcodeScannerModuleAvailable();
+   if(!av.available){bcMsg("Der Scanner wird einmalig von Google Play geladen. Bitte gleich noch einmal versuchen.");BS.installGoogleBarcodeScannerModule().catch(()=>{});return;}}
+  const r=await BS.scan({formats:["EAN_13","EAN_8","UPC_A","UPC_E"]});const c=r&&r.barcodes&&r.barcodes[0]&&(r.barcodes[0].rawValue||r.barcodes[0].displayValue);
+  if(c){document.getElementById("bcn").value=c;bcLookup();}}catch(e){if(!/cancel/i.test(e.message||""))bcMsg("Scannen nicht möglich: "+(e.message||e));}return;}
  try{
   bcStopCam();
   bcStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:"environment"}});
@@ -1640,13 +1669,17 @@ function restBar(){let b=document.getElementById("restbar");
   document.body.appendChild(b);}return b;}
 function restStart(sek){
  try{if(restT)clearInterval(restT);}catch(e){}
- restEnd=Date.now()+sek*1000;const b=restBar();b.style.display="flex";
+ restEnd=Date.now()+sek*1000;const b=restBar();b.style.display="flex";pauseMelden(restEnd);
  const upd=()=>{const rest=Math.max(0,Math.ceil((restEnd-Date.now())/1000));
   b.innerHTML=`<b>Pause ${Math.floor(rest/60)}:${String(rest%60).padStart(2,"0")}</b><span><button class="btn g" style="margin:0 6px 0 0" onclick="gOpen()">🎮 Spielen</button><button class="btn g" style="margin:0 6px 0 0" onclick="restStart(${sek})">neu</button><button class="x" onclick="restStop()">✕</button></span>`;
   if(rest<=0){clearInterval(restT);restT=null;restSignal();b.innerHTML=`<b>Pause vorbei – weiter geht's</b><button class="x" onclick="restStop()">✕</button>`;setTimeout(()=>{if(!restT)restStop()},8000);}};
  upd();restT=setInterval(upd,500);
 }
-function restStop(){try{if(restT)clearInterval(restT);}catch(e){}restT=null;const b=document.getElementById("restbar");if(b)b.style.display="none";}
+async function pauseMelden(bis){const N=PL("LocalNotifications");if(!N)return;
+ try{await N.cancel({notifications:[{id:7}]});if(!bis)return;
+  let r=await N.checkPermissions();if(r.display!="granted"&&!S.notifGefragt){S.notifGefragt=1;save();r=await N.requestPermissions();}
+  if(r.display=="granted")await N.schedule({notifications:[{id:7,title:"Pause vorbei",body:"Weiter mit dem nächsten Satz.",schedule:{at:new Date(bis),allowWhileIdle:true}}]});}catch(e){logWarn("training","Benachrichtigung nicht möglich: "+e.message);}}
+function restStop(){pauseMelden(0);try{if(restT)clearInterval(restT);}catch(e){}restT=null;const b=document.getElementById("restbar");if(b)b.style.display="none";}
 /* ---------- Laufen ---------- */
 const RTAGE=["Mo","Di","Mi","Do","Fr","Sa","So"];
 const RDIST={"5 km":5,"10 km":10,"Halbmarathon":21.0975,"Marathon":42.195};
@@ -1799,7 +1832,7 @@ function gS(){S.games=S.games||{xp:0,plays:0,best:{},daily:{}};S.games.best=S.ga
 const GTITEL=["Aufwärmer","Pumper","Eisenfreund","Stemmer","Hantelheld","Kraftprotz","Legende"];
 function gLevel(){const x=gS().xp,lv=Math.floor(x/150)+1;return {lv,in:x%150,t:GTITEL[Math.min(lv-1,GTITEL.length-1)]};}
 function gDaily(){const d=todayISO();let h=0;for(const c of d)h=(h*31+c.charCodeAt(0))>>>0;const g=h%6,v=Math.floor(h/6)%4;
- const def=[{g:"reaction",t:60+v*20,txt:`Reaction Rush: mindestens ${60+v*20} Punkte`},{g:"memory",t:4+v,txt:`Memory: mindestens Level ${4+v}`},{g:"numbers",t:60-v*8,txt:`Number Blitz: in höchstens ${60-v*8} Sekunden`},{g:"stroop",t:80+v*20,txt:`Farbwort: mindestens ${80+v*20} Punkte`},{g:"math",t:80+v*20,txt:`Kopfrechnen: mindestens ${80+v*20} Punkte`},{g:"tetris",t:400+v*300,txt:`Tetris: mindestens ${400+v*300} Punkte`}][g];
+ const def=[{g:"reaction",t:60+v*20,txt:`Reaction Rush: mindestens ${60+v*20} Punkte`},{g:"memory",t:4+v,txt:`Farbfolge: mindestens Level ${4+v}`},{g:"numbers",t:60-v*8,txt:`Number Blitz: in höchstens ${60-v*8} Sekunden`},{g:"stroop",t:80+v*20,txt:`Farbwort: mindestens ${80+v*20} Punkte`},{g:"math",t:80+v*20,txt:`Kopfrechnen: mindestens ${80+v*20} Punkte`},{g:"tetris",t:400+v*300,txt:`Blocksturz: mindestens ${400+v*300} Punkte`}][g];
  const dl=gS().daily;def.done=dl.d==d&&!!dl.done;return def;}
 function gAward(game,val,xp){const g=gS(),b=g.best,heute=todayISO();g.plays++;let neu=false;
  g.n=g.n||{};g.n[game]=(g.n[game]||0)+1;
@@ -1823,11 +1856,11 @@ function gPause(){const e=document.getElementById("gp");if(!e){gStop();return;}
  else e.innerHTML="";}
 const GACH=[["erst","🎮","Erste Runde",g=>g.plays>=1],["p25","🏃","Stammgast: 25 Spiele",g=>g.plays>=25],["p100","🏅","100 Spiele",g=>g.plays>=100],
  ["s3","🔥","3 Tage in Folge",g=>(g.streak||0)>=3],["s7","🌟","7 Tage in Folge",g=>(g.streak||0)>=7],["dc5","🎯","5 Tages-Challenges",g=>(g.dc||0)>=5],
- ["lv5","⭐","Level 5 erreicht",g=>gLevel().lv>=5],["re150","⚡","Reaction: 150 Punkte",g=>(g.best.reaction||0)>=150],["me8","🧠","Memory: Level 8",g=>(g.best.memory||0)>=8],
+ ["lv5","⭐","Level 5 erreicht",g=>gLevel().lv>=5],["re150","⚡","Reaction: 150 Punkte",g=>(g.best.reaction||0)>=150],["me8","🧠","Farbfolge: Level 8",g=>(g.best.memory||0)>=8],
  ["nu20","🔢","Number Blitz unter 20 s",g=>g.best.numbers>0&&g.best.numbers<=20],["st200","🎨","Farbwort: 200 Punkte",g=>(g.best.stroop||0)>=200],
- ["ma200","➕","Kopfrechnen: 200 Punkte",g=>(g.best.math||0)>=200],["te2k","🧱","Tetris: 2.000 Punkte",g=>(g.best.tetris||0)>=2000]];
+ ["ma200","➕","Kopfrechnen: 200 Punkte",g=>(g.best.math||0)>=200],["te2k","🧱","Blocksturz: 2.000 Punkte",g=>(g.best.tetris||0)>=2000]];
 function gAchCheck(){const g=gS();g.ach=g.ach||[];const neu=GACH.filter(a=>!g.ach.includes(a[0])&&a[3](g));neu.forEach(a=>g.ach.push(a[0]));return neu;}
-const GLIST=b=>({tetris:["🧱","Tetris","Läuft, bis die Pause endet",b.tetris?b.tetris+" Punkte":"–"],reaction:["⚡","Reaction Rush","30 Sekunden, Treffer zählen",b.reaction?b.reaction+" Punkte":"–"],stroop:["🎨","Farbwort","30 Sekunden, Farbe statt Wort",b.stroop?b.stroop+" Punkte":"–"],math:["➕","Kopfrechnen","30 Sekunden, Ergebnis wählen",b.math?b.math+" Punkte":"–"],memory:["🧠","Memory","Farbfolge merken",b.memory?"Level "+b.memory:"–"],numbers:["🔢","Number Blitz","1 bis 16, Fehler kosten 2 s",b.numbers?b.numbers+" s":"–"]});
+const GLIST=b=>({tetris:["🧱","Blocksturz","Fallende Blöcke, läuft bis die Pause endet",b.tetris?b.tetris+" Punkte":"–"],reaction:["⚡","Reaction Rush","30 Sekunden, Treffer zählen",b.reaction?b.reaction+" Punkte":"–"],stroop:["🎨","Farbwort","30 Sekunden, Farbe statt Wort",b.stroop?b.stroop+" Punkte":"–"],math:["➕","Kopfrechnen","30 Sekunden, Ergebnis wählen",b.math?b.math+" Punkte":"–"],memory:["🧠","Farbfolge","Farben merken und nachtippen",b.memory?"Level "+b.memory:"–"],numbers:["🔢","Number Blitz","1 bis 16, Fehler kosten 2 s",b.numbers?b.numbers+" s":"–"]});
 function gSchnell(){const s=restT?Math.max(0,Math.ceil((restEnd-Date.now())/1000)):999;
  const l=s<35?["numbers","memory"]:s<90?["reaction","stroop","math","numbers"]:["tetris","reaction","stroop","math"];gStart(l[Math.floor(Math.random()*l.length)]);}
 function gHome(){gStopRun();const g=gS(),L=gLevel(),dc=gDaily(),b=g.best,n=g.n||{},GL=GLIST(b);g.ach=g.ach||[];
@@ -1842,7 +1875,7 @@ function gHome(){gStopRun();const g=gS(),L=gLevel(),dc=gDaily(),b=g.best,n=g.n||
  <small class="sum">${g.plays} Spiele gespielt</small>
  <button class="btn g" onclick="closeSheet()">Schließen</button>`);}
 function gStart(k){({reaction:gReaction,memory:gMemory,numbers:gNumbers,stroop:gStroop,math:gMath,tetris:gTetris})[k]();}
-const gBuzz=ms=>{try{if(navigator.vibrate)navigator.vibrate(ms);}catch(e){}};
+const gBuzz=ms=>haptik(ms);
 function gTimer(run){G.iv.push(setInterval(()=>{if(G.run!==run)return;run.left--;const e=$("#gl");if(e)e.textContent=run.left+" Sekunden";if(run.left<=0)gEnd(run);},1000));}
 const GSTR=[["Rot","#e25555"],["Blau","#4a8cf0"],["Gelb","#e8bd3f"],["Grün","#3cbf7a"]];
 /* --- Tetris --- */
@@ -1928,7 +1961,7 @@ function gHit(){const run=G.run;if(!run||run.game!="reaction")return;
  if(!run.can){run.score=Math.max(0,run.score-2);$("#gi").textContent="Zu früh! −2 Punkte";}else{run.score+=10;$("#gi").textContent="Treffer! +10 Punkte";}
  $("#gs").textContent=run.score+" Punkte";gArm(run);}
 function gMemory(){gStopRun();const run=G.run={game:"memory",seq:[Math.floor(Math.random()*4)],idx:0,active:false};
- gm(`<h4>🧠 Memory</h4><div class="gscore" id="gs">Level 1</div><p class="sum" id="gi">Schau genau hin!</p><div class="gseq">${["r","b","y","g"].map((c,i)=>`<button class="gcol ${c}" aria-label="Farbe ${i+1}" onclick="gMem(${i})"></button>`).join("")}</div>`);
+ gm(`<h4>🧠 Farbfolge</h4><div class="gscore" id="gs">Level 1</div><p class="sum" id="gi">Schau genau hin!</p><div class="gseq">${["r","b","y","g"].map((c,i)=>`<button class="gcol ${c}" aria-label="Farbe ${i+1}" onclick="gMem(${i})"></button>`).join("")}</div>`);
  gPlay(run);}
 async function gFlash(i){const c=document.querySelectorAll(".gcol")[i];if(!c)return;c.classList.add("lit");await gw(380);c.classList.remove("lit");await gw(160);}
 async function gPlay(run){run.active=false;const i0=$("#gi");if(i0)i0.textContent="Schau genau hin!";await gw(500);
@@ -1944,7 +1977,7 @@ function gNum(b,n){const run=G.run;if(!run||run.game!="numbers")return;if(!run.t
   if(run.next==17){run.sec=Math.round(((Date.now()-run.t0)/1000+run.pen)*10)/10;gEnd(run);}else $("#gi").textContent="Suche die "+run.next;}
  else{run.pen+=2;$("#gi").textContent="Falsch, +2 s. Gesucht: "+run.next;}}
 function restSignal(){
- try{if(navigator.vibrate)navigator.vibrate([200,100,200]);}catch(e){}
+ haptik(200);
  try{const C=window.AudioContext||window.webkitAudioContext;if(C){const c=new C(),o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);
   o.frequency.value=880;g.gain.value=0.08;o.start();setTimeout(()=>{o.stop();c.close();},350);}}catch(e){}
 }
@@ -2174,14 +2207,14 @@ function wDel(k){delete S.weight[k];save();render();}
 function sTabs_alt(){const l=[["profil","Profil"],["ziele","Ziele"],["ki","Foto-KI"],["daten","Daten"],["info","Info"]];
  return `<div class="sub">${l.map(([k,n])=>`<button class="${(S.mtab||"profil")==k?'on':''}" onclick="S.mtab='${k}';save();render()">${n}</button>`).join("")}</div>`;}
 function viewSettings(){
- if(S.mtab&&S.mtab!="menu"){const f={profil:sProfil,ziele:sZiele,training:sTraining,ki:sKI,daten:sDaten,info:sInfo}[S.mtab];if(f)return f();S.mtab=null;}
+ if(S.mtab&&S.mtab!="menu"){const f={profil:sProfil,ziele:sZiele,training:sTraining,ki:sKI,daten:sDaten,info:sInfo,recht:sRecht}[S.mtab];if(f)return f();S.mtab=null;}
  const w=S.weight||{},ks=Object.keys(w).sort(),lw=ks.length?(+w[ks[ks.length-1]]).toFixed(1)+" kg":"";
  const info={profil:[S.age?S.age+" Jahre":"",S.height?S.height+" cm":"",lw].filter(Boolean).join(" · ")||"Alter, Größe, Gewicht und Ziel",
   ziele:S.kcal+" kcal · "+S.prot+" g Eiweiß"+(S.kh?" · "+S.kh+" g KH":""),
   training:"Satzpause "+fmtPause(S.restSek||90)+" · "+(S.restPlan===false?"immer gleich":"wie im Plan"),
   ki:S.key?"Schlüssel hinterlegt":"Kein Schlüssel eingetragen",
   daten:S.lastBackup?"Letzte Sicherung am "+new Date(S.lastBackup).toLocaleDateString("de-DE"):"Noch keine Sicherung",
-  info:"Version "+PUBLIC_V};
+  info:"Version "+PUBLIC_V,recht:"Datenschutz, Impressum, Gesundheitshinweis"};
  const li=([k,n,ic])=>`<button class="li" onclick="S.mtab='${k}';render()"><span class="ic2">${ic}</span><span class="t"><b>${n}</b><small>${esc(info[k])}</small></span><span class="chev">›</span></button>`;
  return `<div class="card list">${MEHR.slice(0,3).map(li).join("")}</div><div class="card list">${MEHR.slice(3).map(li).join("")}</div>`;
 }
@@ -2356,15 +2389,8 @@ async function exportData(){
  const inhalt=backupJson(),name="fitplan-sicherung-"+todayISO()+".json";
  const msg=t=>{const m=document.getElementById("dmsg");if(m)m.textContent=t;};
  let geteilt=false;
- try{
-  const f=new File([inhalt],name,{type:"application/json"});
-  if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Fit-Wochenplan Sicherung"});geteilt=true;}
- }catch(e){if(e&&e.name=="AbortError"){msg("Abgebrochen.");return;}logWarn("einstellungen","Teilen nicht möglich: "+e.message);}
- if(!geteilt){
-  try{const b=new Blob([inhalt],{type:"application/json"}),u=URL.createObjectURL(b),a=document.createElement("a");
-   a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);}
-  catch(e){msg("Export fehlgeschlagen: "+e.message);logErr("einstellungen","Export fehlgeschlagen: "+e.message);return;}
- }
+ try{geteilt=await dateiTeilen(name,inhalt,"application/json");}
+ catch(e){if(e&&(e.name=="AbortError"||/cancel/i.test(e.message||""))){msg("Abgebrochen.");return;}msg("Export fehlgeschlagen: "+e.message);logErr("einstellungen","Export fehlgeschlagen: "+e.message);return;}
  S.lastBackup=Date.now();S.backupSnooze=0;save();
  logInfo("einstellungen","Sicherung erstellt",{name,bytes:inhalt.length,geteilt});
  msg("Sicherung erstellt: "+name+" ("+Math.round(inhalt.length/1024)+" KB)");
@@ -2402,6 +2428,20 @@ function importFile(inp){
  rd.onerror=()=>toast("Datei konnte nicht gelesen werden.");
  rd.readAsText(f);
 }
+function rechtText(k){const ph=(v,t)=>v?esc(v):`<span style="color:var(--danger)">[${t}]</span>`;
+ return RECHT[k].replace(/\{name\}/g,ph(ANBIETER.name,"Name")).replace(/\{anschrift\}/g,ph(ANBIETER.anschrift,"Anschrift")).replace(/\{mail\}/g,ph(ANBIETER.mail,"E-Mail"));}
+function rechtZeigen(k){sheet(`<div class="recht">${rechtText(k)}</div><button class="btn g" onclick="closeSheet()">Schließen</button>`);}
+function sRecht(){const li=(k,t,s)=>`<button class="li" onclick="rechtZeigen('${k}')"><span class="t"><b>${t}</b><small>${s}</small></span><span class="chev">›</span></button>`;
+ return `<div class="card list">${li("ds","Datenschutzerklärung","Was mit deinen Daten passiert")}${li("imp","Impressum","Anbieter und Kontakt")}${li("ges","Gesundheitshinweis","Wofür die App gedacht ist")}${li("liz","Quellen und Lizenzen","Open Food Facts und mehr")}</div>`;}
+function willkommen(){
+ sheet(`<div class="welc"><div class="wl-ic">🥗</div><h3>Willkommen bei Fit-Wochenplan</h3>
+ <div class="wl-pt"><span>📅</span><div><b>Plane deine Woche</b><small>Fast 3.000 Fitness-Rezepte, automatischer Wochenvorschlag und Einkaufsliste.</small></div></div>
+ <div class="wl-pt"><span>✅</span><div><b>Hake ab, was du isst</b><small>Kalorien und Makros für jeden Tag, dazu Wasser und Supplements.</small></div></div>
+ <div class="wl-pt"><span>🏋️</span><div><b>Trainiere nach Plan</b><small>Kraft- und Laufpläne, Pausen-Timer und kleine Spiele für die Satzpause.</small></div></div>
+ <div class="wl-pt"><span>🔒</span><div><b>Deine Daten bleiben bei dir</b><small>Kein Konto, keine Werbung. Alles wird nur auf diesem Gerät gespeichert.</small></div></div>
+ <small style="display:block;color:var(--mut);margin:10px 0 0">Die App ersetzt keine ärztliche Beratung. <a href="#" onclick="rechtZeigen('ges');return false" style="color:var(--brand)">Gesundheitshinweis</a> · <a href="#" onclick="rechtZeigen('ds');return false" style="color:var(--brand)">Datenschutz</a></small></div>
+ <button class="btn" onclick="S.onb=1;save();closeSheet();tab='more';S.mtab='ziele';render()">Ziele festlegen</button>
+ <button class="btn g" onclick="S.onb=1;save();closeSheet()">Erst mal umsehen</button>`);}
 function sInfo(){
  return `<div class="card"><h4>Über die App</h4>
  <div class="row"><span>Version</span><span>${PUBLIC_V}</span></div>
@@ -2412,9 +2452,9 @@ function sInfo(){
  <div class="row"><span>Übungen</span><span>${EXERCISES.length + (S.ex||[]).length}</span></div>
  <div class="row"><span>Supplements</span><span>${SUPPS.length + (S.suppLib||[]).length}</span></div>
  <small style="display:block;color:var(--mut);margin-top:8px">Alles läuft offline auf deinem Gerät. Nur die Foto-Analyse sendet ein Bild an Google, wenn du einen Schlüssel hinterlegt hast.</small>
- <button class="btn g" onclick="neuLaden()">App neu laden (aktualisieren)</button>
+ ${NATIV?"":`<button class="btn g" onclick="neuLaden()">App neu laden (aktualisieren)</button>
  <button class="btn" id="installBtn" onclick="installApp()">App installieren</button>
- <button class="btn g" onclick="installApp()" id="installHelp">Wie installiere ich?</button>
+ <button class="btn g" onclick="installApp()" id="installHelp">Wie installiere ich?</button>`}
  <button class="btn g" onclick="logShow()">Diagnoseprotokoll anzeigen</button>
  <button class="btn g" onclick="logDownload()">Diagnoseprotokoll speichern</button>
  <button class="btn g" onclick="logClear()">Diagnoseprotokoll löschen</button></div>
@@ -2603,7 +2643,7 @@ function viewEat(){
   h+=`<div class="card meal-c"><div class="mh"><span class="mi">${SLOT_IC[s]}</span><b>${name}</b><span class="mk">${soll?nf(ist)+" / "+nf(soll):nf(ist)} kcal</span></div>`;
   it.forEach(({i,e,m})=>{const on=log.some(x=>x.ref==key+s+i+":"+e.id+":"+e.q);
    h+=`<div class="mrow"><button class="chkc ${on?'on':''}" aria-label="${on?'Als nicht gegessen markieren':'Als gegessen markieren'}" onclick="tickPlan('${s}',${i})">${CHK}</button>
-   <div class="t" onclick="showRecipe(${m.id})"><b>${esc(m.n)}</b><small>${e.q!=1?e.q+"× · ":""}${Math.round(m.k*e.q)} kcal · ${Math.round(m.p*e.q)} g Eiweiß</small></div></div>`;});
+   <div class="t" onclick="showRecipe(${m.id})"><b>${esc(m.n)}</b><small>${e.q!=1?String(e.q).replace(".",",")+"× · ":""}${Math.round(m.k*e.q)} kcal · ${Math.round(m.p*e.q)} g Eiweiß</small></div></div>`;});
   ex.forEach(({e,i})=>{h+=`<div class="mrow"><span class="chkc on dot" aria-hidden="true">${CHK}</span><div class="t"><b>${esc(e.n)}</b><small>${Math.round(e.k)} kcal · ${Math.round(e.p)} g Eiweiß</small></div><button class="x" aria-label="Eintrag löschen" onclick="delLog(${i})">✕</button></div>`;});
   sp.forEach(x=>{h+=suppRow(isoD,x);});
   h+=`<button class="addl" onclick="addSheet('${s}')">+ ${name} hinzufügen</button></div>`;});
@@ -2699,6 +2739,10 @@ document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{const t=b.data
  if(t=="more"&&tab=="more")S.mtab=null;
  if(t==tab)window.scrollTo({top:0,behavior:"smooth"});
  tab=t;render();});
+// In der App externe Links im System-Browser öffnen
+document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a[href^='http']");if(!a||!NATIV)return;e.preventDefault();const B=PL("Browser");if(B)B.open({url:a.href});else window.open(a.href,"_system");});
+// Erster Start: kurze Einführung
+if(!S.onb&&!Object.keys(S.log||{}).length&&!Object.keys(S.plan||{}).length)setTimeout(willkommen,300);else if(!S.onb){S.onb=1;save();}
 // Beim Start immer mit dem heutigen Tag beginnen
 S.wk=weekOf(0);S.day=dayIndex(new Date());S.wkLock=false;S.mtab=null;
 let wegSeit=0;
