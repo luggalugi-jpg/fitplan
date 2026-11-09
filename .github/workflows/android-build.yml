@@ -42,5 +42,5 @@ jobs:
             -Pandroid.injected.signing.key.password='${{ secrets.ANDROID_KEY_PASSWORD }}'
       - uses: actions/upload-artifact@v4
         with:
-          name: fit-wochenplan-android-${{ github.run_number }}
+          name: gainora-android-${{ github.run_number }}
           path: app/android/app/build/outputs/bundle/release/app-release.aab

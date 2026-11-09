@@ -2,16 +2,16 @@
 
 Zum Kopieren in Play Console und App Store Connect. In Klammern die Höchstlänge, dahinter die tatsächliche Länge.
 
-## Play: App-Name (max. 30) – 29 Zeichen
+## Play: App-Name (max. 30) – 30 Zeichen
 
 ```
-Fit-Wochenplan: Essen & Sport
+Gainora: Essensplan & Training
 ```
 
-## Apple: Name (max. 30) – 14 Zeichen
+## Apple: Name (max. 30) – 7 Zeichen
 
 ```
-Fit-Wochenplan
+Gainora
 ```
 
 ## Apple: Untertitel (max. 30) – 28 Zeichen
@@ -41,7 +41,7 @@ Kalorien,Makros,Rezepte,Diät,Abnehmen,Muskelaufbau,Eiweiß,Krafttraining,Halbma
 ## Beschreibung (Play max. 4000, Apple max. 4000) – 1811 Zeichen
 
 ```
-Fit-Wochenplan bringt Ernährung und Training in einen Plan – übersichtlich, offline und ohne Benutzerkonto.
+Gainora bringt Ernährung und Training in einen Plan – übersichtlich, offline und ohne Benutzerkonto.
 
 ESSEN PLANEN
 • Fast 3.000 Fitness-Rezepte mit Nährwerten, Zutaten und Schritt-für-Schritt-Zubereitung
@@ -75,7 +75,7 @@ PAUSENSPIELE
 DEINE DATEN BLEIBEN BEI DIR
 Kein Konto, keine Werbung, kein Tracking. Alle Einträge werden nur auf deinem Gerät gespeichert. Sicherungen erstellst du selbst als Datei.
 
-Hinweis: Fit-Wochenplan ersetzt keine ärztliche oder ernährungsmedizinische Beratung. Nährwerte und Pläne sind Richtwerte.
+Hinweis: Gainora ersetzt keine ärztliche oder ernährungsmedizinische Beratung. Nährwerte und Pläne sind Richtwerte.
 ```
 
 ## Neuigkeiten dieser Version – 95 Zeichen
@@ -92,8 +92,8 @@ Erste Version im Store: Wochenplan mit fast 3.000 Rezepten, Kraft- und Laufplän
 | Zweitkategorie (Apple) | Essen und Trinken |
 | Preis | Kostenlos (Empfehlung für den Start) |
 | Altersfreigabe | Fragebogen ehrlich ausfüllen: keine Gewalt, keine Glücksspiele, keine Nutzerinhalte, keine Käufe. Ergebnis voraussichtlich Apple 4+ und IARC/USK ab 0 Jahren. |
-| Datenschutz-URL | `https://DEIN-NAME.github.io/DEIN-REPO/datenschutz.html` |
-| Support-/Kontakt-URL | `https://DEIN-NAME.github.io/DEIN-REPO/impressum.html` |
-| Kontakt-E-Mail | deine Support-Adresse |
+| Datenschutz-URL | `https://luggalugi-jpg.github.io/fitplan/datenschutz.html` |
+| Support-/Kontakt-URL | `https://luggalugi-jpg.github.io/fitplan/impressum.html` |
+| Kontakt-E-Mail | gainora.app@gmail.com |
 | Werbung | Nein |
 | App-Zugriff für Prüfer | Kein Login nötig. Hinweis an Prüfer: „Die Foto-Analyse ist optional und braucht einen eigenen Google-Gemini-Schlüssel. Alle anderen Funktionen sind ohne Anmeldung nutzbar.“ |

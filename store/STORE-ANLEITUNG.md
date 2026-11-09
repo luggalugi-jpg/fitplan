@@ -1,4 +1,4 @@
-# Fit-Wochenplan in Play Store und App Store bringen
+# Gainora in Play Store und App Store bringen
 
 Diese Anleitung passt zum Ordner `app/` (Capacitor 8) und den drei Abläufen unter **Actions** in deinem GitHub-Repo. Du brauchst keinen Mac und kein Android Studio: Gebaut wird in der Cloud bei GitHub.
 
@@ -9,12 +9,11 @@ Diese Anleitung passt zum Ordner `app/` (Capacitor 8) und den drei Abläufen unt
 - Spielnamen geändert: „Tetris“ → **Blocksturz**, „Memory“ → **Farbfolge** (beides geschützte Marken).
 - Neues App-Icon, Startbild, Feature-Grafik, Store-Screenshots, Store-Texte, Datenschutz-Antworten.
 
-## Schritt 1 – Angaben eintragen (10 Minuten)
-1. In `essensplan.html` ganz oben `ANBIETER` ausfüllen: Name, ladungsfähige Anschrift, E-Mail. Ohne diese Angaben zeigt die App rote Platzhalter.
-2. Dieselben Angaben in `datenschutz.html` und `impressum.html` ersetzen (Platzhalter in eckigen Klammern).
-3. In `app/capacitor.config.json` die `appId` festlegen, z. B. `de.deinname.fitwochenplan`. **Danach nie mehr ändern** – sie ist die dauerhafte Kennung in beiden Stores.
-4. Alles ins Repo hochladen (Ordner `app/`, `.github/`, `store/` und die Web-Dateien).
-5. Prüfen, ob `https://DEIN-NAME.github.io/DEIN-REPO/datenschutz.html` erreichbar ist – diese Adresse brauchen beide Stores.
+## Schritt 1 – Angaben (erledigt)
+- Anbieter in App und Webseiten: Luca Preikschas, Herzog-Wilhelm-Str. 32, 94572 Schöfweg, gainora.app@gmail.com
+- App-Name: **Gainora**
+- App-Kennung (Bundle-ID / Paketname): `de.preikschas.gainora` – **nach der ersten Veröffentlichung nie mehr ändern**
+- Datenschutz-Adresse für beide Stores: `https://luggalugi-jpg.github.io/fitplan/datenschutz.html` (nach dem Hochladen prüfen, ob sie erreichbar ist)
 
 ## Schritt 2 – Android (Google Play)
 1. **Entwicklerkonto** anlegen: play.google.com/console, einmalig 25 US-Dollar, Identitätsprüfung mit Ausweis.
@@ -42,6 +41,6 @@ Diese Anleitung passt zum Ordner `app/` (Capacitor 8) und den drei Abläufen unt
 - Dunkelmodus, große Schrift, iPhone mit Notch / Dynamic Island, kleines Android-Gerät.
 
 ## Bekannte Punkte, die du entscheiden musst
-- **Name**: Prüfe vor dem Anlegen, ob „Fit-Wochenplan“ im Store frei ist, und recherchiere beim DPMA/EUIPO nach Markenkonflikten.
+- **Name**: Eine Websuche nach „Gainora“ ergab keine App und keine Marke mit diesem Namen (Stand 9.11.2026). Vor dem Anlegen trotzdem selbst prüfen: Suche in Play Store und App Store, DPMAregister (Klassen 9, 41, 44) und TMview/EUIPO. Wer den Namen dauerhaft absichern will, kann ihn beim DPMA als Marke anmelden (ab 290 €).
 - **Händler-Status (EU)**: Beide Stores fragen, ob du als Händler (Trader) auftrittst. Wer Geld verdient oder gewerblich handelt, muss Adresse, Telefon und E-Mail öffentlich im Store zeigen. Für eine kostenlose Hobby-App ohne Einnahmen kommt meist „kein Händler“ in Frage – im Zweifel rechtlich beraten lassen.
 - **Foto-Analyse mit eigenem Schlüssel**: Funktioniert, ist aber für normale Nutzer umständlich. Später wäre ein eigener kleiner Server mit deinem Schlüssel möglich (dann ändern sich Datenschutz und Kosten).

@@ -1,6 +1,6 @@
 {
-  "appId": "de.fitwochenplan.app",
-  "appName": "Fit-Wochenplan",
+  "appId": "de.preikschas.gainora",
+  "appName": "Gainora",
   "webDir": "www",
   "backgroundColor": "#f1f3ee",
   "android": {

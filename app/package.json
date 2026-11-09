@@ -1,8 +1,8 @@
 {
-  "name": "fit-wochenplan-app",
+  "name": "gainora-app",
   "version": "3.3.0",
   "private": true,
-  "description": "Native Hülle (Capacitor) für Fit-Wochenplan – Play Store und App Store",
+  "description": "Native Hülle (Capacitor) für Gainora – Play Store und App Store",
   "scripts": {
     "web": "node scripts/copy-web.mjs",
     "icons": "capacitor-assets generate --iconBackgroundColor \"#1c7a4b\" --iconBackgroundColorDark \"#0d1310\" --splashBackgroundColor \"#1c7a4b\" --splashBackgroundColorDark \"#0d1310\"",

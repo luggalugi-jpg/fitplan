@@ -1,6 +1,6 @@
 {
- "name": "Fit-Wochenplan",
- "short_name": "Fit-Plan",
+ "name": "Gainora",
+ "short_name": "Gainora",
  "lang": "de",
  "start_url": "./essensplan.html",
  "scope": "./",
