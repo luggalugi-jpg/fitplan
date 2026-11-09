@@ -1,0 +1,8 @@
+node_modules/
+www/
+# Die nativen Ordner entstehen beim Build neu. Wer sie lokal anpasst, kann diese Zeilen entfernen.
+android/
+ios/
+*.jks
+*.keystore
+*.p8

@@ -1,0 +1,72 @@
+# Baut die iOS-App und lädt sie zu App Store Connect hoch (danach in TestFlight sichtbar).
+# Voraussetzung: Apple Developer Program, App in App Store Connect angelegt, Secrets eingetragen (siehe STORE-ANLEITUNG.md).
+# Start: Actions → "3 · iOS-App bauen und hochladen" → Run workflow
+name: "3 · iOS-App bauen und hochladen"
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: macos-26
+    defaults: { run: { working-directory: app } }
+    steps:
+      - uses: actions/checkout@v4
+      - name: Xcode 26 wählen
+        run: |
+          X=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1)
+          [ -n "$X" ] && sudo xcode-select -s "$X"
+          xcodebuild -version
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - name: Abhängigkeiten
+        run: npm install
+      - name: Web-App übernehmen
+        run: node scripts/copy-web.mjs
+      - name: iOS-Projekt anlegen
+        run: "[ -d ios ] || npx cap add ios"
+      - name: Icons und Startbild
+        run: npx capacitor-assets generate --ios --iconBackgroundColor "#1c7a4b" --splashBackgroundColor "#1c7a4b" --splashBackgroundColorDark "#0d1310"
+      - name: Synchronisieren
+        run: npx cap sync ios
+      - name: Info.plist, Version
+        run: |
+          P=ios/App/App/Info.plist
+          /usr/libexec/PlistBuddy -c "Delete :NSCameraUsageDescription" $P 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :NSCameraUsageDescription string 'Die Kamera wird zum Scannen von Barcodes und für Fotos deiner Mahlzeiten genutzt.'" $P
+          /usr/libexec/PlistBuddy -c "Delete :NSPhotoLibraryUsageDescription" $P 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :NSPhotoLibraryUsageDescription string 'Du kannst ein Foto deiner Mahlzeit aus deiner Mediathek auswählen.'" $P
+          /usr/libexec/PlistBuddy -c "Delete :ITSAppUsesNonExemptEncryption" $P 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :ITSAppUsesNonExemptEncryption bool false" $P
+          V=$(node -p "require('./package.json').version")
+          /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $V" $P || /usr/libexec/PlistBuddy -c "Add :CFBundleShortVersionString string $V" $P
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${{ github.run_number }}" $P || /usr/libexec/PlistBuddy -c "Add :CFBundleVersion string ${{ github.run_number }}" $P
+          sed -i '' -E 's/MARKETING_VERSION = [^;]+;/MARKETING_VERSION = '"$V"';/; s/CURRENT_PROJECT_VERSION = [^;]+;/CURRENT_PROJECT_VERSION = ${{ github.run_number }};/' ios/App/App.xcodeproj/project.pbxproj
+      - name: App-Store-Connect-Schlüssel
+        run: |
+          mkdir -p ~/.appstoreconnect
+          echo "${{ secrets.ASC_KEY_P8_BASE64 }}" | base64 --decode > ~/.appstoreconnect/AuthKey.p8
+      - name: Archiv bauen
+        run: |
+          xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Release \
+            -destination "generic/platform=iOS" -archivePath $RUNNER_TEMP/App.xcarchive archive \
+            DEVELOPMENT_TEAM=${{ secrets.APPLE_TEAM_ID }} CODE_SIGN_STYLE=Automatic \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath ~/.appstoreconnect/AuthKey.p8 \
+            -authenticationKeyID ${{ secrets.ASC_KEY_ID }} \
+            -authenticationKeyIssuerID ${{ secrets.ASC_ISSUER_ID }}
+      - name: Hochladen zu App Store Connect
+        run: |
+          cat > $RUNNER_TEMP/ExportOptions.plist <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>method</key><string>app-store-connect</string>
+            <key>destination</key><string>upload</string>
+            <key>teamID</key><string>${{ secrets.APPLE_TEAM_ID }}</string>
+            <key>signingStyle</key><string>automatic</string>
+          </dict></plist>
+          PLIST
+          xcodebuild -exportArchive -archivePath $RUNNER_TEMP/App.xcarchive \
+            -exportOptionsPlist $RUNNER_TEMP/ExportOptions.plist -exportPath $RUNNER_TEMP/export \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath ~/.appstoreconnect/AuthKey.p8 \
+            -authenticationKeyID ${{ secrets.ASC_KEY_ID }} \
+            -authenticationKeyIssuerID ${{ secrets.ASC_ISSUER_ID }}

@@ -1,0 +1,23 @@
+{
+  "appId": "de.preikschas.gainora",
+  "appName": "Gainora",
+  "webDir": "www",
+  "backgroundColor": "#f1f3ee",
+  "android": {
+    "allowMixedContent": false
+  },
+  "ios": {
+    "contentInset": "never"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 500,
+      "launchAutoHide": true,
+      "backgroundColor": "#1c7a4b",
+      "showSpinner": false
+    },
+    "LocalNotifications": {
+      "iconColor": "#1c7a4b"
+    }
+  }
+}
