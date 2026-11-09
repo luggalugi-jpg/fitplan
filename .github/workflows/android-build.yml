@@ -38,7 +38,9 @@ jobs:
         run: |
           # Häufige Eingabefehler bereinigen: "NAME=" davor, Leerzeichen, Zeilenumbrüche
           sauber() { printf '%s' "$1" | tr -d '\r\n' | sed -E 's/^[[:space:]]*(ANDROID_[A-Z_]+=)?//; s/[[:space:]]+$//'; }
-          KS_PASS=$(sauber "$KS_PASS"); K_ALIAS=$(sauber "$K_ALIAS"); K_PASS=$(sauber "$K_PASS")
+          # Wurde der ganze Inhalt von passwoerter.txt eingefügt, den passenden Wert herausziehen
+          wert() { local roh="$1" name="$2"; if printf '%s' "$roh" | grep -q "$name="; then printf '%s' "$roh" | tr '\r' '\n' | grep -o "$name=[^[:space:]]*" | head -1 | cut -d= -f2-; else sauber "$roh"; fi; }
+          KS_PASS=$(wert "$KS_PASS" ANDROID_KEYSTORE_PASSWORD); K_ALIAS=$(wert "$K_ALIAS" ANDROID_KEY_ALIAS); K_PASS=$(wert "$K_PASS" ANDROID_KEY_PASSWORD)
           [ -z "$K_ALIAS" ] && K_ALIAS=upload
           FEHLT=""
           [ -z "$KS_B64" ] && FEHLT="$FEHLT ANDROID_KEYSTORE_BASE64"
