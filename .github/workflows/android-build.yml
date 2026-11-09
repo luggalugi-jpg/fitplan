@@ -39,7 +39,6 @@ jobs:
           # Häufige Eingabefehler bereinigen: "NAME=" davor, Leerzeichen, Zeilenumbrüche
           sauber() { printf '%s' "$1" | tr -d '\r\n' | sed -E 's/^[[:space:]]*(ANDROID_[A-Z_]+=)?//; s/[[:space:]]+$//'; }
           KS_PASS=$(sauber "$KS_PASS"); K_ALIAS=$(sauber "$K_ALIAS"); K_PASS=$(sauber "$K_PASS")
-          K_PASS="$KS_PASS"  # PKCS12: Schlüssel- und Speicherpasswort sind gleich
           [ -z "$K_ALIAS" ] && K_ALIAS=upload
           FEHLT=""
           [ -z "$KS_B64" ] && FEHLT="$FEHLT ANDROID_KEYSTORE_BASE64"
@@ -50,8 +49,16 @@ jobs:
           GROESSE=$(stat -c%s android/app/upload.jks)
           echo "Schlüsseldatei: $GROESSE Bytes"
           if [ "$GROESSE" -lt 1500 ]; then echo "::error::ANDROID_KEYSTORE_BASE64 ist unvollständig ($GROESSE Bytes). Bitte den gesamten Text kopieren."; exit 1; fi
-          if ! keytool -list -keystore android/app/upload.jks -storetype PKCS12 -storepass "$KS_PASS" >/dev/null 2>&1; then
-            echo "::error::ANDROID_KEYSTORE_PASSWORD passt nicht zur Schlüsseldatei. Bitte das Passwort aus passwoerter.txt ohne 'ANDROID_KEYSTORE_PASSWORD=' eintragen."; exit 1; fi
+          # Passwort finden – auch wenn es versehentlich in einem anderen Feld steht
+          OK=""
+          for KANDIDAT in "$KS_PASS" "$K_PASS" "$K_ALIAS"; do
+            [ -z "$KANDIDAT" ] && continue
+            if keytool -list -keystore android/app/upload.jks -storetype PKCS12 -storepass "$KANDIDAT" >/dev/null 2>&1; then OK="$KANDIDAT"; break; fi
+          done
+          if [ -z "$OK" ]; then
+            echo "::error::Keines der eingetragenen Passwörter passt zur Schlüsseldatei (Länge ANDROID_KEYSTORE_PASSWORD: ${#KS_PASS}, ANDROID_KEY_PASSWORD: ${#K_PASS} Zeichen; erwartet 24). Bitte das Passwort aus passwoerter.txt (Teil nach dem =) neu eintragen."; exit 1; fi
+          [ "$OK" != "$KS_PASS" ] && echo "::warning::Das richtige Passwort stand in einem anderen Secret – verwende es."
+          KS_PASS="$OK"; K_PASS="$OK"
           if ! keytool -list -keystore android/app/upload.jks -storetype PKCS12 -storepass "$KS_PASS" -alias "$K_ALIAS" >/dev/null 2>&1; then
             echo "::warning::ANDROID_KEY_ALIAS stimmt nicht, verwende 'upload'."; K_ALIAS=upload
             keytool -list -keystore android/app/upload.jks -storetype PKCS12 -storepass "$KS_PASS" -alias upload >/dev/null 2>&1 \
