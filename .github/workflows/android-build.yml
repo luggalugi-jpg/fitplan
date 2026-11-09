@@ -29,17 +29,47 @@ jobs:
           V=$(node -p "require('./package.json').version")
           sed -i -E "s/versionCode [0-9]+/versionCode ${{ github.run_number }}/; s/versionName \"[^\"]*\"/versionName \"$V\"/" android/app/build.gradle
           grep -E "versionCode|versionName" android/app/build.gradle
-      - name: Upload-Schlüssel
-        run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > android/app/upload.jks
+      - name: Upload-Schlüssel prüfen
+        env:
+          KS_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KS_PASS: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          K_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          K_PASS: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          # Häufige Eingabefehler bereinigen: "NAME=" davor, Leerzeichen, Zeilenumbrüche
+          sauber() { printf '%s' "$1" | tr -d '\r\n' | sed -E 's/^[[:space:]]*(ANDROID_[A-Z_]+=)?//; s/[[:space:]]+$//'; }
+          KS_PASS=$(sauber "$KS_PASS"); K_ALIAS=$(sauber "$K_ALIAS"); K_PASS=$(sauber "$K_PASS")
+          K_PASS="$KS_PASS"  # PKCS12: Schlüssel- und Speicherpasswort sind gleich
+          [ -z "$K_ALIAS" ] && K_ALIAS=upload
+          FEHLT=""
+          [ -z "$KS_B64" ] && FEHLT="$FEHLT ANDROID_KEYSTORE_BASE64"
+          [ -z "$KS_PASS" ] && FEHLT="$FEHLT ANDROID_KEYSTORE_PASSWORD"
+          if [ -n "$FEHLT" ]; then echo "::error::Diese Secrets fehlen oder sind leer:$FEHLT"; exit 1; fi
+          printf '%s' "$KS_B64" | sed -E 's/^ANDROID_KEYSTORE_BASE64=//' | tr -d ' \r\n\t' | base64 -d > android/app/upload.jks 2>/dev/null \
+            || { echo "::error::ANDROID_KEYSTORE_BASE64 ist kein gültiger Base64-Text. Bitte den kompletten Inhalt von ANDROID_KEYSTORE_BASE64.txt eintragen."; exit 1; }
+          GROESSE=$(stat -c%s android/app/upload.jks)
+          echo "Schlüsseldatei: $GROESSE Bytes"
+          if [ "$GROESSE" -lt 1500 ]; then echo "::error::ANDROID_KEYSTORE_BASE64 ist unvollständig ($GROESSE Bytes). Bitte den gesamten Text kopieren."; exit 1; fi
+          if ! keytool -list -keystore android/app/upload.jks -storetype PKCS12 -storepass "$KS_PASS" >/dev/null 2>&1; then
+            echo "::error::ANDROID_KEYSTORE_PASSWORD passt nicht zur Schlüsseldatei. Bitte das Passwort aus passwoerter.txt ohne 'ANDROID_KEYSTORE_PASSWORD=' eintragen."; exit 1; fi
+          if ! keytool -list -keystore android/app/upload.jks -storetype PKCS12 -storepass "$KS_PASS" -alias "$K_ALIAS" >/dev/null 2>&1; then
+            echo "::warning::ANDROID_KEY_ALIAS stimmt nicht, verwende 'upload'."; K_ALIAS=upload
+            keytool -list -keystore android/app/upload.jks -storetype PKCS12 -storepass "$KS_PASS" -alias upload >/dev/null 2>&1 \
+              || { echo "::error::Im Schlüssel gibt es keinen Eintrag 'upload'. Wurde die richtige Datei verwendet?"; exit 1; }
+          fi
+          echo "Schlüssel, Passwort und Alias passen."
+          { echo "KS_PASS=$KS_PASS"; echo "K_ALIAS=$K_ALIAS"; echo "K_PASS=$K_PASS"; } > "$RUNNER_TEMP/sign.env"
       - name: App-Bundle bauen
         working-directory: app/android
         run: |
+          set -a; . "$RUNNER_TEMP/sign.env"; set +a
           chmod +x gradlew
           ./gradlew bundleRelease \
             -Pandroid.injected.signing.store.file=$PWD/app/upload.jks \
-            -Pandroid.injected.signing.store.password='${{ secrets.ANDROID_KEYSTORE_PASSWORD }}' \
-            -Pandroid.injected.signing.key.alias='${{ secrets.ANDROID_KEY_ALIAS }}' \
-            -Pandroid.injected.signing.key.password='${{ secrets.ANDROID_KEY_PASSWORD }}'
+            -Pandroid.injected.signing.store.password="$KS_PASS" \
+            -Pandroid.injected.signing.key.alias="$K_ALIAS" \
+            -Pandroid.injected.signing.key.password="$K_PASS"
+          rm -f "$RUNNER_TEMP/sign.env" app/upload.jks
       - uses: actions/upload-artifact@v4
         with:
           name: gainora-android-${{ github.run_number }}
