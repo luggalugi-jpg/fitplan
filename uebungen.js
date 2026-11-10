@@ -3,7 +3,7 @@
    Grafikkarte per WebGL, ohne fremde Bibliotheken). Trainierte Muskeln sind rot. Ohne WebGL wird eine
    einfachere Zeichnung auf <canvas> verwendet. Posen: Seitenebene (x nach vorn, y nach unten), z = links/rechts. */
 (function(){
-const L={t:38,nk:5,hd:8,ua:21,fa:19,th:29,sh:28,ft:9,wr:6,sb:13,hb:7.2};
+const L={t:38,nk:5,hd:8,ua:21,fa:19,th:29,sh:28,ft:9,wr:6,sb:13.6,hb:7.2};
 const R=Math.PI/180,dir=a=>[Math.cos(a*R),Math.sin(a*R)],add=(p,v,k)=>[p[0]+v[0]*(k==null?1:k),p[1]+v[1]*(k==null?1:k)];
 const V={a:(p,q)=>[p[0]+q[0],p[1]+q[1],p[2]+q[2]],s:(p,q)=>[p[0]-q[0],p[1]-q[1],p[2]-q[2]],m:(p,k)=>[p[0]*k,p[1]*k,p[2]*k],
  d:(p,q)=>p[0]*q[0]+p[1]*q[1]+p[2]*q[2],x:(p,q)=>[p[1]*q[2]-p[2]*q[1],p[2]*q[0]-p[0]*q[2],p[0]*q[1]-p[1]*q[0]],
@@ -45,7 +45,7 @@ function pose(P){const J2={},J={};
 const PAL=["#cdcdd0","#c42d24","#e59a90","#4a4d52","#f2f2f2","#d7dadd","#2a2b2e","#222326"].map(c=>[1,3,5].map(i=>parseInt(c.slice(i,i+2),16)));
 /* Szene aufbauen: Körperformen (werden weich verschmolzen) und Geräte */
 function bauen(def,P){const {J,J2}=pose(P),body=[],eq=[];
- let neu=false;const kn=(a,b,r,r2,m)=>{body.push({t:"c",a,b,r,r2:r2==null?r:r2,m:m||0,g:neu});neu=false;};
+ let neu=false;const kn=(a,b,r,r2,m)=>{m=m||0;const mu=m>=10;if(mu)m-=10;body.push({t:"c",a,b,r,r2:r2==null?r:r2,m,mu,g:neu});neu=false;};
  const ecap=(a,b,r,m)=>eq.push({t:"c",a,b,r,r2:r,m});
  const z2=(p,z)=>[p[0],p[1],z||0],mid=(p,q)=>V.m(V.a(p,q),.5);
  (def.p||[]).forEach(p=>{
@@ -66,42 +66,46 @@ function bauen(def,P){const {J,J2}=pose(P),body=[],eq=[];
   else if(p.sled){const q=j2(p.at),w=dir(p.ang||0);eq.push({t:"b",c:[q[0],q[1],0],h:[14,2.2,15],ang:(p.ang||0)*R,m:5});}
   else if(p.ball){const c=mid(J.a,J.a2);ecap(c,c,p.rr||7,7);}
  });
- const M1=new Set(def.m||[]),M2=new Set(def.m2||[]),ro=m=>M1.has(m)?1:(M2.has(m)?2:0);
+ const M1=new Set(def.m||[]),M2=new Set(def.m2||[]),ro=m=>10+(M1.has(m)?1:(M2.has(m)?2:0));
  const u=V.n(V.s(J.sc,J.hc));let F=V.n(V.x(J.lat,u));if(P.bauch)F=V.m(F,-1);const la=J.lat,ls=J.latS;
  const perp=(v,d)=>{const n=V.n(d);return V.s(v,V.m(n,V.d(v,n)));};
  const seite=(a,b,c,fb)=>{let p=perp(c,V.s(b,a));if(V.len(p)<.25*(V.len(c)||1))p=perp(fb,V.s(b,a));return V.n(p);};
  const P3=(o,...t)=>t.reduce((q,[v,k])=>V.a(q,V.m(v,k)),o),lp=(a,b,t)=>V.a(a,V.m(V.s(b,a),t));
  const hu=V.n(V.s(J.hd,J.sc)); // Kopfachse
- // Kopf: Schädel, Kiefer, Nase, Haar, Hals
- kn(J.hd,J.hd,6.9);kn(P3(J.hd,[F,2.3],[hu,-3.9]),P3(J.hd,[F,2.6],[hu,-4.4]),4.6);kn(P3(J.hd,[F,6.6],[hu,-.8]),P3(J.hd,[F,7.2],[hu,-2]),1.2);
- kn(P3(J.hd,[hu,2.7],[F,-2]),P3(J.hd,[hu,1.2],[F,-3.4]),5.3,5,3);[1,-1].forEach(k=>{const o=P3(J.hd,[ls,k*6.6],[hu,-.6],[F,-.4]);kn(o,o,1.5);});kn(P3(J.sc,[hu,-1]),P3(J.hd,[hu,-3.5],[F,-.8]),4.1,3.5);
- // Rumpf
- kn(P3(J.hc,[u,6]),P3(J.sc,[u,-12]),5.8,7);kn(P3(J.sc,[ls,10],[u,-1.5]),P3(J.sc,[ls,-10],[u,-1.5]),5.2);
- kn(J.hp,J.hp2,6.3,null,4);
- kn(P3(J.sc,[u,-5],[F,-4.2]),P3(J.sc,[u,-16],[F,-4]),4.6,3.6,ro("trap"));
+ // Kopf: Schädel, Kiefer, Kinn, Nase, Brauen, Ohren, Haar, Hals
+ kn(P3(J.hd,[hu,.6]),P3(J.hd,[hu,.6]),6.7);kn(P3(J.hd,[F,2.2],[hu,-3.6]),P3(J.hd,[F,3.2],[hu,-5.4]),4.5,3.1);
+ kn(P3(J.hd,[F,6.3],[hu,-.4]),P3(J.hd,[F,7.1],[hu,-2.2]),1.05,1.25);kn(P3(J.hd,[F,5.6],[hu,1.3],[ls,3.2]),P3(J.hd,[F,5.6],[hu,1.3],[ls,-3.2]),1.15);
+ kn(P3(J.hd,[hu,3.2],[F,-1.6]),P3(J.hd,[hu,1.4],[F,-3.4]),5.2,5,3);[1,-1].forEach(k=>{const o=P3(J.hd,[ls,k*6.4],[hu,-.4],[F,-.4]);kn(o,P3(o,[hu,-1.4]),1.3,1);});
+ kn(P3(J.sc,[hu,-1]),P3(J.hd,[hu,-3.5],[F,-.8]),4.3,3.6);
+ // Rumpf: Grundform, Schultergürtel, Becken
+ kn(P3(J.hc,[u,6]),P3(J.sc,[u,-12]),5.4,7);kn(P3(J.sc,[ls,10.5],[u,-1.5]),P3(J.sc,[ls,-10.5],[u,-1.5]),5.2);
+ kn(J.hp,J.hp2,6.1);
+ kn(P3(J.sc,[u,-5],[F,-4.4]),P3(J.sc,[u,-16],[F,-4.2]),4.6,3.6,ro("trap"));
+ kn(P3(J.hc,[u,2.5],[F,5.2]),P3(J.hc,[u,5.5],[F,5.6]),3.6,3.8,ro("bauch"));
  [1,-1].forEach(k=>{
-  kn(P3(J.hc,[la,k*4.2],[u,2]),P3(J.sc,[ls,k*6],[u,-7]),5.4,7);
-  kn(P3(J.sc,[u,-11.5],[F,5.6],[ls,k*4]),P3(J.sc,[u,-6.4],[F,4.4],[ls,k*9.8]),4.8,4.2,ro("brust"));
-  kn(P3(J.hc,[u,5],[F,5.6],[la,k*2.5]),P3(J.hc,[u,22],[F,6],[la,k*2.7]),3,3.3,ro("bauch"));
-  kn(P3(J.hc,[u,5],[F,1.8],[la,k*7.2]),P3(J.hc,[u,20],[F,2.2],[la,k*8.6]),3.4,3.5,ro("seite"));
-  kn(P3(J.hc,[u,10],[F,-3.2],[la,k*6.2]),P3(J.sc,[u,-7],[F,-3.4],[ls,k*11]),4.1,5.6,ro("lat"));
-  kn(P3(J.sc,[u,-2],[F,-3],[ls,k*6.2]),P3(J.sc,[u,4],[F,-1.6],[ls,k*1.6]),4,3,ro("trap"));
+  kn(P3(J.hc,[la,k*4],[u,2]),P3(J.sc,[ls,k*6.2],[u,-7]),5,7.2);
+  kn(P3(J.sc,[u,-11.8],[F,5.8],[ls,k*4.2]),P3(J.sc,[u,-6.6],[F,4.6],[ls,k*10]),4.9,4.2,ro("brust"));
+  [9,13.6,18.2].forEach(h=>{const o=P3(J.hc,[u,h],[F,6.2],[la,k*2.7]);kn(o,P3(o,[u,1.2]),2.5,2.5,ro("bauch"));});
+  kn(P3(J.hc,[u,5],[F,1.8],[la,k*6.8]),P3(J.hc,[u,20],[F,2.4],[la,k*8.6]),3.3,3.5,ro("seite"));
+  kn(P3(J.hc,[u,10],[F,-3.2],[la,k*6]),P3(J.sc,[u,-7],[F,-3.4],[ls,k*11.4]),4,5.7,ro("lat"));
+  kn(P3(J.sc,[u,-2],[F,-3],[ls,k*6.6]),P3(J.sc,[u,4.5],[F,-1.6],[ls,k*1.8]),4.1,3,ro("trap"));
   kn(P3(J.hc,[u,1],[F,-5.4],[la,k*2.7]),P3(J.hc,[u,18],[F,-5.6],[la,k*2.7]),3,3,ro("ery"));
-  const hp=k>0?J.hp:J.hp2,g=P3(hp,[F,-5],[u,-.5]);kn(g,g,6.2,null,ro("glut"));});
+  const hp=k>0?J.hp:J.hp2,g=P3(hp,[F,-5],[u,-.5]);kn(g,P3(g,[u,1.5]),6.1,5.6,ro("glut"));});
  // Arme
  [["s","e","a","w"],["s2","e2","a2","w2"]].forEach(([s,e,a,w])=>{neu=true;const fr=seite(J[s],J[e],V.s(J[a],J[e]),F),S=J[s],E=J[e],A=J[a];
-  kn(P3(S,[u,.8]),lp(S,E,.4),6,3.4,ro("delt"));kn(S,E,3.1,2.7);
-  kn(V.a(lp(S,E,.22),V.m(fr,2.3)),V.a(lp(S,E,.8),V.m(fr,1.8)),3.6,2.9,ro("bizeps"));
-  kn(V.a(lp(S,E,.14),V.m(fr,-2.4)),V.a(lp(S,E,.8),V.m(fr,-1.8)),3.7,2.8,ro("tri"));
-  kn(E,A,3.5,2.3,ro("unterarm"));
-  if(J[w]){kn(A,J[w],2.3,2.6);}else{const hd=V.n(V.s(A,E));kn(A,V.a(A,V.m(hd,2.2)),2.7,2.9);}});
+  kn(P3(S,[u,.8]),lp(S,E,.42),6.1,3.4,ro("delt"));kn(S,E,3.1,2.7);
+  kn(V.a(lp(S,E,.22),V.m(fr,2.3)),V.a(lp(S,E,.8),V.m(fr,1.8)),3.7,2.9,ro("bizeps"));
+  kn(V.a(lp(S,E,.14),V.m(fr,-2.4)),V.a(lp(S,E,.8),V.m(fr,-1.8)),3.8,2.8,ro("tri"));
+  kn(lp(E,A,.02),lp(E,A,.6),3.6,2.9,ro("unterarm"));kn(lp(E,A,.5),A,2.8,2.2);
+  if(J[w]){kn(A,J[w],2.3,2.7);}else{const hd=V.n(V.s(A,E));kn(V.a(A,V.m(hd,.8)),V.a(A,V.m(hd,3)),2.6,2.9);}});
  // Beine
  [["hp","k","f","t","he"],["hp2","k2","f2","t2","he2"]].forEach(([h,k,f,t,he])=>{neu=true;const H=J[h],K=J[k],Fu=J[f];
   const bk=seite(H,K,V.s(Fu,K),V.m(F,-1)),bs=seite(K,Fu,V.s(H,K),V.m(F,-1));
-  kn(H,K,4.9,3.7);kn(V.a(lp(H,K,.08),V.m(bk,-3.2)),V.a(lp(H,K,.88),V.m(bk,-2)),5.6,4,ro("quad"));
+  kn(H,K,4.9,3.7);kn(V.a(lp(H,K,.08),V.m(bk,-3.2)),V.a(lp(H,K,.86),V.m(bk,-2.1)),5.7,3.9,ro("quad"));
   kn(V.a(lp(H,K,.12),V.m(bk,3)),V.a(lp(H,K,.86),V.m(bk,1.9)),4.9,3.6,ro("ham"));
-  kn(K,Fu,3.5,2.5);kn(V.a(lp(K,Fu,.08),V.m(bs,2.5)),V.a(lp(K,Fu,.58),V.m(bs,1.4)),4.3,2.8,ro("wade"));
-  kn(J[he],J[t],2.9,2.3);});
+  const kv=V.a(K,V.m(bk,-1.6));kn(kv,kv,3.3);
+  kn(K,Fu,3.5,2.4);kn(V.a(lp(K,Fu,.08),V.m(bs,2.6)),V.a(lp(K,Fu,.58),V.m(bs,1.4)),4.3,2.7,ro("wade"));
+  kn(Fu,J[he],2.4,2.7);kn(J[he],lp(J[he],J[t],.75),2.6,2.5);kn(lp(J[he],J[t],.7),J[t],2.5,1.9);});
  return {body,eq,J};}
 /* ---------- Kamera ---------- */
 const F0=520;
@@ -116,7 +120,7 @@ function rahmen(def){if(def._r)return def._r;const mn=[1e9,1e9,1e9],mx=[-1e9,-1e
 function basis(yaw,pitch){const cy=Math.cos(yaw*R),sy=Math.sin(yaw*R),cp=Math.cos(pitch*R),sp=Math.sin(pitch*R);
  return {ex:[cy,0,-sy],ey:[sy*sp,cp,cy*sp],ed:[sy*cp,-sp,cy*cp]};}
 /* ---------- WebGL-Darstellung ---------- */
-const NC=64,NB=6,ND=8;
+const NC=76,NB=6,ND=8;
 const FS=`precision highp float;
 #define NC ${NC}
 #define NB ${NB}
@@ -127,12 +131,12 @@ uniform vec3 uBC[NB];uniform vec3 uBH[NB];uniform vec3 uBR[NB];uniform int uNBx;
 uniform vec4 uD[ND];uniform vec2 uDT[ND];uniform int uND;uniform vec3 uPal[8];uniform float uFloor;
 vec3 pal(float m){vec3 c=uPal[0];for(int i=1;i<8;i++){if(abs(m-float(i))<.5)c=uPal[i];}return c;}
 float kap(vec3 p,vec4 a,vec4 b){vec3 pa=p-a.xyz,ba=b.xyz-a.xyz;float h=clamp(dot(pa,ba)/max(dot(ba,ba),1e-4),0.,1.);
- return length(pa-ba*h)-mix(a.w,mod(mod(b.w,1000.),100.),h);}
+ return length(pa-ba*h)-mix(a.w,mod(mod(mod(b.w,1000.),400.),50.),h);}
 float kasten(vec3 p,vec3 c,vec3 h,vec3 r){vec3 q=p-c;q.xy=vec2(q.x*r.x+q.y*r.y,-q.x*r.y+q.y*r.x);
  vec3 d=abs(q)-h+.9;return length(max(d,0.))+min(max(d.x,max(d.y,d.z)),0.)-.9;}
 float scheibe(vec3 p,vec4 c,float th){vec2 d=vec2(length(p.xy-c.xy)-c.w+.7,abs(p.z-c.z)-th+.7);
  return min(max(d.x,d.y),0.)+length(max(d,0.))-.7;}
-const float K=1.15;const float KG=.9;const float KC=.55;
+const float K=1.0;const float KG=.9;const float KC=.5;
 float sm(float a,float b,float k){float h=clamp(.5+.5*(a-b)/k,0.,1.);return mix(a,b,h)-k*h*(1.-h);}
 float map(vec3 p){float d=1e5,D=1e5,e=1e5;
  for(int i=0;i<NC;i++){if(i>=uNC)break;float di=kap(p,uCA[i],uCB[i]);
@@ -142,11 +146,17 @@ float map(vec3 p){float d=1e5,D=1e5,e=1e5;
  for(int i=0;i<ND;i++){if(i>=uND)break;d=min(d,scheibe(p,uD[i],uDT[i].x));}
  return d;}
 vec4 farbe(vec3 p){float d=1e5,D=1e5;vec3 c=uPal[0],C=uPal[0];float gl=0.;
- for(int i=0;i<NC;i++){if(i>=uNBody)break;float di=kap(p,uCA[i],uCB[i]);float m=floor(mod(uCB[i].w,1000.)/100.+.01);vec3 ci=pal(m);
-  if(uCB[i].w>=1000.){C=mix(C,c,clamp(.5+.5*(D-d)/KC,0.,1.));D=sm(D,d,KG);d=di;c=ci;}
+ float bd=1e5,bm=0.,bh=0.;vec3 br=vec3(0.),bb=vec3(0.);
+ for(int i=0;i<NC;i++){if(i>=uNBody)break;vec4 A=uCA[i],B=uCB[i];float w1=mod(B.w,1000.),mu=step(400.,w1),w2=mod(w1,400.),m=floor(w2/50.+.01),r2=mod(w2,50.);
+  vec3 pa=p-A.xyz,ba=B.xyz-A.xyz;float h=clamp(dot(pa,ba)/max(dot(ba,ba),1e-4),0.,1.);vec3 rv=pa-ba*h;float di=length(rv)-mix(A.w,r2,h);vec3 ci=pal(m);
+  if(mu>.5&&di<bd){bd=di;bm=m;bh=h;br=rv;bb=ba;}
+  if(B.w>=1000.){C=mix(C,c,clamp(.5+.5*(D-d)/KC,0.,1.));D=sm(D,d,KG);d=di;c=ci;}
   else{c=mix(c,ci,clamp(.5+.5*(d-di)/KC,0.,1.));d=sm(d,di,K);}}
  c=mix(C,c,clamp(.5+.5*(D-d)/KC,0.,1.));d=sm(D,d,KG);
- for(int i=0;i<NC;i++){if(i>=uNC)break;if(i<uNBody)continue;float di=kap(p,uCA[i],uCB[i]);float m=floor(uCB[i].w/100.+.01);
+ // Muskelfasern: feine Linien entlang des Muskels
+ if(bd<.9&&dot(bb,bb)>1.){vec3 ax=normalize(bb),t1=normalize(cross(ax,vec3(.31,.52,.8))),t2=cross(ax,t1);
+  float st=sin(atan(dot(br,t2),dot(br,t1))*12.+bh*1.5);float amp=bm>.5?.2:.07;c*=1.-amp*smoothstep(.25,1.,st)*smoothstep(.9,.2,bd);}
+ for(int i=0;i<NC;i++){if(i>=uNC)break;if(i<uNBody)continue;float di=kap(p,uCA[i],uCB[i]);float m=floor(mod(uCB[i].w,400.)/50.+.01);
   if(di<d){d=di;c=pal(m);gl=m>4.5&&m<5.5?.5:0.;}}
  for(int i=0;i<NB;i++){if(i>=uNBx)break;float di=kasten(p,uBC[i],uBH[i],uBR[i]);if(di<d){d=di;c=pal(uBR[i].z);gl=.12;}}
  for(int i=0;i<ND;i++){if(i>=uND)break;float di=scheibe(p,uD[i],uDT[i].x);if(di<d){d=di;c=pal(uDT[i].y);gl=.6;}}
@@ -165,7 +175,7 @@ void main(){vec2 f=gl_FragCoord.xy/uRes;float sx=f.x*200.,sy=(1.-f.y)*150.;
  if(disc>0.){float sq=sqrt(disc),t=max(-b-sq,0.),tmax=-b+sq,minD=1e5;bool hit=false;
   for(int i=0;i<72;i++){vec3 p=ro+rd*t;float d=map(p);minD=min(minD,d);if(d<.1){hit=true;break;}t+=d*.92;if(t>tmax)break;}
   if(hit&&(rd.y<=0.||t<tf||tf<0.)){vec3 p=ro+rd*t,n=norm(p);vec4 fc=farbe(p);
-   float w=.5+.5*dot(n,uL),ao=1.;float s=0.,k=1.;for(int i=1;i<=3;i++){float h=float(i)*1.6;s+=(h-map(p+n*h))*k;k*=.55;}ao=clamp(1.-.16*s,0.,1.);
+   float w=.5+.5*dot(n,uL),ao=1.;float s=0.,k=1.;for(int i=1;i<=3;i++){float h=float(i)*1.6;s+=(h-map(p+n*h))*k;k*=.55;}ao=clamp(1.-.2*s,0.,1.);
    float top=.5+.5*dot(n,vec3(0.,-1.,0.));
    vec3 c=fc.rgb*(.30+.62*pow(w,1.4)+.14*top)*mix(.55,1.,ao);
    float fr=1.-max(dot(n,-rd),0.);c*=mix(1.,.38,smoothstep(.58,.97,fr));
@@ -175,7 +185,7 @@ void main(){vec2 f=gl_FragCoord.xy/uRes;float sx=f.x*200.,sy=(1.-f.y)*150.;
  }
  gl_FragColor=vec4(col.rgb*col.a,col.a);}`;
 function glNeu(cv){let gl;try{gl=cv.getContext("webgl",{alpha:true,premultipliedAlpha:true,antialias:false,preserveDrawingBuffer:true});}catch(e){}
- if(!gl||gl.getParameter(gl.MAX_FRAGMENT_UNIFORM_VECTORS)<200)return null;
+ if(!gl||gl.getParameter(gl.MAX_FRAGMENT_UNIFORM_VECTORS)<221)return null;
  const sh=(t,src)=>{const s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){console.warn(gl.getShaderInfoLog(s));return null;}return s;};
  const vs=sh(gl.VERTEX_SHADER,"attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}"),fs=sh(gl.FRAGMENT_SHADER,FS);if(!vs||!fs)return null;
  const pr=gl.createProgram();gl.attachShader(pr,vs);gl.attachShader(pr,fs);gl.linkProgram(pr);if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return null;
@@ -188,7 +198,7 @@ function glNeu(cv){let gl;try{gl=cv.getContext("webgl",{alpha:true,premultiplied
  const CA=new Float32Array(NC*4),CB=new Float32Array(NC*4),BC=new Float32Array(NB*3),BH=new Float32Array(NB*3),BR=new Float32Array(NB*3),D=new Float32Array(ND*4),DT=new Float32Array(ND*2);
  return {gl,draw(def,P,yaw,pitch){const {body,eq}=bauen(def,P),B=basis(yaw,pitch),ra=rahmen(def),ctr=ra.c;gl.uniform1f(u.z,ra.z);gl.uniform1f(u.rad,ra.rad);
   let n=0,nb=0,nd=0;const caps=body.concat(eq.filter(o=>o.t=="c"));
-  caps.forEach(o=>{if(n>=NC)return;CA.set([o.a[0],o.a[1],o.a[2],o.r],n*4);CB.set([o.b[0],o.b[1],o.b[2],o.r2+100*o.m+(o.g?1000:0)],n*4);n++;});
+  caps.forEach(o=>{if(n>=NC)return;CA.set([o.a[0],o.a[1],o.a[2],o.r],n*4);CB.set([o.b[0],o.b[1],o.b[2],o.r2+50*o.m+(o.mu?400:0)+(o.g?1000:0)],n*4);n++;});
   eq.forEach(o=>{if(o.t=="b"&&nb<NB){BC.set(o.c,nb*3);BH.set(o.h,nb*3);BR.set([Math.cos(o.ang),Math.sin(o.ang),o.m],nb*3);nb++;}
    else if(o.t=="d"&&nd<ND){D.set([o.p[0],o.p[1],o.p[2],o.r],nd*4);DT.set([o.th,o.m],nd*2);nd++;}});
   gl.viewport(0,0,cv.width,cv.height);gl.uniform2f(u.res,cv.width,cv.height);
@@ -233,7 +243,7 @@ let laeuft=null;
 window.uebAnimStart=function(el,def){uebAnimStop();if(!el||!def)return;
  const cv=document.createElement("canvas");cv.style.cssText="width:100%;max-width:420px;aspect-ratio:4/3;display:block;margin:0 auto;touch-action:pan-y;cursor:grab";
  cv.setAttribute("role","img");cv.setAttribute("aria-label","3D-Animation der Übung");el.innerHTML="";el.appendChild(cv);
- const cssW=cv.clientWidth||340,dpr=Math.min(2,window.devicePixelRatio||1);let skala=Math.min(1,640/(cssW*dpr));
+ const cssW=cv.clientWidth||340,dpr=Math.min(2,window.devicePixelRatio||1);let skala=Math.min(1,820/(cssW*dpr));
  const gr=()=>{cv.width=Math.round(cssW*dpr*skala);cv.height=Math.round(cv.width*.75);};gr();
  const g=glNeu(cv);let ctx=null;
  if(!g){const c2=document.createElement("canvas");c2.style.cssText=cv.style.cssText;el.replaceChild(c2,cv);c2.width=Math.round(cssW*dpr);c2.height=Math.round(c2.width*.75);ctx=c2.getContext("2d");ctx.setTransform(c2.width/200,0,0,c2.height/150,0,0);}
@@ -266,14 +276,14 @@ window.UEB_ANIM={
 "Schulterdrücken":{m:["delt"],m2:["tri", "trap"],k:[{h:[92,98],t:-90,ar:[2,9],eb:1,f:[126,137]},{ar:[37,3]}],p:[{r:[76,102,36,7]},{l:[94,109,94,140],z:[0]},{l:[80,102,80,52],slab:1,w:5},{plate:1,at:"a"}]},
 "Seitheben":{m:["delt"],m2:["trap"],yaw:62,k:[{...ST,a3:[101,82,17],pole:[-1,.3,0]},{a3:[101,47,52]}],p:[{db:1,at:"a"}]},
 "Frontheben":{m:["delt"],m2:["brust"],k:[{...ST,ar:[-37,5],eb:1},{ar:[0,38]}],p:[{db:1,at:"a"}]},
-"Face Pulls":{m:["delt", "trap"],m2:["bizeps"],k:[{h:[95,80],t:-92,f:[100,137],f2:[86,137],a:[136,41],eb:-1},{a:[106,31]}],p:[{l:[172,10,172,140],w:5,z:[0]},{cable:[168,38],at:"a"}]},
+"Face Pulls":{m:["delt", "trap"],m2:["bizeps"],k:[{h:[95,80],t:-92,f:[100,137],f2:[86,137],a:[136,41],eb:-1},{a:[106,31]}],p:[{l:[176,8,176,140],w:4,z:[-8,8]},{r:[170,70,12,60],zw:7},{r:[160,136,34,5],zw:13,farbe:"g"},{l:[176,38,168,38],w:3,z:[0]},{cable:[168,38],at:"a"}]},
 "Klimmzüge":{m:["lat"],m2:["bizeps", "trap"],k:[{h:[95,90],t:-87,a:[100,14],eb:-1,fr:[-14,42],ft:60},{h:[95,60]}],p:[{c:[100,14,2],zl:34,metall:1},{l:[100,14,100,-10],z:[-34,34]}]},
-"Latzug":{m:["lat"],m2:["bizeps"],k:[{h:[94,100],t:-92,a:[104,28],eb:1,f:[124,137]},{t:-102,a:[108,64]}],p:[{r:[78,104,34,7]},{l:[95,111,95,140],z:[0]},{c:[124,88,5],zl:13},{bar:1},{cable:[100,4],bar2:1}]},
+"Latzug":{m:["lat"],m2:["bizeps"],k:[{h:[94,100],t:-92,a:[104,28],eb:1,f:[124,137]},{t:-102,a:[108,64]}],p:[{r:[78,104,34,7]},{l:[95,111,95,140],z:[0]},{c:[124,88,5],zl:13},{bar:1},{cable:[100,4],bar2:1},{l:[72,2,72,140],w:4,z:[-8,8]},{r:[66,60,12,70],zw:7},{l:[72,4,102,4],w:3,z:[0]}]},
 "Rudern mit Langhantel":{m:["lat", "trap"],m2:["bizeps", "ery"],k:[{h:[82,84],t:-30,a:[112,104],eb:1,f:[100,137]},{a:[100,86]}],p:[{plate:1,at:"a"}]},
 "Rudern mit Kurzhantel":{m:["lat"],m2:["bizeps", "trap"],k:[{h:[78,80],t:-20,a:[111,105],a2:[116,108],eb:1,eb2:1,f:[92,136],f2:[48,107]},{a:[92,82]}],p:[{r:[40,108,84,7],zw:14},{l:[50,115,50,140]},{l:[114,115,114,140]},{db:1,at:"a",one:1}]},
 "Kreuzheben":{m:["ery", "glut", "ham"],m2:["quad", "trap"],k:[{h:[78,106],t:-28,a:[106,127],eb:1,f:[100,137]},{h:[98,80],t:-92,a:[101,84]}],p:[{plate:1,at:"a"}]},
 "Rückenstrecken":{m:["ery"],m2:["glut", "ham"],k:[{h:[105,80],t:75,ar:[-12,8],eb:1,f:[65,118],ft:60},{t:-43}],p:[{c:[110,85,6],zl:12},{l:[110,91,110,140],w:4,z:[0]},{l:[58,113,68,127],slab:1,w:4},{l:[63,120,63,140],w:4,z:[0]}]},
-"Beinpresse":{m:["quad"],m2:["glut"],k:[{h:[75,112],t:-140,a:[74,118],eb:1,f:[110,77],ft:-135},{f:[95,92]}],p:[{l:[86,112,166,32],w:3,z:[-15,15]},{l:[82,121,38,85],slab:1,w:6},{r:[46,120,64,20],farbe:"g"},{sled:1,at:"f",o:[2,-2],ang:45}]},
+"Beinpresse":{m:["quad"],m2:["glut"],k:[{h:[75,112],t:-140,a:[74,118],eb:1,f:[110,77],ft:-135},{f:[95,92]}],p:[{l:[86,112,166,32],w:3,z:[-15,15]},{l:[82,121,38,85],slab:1,w:6},{r:[60,119,30,6]},{l:[40,140,170,140],w:4,z:[-15,15]},{l:[166,32,166,140],w:4,z:[-15,15]},{l:[74,125,74,140],w:4,z:[-15,15]},{sled:1,at:"f",o:[2,-2],ang:45}]},
 "Ausfallschritte":{m:["quad", "glut"],m2:["ham"],k:[{h:[98,80],t:-90,f:[100,137],f2:[98,137],ar:[-37,2],eb:1},{h:[98,108],t:-88,f:[128,137],f2:[70,132],ft2:32}],p:[{db:1,at:"a"}]},
 "Beinbeuger":{m:["ham"],m2:["wade"],k:[{bauch:1,h:[97,99],t:180,a:[44,110],eb:-1,f:[152,99],kb:1,ft:80},{f:[124,72],ft:0}],p:[{r:[36,104,96,7]},{l:[50,111,50,140]},{l:[120,111,120,140]},{pad:1,at:"f",fr:["k","f"],o:[-3,-7]}]},
 "Beinstrecker":{m:["quad"],m2:[],k:[{h:[90,100],t:-95,a:[96,102],eb:1,f:[117,128],ft:60},{f:[146,97],ft:-30}],p:[{r:[72,104,36,7]},{l:[78,104,74,56],slab:1,w:5},{l:[90,111,90,140],z:[0]},{pad:1,at:"f",fr:["k","f"],o:[-4,-7]}]},
@@ -281,15 +291,15 @@ window.UEB_ANIM={
 "Hip Thrust":{m:["glut"],m2:["ham"],k:[{h:[102,124],t:-142,f:[132,137],ah:[3,-10],eb:1},{h:[110,99],t:180}],p:[{r:[30,95,46,9]},{l:[40,104,40,140]},{l:[68,104,68,140]},{plate:1,at:"h",o:[0,-10]}]},
 "Bizepscurls":{m:["bizeps"],m2:["unterarm"],k:[{...ST,ar:[-37,3],eb:1},{ar:[-8,13]}],p:[{db:1,at:"a"}]},
 "Hammercurls":{m:["bizeps", "unterarm"],m2:[],k:[{...ST,ar:[-37,3],eb:1},{ar:[-8,13]}],p:[{db:1,at:"a"}]},
-"Trizepsdrücken am Kabel":{m:["tri"],m2:[],k:[{h:[98,80],t:-84,f:[100,137],f2:[92,137],ar:[-14,14],eb:1},{ar:[-36,10]}],p:[{l:[152,8,152,140],w:5,z:[0]},{cable:[147,14],at:"a"}]},
+"Trizepsdrücken am Kabel":{m:["tri"],m2:[],k:[{h:[98,80],t:-84,f:[100,137],f2:[92,137],ar:[-14,14],eb:1},{ar:[-36,10]}],p:[{l:[158,6,158,140],w:4,z:[-8,8]},{r:[152,64,12,66],zw:7},{r:[142,136,34,5],zw:13,farbe:"g"},{l:[158,12,146,12],w:3,z:[0]},{cable:[146,14],at:"a"}]},
 "Trizeps-Kickbacks":{m:["tri"],m2:[],k:[{h:[84,84],t:-18,a:[104,103],a2:[110,104],eb:1,f:[102,137],f2:[96,137]},{a:[82,86]}],p:[{db:1,at:"a",one:1}]},
 "Unterarmcurls":{m:["unterarm"],m2:[],k:[{h:[84,101],t:-62,a:[117,101],eb:1,f:[116,137],wr:60},{wr:-35}],p:[{r:[64,104,38,7]},{l:[82,111,82,140],z:[0]},{db:1,at:"w"}]},
 "Plank":{m:["bauch"],m2:["delt", "seite"],hB:1800,k:[{bauch:1,h:[107,134],t:-154,a:[88,138],eb:1,f:[163,132],ft:115},{h:[107,124],t:-168}]},
 "Crunches":{m:["bauch"],m2:[],k:[{h:[100,133],t:180,ar:[-11,5],eb:1,f:[128,137]},{t:-152}]},
 "Beinheben":{m:["bauch"],m2:["quad"],k:[{h:[108,133],t:180,a:[146,136],eb:1,f:[164,129],ft:-5},{f:[112,77],ft:-88}]},
 "Seitstütz":{m:["seite"],m2:["bauch", "delt"],hB:1800,yaw:14,k:[{roll:90,h:[106,124],t:-150,a3:[70,138,18],pole:[0,1,0],a3b:[103,112,8],pole2:[-.3,-1,.4],f:[163,129],ft:-90},{h:[107,113],t:-165}]},
-"Russian Twist":{m:["seite", "bauch"],m2:[],yaw:50,k:[{h:[100,127],t:-128,f:[128,134],kb:-1,tw:-28,a3:[97,108,-12],pole:[0,1,0],a3b:[97,108,-22],pole2:[0,1,0]},{tw:28,a3:[97,108,22],a3b:[97,108,12]}],p:[{ball:1}]},
-"Kabelcrunch":{m:["bauch"],m2:["seite"],k:[{h:[100,108],t:-86,ar:[2,8],eb:1,f:[71,137],ft:180},{h:[96,106],t:15,ar:[-2,10]}],p:[{l:[88,4,88,140],w:5,z:[0]},{cable:[94,10],at:"a"}]}
+"Russian Twist":{m:["seite", "bauch"],m2:[],yaw:50,k:[{h:[92,130],t:-124,f:[138,131],kb:-1,tw:-30,a3:[104,108,-10],pole:[-.4,1,0],a3b:[104,108,-22],pole2:[-.4,1,0]},{tw:30,a3:[104,108,22],a3b:[104,108,10]}],p:[{ball:1}]},
+"Kabelcrunch":{m:["bauch"],m2:["seite"],k:[{h:[100,108],t:-86,ar:[2,8],eb:1,f:[71,137],ft:180},{h:[97,105],t:-12,ar:[-1,10]}],p:[{l:[80,4,80,140],w:4,z:[-8,8]},{r:[74,64,12,66],zw:7},{r:[66,136,34,5],zw:13,farbe:"g"},{l:[80,10,96,10],w:3,z:[0]},{cable:[96,12],at:"a"}]}
 };
 /* Anleitungen: s = Schritte, a = Atmung, f = typische Fehler, t = Tipps, l = leichtere Variante */
 window.UEB_TXT={
