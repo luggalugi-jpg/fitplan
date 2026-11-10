@@ -190,6 +190,9 @@ details.card[open]>summary{margin-bottom:10px}
 button:focus-visible,a:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 .gp{background:var(--brand-l);color:var(--brand-d);border-radius:12px;padding:8px 12px;margin:0 0 12px;font-size:14px;text-align:center;position:sticky;top:0}
 .gp b{font-variant-numeric:tabular-nums;font-size:16px}
+.serie{display:flex;align-items:center;gap:6px;background:var(--brand-l);color:var(--brand-d);border-radius:14px;padding:9px 14px;margin:0 0 12px;font-size:14px}.serie b{font-size:17px;font-variant-numeric:tabular-nums}
+.gymz{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:0 0 10px}.gymz>span{font-size:20px}.gymz small{display:block;color:var(--mut)}
+.gymz.on{background:var(--brand-l);border-color:transparent}.gymz.on small{color:var(--brand-d)}
 .gdaily{background:var(--brand-l);border-radius:14px;padding:12px 14px;margin:0 0 8px}.gdaily small{display:block;margin-top:2px;color:var(--brand-d)}
 .gscore{font-size:30px;font-weight:760;text-align:center;margin:8px 0;font-variant-numeric:tabular-nums}
 .gres{text-align:center}.gover{text-align:center;padding:6px 0}.gover b{font-size:20px}
@@ -402,7 +405,7 @@ const fitsSlot=(m,s)=>m.c==s||(m.x&&m.x.indexOf(s)>=0);
 const PUBLIC_V="3.10";
 /* Anbieter für Impressum und Datenschutz – vor der Veröffentlichung ausfüllen */
 const ANBIETER={name:"Luca Preikschas",anschrift:"Herzog-Wilhelm-Str. 32, 94572 Schöfweg",mail:"gainora.app@gmail.com"};
-const RECHT={"ds": "<h2>Datenschutzerklärung</h2>\n<p><b>Stand:</b> 10. November 2026</p>\n<h3>1. Verantwortlicher</h3>\n<p>{name}<br>{anschrift}<br>E-Mail: {mail}</p>\n<h3>2. Grundsatz: Deine Daten bleiben auf deinem Gerät</h3>\n<p>Gainora funktioniert ohne Benutzerkonto und ohne eigenen Server. Alles, was du einträgst – Essensplan, Mahlzeiten, Gewicht, Trainings, Läufe, Supplements, Ziele und Einstellungen – wird ausschließlich lokal im Speicher der App auf deinem Gerät abgelegt. Wir erhalten diese Daten nicht und können sie nicht einsehen.</p>\n<p>Die App enthält keine Werbung, keine Analyse- oder Tracking-Werkzeuge und gibt keine Daten zu Werbezwecken weiter.</p>\n<p>Angaben wie Körpergewicht, Ernährung und Trainingsdaten können Gesundheitsdaten sein. Sie werden nur auf deinem Gerät verarbeitet, um dir die Funktionen der App bereitzustellen.</p>\n<h3>3. Funktionen mit Internetverbindung</h3>\n<p>Nur die folgenden Funktionen nehmen Verbindung zu Diensten Dritter auf, und zwar nur, wenn du sie selbst auslöst:</p>\n<p><b>Foto-Analyse (optional):</b> Wenn du unter „Foto-Analyse“ einen eigenen Schlüssel für die Google Gemini API hinterlegst und ein Foto analysieren lässt, wird das Foto zusammen mit einer Anweisung direkt von deinem Gerät an Google gesendet (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Verarbeitung auch in den USA möglich). Google verarbeitet die Daten nach den Bedingungen, die du mit Google für deinen Schlüssel vereinbart hast. Dein Schlüssel wird nur auf deinem Gerät gespeichert und nicht in Sicherungsdateien übernommen. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), die du jederzeit widerrufen kannst, indem du den Schlüssel löschst.</p>\n<p><b>Barcode-Suche:</b> Wenn du einen Barcode scannst oder eingibst, wird die Produktnummer an Open Food Facts gesendet (Open Food Facts, 21 rue des Iles, 94100 Saint-Maur-des-Fossés, Frankreich), um Nährwerte abzurufen. Dabei wird technisch bedingt deine IP-Adresse übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir gewünschten Funktion).</p>\n<p><b>Webversion:</b> Wenn du die App im Browser nutzt, wird sie über GitHub Pages ausgeliefert (GitHub B.V., Niederlande / GitHub, Inc., USA). Dabei verarbeitet GitHub technisch notwendige Zugriffsdaten wie die IP-Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (sichere Bereitstellung der Webseite).</p>\n<h3>4. Berechtigungen</h3>\n<p><b>Kamera:</b> nur zum Scannen von Barcodes und für Fotos zur Foto-Analyse, jeweils erst wenn du die Funktion startest. <b>Benachrichtigungen:</b> nur für lokale Erinnerungen, die du selbst einschaltest (Ende der Satzpause, Training, Wasser, Mahlzeiten); sie werden auf dem Gerät erzeugt, nicht über einen Server.</p>\n<h3>5. Sicherungen und Diagnoseprotokoll</h3>\n<p>Sicherungsdateien und das Diagnoseprotokoll entstehen nur, wenn du sie selbst erstellst. Wohin du sie speicherst oder sendest, entscheidest du. Das Diagnoseprotokoll enthält technische Angaben zur Fehlersuche (z. B. App-Version, Gerätetyp, Fehlermeldungen) und bleibt auf deinem Gerät, bis du es teilst.</p>\n<h3>6. Speicherdauer und Löschung</h3>\n<p>Die Daten bleiben gespeichert, bis du sie in der App unter „Daten & Sicherung“ löschst oder die App deinstallierst.</p>\n<h3>7. Deine Rechte</h3>\n<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch und Widerruf erteilter Einwilligungen (Art. 15–21 DSGVO). Da wir deine App-Daten nicht speichern, kannst du die meisten Rechte direkt in der App ausüben. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Behörde deines Wohnorts.</p>\n<h3>8. Kinder</h3>\n<p>Die App richtet sich nicht an Kinder unter 16 Jahren.</p>\n<h3>9. Änderungen</h3>\n<p>Wir passen diese Erklärung an, wenn sich die App oder die Rechtslage ändert. Es gilt die jeweils in der App veröffentlichte Fassung.</p>", "imp": "<h2>Impressum</h2>\n<p>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>\n<p>{name}<br>{anschrift}</p>\n<p><b>Kontakt:</b> E-Mail: {mail}</p>\n<p><b>Verantwortlich für den Inhalt:</b> {name}, Anschrift wie oben</p>", "ges": "<h2>Gesundheitshinweis</h2>\n<p>Gainora ist ein Hilfsmittel zur Planung von Ernährung und Training. Die App ist kein Medizinprodukt und ersetzt keine ärztliche, ernährungsmedizinische oder sportmedizinische Beratung.</p>\n<p>Kalorienbedarf, Nährwerte, Portionsgrößen, Supplementmengen, Trainings- und Laufpläne sind Richtwerte und Vorlagen. Sie berücksichtigen keine Erkrankungen, Medikamente, Schwangerschaft oder individuelle Belastbarkeit. Die Bedarfsberechnung ist eine Schätzung (Mifflin-St.-Jeor-Formel). Foto-Analysen und Produktdaten aus Open Food Facts können ungenau sein.</p>\n<p>Sprich vor einer deutlichen Ernährungsumstellung, vor Nahrungsergänzungsmitteln und vor dem Beginn eines intensiven Trainings mit einer Ärztin oder einem Arzt, besonders bei Vorerkrankungen. Brich das Training bei Schmerzen, Schwindel oder Atemnot ab.</p>", "liz": "<h2>Quellen und Lizenzen</h2>\n<p><b>Produktdaten:</b> Barcode-Suche mit Daten von <a href=\"https://world.openfoodfacts.org\">Open Food Facts</a>. Die Datenbank steht unter der Open Database License (ODbL), die Inhalte unter der Database Contents License.</p>\n<p><b>Foto-Analyse:</b> Google Gemini API, nur mit deinem eigenen Schlüssel.</p>\n<p><b>Rezepte, Lebensmittel, Übungen, Trainings- und Laufpläne:</b> eigene Zusammenstellung für Gainora. Die Nährwerte sind aus den Zutaten berechnet.</p>\n<p><b>Spiele:</b> „Blocksturz“ und die übrigen Pausenspiele sind eigene Umsetzungen.</p>"};
+const RECHT={"ds": "<h2>Datenschutzerklärung</h2>\n<p><b>Stand:</b> 10. November 2026</p>\n<h3>1. Verantwortlicher</h3>\n<p>{name}<br>{anschrift}<br>E-Mail: {mail}</p>\n<h3>2. Grundsatz: Deine Daten bleiben auf deinem Gerät</h3>\n<p>Gainora funktioniert ohne Benutzerkonto und ohne eigenen Server. Alles, was du einträgst – Essensplan, Mahlzeiten, Gewicht, Trainings, Läufe, Supplements, Ziele und Einstellungen – wird ausschließlich lokal im Speicher der App auf deinem Gerät abgelegt. Wir erhalten diese Daten nicht und können sie nicht einsehen.</p>\n<p>Die App enthält keine Werbung, keine Analyse- oder Tracking-Werkzeuge und gibt keine Daten zu Werbezwecken weiter.</p>\n<p>Angaben wie Körpergewicht, Ernährung und Trainingsdaten können Gesundheitsdaten sein. Sie werden nur auf deinem Gerät verarbeitet, um dir die Funktionen der App bereitzustellen.</p>\n<h3>3. Funktionen mit Internetverbindung</h3>\n<p>Nur die folgenden Funktionen nehmen Verbindung zu Diensten Dritter auf, und zwar nur, wenn du sie selbst auslöst:</p>\n<p><b>Foto-Analyse (optional):</b> Wenn du unter „Foto-Analyse“ einen eigenen Schlüssel für die Google Gemini API hinterlegst und ein Foto analysieren lässt, wird das Foto zusammen mit einer Anweisung direkt von deinem Gerät an Google gesendet (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Verarbeitung auch in den USA möglich). Google verarbeitet die Daten nach den Bedingungen, die du mit Google für deinen Schlüssel vereinbart hast. Dein Schlüssel wird nur auf deinem Gerät gespeichert und nicht in Sicherungsdateien übernommen. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), die du jederzeit widerrufen kannst, indem du den Schlüssel löschst.</p>\n<p><b>Barcode-Suche:</b> Wenn du einen Barcode scannst oder eingibst, wird die Produktnummer an Open Food Facts gesendet (Open Food Facts, 21 rue des Iles, 94100 Saint-Maur-des-Fossés, Frankreich), um Nährwerte abzurufen. Dabei wird technisch bedingt deine IP-Adresse übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir gewünschten Funktion).</p>\n<p><b>Webversion:</b> Wenn du die App im Browser nutzt, wird sie über GitHub Pages ausgeliefert (GitHub B.V., Niederlande / GitHub, Inc., USA). Dabei verarbeitet GitHub technisch notwendige Zugriffsdaten wie die IP-Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (sichere Bereitstellung der Webseite).</p>\n<h3>4. Berechtigungen</h3>\n<p><b>Kamera:</b> nur zum Scannen von Barcodes und für Fotos zur Foto-Analyse, jeweils erst wenn du die Funktion startest. <b>Benachrichtigungen:</b> nur für lokale Erinnerungen, die du selbst einschaltest (Ende der Satzpause, Training, Wasser, Mahlzeiten); sie werden auf dem Gerät erzeugt, nicht über einen Server. <b>Standort:</b> nur, damit die Pausenspiele in deinem Gym freigeschaltet werden – beim Speichern eines Gyms und wenn du ein Spiel startest. Der Standort wird ausschließlich auf deinem Gerät mit den gespeicherten Gym-Koordinaten verglichen und nicht an uns oder Dritte übertragen. Gespeichert werden nur die Koordinaten deiner Gyms, auf dem Gerät und in Sicherungsdateien, die du selbst erstellst.</p>\n<h3>5. Sicherungen und Diagnoseprotokoll</h3>\n<p>Sicherungsdateien und das Diagnoseprotokoll entstehen nur, wenn du sie selbst erstellst. Wohin du sie speicherst oder sendest, entscheidest du. Das Diagnoseprotokoll enthält technische Angaben zur Fehlersuche (z. B. App-Version, Gerätetyp, Fehlermeldungen) und bleibt auf deinem Gerät, bis du es teilst.</p>\n<h3>6. Speicherdauer und Löschung</h3>\n<p>Die Daten bleiben gespeichert, bis du sie in der App unter „Daten & Sicherung“ löschst oder die App deinstallierst.</p>\n<h3>7. Deine Rechte</h3>\n<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch und Widerruf erteilter Einwilligungen (Art. 15–21 DSGVO). Da wir deine App-Daten nicht speichern, kannst du die meisten Rechte direkt in der App ausüben. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Behörde deines Wohnorts.</p>\n<h3>8. Kinder</h3>\n<p>Die App richtet sich nicht an Kinder unter 16 Jahren.</p>\n<h3>9. Änderungen</h3>\n<p>Wir passen diese Erklärung an, wenn sich die App oder die Rechtslage ändert. Es gilt die jeweils in der App veröffentlichte Fassung.</p>", "imp": "<h2>Impressum</h2>\n<p>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>\n<p>{name}<br>{anschrift}</p>\n<p><b>Kontakt:</b> E-Mail: {mail}</p>\n<p><b>Verantwortlich für den Inhalt:</b> {name}, Anschrift wie oben</p>", "ges": "<h2>Gesundheitshinweis</h2>\n<p>Gainora ist ein Hilfsmittel zur Planung von Ernährung und Training. Die App ist kein Medizinprodukt und ersetzt keine ärztliche, ernährungsmedizinische oder sportmedizinische Beratung.</p>\n<p>Kalorienbedarf, Nährwerte, Portionsgrößen, Supplementmengen, Trainings- und Laufpläne sind Richtwerte und Vorlagen. Sie berücksichtigen keine Erkrankungen, Medikamente, Schwangerschaft oder individuelle Belastbarkeit. Die Bedarfsberechnung ist eine Schätzung (Mifflin-St.-Jeor-Formel). Foto-Analysen und Produktdaten aus Open Food Facts können ungenau sein.</p>\n<p>Sprich vor einer deutlichen Ernährungsumstellung, vor Nahrungsergänzungsmitteln und vor dem Beginn eines intensiven Trainings mit einer Ärztin oder einem Arzt, besonders bei Vorerkrankungen. Brich das Training bei Schmerzen, Schwindel oder Atemnot ab.</p>", "liz": "<h2>Quellen und Lizenzen</h2>\n<p><b>Produktdaten:</b> Barcode-Suche mit Daten von <a href=\"https://world.openfoodfacts.org\">Open Food Facts</a>. Die Datenbank steht unter der Open Database License (ODbL), die Inhalte unter der Database Contents License.</p>\n<p><b>Foto-Analyse:</b> Google Gemini API, nur mit deinem eigenen Schlüssel.</p>\n<p><b>Rezepte, Lebensmittel, Übungen, Trainings- und Laufpläne:</b> eigene Zusammenstellung für Gainora. Die Nährwerte sind aus den Zutaten berechnet.</p>\n<p><b>Spiele:</b> „Blocksturz“ und die übrigen Pausenspiele sind eigene Umsetzungen.</p>"};
 /* Läuft die Seite als installierte App (Capacitor)? */
 const NATIV=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
 const PL=n=>NATIV&&window.Capacitor.Plugins?window.Capacitor.Plugins[n]||null:null;
@@ -1849,6 +1852,92 @@ function runHeute(){const q=rProg();if(!q)return "";const wk=S.wk,i=S.day,d=dISO
  return `<div class="card" onclick="S.tmode='lauf';S.rsub='week';tab='fit';render()" style="cursor:pointer"><div class="row" style="margin-top:0"><b style="font-size:16px">Laufen: ${esc(s.name)}</b><span>${l?"✓ "+fmtKm(l.km)+" km":"ca. "+s.min+" Min. ›"}</span></div><small style="color:var(--mut)">${esc(s.int)}</small></div>`;}
 /* ---------- Pausenspiele ---------- */
 const G={pi:null,run:null,tm:[],iv:[],hadRest:false,over:false};
+/* ---------- Serien: Training und Essen ---------- */
+function trGeplant(d){const t=new Date(d+"T12:00:00");return ((S.train||{})[weekKey(t)+"|"+dayIndex(t)]||[]).length>0;}
+function trainiertAm(d){const s=(S.sets||{})[d]||{};return Object.keys(s).some(n=>echteEinheit(d,n))||rLogs().some(x=>x.d==d);}
+function trainSerie(){ // Trainings in Folge: ein ausgelassenes GEPLANTES Training bricht die Serie, Ruhetage nicht (höchstens 3 am Stück)
+ const ds=Object.keys(S.sets||{}).concat(rLogs().map(x=>x.d)).filter(Boolean).sort();if(!ds.length)return 0;
+ const heute=todayISO(),erst=ds[0];let serie=0,frei=0;
+ for(let i=0;i<1100;i++){const d=tagMinus(heute,i);if(d<erst)break;
+  if(trainiertAm(d)){serie++;frei=0;continue;}
+  if(i==0)continue;                 // heute noch offen: Serie nicht abbrechen
+  if(trGeplant(d))break;            // geplantes Training ausgelassen
+  if(++frei>3)break;}               // mehr als 3 Ruhetage am Stück
+ return serie;}
+function essSerie(){ // Tage in Folge mit mindestens einem Eintrag im Essprotokoll
+ const heute=todayISO();let serie=0;
+ for(let i=0;i<1100;i++){const d=tagMinus(heute,i);
+  if(((S.log||{})[d]||[]).length){serie++;continue;}
+  if(i==0)continue;break;}
+ return serie;}
+function serieZeile(n,txt){return n>=2?`<div class="serie"><span aria-hidden="true">🔥</span><b>${n}</b> ${txt}</div>`:"";}
+/* ---------- Gym-Standort: Pausenspiele nur im Gym ----------
+   Der Standort wird nur auf dem Gerät mit den gespeicherten Gyms verglichen und nirgendwohin übertragen. */
+const GYM_R=150,GYM_FREI=3*36e5,GYM_WECHSEL=7*864e5,GYM_KORREKTUR=864e5,GYM_MAX=3,GYM_GENAU=200;
+const gyms=()=>(S.gyms=S.gyms||[]);
+const gymFrei=()=>(S.gymBis||0)>Date.now();
+const gymDatum=t=>new Date(t).toLocaleDateString("de-DE");
+function gymAbstand(a,b){const r=x=>x*Math.PI/180,dl=r(b.lat-a.lat),dn=r(b.lon-a.lon);
+ const h=Math.sin(dl/2)**2+Math.cos(r(a.lat))*Math.cos(r(b.lat))*Math.sin(dn/2)**2;return 2*6371e3*Math.asin(Math.min(1,Math.sqrt(h)));}
+function gymWechselAb(){ // neues Gym erst 7 Tage nach der letzten Änderung (in den ersten 24 h nach dem ersten Gym frei korrigierbar)
+ if(!S.gymAend)return 0;if(S.gymErst&&Date.now()-S.gymErst<GYM_KORREKTUR)return 0;return S.gymAend+GYM_WECHSEL;}
+const gymNeuMoeglich=()=>gymWechselAb()<=Date.now()&&gyms().length<GYM_MAX;
+function gymPos(){const opt={enableHighAccuracy:true,timeout:20000,maximumAge:15000};
+ const pos=r=>({lat:r.coords.latitude,lon:r.coords.longitude,acc:r.coords.accuracy||9999});
+ const P=PL("Geolocation");
+ if(P)return (async()=>{let p=null;try{p=await P.checkPermissions();}catch(e){}
+  if(!p||(p.location!="granted"&&p.coarseLocation!="granted")){try{p=await P.requestPermissions({permissions:["location","coarseLocation"]});}catch(e){throw new Error("verweigert");}}
+  if(p&&p.location!="granted"&&p.coarseLocation!="granted")throw new Error("verweigert");
+  try{return pos(await P.getCurrentPosition(opt));}catch(e){throw new Error(/denied|permission/i.test((e&&e.message)||"")?"verweigert":"kein Signal");}})();
+ if(!navigator.geolocation)return Promise.reject(new Error("nicht verfügbar"));
+ return new Promise((ok,no)=>navigator.geolocation.getCurrentPosition(r=>ok(pos(r)),e=>no(new Error(e.code==1?"verweigert":"kein Signal")),opt));}
+function gymFehler(e){const m=e&&e.message;
+ return m=="verweigert"?"Ohne Standortfreigabe kann die App nicht prüfen, ob du im Gym bist. Du kannst sie in den Einstellungen deines Handys erlauben.":
+  m=="nicht verfügbar"?"Dieses Gerät kann keinen Standort bestimmen.":"Kein Standort gefunden. Geh kurz in die Nähe eines Fensters oder des Eingangs und versuch es nochmal.";}
+function gymZeile(){
+ if(gymFrei())return `<div class="gymz on"><span aria-hidden="true">📍</span><div><b>Im Gym freigeschaltet</b><small>bis ${new Date(S.gymBis).toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"})} Uhr</small></div></div>`;
+ return `<div class="gymz"><span aria-hidden="true">📍</span><div><b>Spiele nur im Gym</b><small>${gyms().length?"Beim Start wird kurz dein Standort geprüft.":"Speichere dein Gym, wenn du dort bist."}</small></div></div>`;}
+const gymQ=k=>k?`'${k}'`:"null";
+function gymSperre(k){gStopRun();const neu=!gyms().length;
+ gm(`<div class="gover"><div style="font-size:40px" aria-hidden="true">📍</div><b>${neu?"Pausenspiele gibt es nur im Gym":"Bist du im Gym?"}</b>
+ <p>${neu?"Speichere dein Gym einmal, wenn du dort bist. Danach werden die Spiele dort freigeschaltet.":"Die Spiele lassen sich nur in deinem Gym spielen. Einmal prüfen, dann sind sie für 3 Stunden frei."}</p>
+ <button class="btn" style="width:100%;margin:8px 0 6px" onclick="${neu?"gymNeu":"gymPruefen"}(${gymQ(k)})">${neu?"Ich bin in meinem Gym – speichern":"Standort prüfen"}</button>
+ <small style="display:block;color:var(--mut);margin:6px 0 10px">Dein Standort wird nur auf diesem Gerät mit deinem Gym verglichen und nirgendwohin übertragen.</small>
+ <button class="btn g" style="width:100%" onclick="gHome()">Zurück</button></div>`);}
+function gymWarte(t){gm(`<div class="gover"><div style="font-size:40px" aria-hidden="true">📍</div><b>${t}</b><p>Das kann ein paar Sekunden dauern.</p></div>`);}
+function gymMeldung(t,k,neu){
+ gm(`<div class="gover"><div style="font-size:40px" aria-hidden="true">📍</div><b>Nicht freigeschaltet</b><p>${t}</p>
+ <button class="btn" style="width:100%;margin:8px 0 6px" onclick="${neu||!gyms().length?"gymNeu":"gymPruefen"}(${gymQ(k)})">Nochmal versuchen</button>
+ ${!neu&&gyms().length&&gymNeuMoeglich()?`<button class="btn g" style="width:100%;margin:0 0 6px" onclick="gymNeu(${gymQ(k)})">Ich bin in einem anderen Gym – hier speichern</button>`:""}
+ <button class="btn g" style="width:100%" onclick="gHome()">Zurück</button></div>`);}
+function gymWeiter(k){if(k)gStartFrei(k);else gHome();}
+async function gymPruefen(k){gymWarte("Standort wird geprüft …");
+ let p;try{p=await gymPos();}catch(e){logWarn("gym","Standort nicht ermittelt: "+(e&&e.message));return gymMeldung(gymFehler(e),k);}
+ if(!gyms().length)return gymSperre(k);
+ if(p.acc>1000)return gymMeldung("Dein Standort ist gerade zu ungenau. Erlaube der App den genauen Standort und versuch es nochmal.",k);
+ let best=null;gyms().forEach(g=>{const a=gymAbstand(p,g);if(!best||a<best.a)best={g,a};});
+ if(best.a<=GYM_R+Math.min(p.acc,150)){S.gymBis=Date.now()+GYM_FREI;save();logInfo("gym","Im Gym freigeschaltet",{gym:best.g.n});
+  toast("📍 "+best.g.n+" erkannt – Spiele für 3 Stunden frei.");return gymWeiter(k);}
+ const weg=best.a>=1000?(Math.round(best.a/100)/10).toString().replace(".",",")+" km":Math.round(best.a/10)*10+" m";
+ gymMeldung(`Du bist etwa ${weg} von „${esc(best.g.n)}“ entfernt. Die Spiele gibt es nur im Gym.`,k);}
+async function gymNeu(k){
+ if(gyms().length>=GYM_MAX)return gymMeldung(`Du kannst höchstens ${GYM_MAX} Gyms speichern. Lösche zuerst eins unter Mehr → Training & Pausen.`,k);
+ const ab=gymWechselAb();if(ab>Date.now())return gymMeldung(`Ein weiteres Gym kannst du ab ${gymDatum(ab)} speichern.`,k);
+ gymWarte("Standort wird bestimmt …");
+ let p;try{p=await gymPos();}catch(e){logWarn("gym","Standort nicht ermittelt: "+(e&&e.message));return gymMeldung(gymFehler(e),k,true);}
+ if(p.acc>GYM_GENAU)return gymMeldung(`Der Standort ist noch zu ungenau (± ${Math.round(p.acc)} m). Geh kurz in die Nähe eines Fensters oder des Eingangs und versuch es nochmal.`,k,true);
+ const n="Gym "+(gyms().length+1),jetzt=Date.now();
+ gyms().push({id:jetzt,n,lat:Math.round(p.lat*1e5)/1e5,lon:Math.round(p.lon*1e5)/1e5});
+ if(!S.gymErst)S.gymErst=jetzt;S.gymAend=jetzt;S.gymBis=jetzt+GYM_FREI;save();logInfo("gym","Gym gespeichert",{anzahl:gyms().length});
+ toast("📍 "+n+" gespeichert – Spiele für 3 Stunden frei. Den Namen kannst du unter Mehr → Training & Pausen ändern.");gymWeiter(k);}
+function gymDel(id){const g=gyms().find(x=>x.id==id);if(!g)return;
+ const ab=Math.max(gymWechselAb(),0);
+ if(!confirm(`„${g.n}“ löschen?`+(ab>Date.now()?` Ein neues Gym kannst du erst ab ${gymDatum(ab)} speichern.`:"")))return;
+ S.gyms=gyms().filter(x=>x.id!=id);if(!S.gyms.length)S.gymBis=0;logInfo("gym","Gym gelöscht",{anzahl:S.gyms.length});save();render();}
+function gymName(id){const g=gyms().find(x=>x.id==id);if(!g)return;const n=prompt("Name des Gyms",g.n);if(n&&n.trim()){g.n=n.trim().slice(0,40);save();render();}}
+function gymListe(){const ab=gymWechselAb();
+ return `<h4 style="margin-top:16px">Meine Gyms</h4><small style="display:block;color:var(--mut);margin:-4px 0 8px">Die Pausenspiele lassen sich nur dort spielen. Ein Gym speicherst du direkt vor Ort, wenn du die Spiele öffnest.${ab>Date.now()&&gyms().length?" Ein weiteres Gym ist ab "+gymDatum(ab)+" möglich.":""}</small>
+ ${gyms().map(g=>`<div class="row"><span>📍 ${esc(g.n)}</span><span><button class="btn g" style="margin:0 6px 0 0;width:auto;min-height:32px;padding:5px 10px;font-size:13px;display:inline-flex" onclick="gymName(${g.id})">Umbenennen</button><button class="x" aria-label="${esc(g.n)} löschen" onclick="gymDel(${g.id})">✕</button></span></div>`).join("")||"<small>Noch kein Gym gespeichert.</small>"}`;}
 function gS(){S.games=S.games||{xp:0,plays:0,best:{},daily:{}};S.games.best=S.games.best||{};S.games.daily=S.games.daily||{};return S.games;}
 const GTITEL=["Aufwärmer","Pumper","Eisenfreund","Stemmer","Hantelheld","Kraftprotz","Legende"];
 function gLevel(){const x=gS().xp,lv=Math.floor(x/150)+1;return {lv,in:x%150,t:GTITEL[Math.min(lv-1,GTITEL.length-1)]};}
@@ -1888,14 +1977,15 @@ function gHome(){gStopRun();const g=gS(),L=gLevel(),dc=gDaily(),b=g.best,n=g.n||
  const aktiv=g.last==todayISO()||g.last==tagMinus(todayISO(),1)?(g.streak||0):0;
  gm(`<div class="ghero"><div><small>Level ${L.lv}</small><b>${L.t}</b></div><div class="gxp"><b>${g.xp}</b><small>XP</small></div></div>
  <div class="bar" style="margin:8px 0 4px"><i style="width:${L.in/150*100}%"></i></div><small style="display:block;color:var(--mut);margin-bottom:12px">Noch ${150-L.in} XP bis Level ${L.lv+1}${aktiv>=2?` · 🔥 ${aktiv} Tage in Folge`:""}</small>
- <button class="btn" onclick="gSchnell()">▶ ${restT?"Passendes Spiel für die Pause":"Zufälliges Spiel starten"}</button>
+ ${gymZeile()}<button class="btn" onclick="gSchnell()">▶ ${restT?"Passendes Spiel für die Pause":"Zufälliges Spiel starten"}</button>
  <div class="gdaily" style="margin-top:10px" onclick="gStart('${dc.g}')"><b>🎯 Tages-Challenge</b><small>${dc.txt}${dc.done?" · geschafft ✓":" · +50 XP"}</small></div>
  ${Object.keys(GL).map(k=>`<div class="opt" onclick="gStart('${k}')"><span class="ic2">${GL[k][0]}</span><div><b>${GL[k][1]}${dc.g==k&&!dc.done?' <span class="tag">Challenge</span>':""}</b><small>${GL[k][2]} · Rekord: ${GL[k][3]}${n[k]?" · "+n[k]+"×":""}</small></div></div>`).join("")}
  <h4 style="margin-top:16px">Erfolge <span style="color:var(--mut);font-weight:600;font-size:14px">${g.ach.length} von ${GACH.length}</span></h4>
  <div class="gachs">${GACH.map(a=>`<div class="gach ${g.ach.includes(a[0])?"on":""}" title="${a[2]}"><span>${a[1]}</span><small>${a[2]}</small></div>`).join("")}</div>
  <small class="sum">${g.plays} Spiele gespielt</small>
  <button class="btn g" onclick="closeSheet()">Schließen</button>`);}
-function gStart(k){({reaction:gReaction,memory:gMemory,numbers:gNumbers,stroop:gStroop,math:gMath,tetris:gTetris})[k]();}
+function gStart(k){if(!gymFrei()){gymSperre(k);return;}gStartFrei(k);}
+function gStartFrei(k){({reaction:gReaction,memory:gMemory,numbers:gNumbers,stroop:gStroop,math:gMath,tetris:gTetris})[k]();}
 const gBuzz=ms=>haptik(ms);
 function gTimer(run){G.iv.push(setInterval(()=>{if(G.run!==run)return;run.left--;const e=$("#gl");if(e)e.textContent=run.left+" Sekunden";if(run.left<=0)gEnd(run);},1000));}
 const GSTR=[["Rot","#e25555"],["Blau","#4a8cf0"],["Gelb","#e8bd3f"],["Grün","#3cbf7a"]];
@@ -2009,6 +2099,7 @@ function tDay(){
  const vol=volOf(d,wk,i);
  let h=tBars();
  const fert=(S.train[key]||[]).filter(n=>prDone(d,n)).length;
+ if(d==todayISO())h+=serieZeile(trainSerie(),"Trainings in Folge");
  h+=`<div class="card"><div class="row" style="margin-top:0"><b style="font-size:16px">${(S.train[key]||[]).length?"Training":"Kein Training geplant"}</b><span class="badge">${fert} von ${(S.train[key]||[]).length} erledigt</span></div>
  ${(S.train[key]||[]).length?bar("",fert,(S.train[key]||[]).length,""):""}
  ${vol.kg||vol.reps?`<div class="row"><span>Volumen</span><span>${nf(vol.kg)} kg · ${vol.reps} Wiederholungen</span></div>`:""}</div>`;
@@ -2339,7 +2430,7 @@ function sTraining(){return `<div class="card"><h4>Satzpause</h4>
  </div>
  <div class="card"><div class="sw"><b>Pause automatisch starten</b><button class="swb ${S.restAuto!==false?"on":""}" role="switch" aria-checked="${S.restAuto!==false}" aria-label="Pause automatisch starten" onclick="S.restAuto=${S.restAuto===false};save();render()"></button></div>
  <small style="display:block;color:var(--mut)">Sobald du im heutigen Training einen Satz abhakst, läuft die Pause von selbst los.</small></div>
- <div class="card"><h4>Pausenspiele</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">Während einer Satzpause kannst du in der Pausenleiste ein kurzes Spiel starten. Die Pause wird dadurch nicht länger.</small><button class="btn g" onclick="gOpen()">Spiele und Rekorde ansehen</button></div>`;}
+ <div class="card"><h4>Pausenspiele</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">Während einer Satzpause kannst du in der Pausenleiste ein kurzes Spiel starten. Die Pause wird dadurch nicht länger. Spielen kannst du nur in deinem Gym.</small><button class="btn g" onclick="gOpen()">Spiele und Rekorde ansehen</button>${gymListe()}</div>`;}
 function zielFortschritt(){
  const start=S.wStart,ziel=S.wGoal,dEnde=S.wGoalDate;
  const w=S.weight||{},ks=Object.keys(w).sort();
@@ -2722,6 +2813,7 @@ function suppRow(isoD,x){const info=x.x||{};return `<div class="mrow"><button cl
 function viewEat(){
  const isoD=dISO(S.wk,S.day),t=eaten(isoD),log=S.log[isoD]||[],rest=S.kcal-t.k,key=pk(S.wk,S.day);
  let h=weekBar();
+ if(isoD==todayISO())h+=serieZeile(essSerie(),"Tage in Folge mit Essprotokoll");
  h+=`<div class="card"><div class="hero"><div class="ring">${ringSvg(t.k,S.kcal)}<div class="c"><b>${nf(Math.abs(rest))}</b><span>${rest>=0?"kcal übrig":"kcal drüber"}</span></div></div>
  <div class="mx">${mxRow("Eiweiß",t.p,S.prot,"")}${mxRow("Kohlenhydrate",t.h,S.kh,"kh")}${mxRow("Fett",t.f,S.fett,"fe")}</div></div>
  <div class="sum">${nf(t.k)} von ${nf(S.kcal)} kcal gegessen</div></div>`;

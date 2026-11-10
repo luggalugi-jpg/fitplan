@@ -33,6 +33,8 @@ jobs:
           /usr/libexec/PlistBuddy -c "Add :NSCameraUsageDescription string 'Die Kamera wird zum Scannen von Barcodes und für Fotos deiner Mahlzeiten genutzt.'" $P
           /usr/libexec/PlistBuddy -c "Delete :NSPhotoLibraryUsageDescription" $P 2>/dev/null || true
           /usr/libexec/PlistBuddy -c "Add :NSPhotoLibraryUsageDescription string 'Du kannst ein Foto deiner Mahlzeit aus deiner Mediathek auswählen.'" $P
+          /usr/libexec/PlistBuddy -c "Delete :NSLocationWhenInUseUsageDescription" $P 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :NSLocationWhenInUseUsageDescription string 'Dein Standort wird nur auf dem Gerät mit deinem gespeicherten Gym verglichen, damit die Pausenspiele dort freigeschaltet werden. Er wird nicht übertragen.'" $P
           /usr/libexec/PlistBuddy -c "Delete :ITSAppUsesNonExemptEncryption" $P 2>/dev/null || true
           /usr/libexec/PlistBuddy -c "Add :ITSAppUsesNonExemptEncryption bool false" $P
           V=$(node -p "require('./package.json').version")

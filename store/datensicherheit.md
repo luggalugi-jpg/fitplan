@@ -19,6 +19,10 @@ Diese Antworten sind ein Vorschlag nach bestem Wissen, keine Rechtsberatung. Du 
 | Zweck | **App-Funktionen** |
 | Alles andere (Gesundheit, Fitness, Standort, Kontakte, Kennungen, App-Aktivität, Absturzberichte) | **Nicht erhoben** – bleibt auf dem Gerät |
 
+**Standort (ab Version 3.11):** Die App fragt den genauen Standort ab, um die Pausenspiele nur im gespeicherten Gym freizuschalten. Der Abgleich passiert ausschließlich auf dem Gerät, nichts wird übertragen. Nach Googles Regeln gelten Daten, die das Gerät nicht verlassen, nicht als „erhoben“ – Standort bleibt daher **nicht erhoben**. Die Berechtigung (ACCESS_FINE_LOCATION, nur im Vordergrund) muss trotzdem in der Datenschutzerklärung stehen – ist erledigt. Keine Hintergrund-Standorterklärung nötig.
+
+**Hinweis für die App-Prüfung (Google und Apple):** Die Prüfer sind nicht in deinem Gym. Im Feld für Prüfhinweise erklären, dass die Pausenspiele erst nach dem Speichern eines Gyms vor Ort spielbar sind und man zum Testen am aktuellen Ort „Ich bin in meinem Gym – speichern“ wählen kann.
+
 Zusätzlich in der Play Console:
 - **Gesundheits-Apps-Erklärung** (Health apps declaration): Kategorie „Ernährung und Gewichtsmanagement“ sowie „Fitness“ wählen. Keine Verbindung zu Health Connect.
 - **Werbe-ID**: „Nein, meine App nutzt keine Werbe-ID.“
