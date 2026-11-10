@@ -1769,12 +1769,25 @@ function runSave(){const d=$("#rd").value,km=parseFloat(String($("#rk").value).r
  const l=rLogs(),i=l.findIndex(x=>x.id==e.id);if(i>=0)l[i]=e;else l.push(e);
  l.sort((a,b)=>a.d<b.d?-1:a.d>b.d?1:a.id-b.id);save();logInfo("laufen","Lauf gespeichert",{km:e.km,d:e.d});closeSheet();render();}
 function runDel(id){if(!confirm("Diesen Lauf löschen?"))return;S.runs=rLogs().filter(x=>x.id!=id);save();closeSheet();render();}
+function runKurven(l){
+ const r=l.filter(x=>x.km>0&&x.sec>0).slice(-30);
+ if(r.length<2)return `<div class="card"><h4>Tempo-Verlauf</h4><div class="empty">Ab zwei Läufen erscheint hier deine Kurve.</div></div>`;
+ const tp=r.map(x=>({d:x.d,v:x.sec/x.km})),di=r.map(x=>({d:x.d,v:x.km}));
+ const h3=Math.max(1,Math.floor(r.length/3)),mw=a=>a.reduce((s,x)=>s+x.v,0)/a.length;
+ const dT=Math.round(mw(tp.slice(-h3))-mw(tp.slice(0,h3))),dK=Math.round((mw(di.slice(-h3))-mw(di.slice(0,h3)))*10)/10;
+ const seit=fmtDat(r[0].d);
+ return `<div class="card"><h4>Tempo-Verlauf</h4>${linChart(tp,{inv:true,fmt:v=>fmtDur(v),minPad:8,aria:"Tempo je Lauf"})}
+ <small style="display:block;color:var(--mut)">Tempo je Lauf in min/km, oben ist schneller · ${r.length>=4?`<b style="color:${dT<0?"var(--brand)":"var(--mut)"}">${dT<0?fmtDur(-dT)+" /km schneller":dT>0?fmtDur(dT)+" /km langsamer":"gleich schnell"}</b> als zu Beginn (${seit}) · `:""}oranger Punkt: schnellster Lauf</small>
+ <small style="display:block;color:var(--mut);margin-top:4px">Lockere und schnelle Läufe stehen in einer Kurve. Entscheidend ist die Richtung über mehrere Wochen.</small></div>
+ <div class="card"><h4>Distanz je Lauf</h4>${linChart(di,{fmt:v=>fmtKm(Math.round(v*10)/10)+" km",minPad:0.5,aria:"Distanz je Lauf"})}
+ <small style="display:block;color:var(--mut)">${r.length>=4?`<b style="color:${dK>0?"var(--brand)":"var(--mut)"}">${dK>0?"+":""}${fmtKm(dK)} km</b> je Lauf gegenüber dem Beginn (${seit}) · `:""}oranger Punkt: längster Lauf</small></div>`;}
 function runHist(){const l=rLogs();
  if(!l.length)return `<div class="card"><div class="empty">Noch kein Lauf eingetragen. Im Reiter Woche trägst du Läufe ein.</div></div>`;
  const tot=l.reduce((a,x)=>a+x.km,0),zeit=l.reduce((a,x)=>a+x.sec,0);
  const wk0=weekOf(0),wochen=[];for(let i=7;i>=0;i--){const d=dateOf(wk0,0);d.setDate(d.getDate()-i*7);const w=iso(d),a=dISO(w,0),b=dISO(w,6);wochen.push({w,km:l.filter(x=>x.d>=a&&x.d<=b).reduce((s,x)=>s+x.km,0)});}
  const mx=Math.max(1,...wochen.map(x=>x.km)),lang=l.reduce((a,x)=>x.km>a.km?x:a,l[0]),sch=l.filter(x=>x.km>=3).reduce((a,x)=>!a||x.sec/x.km<a.sec/a.km?x:a,null);
  let h=`<div class="card"><h4>Kilometer pro Woche</h4><div style="display:flex;align-items:flex-end;gap:6px;height:124px">${wochen.map(x=>`<div style="flex:1;text-align:center;font-size:11px;color:var(--mut)"><div style="height:${Math.round(x.km/mx*80)}px;background:${x.w==wk0?'var(--brand)':'var(--brand-l)'};border-radius:6px 6px 2px 2px;margin-top:${80-Math.round(x.km/mx*80)}px"></div><b style="display:block;color:var(--txt);font-weight:650">${x.km?fmtKm(Math.round(x.km*10)/10):"–"}</b>${+x.w.slice(8,10)}.${+x.w.slice(5,7)}.</div>`).join("")}</div></div>
+ ${runKurven(l)}
  <div class="card"><h4>Bestwerte</h4><div class="row"><span>Gesamt</span><span>${fmtKm(Math.round(tot*10)/10)} km · ${l.length} Läufe · ${fmtDur(zeit)}</span></div>
  <div class="row"><span>Längster Lauf</span><span>${fmtKm(lang.km)} km (${fmtDat(lang.d)})</span></div>
  ${sch?`<div class="row"><span>Schnellstes Tempo (ab 3 km)</span><span>${rPace(sch.sec,sch.km)} (${fmtKm(sch.km)} km)</span></div>`:""}</div>
@@ -2095,11 +2108,19 @@ function prTick(d,n){S.prDone=S.prDone||{};const k=d+"|"+n;
  logInfo("training",S.prDone[k]?"Übung abgehakt":"Haken zurückgenommen",{datum:d,uebung:n});
  save();render();}
 function tProg(){
+ // Kurve je Übung: geschätztes 1RM, bei Übungen ohne Gewicht die beste Wiederholungszahl bzw. Haltezeit
+ const kurve=(n,alle)=>{const mitKg=alle.some(x=>x.e1>0),zeit=uebArt(n)=="zeit";
+  const pts=alle.filter(x=>mitKg?x.e1>0:x.mr>0).slice(-30).map(x=>({d:x.d,v:mitKg?Math.round(x.e1*10)/10:x.mr}));
+  if(pts.length<2)return `<small style="display:block;color:var(--mut);margin-top:8px">Ab zwei Einheiten erscheint hier deine Kurve.</small>`;
+  const ein=mitKg?" kg":zeit?" s":" Wdh",a=pts[0],b=pts[pts.length-1],df=Math.round((b.v-a.v)*10)/10;
+  const txt=v=>String(Math.round(v*10)/10).replace(".",",")+ein;
+  return linChart(pts,{fmt:v=>Math.round(v)+ein,minPad:mitKg?2.5:1,aria:"Verlauf "+n})+
+  `<small style="display:block;color:var(--mut)">${mitKg?"Geschätztes 1RM":zeit?"Beste Haltezeit":"Meiste Wiederholungen"} je Einheit · <b style="color:${df>0?"var(--brand)":"var(--mut)"}">${df>0?"+":""}${txt(df)}</b> seit ${fmtDat(a.d)} · oranger Punkt: Bestwert</small>`;};
  const exs={};
  const wo=Object.keys(S.sets||{}).sort();
  wo.forEach(d=>Object.keys(S.sets[d]).forEach(n=>{const s=S.sets[d][n];if(!s.length)return;
   const best=s.reduce((a,b)=>(+b.kg||0)>(+a.kg||0)?b:a,s[0]);
-  exs[n]=exs[n]||[];exs[n].push({d,e1:Math.max(0,...s.map(x=>e1rm(x.kg,x.reps))),echt:echteEinheit(d,n),kg:+best.kg||0,reps:+best.reps||0,vol:s.reduce((a,b)=>a+(+b.kg||0)*(+b.reps||0),0)});}));
+  exs[n]=exs[n]||[];exs[n].push({d,mr:Math.max(0,...s.map(x=>+x.reps||0)),e1:Math.max(0,...s.map(x=>e1rm(x.kg,x.reps))),echt:echteEinheit(d,n),kg:+best.kg||0,reps:+best.reps||0,vol:s.reduce((a,b)=>a+(+b.kg||0)*(+b.reps||0),0)});}));
  const ks=Object.keys(exs);
  if(!ks.length)return `<div class="card"><div class="empty">Noch keine Sätze protokolliert. Trage im Reiter Training → Heute Gewicht und Wiederholungen ein oder hake eine Übung ab.</div></div>`;
  let h="";
@@ -2110,8 +2131,9 @@ function tProg(){
   <div class="row"><span>Letzter Eintrag</span><span>${satzText(n,letzt)}</span></div>
   ${rek>0?`<div class="row"><span>Bestes geschätztes 1RM</span><span>${Math.round(rek*10)/10} kg${letzt.e1>=rek-0.05&&exs[n].length>1?" 🏆":""}</span></div>`:""}
   <div class="row"><span>Erster Eintrag</span><span>${fmtDat(erst.d)}</span></div>
-  <div class="row"><span>Entwicklung</span><span>${erst.kg==letzt.kg?"unverändert":(up?"+":"")+(letzt.kg-erst.kg)+" kg"}</span></div>
-  ${r.length>1?`<small style="display:block;color:var(--mut);margin-top:6px">${r.map(x=>(+x.d.slice(8,10))+"."+(+x.d.slice(5,7))+".: "+satzText(n,x)).join(" · ")}</small>`:""}</div>`;});
+  ${erst.kg||letzt.kg?`<div class="row"><span>Entwicklung</span><span>${erst.kg==letzt.kg?"unverändert":(up?"+":"")+(letzt.kg-erst.kg)+" kg"}</span></div>`:""}
+  ${kurve(n,exs[n])}
+  ${r.length>1?`<details style="margin-top:6px"><summary style="cursor:pointer;color:var(--brand);font-weight:650;font-size:14px">Einzelne Einheiten</summary><small style="display:block;color:var(--mut);margin-top:6px">${r.map(x=>(+x.d.slice(8,10))+"."+(+x.d.slice(5,7))+".: "+satzText(n,x)).join(" · ")}</small></details>`:""}</div>`;});
  return anz?h:`<div class="card"><div class="empty">Noch keine trainierten Übungen. Trage Gewicht und Wiederholungen ein oder hake eine Übung ab.</div></div>`;
 }
 const hatAnl=n=>typeof UEB_TXT!=="undefined"&&!!UEB_TXT[n];
@@ -2149,6 +2171,24 @@ function tLib(){
 function tageZw(a,b){return Math.round((dateOf(b,0)-dateOf(a,0))/864e5);}
 // Mittelwert der Messungen der letzten 7 Tage bis einschließlich Tag k
 function wTrend(ks,w,k){let s=0,n=0;ks.forEach(x=>{const d=tageZw(x,k);if(d>=0&&d<7){s+=+w[x];n++;}});return n?s/n:null;}
+/* --- Allgemeine Verlaufskurve (Kraft und Laufen). pts: [{d:"JJJJ-MM-TT",v:Zahl}] --- */
+function linChart(pts,o){
+ const W=320,H=140,PL=42,PR=12,PT=12,PB=22;
+ const vs=pts.map(p=>p.v);let lo=Math.min(...vs),hi=Math.max(...vs);
+ const pad=Math.max(o.minPad||1,(hi-lo)*0.15);lo=Math.max(0,lo-pad);hi+=pad;
+ const t=p=>new Date(p.d+"T12:00:00").getTime(),t0=t(pts[0]),t1=t(pts[pts.length-1]);
+ const x=p=>PL+(W-PL-PR)*(t1>t0?(t(p)-t0)/(t1-t0):0.5);
+ const y=v=>{const f=(v-lo)/(hi-lo);return PT+(H-PT-PB)*(o.inv?f:1-f);};
+ const kurz=d=>(+d.slice(8,10))+"."+(+d.slice(5,7))+".";
+ const grid=[0,0.5,1].map(f=>{const v=lo+(hi-lo)*f;return `<line x1="${PL}" y1="${y(v).toFixed(1)}" x2="${W-PR}" y2="${y(v).toFixed(1)}" stroke="var(--line)" stroke-width="1"/>
+ <text x="${PL-5}" y="${(y(v)+3.5).toFixed(1)}" font-size="9" fill="var(--mut)" text-anchor="end">${o.fmt(v)}</text>`;}).join("");
+ let bi=0;pts.forEach((p,i)=>{if(o.inv?p.v<pts[bi].v:p.v>pts[bi].v)bi=i;});
+ const weg=pts.map((p,i)=>`${i?"L":"M"}${x(p).toFixed(1)} ${y(p.v).toFixed(1)}`).join(" ");
+ const dots=pts.map((p,i)=>`<circle cx="${x(p).toFixed(1)}" cy="${y(p.v).toFixed(1)}" r="${i==bi?4.2:2.6}" fill="${i==bi?"var(--heat)":"var(--brand)"}" stroke="var(--card)" stroke-width="1.2"><title>${kurz(p.d)}: ${o.fmt(p.v)}</title></circle>`).join("");
+ const xl=t1>t0?`<text x="${PL}" y="${H-6}" font-size="9" fill="var(--mut)">${kurz(pts[0].d)}</text><text x="${W-PR}" y="${H-6}" font-size="9" fill="var(--mut)" text-anchor="end">${kurz(pts[pts.length-1].d)}</text>`:"";
+ return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block;margin-top:8px" role="img" aria-label="${esc(o.aria||"Verlauf")}">
+  ${grid}<path d="${weg}" fill="none" stroke="var(--brand)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>${dots}${xl}</svg>`;
+}
 function wChart(){
  const w=S.weight||{},ks=Object.keys(w).sort();
  if(ks.length<2)return `<div class="card"><h4>Verlauf</h4><div class="empty">Ab zwei Messungen erscheint hier die Kurve.</div></div>`;
