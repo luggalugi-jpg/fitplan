@@ -1699,7 +1699,13 @@ function rRaceWeek(){const r=S.run,q=rProg();if(!q)return null;
  const d=dateOf(r.start||weekOf(0),0);d.setDate(d.getDate()+(q.w.length-1)*7);return iso(d);}
 function rWeekNr(wk){const q=rProg();if(!q)return 0;return q.w.length-Math.round((dateOf(rRaceWeek(),0)-dateOf(wk,0))/604800000);}
 function rDays(){const r=S.run,q=rProg();return(r&&r.days&&r.days.length==q.t)?r.days:q.sc.map(x=>RTAGE.indexOf(x));}
-function rSessions(wk){const q=rProg(),n=rWeekNr(wk);if(!q||n<1||n>q.w.length)return[];
+function rVorb(wk){const q=rProg(),r=S.run||{};if(!q||r.vorb===false)return null;const n=rWeekNr(wk);if(n>=1)return null;
+ const ab=r.start||weekOf(0);if(wk<ab)return null;const m=1-rWeekNr(ab);return {nr:m-(1-n)+1,von:m};}
+function rSessions(wk){const q=rProg(),n=rWeekNr(wk);if(!q||n>q.w.length)return[];
+ if(n<1){const v=rVorb(wk);if(!v)return[];const w=q.w[0],days=rDays();
+  const hart=/tempo|intervall|schwelle|fahrtspiel|steiger|hügel|hügel|bahn|wettkampf|vo2|pyramide/i,lk=w[1].find(([di])=>!hart.test(q.df[di][0]));
+  return w[1].map(([di,f],k)=>{if(hart.test(q.df[di][0])&&lk){di=lk[0];f=lk[1];}const d=q.df[di],day=days[k]!=null?days[k]:k;
+   return {k,day,date:dISO(wk,day),ref:dISO(wk,day)+"|"+k,name:d[0],warm:d[1],main:d[2],cool:d[3],int:d[5],notes:"Vorbereitung bis zum Planstart: nur locker laufen und regelmäßig bleiben. "+d[6],min:Math.max(10,Math.round(d[4]*f*0.85/5)*5),wkNr:n,focus:"Vorbereitung",vorb:true};});}
  const w=q.w[n-1],days=rDays();
  return w[1].map(([di,f],k)=>{const d=q.df[di],day=days[k]!=null?days[k]:k;
   return {k,day,date:dISO(wk,day),ref:dISO(wk,day)+"|"+k,name:d[0],warm:d[1],main:d[2],cool:d[3],int:d[5],notes:d[6],min:Math.max(10,Math.round(d[4]*f/5)*5),wkNr:n,focus:w[0]};});}
@@ -1718,7 +1724,7 @@ function runKopf(wk,n){const r=S.run,q=rProg(),R=r.dist||"Lauftraining";
  const tage=r.date?tageBis(r.date):null,N=q.w.length;
  const wochen=rSessions(wk),soll=wochen.reduce((a,x)=>a+x.min,0),ist=rLogs().filter(x=>x.d>=dISO(wk,0)&&x.d<=dISO(wk,6));
  return `<div class="card"><div class="row" style="margin-top:0"><b style="font-size:16px">${esc(R)}${r.date?" am "+fmtDat(r.date):""}</b><span>${tage==null?"":(tage>0?"noch "+tage+" Tage":(tage==0?"heute":"vorbei"))}</span></div>
- ${n>=1&&n<=N?`<div class="bar"><i style="width:${Math.round(n/N*100)}%"></i></div><div class="row"><span>Woche ${n} von ${N}</span><span>${esc(wochen.length?wochen[0].focus.replace(/ – Woche \d+$/,""):"")}</span></div>`:`<div class="row"><span>${n<1?"Der Plan startet in "+(1-n)+" Wochen":"Plan abgeschlossen"}</span><span></span></div>`}
+ ${n>=1&&n<=N?`<div class="bar"><i style="width:${Math.round(n/N*100)}%"></i></div><div class="row"><span>Woche ${n} von ${N}</span><span>${esc(wochen.length?wochen[0].focus.replace(/ – Woche \d+$/,""):"")}</span></div>`:n<1&&rVorb(wk)?`<div class="bar"><i style="width:${Math.round(rVorb(wk).nr/rVorb(wk).von*100)}%"></i></div><div class="row"><span>Vorbereitung ${rVorb(wk).nr} von ${rVorb(wk).von}</span><span>Plan ab ${fmtDat(rStartDat(N,rRaceWeek()))}</span></div>`:`<div class="row"><span>${n<1?"Der Plan startet in "+(1-n)+" Wochen":"Plan abgeschlossen"}</span><span></span></div>`}
  ${rRaceInfo()}
  ${soll?`<div class="row"><span>Diese Woche</span><span>${ist.reduce((a,x)=>a+x.sec,0)>0?Math.round(ist.reduce((a,x)=>a+x.sec,0)/60):0} von ca. ${soll} Min. · ${fmtKm(ist.reduce((a,x)=>a+x.km,0))} km</span></div>`:""}</div>`;}
 function runWeek(){const q=rProg();
@@ -1783,7 +1789,8 @@ function runGoal(){const r=S.run||{},q=rProg();
  if(q){const N=q.w.length,n=rWeekNr(weekOf(0));
   h+=`<div class="card"><h4>Aktueller Plan</h4><div style="font-size:16px;font-weight:650">${esc(q.n)}</div><small style="display:block;color:var(--mut)">${q.l} · ${N} Wochen · ${q.t} Läufe pro Woche · ${rDays().map(i=>RTAGE[i]).join(", ")}</small>
   ${r.date&&n>1?`<small style="display:block;color:var(--warn-t);margin-top:6px">Bis zum Termin bleiben nur ${rWeeksAvail()} Wochen. Du steigst in Woche ${n} von ${N} ein, die ersten Wochen entfallen.</small>`:""}
-  ${r.date&&n<1?`<small style="display:block;color:var(--mut);margin-top:6px">Der Plan beginnt am ${fmtDat(rStartDat(N,rRaceWeek()))}.</small>`:""}
+  ${n<1?`<small style="display:block;color:var(--mut);margin-top:6px">Der Plan endet passend zum Termin und beginnt am ${fmtDat(rStartDat(N,rRaceWeek()))}. ${r.vorb===false?"Bis dahin sind keine Läufe geplant.":"Bis dahin stehen lockere Vorbereitungsläufe im Plan."}</small>
+  <div class="chips" style="margin-top:8px"><button class="${r.vorb!==false?'p':''}" onclick="S.run.vorb=true;save();render()">Bis zum Start vorbereiten</button><button class="${r.vorb===false?'p':''}" onclick="S.run.vorb=false;save();render()">Erst ab Planstart</button></div>`:""}
   <div style="margin-top:10px"><button class="btn" onclick="runPlanSheet()">Plan wechseln</button><button class="btn g" onclick="runDaysSheet()">Lauftage ändern</button><button class="btn g" style="color:var(--danger)" onclick="runPlanOff()">Plan entfernen</button></div></div>
   <details class="card"><summary>Über diesen Plan</summary><p style="margin:0 0 8px">${esc(q.d)}</p><div class="row"><span>Ziel</span><span>${esc(q.g)}</span></div>
   <small style="display:block;color:var(--mut);margin-top:8px"><b>Steigern:</b> ${esc(q.pr)}</small><small style="display:block;color:var(--mut);margin-top:6px"><b>Entlastung:</b> ${esc(q.dl)}</small><small style="display:block;color:var(--mut);margin-top:6px"><b>Intensität:</b> ${esc(q.ig)}</small><small style="display:block;color:var(--mut);margin-top:6px"><b>Erholung:</b> ${esc(q.rc)} ${esc(q.pn)}</small>
@@ -1799,8 +1806,10 @@ function runPlanOff(){if(!confirm("Plan entfernen? Eingetragene Läufe bleiben e
 function runPlanSheet(){const r=S.run||{},av=rWeeksAvail();
  const L=RUN_DB.filter(x=>!RF.l||x.l==RF.l),pass=L.filter(x=>r.dist&&x.r==r.dist),rest=L.filter(x=>!(r.dist&&x.r==r.dist)&&(!x.r||!r.dist||false)),andere=L.filter(x=>x.r&&x.r!=r.dist&&r.dist);
  const chip=(t,on,js)=>`<button class="${on?'p':''}" onclick="${js}">${t}</button>`;
- const row=x=>{const N=x.w.length,fit=r.date?(N<=av?"passt: Start am "+fmtDat(rStartDat(N,weekKey(new Date(r.date+"T12:00:00")))):"zu kurz: Einstieg in Woche "+(N-av+1)):"";
-  return `<div class="opt" onclick="runPlanDetail('${x.id}')"><div><b>${esc(x.n.replace(/^[^–]+ – /,""))}${S.run&&S.run.prog==x.id?' <span class="tag">aktiv</span>':""}</b><small>${x.l} · ${N} Wochen · ${x.t} Läufe pro Woche</small>${fit?`<small style="color:${N<=av?'var(--brand-d)':'var(--warn-t)'}">${fit}</small>`:""}</div></div>`;};
+ const fitL=L.filter(x=>r.dist&&x.r==r.dist&&x.w.length<=av).map(x=>x.w.length);let best=r.date&&fitL.length?Math.max(...fitL):0;if(fitL.every(v=>v==best))best=0;
+ if(r.date)pass.sort((a,b)=>(b.w.length<=av)-(a.w.length<=av)||b.w.length-a.w.length);
+ const row=x=>{const N=x.w.length,frei=av-N,fit=r.date?(N<=av?(frei>0?"Plan ab "+fmtDat(rStartDat(N,weekKey(new Date(r.date+"T12:00:00"))))+", davor "+frei+(frei==1?" Woche":" Wochen")+" Vorbereitung":"passt genau: Start diese Woche"):"zu kurz: Einstieg in Woche "+(N-av+1)):"";
+  return `<div class="opt" onclick="runPlanDetail('${x.id}')"><div><b>${esc(x.n.replace(/^[^–]+ – /,""))}${S.run&&S.run.prog==x.id?' <span class="tag">aktiv</span>':""}${best&&N==best&&x.r==r.dist?' <span class="tag">empfohlen</span>':""}</b><small>${x.l} · ${N} Wochen · ${x.t} Läufe pro Woche</small>${fit?`<small style="color:${N<=av?'var(--brand-d)':'var(--warn-t)'}">${fit}</small>`:""}</div></div>`;};
  let h=`<h4>Laufplan wählen</h4><div class="chips" style="margin-bottom:12px">${chip("Jedes Niveau",!RF.l,"RF.l='';runPlanSheet()")}${["Anfänger","Fortgeschritten","Erfahren"].map(n=>chip(n,RF.l==n,`RF.l='${n}';runPlanSheet()`)).join("")}</div>`;
  if(r.dist){h+=`<b style="display:block;margin:4px 0">Passend zu ${esc(r.dist)}</b>`+(pass.length?pass.map(row).join(""):`<div class="empty">Kein Plan für dieses Niveau.</div>`);}
  const frei=L.filter(x=>!x.r);h+=`<b style="display:block;margin:14px 0 4px">${r.dist?"Weitere Pläne zum Aufbauen":"Pläne ohne Wettkampf"}</b>`+(frei.length?frei.map(row).join(""):`<div class="empty">Kein Plan für dieses Niveau.</div>`);
