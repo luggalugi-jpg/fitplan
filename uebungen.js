@@ -116,7 +116,7 @@ function rahmen(def){if(def._r)return def._r;const mn=[1e9,1e9,1e9],mx=[-1e9,-1e
   if(o.t=="c"){pt(o.a,o.r);pt(o.b,o.r2);}else if(o.t=="d")pt(o.p,o.r);else{const r=Math.hypot(o.h[0],o.h[1]);pt([o.c[0],o.c[1],o.c[2]-o.h[2]],r);pt([o.c[0],o.c[1],o.c[2]+o.h[2]],r);}});});
  mn[1]=Math.max(mn[1],-6);mx[1]=Math.max(mx[1],142);
  const c=[(mn[0]+mx[0])/2,(mn[1]+mx[1])/2,(mn[2]+mx[2])/2],h=mx[1]-mn[1],hr=Math.hypot((mx[0]-mn[0])/2,(mx[2]-mn[2])/2);
- return def._r={c,z:Math.max(.8,Math.min(1.7,Math.min(136/h,188/(2*hr)))),rad:Math.hypot(h/2,hr)+14};}
+ return def._r={c,z:Math.max(.8,Math.min(1.7,Math.min(126/h,184/(2*hr)))),rad:Math.hypot(h/2,hr)+14};}
 function basis(yaw,pitch){const cy=Math.cos(yaw*R),sy=Math.sin(yaw*R),cp=Math.cos(pitch*R),sp=Math.sin(pitch*R);
  return {ex:[cy,0,-sy],ey:[sy*sp,cp,cy*sp],ed:[sy*cp,-sp,cy*cp]};}
 /* ---------- WebGL-Darstellung ---------- */
@@ -136,7 +136,7 @@ float kasten(vec3 p,vec3 c,vec3 h,vec3 r){vec3 q=p-c;q.xy=vec2(q.x*r.x+q.y*r.y,-
  vec3 d=abs(q)-h+.9;return length(max(d,0.))+min(max(d.x,max(d.y,d.z)),0.)-.9;}
 float scheibe(vec3 p,vec4 c,float th){vec2 d=vec2(length(p.xy-c.xy)-c.w+.7,abs(p.z-c.z)-th+.7);
  return min(max(d.x,d.y),0.)+length(max(d,0.))-.7;}
-const float K=1.0;const float KG=.9;const float KC=.5;
+const float K=1.25;const float KG=.9;const float KC=.5;
 float sm(float a,float b,float k){float h=clamp(.5+.5*(a-b)/k,0.,1.);return mix(a,b,h)-k*h*(1.-h);}
 float map(vec3 p){float d=1e5,D=1e5,e=1e5;
  for(int i=0;i<NC;i++){if(i>=uNC)break;float di=kap(p,uCA[i],uCB[i]);
@@ -177,7 +177,8 @@ void main(){vec2 f=gl_FragCoord.xy/uRes;float sx=f.x*200.,sy=(1.-f.y)*150.;
   if(hit&&(rd.y<=0.||t<tf||tf<0.)){vec3 p=ro+rd*t,n=norm(p);vec4 fc=farbe(p);
    float w=.5+.5*dot(n,uL),ao=1.;float s=0.,k=1.;for(int i=1;i<=3;i++){float h=float(i)*1.6;s+=(h-map(p+n*h))*k;k*=.55;}ao=clamp(1.-.2*s,0.,1.);
    float top=.5+.5*dot(n,vec3(0.,-1.,0.));
-   vec3 c=fc.rgb*(.30+.62*pow(w,1.4)+.14*top)*mix(.55,1.,ao);
+   float sd=1.,ts=1.4;for(int i=0;i<12;i++){float h=map(p+n*.7+uL*ts);sd=min(sd,5.*h/ts);ts+=clamp(h,1.2,8.);if(sd<.05||ts>70.)break;}sd=clamp(sd,0.,1.);
+   vec3 c=fc.rgb*(.30+.62*pow(w,1.4)*mix(.5,1.,sd)+.14*top)*mix(.55,1.,ao);
    float fr=1.-max(dot(n,-rd),0.);c*=mix(1.,.38,smoothstep(.58,.97,fr));
    c+=fc.a*pow(max(dot(reflect(-uL,n),-rd),0.),18.)*.55;
    col=vec4(c,1.);}
@@ -230,8 +231,9 @@ function lerp(a,b,x){if(typeof a=="number"&&typeof b=="number")return a+(b-a)*x;
  if(Array.isArray(a)&&Array.isArray(b))return a.map((v,i)=>lerp(v,b[i],x));return x<.5?a:b;}
 function mix(A,B,x){const o={};new Set(Object.keys(A).concat(Object.keys(B))).forEach(k=>{o[k]=(k in A&&k in B)?lerp(A[k],B[k],x):(k in B?B[k]:A[k]);});return o;}
 const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
-function phase(def,ms){const mv=def.d||1300,hA=def.hA!=null?def.hA:400,hB=def.hB!=null?def.hB:400,T=hA+mv+hB+mv;
- let t=ms%T;if(t<hA)return 0;t-=hA;if(t<mv)return ease(t/mv);t-=mv;if(t<hB)return 1;t-=hB;return 1-ease(t/mv);}
+// Tempo wie beim echten Training: langsam ablassen, zügig heben
+function phase(def,ms){const lang=1700,kurz=1050,m1=def.senk?lang:kurz,m2=def.senk?kurz:lang,hA=def.hA!=null?def.hA:350,hB=def.hB!=null?def.hB:350,T=hA+m1+hB+m2;
+ let t=ms%T;if(t<hA)return 0;t-=hA;if(t<m1)return ease(t/m1);t-=m1;if(t<hB)return 1;t-=hB;return 1-ease(t/m2);}
 function poseBei(def,x){return mix(def.k[0],Object.assign({},def.k[0],def.k[1]),x);}
 const YAW=d=>d.yaw!=null?d.yaw:28,PITCH=d=>d.pitch!=null?d.pitch:13;
 let hilf=null; // gemeinsame WebGL-Fläche für Einzelbilder
@@ -267,12 +269,12 @@ window.uebAnimStop=function(){if(laeuft)cancelAnimationFrame(laeuft);laeuft=null
 /* Bewegungen je Übung: k[0] = Startposition, k[1] = Änderungen für die Endposition, p = Geräte, yaw/pitch = Kamerawinkel */
 const ST={h:[100,80],t:-90,f:[100,137],ft:0};
 window.UEB_ANIM={
-"Kniebeugen":{m:["quad", "glut"],m2:["ham", "ery"],k:[{h:[98,80],t:-88,f:[102,137],ar:[2,-6],eb:1},{h:[80,110],t:-52}],p:[{plate:1,at:"s",fr:["h","s"],o:[1,-8]}]},
-"Bankdrücken":{m:["brust"],m2:["tri", "delt"],k:[{h:[122,99],t:180,a:[84,59],eb:-1,f:[150,137]},{a:[90,89]}],p:[{r:[48,104,86,7]},{l:[60,111,60,140]},{l:[124,111,124,140]},{plate:1,at:"a"}]},
-"Schrägbankdrücken":{m:["brust"],m2:["delt", "tri"],k:[{h:[118,101],t:-145,a:[93,41],eb:-1,f:[150,137]},{a:[99,71]}],p:[{l:[126,110,80,78],slab:1,w:6},{r:[100,105,30,6]},{l:[115,111,115,140]},{plate:1,at:"a"}]},
-"Kurzhantel-Flys":{m:["brust"],m2:["delt"],yaw:42,pitch:22,k:[{h:[122,99],t:180,a3:[86,62,7],pole:[0,.4,1],f:[150,137]},{a3:[88,94,46]}],p:[{r:[48,104,86,7]},{l:[60,111,60,140]},{l:[124,111,124,140]},{db:1,at:"a"}]},
-"Liegestütze":{m:["brust", "tri"],m2:["delt", "bauch"],k:[{bauch:1,h:[105,111],t:-158,a:[72,137],eb:1,f:[163,132],ft:115},{h:[110,125],t:-172}]},
-"Dips":{m:["brust", "tri"],m2:["delt"],k:[{h:[95,73],t:-80,a:[100,77],eb:1,fr:[-14,36],ft:60},{h:[93,88],t:-70}],p:[{l:[68,80,136,80],w:4,z:[-12,12]},{l:[76,80,76,140],z:[-12,12]},{l:[128,80,128,140],z:[-12,12]}]},
+"Kniebeugen":{senk:1,m:["quad", "glut"],m2:["ham", "ery"],k:[{h:[98,80],t:-88,f:[102,137],ar:[2,-6],eb:1},{h:[80,110],t:-52}],p:[{plate:1,at:"s",fr:["h","s"],o:[1,-8]}]},
+"Bankdrücken":{senk:1,m:["brust"],m2:["tri", "delt"],k:[{h:[122,99],t:180,a:[84,59],eb:-1,f:[150,137]},{a:[90,89]}],p:[{r:[48,104,86,7]},{l:[60,111,60,140]},{l:[124,111,124,140]},{plate:1,at:"a"}]},
+"Schrägbankdrücken":{senk:1,m:["brust"],m2:["delt", "tri"],k:[{h:[118,101],t:-145,a:[93,41],eb:-1,f:[150,137]},{a:[99,71]}],p:[{l:[126,110,80,78],slab:1,w:6},{r:[100,105,30,6]},{l:[115,111,115,140]},{plate:1,at:"a"}]},
+"Kurzhantel-Flys":{senk:1,m:["brust"],m2:["delt"],yaw:42,pitch:22,k:[{h:[122,99],t:180,a3:[86,62,7],pole:[0,.4,1],f:[150,137]},{a3:[88,94,46]}],p:[{r:[48,104,86,7]},{l:[60,111,60,140]},{l:[124,111,124,140]},{db:1,at:"a"}]},
+"Liegestütze":{senk:1,m:["brust", "tri"],m2:["delt", "bauch"],k:[{bauch:1,h:[105,111],t:-158,a:[72,137],eb:1,f:[163,132],ft:115},{h:[110,125],t:-172}]},
+"Dips":{senk:1,m:["brust", "tri"],m2:["delt"],k:[{h:[95,73],t:-80,a:[100,77],eb:1,fr:[-14,36],ft:60},{h:[93,88],t:-70}],p:[{l:[68,80,136,80],w:4,z:[-12,12]},{l:[76,80,76,140],z:[-12,12]},{l:[128,80,128,140],z:[-12,12]}]},
 "Schulterdrücken":{m:["delt"],m2:["tri", "trap"],k:[{h:[92,98],t:-90,ar:[2,9],eb:1,f:[126,137]},{ar:[37,3]}],p:[{r:[76,102,36,7]},{l:[94,109,94,140],z:[0]},{l:[80,102,80,52],slab:1,w:5},{plate:1,at:"a"}]},
 "Seitheben":{m:["delt"],m2:["trap"],yaw:62,k:[{...ST,a3:[101,82,17],pole:[-1,.3,0]},{a3:[101,47,52]}],p:[{db:1,at:"a"}]},
 "Frontheben":{m:["delt"],m2:["brust"],k:[{...ST,ar:[-37,5],eb:1},{ar:[0,38]}],p:[{db:1,at:"a"}]},
@@ -281,10 +283,10 @@ window.UEB_ANIM={
 "Latzug":{m:["lat"],m2:["bizeps"],k:[{h:[94,100],t:-92,a:[104,28],eb:1,f:[124,137]},{t:-102,a:[108,64]}],p:[{r:[78,104,34,7]},{l:[95,111,95,140],z:[0]},{c:[124,88,5],zl:13},{bar:1},{cable:[100,4],bar2:1},{l:[72,2,72,140],w:4,z:[-8,8]},{r:[66,60,12,70],zw:7},{l:[72,4,102,4],w:3,z:[0]}]},
 "Rudern mit Langhantel":{m:["lat", "trap"],m2:["bizeps", "ery"],k:[{h:[82,84],t:-30,a:[112,104],eb:1,f:[100,137]},{a:[100,86]}],p:[{plate:1,at:"a"}]},
 "Rudern mit Kurzhantel":{m:["lat"],m2:["bizeps", "trap"],k:[{h:[78,80],t:-20,a:[111,105],a2:[116,108],eb:1,eb2:1,f:[92,136],f2:[48,107]},{a:[92,82]}],p:[{r:[40,108,84,7],zw:14},{l:[50,115,50,140]},{l:[114,115,114,140]},{db:1,at:"a",one:1}]},
-"Kreuzheben":{m:["ery", "glut", "ham"],m2:["quad", "trap"],k:[{h:[78,106],t:-28,a:[106,127],eb:1,f:[100,137]},{h:[98,80],t:-92,a:[101,84]}],p:[{plate:1,at:"a"}]},
+"Kreuzheben":{m:["ery", "glut", "ham"],m2:["quad", "trap"],k:[{h:[76,102],t:-22,a:[113,128],eb:1,f:[100,137]},{h:[98,80],t:-92,a:[111,81]}],p:[{plate:1,at:"a",rr:13.5}]},
 "Rückenstrecken":{m:["ery"],m2:["glut", "ham"],k:[{h:[105,80],t:75,ar:[-12,8],eb:1,f:[65,118],ft:60},{t:-43}],p:[{c:[110,85,6],zl:12},{l:[110,91,110,140],w:4,z:[0]},{l:[58,113,68,127],slab:1,w:4},{l:[63,120,63,140],w:4,z:[0]}]},
-"Beinpresse":{m:["quad"],m2:["glut"],k:[{h:[75,112],t:-140,a:[74,118],eb:1,f:[110,77],ft:-135},{f:[95,92]}],p:[{l:[86,112,166,32],w:3,z:[-15,15]},{l:[82,121,38,85],slab:1,w:6},{r:[60,119,30,6]},{l:[40,140,170,140],w:4,z:[-15,15]},{l:[166,32,166,140],w:4,z:[-15,15]},{l:[74,125,74,140],w:4,z:[-15,15]},{sled:1,at:"f",o:[2,-2],ang:45}]},
-"Ausfallschritte":{m:["quad", "glut"],m2:["ham"],k:[{h:[98,80],t:-90,f:[100,137],f2:[98,137],ar:[-37,2],eb:1},{h:[98,108],t:-88,f:[128,137],f2:[70,132],ft2:32}],p:[{db:1,at:"a"}]},
+"Beinpresse":{senk:1,m:["quad"],m2:["glut"],k:[{h:[75,112],t:-140,a:[74,118],eb:1,f:[110,77],ft:-135},{f:[95,92]}],p:[{l:[86,112,166,32],w:3,z:[-15,15]},{l:[82,121,38,85],slab:1,w:6},{r:[60,119,30,6]},{l:[40,140,170,140],w:4,z:[-15,15]},{l:[166,32,166,140],w:4,z:[-15,15]},{l:[74,125,74,140],w:4,z:[-15,15]},{sled:1,at:"f",o:[2,-2],ang:45}]},
+"Ausfallschritte":{senk:1,m:["quad", "glut"],m2:["ham"],k:[{h:[98,80],t:-90,f:[100,137],f2:[98,137],ar:[-37,2],eb:1},{h:[98,108],t:-88,f:[128,137],f2:[70,132],ft2:32}],p:[{db:1,at:"a"}]},
 "Beinbeuger":{m:["ham"],m2:["wade"],k:[{bauch:1,h:[97,99],t:180,a:[44,110],eb:-1,f:[152,99],kb:1,ft:80},{f:[124,72],ft:0}],p:[{r:[36,104,96,7]},{l:[50,111,50,140]},{l:[120,111,120,140]},{pad:1,at:"f",fr:["k","f"],o:[-3,-7]}]},
 "Beinstrecker":{m:["quad"],m2:[],k:[{h:[90,100],t:-95,a:[96,102],eb:1,f:[117,128],ft:60},{f:[146,97],ft:-30}],p:[{r:[72,104,36,7]},{l:[78,104,74,56],slab:1,w:5},{l:[90,111,90,140],z:[0]},{pad:1,at:"f",fr:["k","f"],o:[-4,-7]}]},
 "Wadenheben":{m:["wade"],m2:[],k:[{h:[99,74],t:-90,f:[99,131],ft:-20,ar:[-37,1],eb:1},{h:[101,62],f:[101,119],ft:63}],p:[{r:[101,128,40,13],zw:18,farbe:"g"}]},
