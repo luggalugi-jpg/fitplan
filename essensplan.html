@@ -303,6 +303,7 @@ small{line-height:1.4}
 <script src="rezepte.js"></script>
 <script src="trainingssysteme.js"></script>
 <script src="laufplaene.js"></script>
+<script src="uebungen.js"></script>
 <script>
 const DAYS=["Mo","Di","Mi","Do","Fr","Sa","So"];
 const MON=["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
@@ -783,7 +784,7 @@ function toast(m){const t=document.createElement("div");m=String(m);t.className=
 function sheet(html){closeSheet();const el=document.createElement("div");el.className="modal";el.onclick=e=>{if(e.target==el)closeSheet()};
  el.innerHTML=`<div class="sheet"><div style="width:44px;height:4px;background:var(--line);border-radius:99px;margin:-8px auto 14px"></div>${html}</div>`;
  document.body.appendChild(el);}
-function closeSheet(){gStop();bcStopCam();document.querySelectorAll(".modal").forEach(e=>e.remove());}
+function closeSheet(){if(window.uebAnimStop)uebAnimStop();gStop();bcStopCam();document.querySelectorAll(".modal").forEach(e=>e.remove());}
 /* ---------- FORTSCHRITTSANALYSE ---------- */
 const KCAL_PRO_KG=7700; // grobe Näherung für 1 kg Körpergewichtsänderung
 function regSteigung(pts){
@@ -1999,7 +2000,7 @@ function tDay(){
   const pi=planInfo(key,n),ps=restSek(pi);
   const planTxt=pi?`Plan: ${pi.saetze} × ${pi.wieder}${pi.r!=null?" · "+pi.r+" Wdh. im Tank":""}${pi.p?" · Pause "+fmtPause(pi.p):""}`:"";
   const lzTxt=lz?`Letztes Mal (${lz.d.slice(8,10)}.${lz.d.slice(5,7)}.): ${lz.sets.map(x=>satzText(n,x)).join(", ")}`:"Noch kein früheres Training dieser Übung.";
-  h+=`<div class="card"><div class="row"><b>${esc(e?e.n:n)}</b><button class="x" onclick="exRemove('${d}','${jq(n)}')">✕</button></div>
+  h+=`<div class="card"><div class="row"><b>${esc(e?e.n:n)}</b><span>${hatAnl(n)?`<button class="btn g" style="margin:0 6px 0 0;width:auto;min-height:32px;padding:5px 10px;font-size:13px;display:inline-flex" onclick="uebAnl('${jq(n)}')">▶ Anleitung</button>`:""}<button class="x" onclick="exRemove('${d}','${jq(n)}')">✕</button></span></div>
   ${e?`<small style="color:var(--mut);display:block;margin-bottom:2px">${esc(e.m)} · ${esc(e.g.join(", "))}</small>`:""}
   <small style="color:var(--mut);display:block;margin-bottom:8px">${planTxt?"<b>"+planTxt+"</b><br>":""}${lzTxt}${uebHinweis(n)}${rekord?' <b style="color:var(--brand)">· 🏆 Neuer Rekord (geschätztes 1RM '+Math.round(jetzt*10)/10+' kg)</b>':""}</small>
   ${sets.map((x,k)=>`<div class="row" style="align-items:center"><span>Satz ${k+1}</span><span><input class="n" style="width:74px;display:inline-block;margin:0 4px 0 0" type="number" inputmode="decimal" value="${x.kg}" onchange="setEdit('${d}','${jq(n)}',${k},'kg',this.value)" onfocus="this.select()">${uebArt(n)=="gewicht"?"kg":"kg +"}
@@ -2104,12 +2105,29 @@ function tProg(){
   ${r.length>1?`<small style="display:block;color:var(--mut);margin-top:6px">${r.map(x=>(+x.d.slice(8,10))+"."+(+x.d.slice(5,7))+".: "+satzText(n,x)).join(" · ")}</small>`:""}</div>`;});
  return anz?h:`<div class="card"><div class="empty">Noch keine trainierten Übungen. Trage Gewicht und Wiederholungen ein oder hake eine Übung ab.</div></div>`;
 }
+const hatAnl=n=>typeof UEB_TXT!=="undefined"&&!!UEB_TXT[n];
+function uebAnl(n){const t=hatAnl(n)?UEB_TXT[n]:null,a=typeof UEB_ANIM!=="undefined"?UEB_ANIM[n]:null,e=exById(n);
+ if(!t){sheet(`<h4 style="margin-top:0">${esc(n)}</h4><div class="empty">Für eigene Übungen gibt es noch keine Anleitung.</div><button class="btn g" onclick="closeSheet()">Schließen</button>`);return;}
+ const li=x=>x.map(y=>`<li>${esc(y)}</li>`).join("");
+ sheet(`<h4 style="margin:0 0 2px">${esc(n)}</h4>${e?`<small style="color:var(--mut)">${esc(e.g.join(", "))}${e.s?" · "+esc(e.s):""}</small>`:""}
+ <div id="uebAnim" style="background:var(--bg);border-radius:14px;margin:10px 0 4px;padding:6px" onclick="uebAnlPause()"></div>
+ <small style="display:block;text-align:center;color:var(--mut);margin-bottom:8px">${a&&a.v?esc(a.v)+" · ":""}Tippen zum Anhalten</small>
+ <b>So geht's</b><ol style="margin:6px 0 12px;padding-left:20px;line-height:1.45">${li(t.s)}</ol>
+ <b>Atmung</b><p style="margin:4px 0 12px">${esc(t.a)}</p>
+ <b>Häufige Fehler</b><ul style="margin:6px 0 12px;padding-left:20px;line-height:1.45">${li(t.f)}</ul>
+ ${t.t&&t.t.length?`<b>Tipps</b><ul style="margin:6px 0 12px;padding-left:20px;line-height:1.45">${li(t.t)}</ul>`:""}
+ ${t.l?`<b>Leichtere Variante</b><p style="margin:4px 0 12px">${esc(t.l)}</p>`:""}
+ <small style="display:block;color:var(--mut);margin-bottom:10px">Bei Schmerzen sofort abbrechen. Neue Übungen erst mit wenig Gewicht lernen.</small>
+ <button class="btn g" onclick="closeSheet()">Schließen</button>`);
+ window._uebAnlN=n;window._uebAnlP=false;if(a)uebAnimStart($("#uebAnim"),a);}
+function uebAnlPause(){const a=UEB_ANIM[window._uebAnlN];if(!a)return;window._uebAnlP=!window._uebAnlP;
+ if(window._uebAnlP)uebAnimStop();else uebAnimStart($("#uebAnim"),a);}
 function tLib(){
  const mg={};
  allEx().forEach(e=>{mg[e.m]=mg[e.m]||[];mg[e.m].push(e);});
  let h=`<div class="card"><h4>Übungsliste</h4><small style="color:var(--mut)">${allEx().length} Übungen in ${Object.keys(mg).length} Gruppen</small></div>`;
  Object.keys(mg).forEach(g=>{h+=`<div class="card"><h4>${esc(g)}</h4>`;
-  mg[g].forEach(e=>{h+=`<div class="opt" onclick="exAdd('${jq(e.n)}')"><b>${esc(e.n)}</b><small>${esc(e.g.join(", "))}${e.s?" · "+esc(e.s):""}</small></div>`;});
+  mg[g].forEach(e=>{h+=`<div class="opt" style="display:flex;align-items:center;gap:10px"><div style="flex:1" onclick="exAdd('${jq(e.n)}')"><b>${esc(e.n)}</b><small>${esc(e.g.join(", "))}${e.s?" · "+esc(e.s):""}</small></div>${hatAnl(e.n)?`<button class="btn g" style="margin:0;width:auto;min-height:34px;padding:6px 10px;font-size:13px" onclick="uebAnl('${jq(e.n)}')">▶ Anleitung</button>`:""}</div>`;});
   h+=`</div>`;});
  return h;
 }
