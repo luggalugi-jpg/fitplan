@@ -1,7 +1,7 @@
 // Kopiert die Web-App aus dem Repo-Hauptordner nach app/www.
 // essensplan.html wird zu index.html (Startseite der App). Der Service Worker
 // und die Web-Installationsdateien werden in der App nicht gebraucht.
-import { mkdirSync, copyFileSync, rmSync, existsSync } from "node:fs";
+import { mkdirSync, copyFileSync, rmSync, existsSync, cpSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -26,4 +26,9 @@ for (const [von, nach] of dateien) {
   }
   copyFileSync(pfad, join(ziel, nach));
   console.log("kopiert: " + von + " -> www/" + nach);
+}
+// Eigene Übungsvideos (Ordner uebungen/) mitnehmen, falls vorhanden
+if (existsSync(join(quelle, "uebungen"))) {
+  cpSync(join(quelle, "uebungen"), join(ziel, "uebungen"), { recursive: true });
+  console.log("kopiert: uebungen/ -> www/uebungen/");
 }
