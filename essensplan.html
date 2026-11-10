@@ -2110,8 +2110,8 @@ function uebAnl(n){const t=hatAnl(n)?UEB_TXT[n]:null,a=typeof UEB_ANIM!=="undefi
  if(!t){sheet(`<h4 style="margin-top:0">${esc(n)}</h4><div class="empty">Für eigene Übungen gibt es noch keine Anleitung.</div><button class="btn g" onclick="closeSheet()">Schließen</button>`);return;}
  const li=x=>x.map(y=>`<li>${esc(y)}</li>`).join("");
  sheet(`<h4 style="margin:0 0 2px">${esc(n)}</h4>${e?`<small style="color:var(--mut)">${esc(e.g.join(", "))}${e.s?" · "+esc(e.s):""}</small>`:""}
- <div id="uebAnim" style="background:var(--bg);border-radius:14px;margin:10px 0 4px;padding:6px" onclick="uebAnlPause()"></div>
- <small style="display:block;text-align:center;color:var(--mut);margin-bottom:8px">${a&&a.v?esc(a.v)+" · ":""}Tippen zum Anhalten</small>
+ <div id="uebAnim" style="background:var(--bg);border-radius:14px;margin:10px 0 4px;padding:4px;overflow:hidden"></div>
+ <small style="display:block;text-align:center;color:var(--mut);margin-bottom:8px">3D · Wischen zum Drehen · Tippen zum Anhalten</small>
  <b>So geht's</b><ol style="margin:6px 0 12px;padding-left:20px;line-height:1.45">${li(t.s)}</ol>
  <b>Atmung</b><p style="margin:4px 0 12px">${esc(t.a)}</p>
  <b>Häufige Fehler</b><ul style="margin:6px 0 12px;padding-left:20px;line-height:1.45">${li(t.f)}</ul>
@@ -2119,9 +2119,7 @@ function uebAnl(n){const t=hatAnl(n)?UEB_TXT[n]:null,a=typeof UEB_ANIM!=="undefi
  ${t.l?`<b>Leichtere Variante</b><p style="margin:4px 0 12px">${esc(t.l)}</p>`:""}
  <small style="display:block;color:var(--mut);margin-bottom:10px">Bei Schmerzen sofort abbrechen. Neue Übungen erst mit wenig Gewicht lernen.</small>
  <button class="btn g" onclick="closeSheet()">Schließen</button>`);
- window._uebAnlN=n;window._uebAnlP=false;if(a)uebAnimStart($("#uebAnim"),a);}
-function uebAnlPause(){const a=UEB_ANIM[window._uebAnlN];if(!a)return;window._uebAnlP=!window._uebAnlP;
- if(window._uebAnlP)uebAnimStop();else uebAnimStart($("#uebAnim"),a);}
+ if(a)uebAnimStart($("#uebAnim"),a);}
 function tLib(){
  const mg={};
  allEx().forEach(e=>{mg[e.m]=mg[e.m]||[];mg[e.m].push(e);});
