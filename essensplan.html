@@ -9,8 +9,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Fit-Plan">
-<meta name="application-name" content="Fit-Plan">
+<meta name="apple-mobile-web-app-title" content="Gainora">
+<meta name="application-name" content="Gainora">
 <meta name="description" content="Wochenplan, Einkaufsliste, Nährwerte, Training, Supplements und Gewicht">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjQyIiBmaWxsPSIjMTZhMzRhIi8+PGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjExIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik05NiA1MnY4NiIvPjxwYXRoIGQ9Ik02MCA3OGg3MiIvPjxwYXRoIGQ9Ik01MiA2MnYzMiIvPjxwYXRoIGQ9Ik0xNDAgNjJ2MzIiLz48L2c+PC9zdmc+">
@@ -288,6 +288,15 @@ small{line-height:1.4}
 .welc{text-align:left}.wl-ic{width:64px;height:64px;border-radius:20px;background:var(--brand-l);display:grid;place-items:center;font-size:32px;margin:4px 0 12px}
 .welc h3{font-size:23px;font-weight:780;letter-spacing:-.5px;margin:0 0 14px}
 .wl-pt{display:flex;gap:12px;align-items:flex-start;margin:0 0 12px}.wl-pt>span{font-size:22px;width:30px;flex:none;text-align:center}.wl-pt b{display:block;font-size:15.5px}.wl-pt small{color:var(--mut);font-size:13.5px}
+.vs{display:flex;align-items:center;gap:10px;background:var(--brand-l);color:var(--brand-d);border-radius:12px;padding:9px 12px;margin:0 0 10px;font-size:13.5px;font-weight:600;line-height:1.35}
+.vs span{flex:1}.vs button{flex:none;border:0;border-radius:99px;padding:8px 13px;font-size:13px;font-weight:700;font-family:inherit;background:var(--brand);color:#fff}
+.satz{display:flex;align-items:center;gap:6px;margin:6px 0}.satz .sn{flex:1;min-width:46px;font-size:14px}.satz input.n{width:70px;margin:0;flex:none;text-align:center;padding-left:6px;padding-right:6px}
+.satz i{font-style:normal;font-size:13px;color:var(--mut);min-width:26px;white-space:nowrap}.satz .chkc{width:36px;height:36px;color:var(--line)}.satz .chkc.on{color:#fff}.satz.ok input.n{background:var(--brand-l);border-color:transparent}
+.sw{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 4px}.sw b{font-size:16px}
+.swb{flex:none;width:52px;height:30px;border-radius:99px;border:0;background:var(--line);position:relative;padding:0;transition:background .15s}
+.swb::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #0004;transition:left .15s}
+.swb.on{background:var(--brand)}.swb.on::after{left:25px}
+@media (prefers-color-scheme:dark){.vs button,.satz .chkc.on{color:#04210f}}
 </style>
 </head>
 <body>
@@ -390,10 +399,10 @@ if(typeof RDB!=="undefined"&&typeof FOODS_NEU!=="undefined")(function(){
   if(dup)return;FOODS.push({n:a[0],k:a[1],p:a[2],h:a[3],f:a[4],g:a[5]});bases.push(w);});
 })();
 const fitsSlot=(m,s)=>m.c==s||(m.x&&m.x.indexOf(s)>=0);
-const PUBLIC_V="3.8";
+const PUBLIC_V="3.9";
 /* Anbieter für Impressum und Datenschutz – vor der Veröffentlichung ausfüllen */
 const ANBIETER={name:"Luca Preikschas",anschrift:"Herzog-Wilhelm-Str. 32, 94572 Schöfweg",mail:"gainora.app@gmail.com"};
-const RECHT={"ds": "<h2>Datenschutzerklärung</h2>\n<p><b>Stand:</b> 9. November 2026</p>\n<h3>1. Verantwortlicher</h3>\n<p>{name}<br>{anschrift}<br>E-Mail: {mail}</p>\n<h3>2. Grundsatz: Deine Daten bleiben auf deinem Gerät</h3>\n<p>Gainora funktioniert ohne Benutzerkonto und ohne eigenen Server. Alles, was du einträgst – Essensplan, Mahlzeiten, Gewicht, Trainings, Läufe, Supplements, Ziele und Einstellungen – wird ausschließlich lokal im Speicher der App auf deinem Gerät abgelegt. Wir erhalten diese Daten nicht und können sie nicht einsehen.</p>\n<p>Die App enthält keine Werbung, keine Analyse- oder Tracking-Werkzeuge und gibt keine Daten zu Werbezwecken weiter.</p>\n<p>Angaben wie Körpergewicht, Ernährung und Trainingsdaten können Gesundheitsdaten sein. Sie werden nur auf deinem Gerät verarbeitet, um dir die Funktionen der App bereitzustellen.</p>\n<h3>3. Funktionen mit Internetverbindung</h3>\n<p>Nur die folgenden Funktionen nehmen Verbindung zu Diensten Dritter auf, und zwar nur, wenn du sie selbst auslöst:</p>\n<p><b>Foto-Analyse (optional):</b> Wenn du unter „Foto-Analyse“ einen eigenen Schlüssel für die Google Gemini API hinterlegst und ein Foto analysieren lässt, wird das Foto zusammen mit einer Anweisung direkt von deinem Gerät an Google gesendet (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Verarbeitung auch in den USA möglich). Google verarbeitet die Daten nach den Bedingungen, die du mit Google für deinen Schlüssel vereinbart hast. Dein Schlüssel wird nur auf deinem Gerät gespeichert und nicht in Sicherungsdateien übernommen. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), die du jederzeit widerrufen kannst, indem du den Schlüssel löschst.</p>\n<p><b>Barcode-Suche:</b> Wenn du einen Barcode scannst oder eingibst, wird die Produktnummer an Open Food Facts gesendet (Open Food Facts, 21 rue des Iles, 94100 Saint-Maur-des-Fossés, Frankreich), um Nährwerte abzurufen. Dabei wird technisch bedingt deine IP-Adresse übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir gewünschten Funktion).</p>\n<p><b>Webversion:</b> Wenn du die App im Browser nutzt, wird sie über GitHub Pages ausgeliefert (GitHub B.V., Niederlande / GitHub, Inc., USA). Dabei verarbeitet GitHub technisch notwendige Zugriffsdaten wie die IP-Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (sichere Bereitstellung der Webseite).</p>\n<h3>4. Berechtigungen</h3>\n<p><b>Kamera:</b> nur zum Scannen von Barcodes und für Fotos zur Foto-Analyse, jeweils erst wenn du die Funktion startest. <b>Benachrichtigungen:</b> nur für die lokale Erinnerung am Ende einer Satzpause; sie werden auf dem Gerät erzeugt, nicht über einen Server.</p>\n<h3>5. Sicherungen und Diagnoseprotokoll</h3>\n<p>Sicherungsdateien und das Diagnoseprotokoll entstehen nur, wenn du sie selbst erstellst. Wohin du sie speicherst oder sendest, entscheidest du. Das Diagnoseprotokoll enthält technische Angaben zur Fehlersuche (z. B. App-Version, Gerätetyp, Fehlermeldungen) und bleibt auf deinem Gerät, bis du es teilst.</p>\n<h3>6. Speicherdauer und Löschung</h3>\n<p>Die Daten bleiben gespeichert, bis du sie in der App unter „Daten & Sicherung“ löschst oder die App deinstallierst.</p>\n<h3>7. Deine Rechte</h3>\n<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch und Widerruf erteilter Einwilligungen (Art. 15–21 DSGVO). Da wir deine App-Daten nicht speichern, kannst du die meisten Rechte direkt in der App ausüben. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Behörde deines Wohnorts.</p>\n<h3>8. Kinder</h3>\n<p>Die App richtet sich nicht an Kinder unter 16 Jahren.</p>\n<h3>9. Änderungen</h3>\n<p>Wir passen diese Erklärung an, wenn sich die App oder die Rechtslage ändert. Es gilt die jeweils in der App veröffentlichte Fassung.</p>", "imp": "<h2>Impressum</h2>\n<p>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>\n<p>{name}<br>{anschrift}</p>\n<p><b>Kontakt:</b> E-Mail: {mail}</p>\n<p><b>Verantwortlich für den Inhalt:</b> {name}, Anschrift wie oben</p>", "ges": "<h2>Gesundheitshinweis</h2>\n<p>Gainora ist ein Hilfsmittel zur Planung von Ernährung und Training. Die App ist kein Medizinprodukt und ersetzt keine ärztliche, ernährungsmedizinische oder sportmedizinische Beratung.</p>\n<p>Kalorienbedarf, Nährwerte, Portionsgrößen, Supplementmengen, Trainings- und Laufpläne sind Richtwerte und Vorlagen. Sie berücksichtigen keine Erkrankungen, Medikamente, Schwangerschaft oder individuelle Belastbarkeit. Die Bedarfsberechnung ist eine Schätzung (Mifflin-St.-Jeor-Formel). Foto-Analysen und Produktdaten aus Open Food Facts können ungenau sein.</p>\n<p>Sprich vor einer deutlichen Ernährungsumstellung, vor Nahrungsergänzungsmitteln und vor dem Beginn eines intensiven Trainings mit einer Ärztin oder einem Arzt, besonders bei Vorerkrankungen. Brich das Training bei Schmerzen, Schwindel oder Atemnot ab.</p>", "liz": "<h2>Quellen und Lizenzen</h2>\n<p><b>Produktdaten:</b> Barcode-Suche mit Daten von <a href=\"https://world.openfoodfacts.org\">Open Food Facts</a>. Die Datenbank steht unter der Open Database License (ODbL), die Inhalte unter der Database Contents License.</p>\n<p><b>Foto-Analyse:</b> Google Gemini API, nur mit deinem eigenen Schlüssel.</p>\n<p><b>Rezepte, Lebensmittel, Übungen, Trainings- und Laufpläne:</b> eigene Zusammenstellung für Gainora. Die Nährwerte sind aus den Zutaten berechnet.</p>\n<p><b>Spiele:</b> „Blocksturz“ und die übrigen Pausenspiele sind eigene Umsetzungen.</p>"};
+const RECHT={"ds": "<h2>Datenschutzerklärung</h2>\n<p><b>Stand:</b> 10. November 2026</p>\n<h3>1. Verantwortlicher</h3>\n<p>{name}<br>{anschrift}<br>E-Mail: {mail}</p>\n<h3>2. Grundsatz: Deine Daten bleiben auf deinem Gerät</h3>\n<p>Gainora funktioniert ohne Benutzerkonto und ohne eigenen Server. Alles, was du einträgst – Essensplan, Mahlzeiten, Gewicht, Trainings, Läufe, Supplements, Ziele und Einstellungen – wird ausschließlich lokal im Speicher der App auf deinem Gerät abgelegt. Wir erhalten diese Daten nicht und können sie nicht einsehen.</p>\n<p>Die App enthält keine Werbung, keine Analyse- oder Tracking-Werkzeuge und gibt keine Daten zu Werbezwecken weiter.</p>\n<p>Angaben wie Körpergewicht, Ernährung und Trainingsdaten können Gesundheitsdaten sein. Sie werden nur auf deinem Gerät verarbeitet, um dir die Funktionen der App bereitzustellen.</p>\n<h3>3. Funktionen mit Internetverbindung</h3>\n<p>Nur die folgenden Funktionen nehmen Verbindung zu Diensten Dritter auf, und zwar nur, wenn du sie selbst auslöst:</p>\n<p><b>Foto-Analyse (optional):</b> Wenn du unter „Foto-Analyse“ einen eigenen Schlüssel für die Google Gemini API hinterlegst und ein Foto analysieren lässt, wird das Foto zusammen mit einer Anweisung direkt von deinem Gerät an Google gesendet (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Verarbeitung auch in den USA möglich). Google verarbeitet die Daten nach den Bedingungen, die du mit Google für deinen Schlüssel vereinbart hast. Dein Schlüssel wird nur auf deinem Gerät gespeichert und nicht in Sicherungsdateien übernommen. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), die du jederzeit widerrufen kannst, indem du den Schlüssel löschst.</p>\n<p><b>Barcode-Suche:</b> Wenn du einen Barcode scannst oder eingibst, wird die Produktnummer an Open Food Facts gesendet (Open Food Facts, 21 rue des Iles, 94100 Saint-Maur-des-Fossés, Frankreich), um Nährwerte abzurufen. Dabei wird technisch bedingt deine IP-Adresse übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir gewünschten Funktion).</p>\n<p><b>Webversion:</b> Wenn du die App im Browser nutzt, wird sie über GitHub Pages ausgeliefert (GitHub B.V., Niederlande / GitHub, Inc., USA). Dabei verarbeitet GitHub technisch notwendige Zugriffsdaten wie die IP-Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (sichere Bereitstellung der Webseite).</p>\n<h3>4. Berechtigungen</h3>\n<p><b>Kamera:</b> nur zum Scannen von Barcodes und für Fotos zur Foto-Analyse, jeweils erst wenn du die Funktion startest. <b>Benachrichtigungen:</b> nur für lokale Erinnerungen, die du selbst einschaltest (Ende der Satzpause, Training, Wasser, Mahlzeiten); sie werden auf dem Gerät erzeugt, nicht über einen Server.</p>\n<h3>5. Sicherungen und Diagnoseprotokoll</h3>\n<p>Sicherungsdateien und das Diagnoseprotokoll entstehen nur, wenn du sie selbst erstellst. Wohin du sie speicherst oder sendest, entscheidest du. Das Diagnoseprotokoll enthält technische Angaben zur Fehlersuche (z. B. App-Version, Gerätetyp, Fehlermeldungen) und bleibt auf deinem Gerät, bis du es teilst.</p>\n<h3>6. Speicherdauer und Löschung</h3>\n<p>Die Daten bleiben gespeichert, bis du sie in der App unter „Daten & Sicherung“ löschst oder die App deinstallierst.</p>\n<h3>7. Deine Rechte</h3>\n<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch und Widerruf erteilter Einwilligungen (Art. 15–21 DSGVO). Da wir deine App-Daten nicht speichern, kannst du die meisten Rechte direkt in der App ausüben. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Behörde deines Wohnorts.</p>\n<h3>8. Kinder</h3>\n<p>Die App richtet sich nicht an Kinder unter 16 Jahren.</p>\n<h3>9. Änderungen</h3>\n<p>Wir passen diese Erklärung an, wenn sich die App oder die Rechtslage ändert. Es gilt die jeweils in der App veröffentlichte Fassung.</p>", "imp": "<h2>Impressum</h2>\n<p>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>\n<p>{name}<br>{anschrift}</p>\n<p><b>Kontakt:</b> E-Mail: {mail}</p>\n<p><b>Verantwortlich für den Inhalt:</b> {name}, Anschrift wie oben</p>", "ges": "<h2>Gesundheitshinweis</h2>\n<p>Gainora ist ein Hilfsmittel zur Planung von Ernährung und Training. Die App ist kein Medizinprodukt und ersetzt keine ärztliche, ernährungsmedizinische oder sportmedizinische Beratung.</p>\n<p>Kalorienbedarf, Nährwerte, Portionsgrößen, Supplementmengen, Trainings- und Laufpläne sind Richtwerte und Vorlagen. Sie berücksichtigen keine Erkrankungen, Medikamente, Schwangerschaft oder individuelle Belastbarkeit. Die Bedarfsberechnung ist eine Schätzung (Mifflin-St.-Jeor-Formel). Foto-Analysen und Produktdaten aus Open Food Facts können ungenau sein.</p>\n<p>Sprich vor einer deutlichen Ernährungsumstellung, vor Nahrungsergänzungsmitteln und vor dem Beginn eines intensiven Trainings mit einer Ärztin oder einem Arzt, besonders bei Vorerkrankungen. Brich das Training bei Schmerzen, Schwindel oder Atemnot ab.</p>", "liz": "<h2>Quellen und Lizenzen</h2>\n<p><b>Produktdaten:</b> Barcode-Suche mit Daten von <a href=\"https://world.openfoodfacts.org\">Open Food Facts</a>. Die Datenbank steht unter der Open Database License (ODbL), die Inhalte unter der Database Contents License.</p>\n<p><b>Foto-Analyse:</b> Google Gemini API, nur mit deinem eigenen Schlüssel.</p>\n<p><b>Rezepte, Lebensmittel, Übungen, Trainings- und Laufpläne:</b> eigene Zusammenstellung für Gainora. Die Nährwerte sind aus den Zutaten berechnet.</p>\n<p><b>Spiele:</b> „Blocksturz“ und die übrigen Pausenspiele sind eigene Umsetzungen.</p>"};
 /* Läuft die Seite als installierte App (Capacitor)? */
 const NATIV=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
 const PL=n=>NATIV&&window.Capacitor.Plugins?window.Capacitor.Plugins[n]||null:null;
@@ -414,9 +423,6 @@ function logAdd(level,area,msg,data){
 const logInfo=(a,m,d)=>logAdd("info",a,m,d);
 const logWarn=(a,m,d)=>logAdd("warn",a,m,d);
 const logErr=(a,m,d)=>logAdd("err",a,m,d);
-function logWrap(area,fn){return async function(){
- try{return await fn.apply(this,arguments)}
- catch(e){logErr(area,"Ausnahme: "+(e&&e.message||e),{stack:String(e&&e.stack||"").slice(0,500)});throw e}}}
 function logFile(){
  const L=[];
  L.push("Gainora – Diagnosebericht");
@@ -440,11 +446,9 @@ function logFile(){
 function logDownload(){
  const txt=logFile(),name="fitplan-log-"+new Date().toISOString().slice(0,19).replace(/[:T]/g,"-")+".txt";
  try{
-  dateiTeilen(name,txt,"text/plain;charset=utf-8").catch(e=>toast("Speichern nicht möglich: "+e.message));
-  setTimeout(()=>URL.revokeObjectURL(u),2000);
-  logInfo("log","Protokolldatei erstellt: "+name);
+  dateiTeilen(name,txt,"text/plain;charset=utf-8").then(()=>logInfo("log","Protokolldatei erstellt: "+name))
+   .catch(e=>{if(e&&(e.name=="AbortError"||/cancel/i.test(e.message||"")))return;toast("Speichern nicht möglich. Nutze „Diagnoseprotokoll anzeigen“ und kopiere den Text.");logErr("log","Download fehlgeschlagen: "+e.message);});
  }catch(e){logErr("log","Download fehlgeschlagen: "+e.message);}
- alert("Protokoll erstellt: "+name+"\n\nFalls der Download nicht startet, nutze \"Protokoll anzeigen\" und kopiere den Text.");
 }
 function logCopy(){
  const txt=logFile();
@@ -508,7 +512,6 @@ async function neuLaden(){
  }catch(e){}
  location.reload(true);
 }
-function checkUpdate(){if(NEUE)zeigeUpdate(NEUE);else location.reload();}
 let INSTALL=null;
 window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();INSTALL=e;const b=document.getElementById("installBtn");if(b)b.style.display="inline-block";logInfo("pwa","Installation möglich");});
 window.addEventListener("appinstalled",()=>{INSTALL=null;logInfo("pwa","App installiert");const b=document.getElementById("installBtn");if(b)b.style.display="none";});
@@ -591,11 +594,6 @@ function planInfo(key,n){return((S.trSets&&S.trSets[key])||[]).find(x=>x.n==n)||
 function restSek(pi){return S.restPlan===false?(S.restSek||90):((pi&&pi.p)||S.restSek||90);}
 function restSetzen(v){v=Math.round(+v);if(!(v>=10&&v<=900)){toast('Bitte eine Dauer zwischen 10 und 900 Sekunden eingeben.');render();return;}S.restSek=v;save();render();}
 const trSatz=x=>({n:x[0],saetze:x[1],wieder:x[2],p:x[3]||0,r:x[4]==null?null:x[4]});
-const ALT_SPLITS={
- "Ganzkörper (3x/Woche)":[["Kniebeugen",3,8],["Bankdrücken",3,8],["Rudern mit Langhantel",3,10],["Schulterdrücken",3,10],["Plank",3,"30 s"]],
- "Oberkörper / Unterkörper":[["Bankdrücken",4,8],["Rudern mit Langhantel",4,10],["Schulterdrücken",3,10],["Klimmzüge",3,8],["Bizepscurls",3,12]],
- "Push / Pull / Beine":[["Bankdrücken",4,8],["Schulterdrücken",3,10],["Dips",3,10],["Seitheben",3,15],["Trizepsdrücken am Kabel",3,12]]
-};
 const RECIPES={"1": "Haferflocken mit 150 ml Wasser oder Milch 3 Min. in der Mikrowelle oder im Topf quellen lassen.\nMagerquark glatt rühren und unterheben.\nAufgetaute Beeren darübergeben, nach Wunsch mit Zimt oder Süßstoff abschmecken.", "2": "Eier mit einer Prise Salz und Pfeffer verquirlen.\nIn einer beschichteten Pfanne bei mittlerer Hitze unter Rühren 2–3 Min. stocken lassen.\nTomaten würfeln und dazugeben oder als Beilage essen.\nMit dem Vollkornbrot servieren.", "3": "Skyr in eine Schüssel geben.\nBanane in Scheiben schneiden und darauflegen.\nWalnüsse grob hacken und darüberstreuen.", "4": "Banane zerdrücken, Haferflocken, Eier und 100 g Magerquark dazugeben.\nAlles zu einem Teig pürieren oder gut verrühren, 5 Min. quellen lassen.\nIn einer beschichteten Pfanne bei mittlerer Hitze kleine Pancakes je 2 Min. pro Seite backen.\nMit Beeren oder dem restlichen Quark servieren.", "5": "Reis nach Packungsangabe kochen (ca. 15 Min.).\nHähnchenbrust in Streifen schneiden, salzen, pfeffern und in Olivenöl 6–8 Min. goldbraun braten.\nBrokkoli in Röschen teilen und 5 Min. dämpfen oder in Salzwasser garen.\nAlles anrichten, nach Wunsch mit Paprikapulver oder Zitronensaft würzen.", "6": "Nudeln nach Packungsangabe kochen, abgießen und kalt abspülen.\nTomaten und Gurke würfeln, Thunfisch abtropfen lassen.\nAlles mit Olivenöl, Essig, Salz und Pfeffer vermengen.\nMindestens 10 Min. durchziehen lassen.", "7": "Zwiebel würfeln und in einem Topf glasig dünsten.\nRote Linsen, passierte Tomaten, Kokosmilch und 200 ml Wasser dazugeben, mit Curry, Kreuzkümmel, Salz würzen.\n15 Min. köcheln lassen, bis die Linsen weich sind.\nSpinat unterrühren, 2 Min. zusammenfallen lassen und abschmecken.", "8": "Kartoffeln schälen, würfeln und 15 Min. kochen oder im Ofen rösten.\nHack in einer Pfanne mit etwas Öl krümelig braun anbraten.\nPaprika in Stücken dazugeben und 5 Min. mitbraten.\nMit Salz, Pfeffer und Paprikapulver würzen und mit den Kartoffeln mischen.", "9": "Ofen auf 200 °C vorheizen.\nSüßkartoffeln würfeln, mit Salz und Gewürzen auf ein Blech geben und 25 Min. backen.\nLachs salzen und nach 10 Min. mit aufs Blech legen (ca. 12–15 Min. garen).\nBrokkoli 5 Min. dämpfen und alles zusammen anrichten.", "10": "Reis nach Packungsangabe kochen.\nHähnchenbrust in dünne Streifen schneiden und in Öl im Wok bei hoher Hitze 5 Min. braten.\nTK-Wokgemüse dazugeben und 5 Min. mitbraten.\nMit Sojasauce ablöschen und mit dem Reis servieren.", "11": "Eier mit Salz und Pfeffer verquirlen.\nPaprika würfeln und 3 Min. in einer beschichteten Pfanne anbraten.\nEiermasse darübergießen und bei niedriger Hitze stocken lassen, zusammenklappen.\nMit Hüttenkäse und Vollkornbrot servieren.", "12": "Reis nach Packungsangabe kochen.\nPutenhack in einem Topf krümelig anbraten, Paprika würfeln und mitbraten.\nPassierte Tomaten und abgespülte Kidneybohnen dazugeben, mit Chili, Kreuzkümmel, Salz würzen.\n15 Min. köcheln lassen und auf dem Reis servieren.", "13": "Magerquark in eine Schüssel geben, Beeren auftauen und unterrühren.", "14": "Whey-Protein mit der kalten Milch in einem Shaker oder Mixer 20 Sek. schütteln bzw. mixen.", "15": "Apfel waschen, in Spalten schneiden und mit den Mandeln essen.", "16": "Gurke in Scheiben schneiden, Hüttenkäse dazugeben, mit Pfeffer und Salz würzen.", "17": "Eier 8–10 Min. hart kochen, abschrecken und pellen.\nMöhren schälen und in Sticks schneiden, dazu essen.", "18": "Haferflocken, Skyr und Chiasamen im Glas oder in einer Dose verrühren, nach Wunsch mit einem Schuss Wasser geschmeidiger machen.\nAbgedeckt mindestens 4 Stunden, am besten über Nacht, in den Kühlschrank stellen.\nMorgens umrühren und mit den aufgetauten Beeren toppen.", "19": "Eier 8 Min. hart kochen, abschrecken und pellen, oder als Spiegelei braten.\nAvocado halbieren, entkernen, das Fruchtfleisch mit einer Gabel zerdrücken und mit Salz, Pfeffer und etwas Zitronensaft abschmecken.\nBrot nach Wunsch toasten, die Avocadocreme daraufstreichen.\nTomaten in Scheiben schneiden, mit den in Scheiben geschnittenen Eiern darauf legen.", "20": "Magerquark in eine Schüssel geben und glatt rühren.\nApfel waschen, entkernen und in kleine Würfel schneiden oder grob reiben.\nApfel mit Zimt unter den Quark mischen.\nWalnüsse grob hacken und darüberstreuen.", "21": "Brot nach Wunsch toasten.\nGurke in Scheiben schneiden.\nHüttenkäse auf dem Brot verteilen und mit Gurke belegen.\nMit Olivenöl beträufeln, salzen und pfeffern.", "22": "Banane in Stücke brechen und mit Milch, Whey-Protein und Haferflocken in einen Mixer geben.\nEtwa 30 Sekunden cremig mixen.\nSofort trinken, da der Shake mit der Zeit andickt.", "23": "Spinat waschen und in einer beschichteten Pfanne ohne Fett 1–2 Min. zusammenfallen lassen.\nEier mit Salz und Pfeffer verquirlen, über den Spinat gießen und unter Rühren bei mittlerer Hitze 2–3 Min. stocken lassen.\nFeta darüberbröseln und kurz untermischen.\nMit dem Brot servieren.", "24": "Joghurt in eine Schale geben.\nBeeren auftauen oder waschen und darauf verteilen.\nMandeln grob hacken und darüberstreuen.", "25": "Reis nach Packungsangabe kochen.\nHähnchenbrust in Streifen schneiden, mit Salz, Pfeffer, Paprikapulver und Kreuzkümmel würzen und in einer Pfanne 6–8 Min. durchbraten.\nKidneybohnen abspülen und kurz erwärmen, Paprika würfeln.\nAvocado in Scheiben schneiden.\nReis in eine Schüssel geben und mit Hähnchen, Bohnen, Paprika und Avocado belegen.", "26": "Frischkäse auf dem Vollkornbrot (oder einem Vollkorn-Wrap) verstreichen.\nMit Putenbrust und Salat belegen, mit Pfeffer würzen.\nZusammenrollen oder zusammenklappen und schräg halbieren.", "27": "Nudeln nach Packungsangabe bissfest kochen, abgießen.\nRote Linsen mit Olivenöl in einem Topf kurz anschwitzen, passierte Tomaten und etwa 150 ml Wasser zugeben.\nMit Salz, Pfeffer, Oregano und Knoblauch würzen und 12–15 Min. köcheln lassen, bis die Linsen zerfallen und die Sauce dick ist.\nSauce über die Nudeln geben.", "28": "Reis nach Packungsangabe kochen.\nKichererbsen abspülen und mit Kokosmilch und etwa 50 ml Wasser in einem Topf aufkochen.\nMit Currypulver, Kurkuma, Salz und Pfeffer würzen und 8 Min. köcheln lassen.\nSpinat zugeben und 2 Min. zusammenfallen lassen.\nMit dem Reis servieren.", "29": "Süßkartoffeln schälen, würfeln und in Salzwasser 15 Min. weich kochen.\nBrokkoli in Röschen teilen und 5 Min. mitgaren oder dämpfen.\nPutenbrust in Streifen schneiden, salzen und pfeffern und in einer Pfanne mit Olivenöl 6–8 Min. braten.\nSüßkartoffeln abgießen und mit einer Gabel oder einem Stampfer zu Püree zerdrücken, mit Salz und Muskat abschmecken.\nAlles zusammen anrichten.", "30": "Quinoa nach Packungsangabe kochen, falls sie nicht schon fertig ist.\nTofu abtropfen lassen, würfeln und in einer beschichteten Pfanne ohne Fett 6–8 Min. goldbraun braten, mit Sojasauce oder Gewürzen abschmecken.\nPaprika würfeln, Avocado in Scheiben schneiden.\nQuinoa in eine Schüssel geben und mit Tofu, Paprika und Avocado belegen.", "31": "Reis nach Packungsangabe kochen.\nRinderhack in einer Pfanne ohne zusätzliches Fett krümelig anbraten und mit Salz, Pfeffer, Paprikapulver und Kreuzkümmel würzen.\nKidneybohnen abspülen, mit dem Mais zum Hack geben und 3–4 Min. mit erwärmen.\nAuf dem Reis servieren.", "32": "Basmatireis nach Packungsangabe kochen, falls er nicht schon gekocht ist.\nGemüsepfanne in einem Topf oder einer Pfanne 5 Min. anbraten, Currypulver zugeben und kurz mitrösten.\nKokosmilch angießen und 5 Min. köcheln lassen.\nForelle salzen, in Stücke teilen, in die Sauce legen und 5–6 Min. bei kleiner Hitze gar ziehen lassen.\nMit dem Reis servieren.", "33": "Kartoffeln in Scheiben schneiden, Zwiebel würfeln.\nOlivenöl in einer Pfanne erhitzen und die Kartoffeln 8–10 Min. goldbraun braten.\nZwiebel dazugeben und 3 Min. mitbraten, mit Salz, Pfeffer und Paprikapulver würzen.\nHüttenkäse kalt dazu essen oder kurz untermischen.", "34": "Hähnchenbrust in Streifen schneiden, würzen und in einer Pfanne 6–8 Min. durchbraten, abkühlen lassen.\nTomaten und Gurke in grobe Stücke schneiden.\nAlles mit Olivenöl, Zitronensaft oder Essig, Oregano, Salz und Pfeffer vermengen.\nFeta darüberbröseln.", "35": "Zucchini mit einem Spiralschneider zu Nudeln schneiden, alternativ mit einem Sparschäler in lange Streifen hobeln.\nPassierte Tomaten in einer Pfanne mit Salz, Pfeffer und Oregano 5 Min. einkochen lassen.\nHähnchen in Streifen schneiden und in der Sauce erwärmen.\nZucchini-Nudeln 2–3 Min. in der Sauce ziehen lassen, damit sie bissfest bleiben.\nMit Parmesan bestreuen.", "36": "Ofen auf 200 °C vorheizen.\nKartoffeln würfeln, mit der Gemüsepfanne und Olivenöl mischen, salzen und pfeffern.\nAuf einem Blech 25–30 Min. backen, dabei einmal wenden.\nFeta darübergeben und weitere 5 Min. backen.", "37": "Reis nach Packungsangabe kochen.\nWokgemüse in einer heißen Pfanne oder im Wok 5 Min. anbraten.\nGarnelen dazugeben und 3–4 Min. braten, bis sie rosa sind.\nMit Sojasauce ablöschen und mit dem Reis servieren.", "38": "Reis nach Packungsangabe kochen.\nTofu abtropfen lassen, würfeln und in einer beschichteten Pfanne 6–8 Min. knusprig braten.\nGemüsepfanne dazugeben und 5 Min. mitbraten.\nMit Sojasauce würzen und auf dem Reis servieren.", "39": "Putenhack mit Salz, Pfeffer und etwas Oregano verkneten und zu kleinen Bällchen formen.\nBällchen in einer beschichteten Pfanne rundum 5 Min. anbraten.\nPassierte Tomaten angießen und 10 Min. köcheln lassen.\nNudeln nach Packungsangabe kochen und mit den Bällchen anrichten, mit Parmesan bestreuen.", "40": "Süßkartoffeln würfeln, mit etwas Olivenöl, Salz und Pfeffer auf einem Blech bei 200 °C 20–25 Min. rösten.\nLachs salzen, pfeffern und in der Pfanne 3–4 Min. pro Seite braten.\nSalat waschen und auf einem Teller anrichten.\nSüßkartoffeln und Lachs darauf verteilen, mit dem restlichen Öl und Zitronensaft beträufeln.", "41": "Reis nach Packungsangabe kochen.\nPaprika würfeln und in einem Topf 3 Min. anbraten.\nPassierte Tomaten und abgespülte Kidneybohnen zugeben, mit Chili, Kreuzkümmel, Paprikapulver, Salz und Pfeffer würzen.\n15 Min. köcheln lassen und auf dem Reis servieren.", "42": "Blumenkohl fein reiben oder im Mixer zu reisgroßen Stücken zerkleinern.\nHähnchenbrust würfeln und in Olivenöl 6–8 Min. anbraten.\nCurrypulver zugeben, kurz mitrösten und mit der Kokosmilch ablöschen. 5 Min. köcheln lassen.\nBlumenkohlreis in einer Pfanne 4–5 Min. bissfest garen, mit Salz würzen.\nCurry auf dem Blumenkohlreis servieren.", "43": "Skyr in eine Schüssel geben.\nSchokolade fein hacken oder raspeln.\nHaferflocken und Schokolade unterrühren, nach Wunsch mit etwas Kakao bestäuben.", "44": "Tomaten waschen und in Stücke schneiden.\nMit dem Hüttenkäse mischen und mit Salz, Pfeffer und Kräutern abschmecken.", "45": "Riegel auspacken und essen. Am besten nach dem Training oder als Snack zwischendurch.", "46": "Banane schälen und in Scheiben schneiden.\nErdnussbutter darüberstreichen oder dazu essen.", "47": "Karotten schälen und in Sticks schneiden, Gurke ebenfalls in Sticks schneiden.\nHummus in ein Schälchen geben und die Gemüsesticks dazu essen.", "48": "Erdbeeren waschen, putzen und in Stücke schneiden.\nMit dem Magerquark verrühren, nach Wunsch mit Zimt oder Süßstoff abschmecken.", "49": "Mandeln, Walnüsse und Cashews mischen.\nIn einer Dose aufbewahren und portionsweise essen.", "50": "Eier in kochendes Wasser geben und 8–10 Min. hart kochen.\nMit kaltem Wasser abschrecken und pellen.\nMit etwas Salz essen.", "51": "Milch und Whey-Protein in einem Shaker oder Mixer 20 Sekunden schütteln bzw. mixen.\nWer es säuerlich mag, nimmt stattdessen Buttermilch. Das spart etwas Kalorien."};
 (function migriere(){
  try{
@@ -614,7 +612,9 @@ const S=Object.assign(DEFAULTS(),GESPEICHERT);
 /* ---------- Native App (Capacitor) ---------- */
 let nativTimer=null;
 function nativSichern(json){const P=PL("Preferences");if(!P)return;clearTimeout(nativTimer);nativTimer=setTimeout(()=>{P.set({key:"fitplan",value:json}).catch(e=>logWarn("speicher","Native Sicherung fehlgeschlagen: "+e.message));},400);}
-const save=()=>{try{const j=JSON.stringify(S);localStorage.setItem("fitplan",j);if(NATIV)nativSichern(j);}catch(e){logErr("speicher","Speichern fehlgeschlagen: "+e.message)}};
+let remTimer=null;
+const save=()=>{try{const j=JSON.stringify(S);localStorage.setItem("fitplan",j);if(NATIV)nativSichern(j);}catch(e){logErr("speicher","Speichern fehlgeschlagen: "+e.message)}
+ clearTimeout(remTimer);remTimer=setTimeout(()=>{try{remSync()}catch(e){}},1500);};
 // iOS kann den Web-Speicher bei Platzmangel leeren: dann aus dem nativen Speicher zurückholen
 if(NATIV&&!localStorage.getItem("fitplan")){const P=PL("Preferences");if(P)P.get({key:"fitplan"}).then(r=>{if(r&&r.value){localStorage.setItem("fitplan",r.value);location.reload();}}).catch(()=>{});}
 function haptik(ms){const H=PL("Haptics");if(H){try{if(ms>=150)H.notification({type:"SUCCESS"});else H.impact({style:ms>=40?"MEDIUM":"LIGHT"});}catch(e){}return;}try{if(navigator.vibrate)navigator.vibrate(ms);}catch(e){}}
@@ -668,7 +668,6 @@ function tagLabel(wk,i){const d=dateOf(wk,i),h=dISO(wk,i)==todayISO();
 function wkShift(n){S.wkLock=true;S.wk=iso((()=>{const d=dateOf(S.wk,0);d.setDate(d.getDate()+n*7);return d})());save();render();}
 function isThisWeek(){return S.wk==weekOf(0);}
 function goToday(){S.wk=weekOf(0);S.day=dayIndex(new Date());save();render();}
-function wkFree(){S.wkLock=false;}
 function subTabs(list){return `<div class="sub">${list.map(([k,n])=>`<button class="${sub[tab]==k?'on':''}" onclick="sub[tab]='${k}';render()">${n}</button>`).join("")}</div>`;}
 function rdbHinweis(){
  if(typeof RDB!=="undefined")return "";
@@ -677,7 +676,7 @@ function rdbHinweis(){
 }
 let lastView="";
 const TITEL={plan:"Planen",fit:"Training",prog:"Fortschritt",more:"Mehr"};
-const MEHR=[["profil","Profil & Gewicht","👤"],["ziele","Ziele & Nährwerte","🎯"],["training","Training & Pausen","⏱"],["ki","Foto-Analyse","📷"],["daten","Daten & Sicherung","💾"],["info","Über die App","ℹ️"],["recht","Rechtliches","§"]];
+const MEHR=[["profil","Profil & Gewicht","👤"],["ziele","Ziele & Nährwerte","🎯"],["training","Training & Pausen","⏱"],["erinnerung","Erinnerungen","🔔"],["ki","Foto-Analyse","📷"],["daten","Daten & Sicherung","💾"],["info","Über die App","ℹ️"],["recht","Rechtliches","§"]];
 function kopf(){
  if(tab=="eat")return "";
  if(tab=="more"&&S.mtab){const e=MEHR.find(x=>x[0]==S.mtab);return `<div class="ph"><div class="tl"><button class="back" aria-label="Zurück zu Mehr" onclick="S.mtab=null;render()">‹</button><h1 style="font-size:22px">${e?e[1]:"Mehr"}</h1></div></div>`;}
@@ -1031,7 +1030,7 @@ function viewShop(){
  const {agg,gruppen}=shopListe(),sw=S.shopWk,vor=S.vorrat||{};
  const alleKeys=window._shopKeys,offen=alleKeys.filter(k=>!vor[k]);
  const abgehakt=offen.filter(k=>S.done[sw+k]).length;
- let h=`<div class="wkpick"><button class="nav" onclick="shopShift(-1)">‹</button><span>${fmtWeek(sw)}</span><button class="nav" onclick="shopShift(1)">›</button></div>`;
+ let h=`<div class="wkpick"><button class="nav" aria-label="Vorherige Woche" onclick="shopShift(-1)">‹</button><span>${fmtWeek(sw)}</span><button class="nav" aria-label="Nächste Woche" onclick="shopShift(1)">›</button></div>`;
  if(!alleKeys.length)return h+`<div class="card">Für diese Woche ist nichts geplant. Wähle zuerst Gerichte im Wochenplan.</div>`;
  h+=`<div class="card"><h4>Einkaufsliste</h4><div class="row"><span>${offen.length} Posten</span><span>${abgehakt} erledigt</span></div>
  <div class="bar"><i style="width:${offen.length?Math.round(abgehakt/offen.length*100):0}%"></i></div></div>`;
@@ -1042,9 +1041,10 @@ function viewShop(){
   h+=`</div>`;});
  const da=alleKeys.filter(k=>vor[k]);
  if(da.length)h+=`<div class="card"><h4>Schon im Vorrat (${da.length})</h4><small style="display:block;color:var(--mut);margin:-4px 0 8px">Diese Zutaten stehen nicht auf der Liste. Tippe auf „kaufen“, wenn sie fehlen.</small>${da.map(k=>{const i=alleKeys.indexOf(k),[n,u]=k.split("|");return `<div class="row"><span>${esc(n)} <small style="color:var(--mut)">${esc(mengeText(agg[k],u))}</small></span><button class="x" onclick="vorratSet(${i},false)">kaufen</button></div>`;}).join("")}</div>`;
- h+=`<button class="btn g" onclick="S.done={};save();render()">Haken zurücksetzen</button><button class="btn" onclick="shareList()">Liste teilen</button>`;
+ h+=`<button class="btn g" onclick="shopReset()">Haken zurücksetzen</button><button class="btn" onclick="shareList()">Liste teilen</button>`;
  return h;
 }
+function shopReset(wk){wk=wk||S.shopWk||S.wk;Object.keys(S.done||{}).forEach(k=>{if(k.startsWith(wk))delete S.done[k];});save();render();}
 function toggleShop(i,v){const k=(window._shopKeys||[])[i];if(!k)return;S.done[(S.shopWk||S.wk)+k]=v;save();render();}
 function vorratSet(i,v){const k=(window._shopKeys||[])[i];if(!k)return;S.vorrat=S.vorrat||{};if(v)S.vorrat[k]=1;else delete S.vorrat[k];save();render();}
 function shopShift(n){const dd=dateOf(S.shopWk||S.wk,0);dd.setDate(dd.getDate()+n*7);S.shopWk=iso(dd);save();render();}
@@ -1096,7 +1096,7 @@ function cropB64(px){if(!photoImg)return null;const sc=Math.min(1,px/Math.max(ph
 function photoStart(){
  photoB64=null;photoImg=null;
  sheet(`<b>📷 Gericht per Foto schätzen</b>
- ${S.key?"":`<p style="font-size:14px;color:var(--danger)">Zuerst unter Mehr → Ziele einen API-Schlüssel eintragen.</p>`}
+ ${S.key?"":`<p style="font-size:14px;color:var(--danger)">Zuerst unter Mehr → Foto-Analyse einen API-Schlüssel eintragen.</p>`}
  <input class="n" id="pf" type="file" accept="image/*" capture="environment" onchange="photoPicked(this)">
  <img id="pimg" class="ph" style="display:none">
  <label>Hinweis (optional, z. B. „Nudeln mit Hähnchen, ca. 400 g“)</label><input class="n" id="ph" placeholder="Hinweis zum Gericht">
@@ -1112,7 +1112,7 @@ function photoPicked(inp){const f=inp.files[0];if(!f)return;
  img.onerror=()=>logErr("foto","Bild konnte nicht gelesen werden",{typ:f.type,groesse:f.size});
  img.src=URL.createObjectURL(f);}
 async function photoRun(){
- if(!S.key){logErr("foto","Analyse ohne API-Schlüssel gestartet");toast("Bitte zuerst einen API-Schlüssel eintragen. Du findest ihn unter Mehr → Foto-KI.");return;}
+ if(!S.key){logErr("foto","Analyse ohne API-Schlüssel gestartet");toast("Bitte zuerst einen API-Schlüssel eintragen. Du findest ihn unter Mehr → Foto-Analyse.");return;}
  if(!photoB64){logWarn("foto","Analyse ohne Bild gestartet");toast("Bitte zuerst ein Foto aufnehmen oder auswählen.");return;}
  const T0=performance.now();
  $("#pres").innerHTML=`<div class="spin">Analysiere Foto …</div>`;
@@ -1128,7 +1128,7 @@ async function photoRun(){
  const g1=document.getElementById("pgo");if(g1)g1.disabled=false;
  if(!r||!r.ok){
   const art=(r&&r.art)||"zeit";
-  const text=(r&&r.text)||(art=="ueberlastet"?"Der Dienst ist gerade ausgelastet. Versuche es in ein paar Minuten erneut.":(art=="schluessel"?"Der API-Schlüssel wurde abgelehnt. Prüfe ihn unter Mehr → Foto-KI.":"Die Analyse hat zu lange gedauert. Versuche es erneut oder verkleinere die Bildgröße unter Mehr → Foto-KI."));
+  const text=(r&&r.text)||(art=="ueberlastet"?"Der Dienst ist gerade ausgelastet. Versuche es in ein paar Minuten erneut.":(art=="schluessel"?"Der API-Schlüssel wurde abgelehnt. Prüfe ihn unter Mehr → Foto-Analyse.":"Die Analyse hat zu lange gedauert. Versuche es erneut oder verkleinere die Bildgröße unter Mehr → Foto-Analyse."));
   logErr("foto","Analyse fehlgeschlagen",{dauer:Math.round(performance.now()-T0),art,fehler:r&&r.error});
   $("#pres").innerHTML=`<p style="font-size:14px">${esc(text)}</p>
    <button class="btn" onclick="photoRun()">Erneut versuchen</button>
@@ -1145,27 +1145,6 @@ async function photoRun(){
   logInfo("foto","Analyse erfolgreich",{dauer:Math.round(performance.now()-T0),weg:used});
  }catch(e){logErr("foto","Antwort nicht lesbar: "+e.message,{rohtext:(r.text||"").slice(0,400)});
   $("#pres").innerHTML=`<p style="color:var(--danger);font-size:14px">Die Antwort konnte nicht gelesen werden. Versuche es erneut.</p><button class="btn" onclick="photoRun()">Erneut versuchen</button>`;}
-}
-async function askText(model,prompt,tokens){
- const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),10000);
- const t0=performance.now();
- logInfo("api","Textaufruf startet",{modell:model,tokens});
- try{
-  const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/"+encodeURIComponent(model)+":generateContent",
-   {method:"POST",signal:ctl.signal,headers:{"Content-Type":"application/json","x-goog-api-key":S.key},
-    body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});
-  const txt=await r.text();
-  let j=null;try{j=JSON.parse(txt)}catch(_){}
-  logInfo("api","Textaufruf Antwort",{modell:model,status:r.status,ms:Math.round(performance.now()-t0),laenge:txt.length});
-  if(!r.ok){logErr("api","Textaufruf fehlgeschlagen",{status:r.status,antwort:txt.slice(0,400)});return {ok:false,error:"HTTP "+r.status+" "+(j?.error?.message||txt.slice(0,200))};}
-  if(!j)return {ok:false,error:"Antwort war kein JSON: "+txt.slice(0,200)};
-  const t=(j.candidates?.[0]?.content?.parts||[]).map(p=>p.text||"").join("");
-  if(t)return {ok:true,text:t,how:"generateContent (Text)"};
-  const fr=j.candidates?.[0]?.finishReason;
-  logWarn("api","Antwort ohne Text",{modell:model,finishReason:fr,antwort:txt.slice(0,400)});
-  return {ok:false,error:"Antwort ohne Text"+(fr?" (finishReason: "+fr+")":"")+". Rohantwort: "+txt.slice(0,200)};
- }catch(e){logErr("api","Textaufruf Ausnahme: "+e.message,{modell:model,name:e.name});return {ok:false,error:(e.name||"Fehler")+": "+e.message};}
- finally{clearTimeout(to);}
 }
 const modelsTriedBad=new Set();
 async function askAI(model,prompt,tokens,noThink){
@@ -1258,15 +1237,6 @@ async function askAI(model,prompt,tokens,noThink){
  setLastErr("Bildanalyse: "+last);
  return {ok:false,error:last,art:"zeit"};
 }
-function outText(j){
- if(!j)return "";
- if(typeof j.output_text=="string"&&j.output_text)return j.output_text;
- if(Array.isArray(j.outputs))for(const o of j.outputs){const t=outText(o);if(t)return t;}
- if(Array.isArray(j.steps))for(const o of j.steps){const t=outText(o);if(t)return t;}
- if(Array.isArray(j.content))for(const o of j.content){const t=outText(o);if(t)return t;}
- if(typeof j.text=="string"&&j.text)return j.text;
- return "";
-}
 let LIST=null,LASTANY=null,LISTERR=null,LOG=[];
 async function listModels(){
  if(LIST)return LIST;
@@ -1295,10 +1265,6 @@ async function listModels(){
  logInfo("api","Modelle ausgewählt",{anzahl:out.length,erste:out.slice(0,6)});
  LIST=out;return out;
 }
-function photoTimeout(){
- $("#pres").innerHTML=`<p style="font-size:14px">Die KI hat nicht innerhalb von 5 Sekunden geantwortet. Du kannst es erneut versuchen oder die Mahlzeit direkt aus der Datenbank zusammenstellen (sofort, offline).</p><button class="btn" style="background:#0d9488" onclick="builder([],$('#ph')?$('#ph').value:'','')">🔎 Datenbank öffnen</button>`;
- $("#pgo").disabled=false;}
-let photoRes=null;
 function findFood(n){n=(n||"").toLowerCase().trim();if(!n)return null;
  const ex=FOODS.find(f=>f.n.toLowerCase()==n);if(ex)return ex;
  const w=n.split(/\s+/).filter(Boolean);
@@ -1335,7 +1301,7 @@ function bRender(){
  $("#bl").innerHTML=B.items.map((x,i)=>`<div class="meal"><div style="flex:1"><b>${esc(x.n)}</b><small>${Math.round(x.k*x.g/100)} kcal · ${Math.round(x.p*x.g/100)} g Eiweiß</small></div>
  <input class="n" style="width:78px;margin:0" type="number" inputmode="decimal" value="${Math.round(x.g)}" onchange="bG(${i},this.value)"><span>g</span><button class="x" onclick="bDel(${i})">✕</button></div>`).join("")||"<small>Noch nichts hinzugefügt.</small>";
  const t=bSum();$("#bt").innerHTML=`<b>${Math.round(t.k)} kcal</b> · ${Math.round(t.p)} g Eiweiß · ${Math.round(t.h)} g KH · ${Math.round(t.f)} g Fett<small style="display:block;color:var(--mut)">Gesamtmenge ca. ${Math.round(t.g)} g</small>`;}
-function bG(i,v){B.items[i].g=parseFloat(v.replace(",","."))||0;bRender();}
+function bG(i,v){B.items[i].g=Math.max(0,parseFloat(v.replace(",","."))||0);bRender();}
 function bDel(i){B.items.splice(i,1);bRender();}
 function bSearch(){const q=$("#bs").value.toLowerCase().trim();
  if(!q){$("#bsr").innerHTML="";return;}
@@ -1396,7 +1362,6 @@ function eignetFuerVorschlag(m){
  if(f.maxT&&m.t&&m.t>f.maxT)return false;
  return true;
 }
-function vorschlagMoeglich(){return MEALS.concat(S.custom||[]).length>=8;}
 function zufall(n){return Math.floor(Math.random()*n);}
 function mische(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=zufall(i+1);const t=b[i];b[i]=b[j];b[j]=t;}return b;}
 // Bewertung eines Tages: Abstand zu Kalorien- und Eiweißziel, Eiweiß-Unterschreitung zählt mehr
@@ -1475,7 +1440,7 @@ function vorschlagAnwenden(nochmal){
  for(let d=0;d<7;d++){SLOTS.forEach(([s])=>delete S.plan[pk(wk,d)+s]);}
  for(let d=0;d<7;d++){if(!v.gewaehlt[d])continue;const {tag,q}=v.gewaehlt[d];
   Object.keys(tag).forEach(sl=>{(S.plan[pk(wk,d)+sl]=S.plan[pk(wk,d)+sl]||[]).push({id:tag[sl].id,q});});}
- S.done={};save();
+ Object.keys(S.done||{}).forEach(k=>{if(k.startsWith(wk))delete S.done[k];});save();
  logInfo("plan","Wochenvorschlag übernommen",{woche:wk,kcal:Math.round(kSum/7),protein:Math.round(pSum/7)});
  toast("Vorschlag übernommen. Du kannst jedes Gericht einzeln ändern.");render();
 }
@@ -1521,7 +1486,6 @@ function planWeek(wk,still){
  S.trPlan=splitName();
  if(!still)logInfo("training","Woche geplant",{woche:wk,vorlage:splitName(),tage:trDays().join(",")});
 }
-function planAlleWochen(){Object.keys(S.train).length&&0;["-1","0","1","2"].forEach(()=>{});}
 function viewTrainPlan(){
  let h=`<div class="card"><h4>Standardplan</h4>
  <small style="display:block;color:var(--mut);margin:-4px 0 10px">Lege einmal fest, an welchen Tagen du trainierst und welche Vorlage gilt. Danach wird jede Woche automatisch geplant.</small>
@@ -1598,12 +1562,8 @@ function autoPlanWeeks(){
  if(geaendert)save();
 }
 
-const exByName=n=>EXERCISES.find(e=>e.n===n)||(S.ex||[]).find(e=>e.n===n);
 const allEx=()=>(S.ex||[]).concat(EXERCISES);
 const exById=n=>allEx().find(e=>e.n===n);
-function setsOf(d){return S.sets[d]||((S.train[d]||{})[Object.keys(S.train[d]||{})[0]]);}
-function trKey(s,i,l){return s+"|"+i+"|"+l;}
-function exList(s,i){return (S.train[s+i]||[]).map(n=>exById(n)).filter(Boolean);}
 function volOf(d,wk,i){ // Gesamtvolumen eines Tages in kg
  const t=S.train[wk+"|"+i]||[];
  let kg=0,reps=0;
@@ -1647,7 +1607,7 @@ function tagVorbereiten(d,key){ // fehlende Sätze aus dem Plan anlegen, Gewicht
    if(pl&&pl.saetze>0){S.sets[d][n]=[];for(let k=0;k<pl.saetze;k++)S.sets[d][n].push({kg:0,reps:repsVon(pl.wieder),pf:1});geaendert=true;}
   }
   const sets=S.sets[d][n]||[];
-  if(sets.length&&sets.every(x=>!x.u&&(!x.kg||x.kg==20||x.pf))&&!(S.prDone&&S.prDone[d+"|"+n])){
+  if(sets.length&&sets.every(x=>!x.u&&!x.vs&&(!x.kg||x.kg==20||x.pf))&&!(S.prDone&&S.prDone[d+"|"+n])){
    const l=letzteSaetze(n,d),sk=stdKg(n);
    sets.forEach((x,k)=>{const q=l?l.sets[Math.min(k,l.sets.length-1)]:null;const kg=q?(+q.kg||0):sk;
     if(x.kg!=kg){x.kg=kg;x.pf=1;geaendert=true;}});
@@ -1655,6 +1615,45 @@ function tagVorbereiten(d,key){ // fehlende Sätze aus dem Plan anlegen, Gewicht
  });
  if(geaendert)save();
 }
+/* ---------- Steigerungsvorschlag: aus der letzten Einheit und dem Plan ---------- */
+function zielWdh(pi){ // Wiederholungsbereich aus dem Plan
+ const w=pi?pi.wieder:null;if(w==null)return null;
+ if(typeof w=="number")return w>0?{lo:w,hi:w}:null;
+ const t=String(w),m=t.match(/(\d+)\s*[–-]\s*(\d+)/);
+ if(m)return {lo:+m[1],hi:+m[2]};
+ const z=parseInt(t);return z?{lo:z,hi:z,rampe:/aufsteigend/.test(t)}:null;}
+const kgTxt=v=>String(Math.round(v*100)/100).replace(".",",");
+function kgSchritt(n,kg){const e=exById(n),bein=(e&&e.m=="Beine")||/kreuzheben/i.test(n);return kg<20?1:(bein&&kg>=60?5:2.5);}
+function steigerung(n,d,pi){
+ const lz=letzteSaetze(n,d);if(!lz)return null;
+ const art=uebArt(n),alle=lz.sets.filter(x=>(+x.reps||0)>0);if(!alle.length)return null;
+ const top=Math.max(...alle.map(x=>+x.reps)),z=zielWdh(pi)||{lo:top,hi:top};
+ const soll=pi&&pi.saetze>0?pi.saetze:alle.length,kg=Math.max(...alle.map(x=>+x.kg||0));
+ const s=z.rampe?alle.filter(x=>(+x.kg||0)==kg):alle; // bei aufsteigenden Sätzen zählt der schwerste
+ const wd=s.map(x=>+x.reps),mn=Math.min(...wd),mx=Math.max(...wd),brauch=z.rampe?1:soll;
+ const ein=art=="zeit"?" s":" Wdh",war=(mn==mx?s.length+" × "+mn:wd.join(", "))+(art=="zeit"?" s":(mn==mx?"":" Wdh"));
+ if(art=="zeit"||!kg){ // Haltezeit oder Körpergewicht: über Sekunden bzw. Wiederholungen steigern
+  const voll=s.length>=brauch&&mn>=z.hi,plus=art=="zeit"?5:1,neu=voll?mn+plus:(mn<z.lo?z.lo:z.hi);
+  return {reps:neu,txt:voll?`Letztes Mal ${war} geschafft → heute ${neu}${ein} je Satz${art=="koerper"?" oder mit Zusatzgewicht":""}`:`Letztes Mal ${war} → heute ${brauch} × ${neu}${ein} als Ziel`};}
+ const gleich=s.every(x=>(+x.kg||0)==kg);
+ if(s.length>=brauch&&gleich&&mn>=z.hi){const neu=kg+kgSchritt(n,kg);
+  return {kg:neu,reps:z.lo,txt:`Letztes Mal ${war} mit ${kgTxt(kg)} kg geschafft → heute ${kgTxt(neu)} kg`};}
+ if(gleich&&z.lo>3&&mx<z.lo-2){const neu=Math.max(2.5,Math.round(kg*0.9/2.5)*2.5);
+  if(neu<kg)return {kg:neu,reps:z.lo,txt:`Letztes Mal nur ${war} mit ${kgTxt(kg)} kg → heute ${kgTxt(neu)} kg, bis ${z.lo} Wdh sauber gehen`};}
+ return {kg,reps:z.hi,txt:`Letztes Mal ${gleich?war+" mit":"bis"} ${kgTxt(kg)} kg → heute gleiches Gewicht, Ziel ${brauch} × ${z.hi}`};}
+function vsNehmen(d,n){const v=steigerung(n,d,planInfo(S.wk+"|"+S.day,n)),sets=(S.sets[d]&&S.sets[d][n])||[];if(!v||!sets.length)return;
+ sets.forEach(x=>{if(x.u)return;if(v.kg!=null)x.kg=v.kg;x.reps=v.reps;x.vs=1;delete x.pf;});
+ save();render();toast("Vorschlag eingetragen. Du kannst jeden Satz noch ändern.");}
+function setOk(d,n,k,ps){const s=(S.sets[d]&&S.sets[d][n])||[],x=s[k];if(!x)return;
+ if(x.ok){delete x.ok;if(x.au){delete x.u;delete x.au;}}else{x.ok=1;if(!x.u){x.u=1;x.au=1;}delete x.pf;}
+ S.prDone=S.prDone||{};const key=d+"|"+n,alle=s.every(q=>q.ok);
+ if(alle)S.prDone[key]=1;else delete S.prDone[key];
+ save();render();
+ if(!x.ok)return;haptik(30);
+ const offen=(S.train[S.wk+"|"+S.day]||[]).some(m=>!prDone(d,m));
+ if(!offen){restStop();toast("Training geschafft. Stark!");logInfo("training","Einheit abgeschlossen",{datum:d});}
+ else if(S.restAuto!==false&&d==todayISO())restStart(ps);}
+function setWeg(d,n){const s=(S.sets[d]&&S.sets[d][n])||[];if(s.length<2){toast("Ein Satz muss bleiben. Mit ✕ entfernst du die ganze Übung.");return;}s.pop();save();render();}
 function uebArt(n){const e=exById(n),s=((e&&e.s)||"").toLowerCase();
  if(/sekunden/.test(s))return "zeit";
  if(/ohne gerät|klimmzugstange|barren|hängend|römisches bankerl|gewicht optional/.test(s))return "koerper";
@@ -1666,7 +1665,7 @@ function uebHinweis(n){const a=uebArt(n);return a=="koerper"?" · Körpergewicht
 let restT=null,restEnd=0;
 function restBar(){let b=document.getElementById("restbar");
  if(!b){b=document.createElement("div");b.id="restbar";
-  b.style.cssText="position:fixed;left:12px;right:12px;bottom:76px;z-index:60;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;display:none;align-items:center;justify-content:space-between;box-shadow:0 6px 24px rgba(0,0,0,.25)";
+  b.style.cssText="position:fixed;left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:60;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;display:none;align-items:center;justify-content:space-between;box-shadow:0 6px 24px rgba(0,0,0,.25)";
   document.body.appendChild(b);}return b;}
 function restStart(sek){
  try{if(restT)clearInterval(restT);}catch(e){}
@@ -1715,7 +1714,6 @@ function rAvgPace(){const ab=tagMinus(todayISO(),28),l=rLogs().filter(x=>x.d>=ab
 function rRaceInfo(){const r=S.run||{};if(!r.dist||!r.date)return "";
  const km=RDIST[r.dist],pace=r.goalSec&&km?r.goalSec/km:0,avg=rAvgPace();
  return pace?`<div class="row"><span>Zielpace</span><span>${fmtDur(pace)} /km${avg?" · aktuell "+fmtDur(avg):""}</span></div>`:"";}
-function trModus(){const m=S.tmode=="lauf";return `<div class="chips" style="margin-bottom:10px"><button class="${!m?'p':''}" onclick="S.tmode='kraft';save();render()">Kraft</button><button class="${m?'p':''}" onclick="S.tmode='lauf';save();render()">Laufen</button></div>`;}
 function viewRun(){
  if(typeof RUN_DB==="undefined")return `<div class="card"><b>Laufpläne nicht geladen</b><small style="display:block;color:var(--mut);margin-top:4px">Die Datei laufplaene.js fehlt. Lade sie neben essensplan.html hoch und öffne die App neu.</small></div>`;
  let s3=S.rsub||(rProg()?"week":"goal");
@@ -2021,16 +2019,19 @@ function tDay(){
   const rekord=best0>0&&jetzt>best0+0.05&&echteEinheit(d,n);
   const pi=planInfo(key,n),ps=restSek(pi);
   const planTxt=pi?`Plan: ${pi.saetze} × ${pi.wieder}${pi.r!=null?" · "+pi.r+" Wdh. im Tank":""}${pi.p?" · Pause "+fmtPause(pi.p):""}`:"";
-  const lzTxt=lz?`Letztes Mal (${lz.d.slice(8,10)}.${lz.d.slice(5,7)}.): ${lz.sets.map(x=>satzText(n,x)).join(", ")}`:"Noch kein früheres Training dieser Übung.";
+  const lzTxt=lz?`Letztes Mal (${+lz.d.slice(8,10)}.${+lz.d.slice(5,7)}.): ${lz.sets.map(x=>satzText(n,x)).join(", ")}`:"Noch kein früheres Training dieser Übung.";
+  const fertig=prDone(d,n),vs=!fertig&&d>=todayISO()?steigerung(n,d,pi):null;
+  const vsOffen=vs&&!sets.some(x=>x.u)&&sets.some(x=>(vs.kg!=null&&(+x.kg||0)!=vs.kg)||(+x.reps||0)!=vs.reps);
   h+=`<div class="card"><div class="row"><b>${esc(e?e.n:n)}</b><span>${hatAnl(n)?`<button class="btn g" style="margin:0 6px 0 0;width:auto;min-height:32px;padding:5px 10px;font-size:13px;display:inline-flex" onclick="uebAnl('${jq(n)}')">▶ Anleitung</button>`:""}<button class="x" onclick="exRemove('${d}','${jq(n)}')">✕</button></span></div>
   ${e?`<small style="color:var(--mut);display:block;margin-bottom:2px">${esc(e.m)} · ${esc(e.g.join(", "))}</small>`:""}
   <small style="color:var(--mut);display:block;margin-bottom:8px">${planTxt?"<b>"+planTxt+"</b><br>":""}${lzTxt}${uebHinweis(n)}${rekord?' <b style="color:var(--brand)">· 🏆 Neuer Rekord (geschätztes 1RM '+Math.round(jetzt*10)/10+' kg)</b>':""}</small>
-  ${sets.map((x,k)=>`<div class="row" style="align-items:center"><span>Satz ${k+1}</span><span><input class="n" style="width:74px;display:inline-block;margin:0 4px 0 0" type="number" inputmode="decimal" value="${x.kg}" onchange="setEdit('${d}','${jq(n)}',${k},'kg',this.value)" onfocus="this.select()">${uebArt(n)=="gewicht"?"kg":"kg +"}
-  <input class="n" style="width:66px;display:inline-block;margin:0 4px" type="number" inputmode="numeric" value="${x.reps}" onchange="setEdit('${d}','${jq(n)}',${k},'reps',this.value)">${uebArt(n)=="zeit"?"s":"Wdh"}
-  <button class="x" onclick="setDel('${d}','${jq(n)}',${k})">✕</button></span></div>`).join("")}
-  <div class="brow"><button class="btn g" onclick="setAdd('${d}','${jq(n)}')">+ Satz</button>
+  ${vs?`<div class="vs"><span>↗ ${esc(vs.txt)}</span>${vsOffen?`<button onclick="vsNehmen('${d}','${jq(n)}')">Übernehmen</button>`:""}</div>`:""}
+  ${sets.map((x,k)=>{const ok=x.ok||fertig;return `<div class="satz ${ok?"ok":""}"><span class="sn">Satz ${k+1}</span><input class="n" type="number" inputmode="decimal" min="0" aria-label="Gewicht Satz ${k+1}" value="${x.kg}" onchange="setEdit('${d}','${jq(n)}',${k},'kg',this.value)" onfocus="this.select()"><i>${uebArt(n)=="gewicht"?"kg":"kg +"}</i>
+  <input class="n" type="number" inputmode="numeric" min="0" aria-label="${uebArt(n)=="zeit"?"Sekunden":"Wiederholungen"} Satz ${k+1}" value="${x.reps}" onchange="setEdit('${d}','${jq(n)}',${k},'reps',this.value)" onfocus="this.select()"><i>${uebArt(n)=="zeit"?"s":"Wdh"}</i>
+  <button class="chkc ${ok?"on":""}" aria-label="Satz ${k+1} ${ok?"als offen markieren":"abhaken"}" onclick="setOk('${d}','${jq(n)}',${k},${ps})">${CHK}</button></div>`;}).join("")}
+  <div class="brow"><button class="btn g" onclick="setAdd('${d}','${jq(n)}')">+ Satz</button><button class="btn g" aria-label="Letzten Satz entfernen" onclick="setWeg('${d}','${jq(n)}')">− Satz</button>
   <button class="btn g" onclick="restStart(${ps})">⏱ ${fmtPause(ps)}</button>
-  <button class="btn ${prDone(d,n)?'':'g'}" onclick="prTick('${d}','${jq(n)}')">${prDone(d,n)?"✓ Erledigt":"Erledigt"}</button></div></div>`;});
+  <button class="btn ${fertig?'':'g'}" onclick="prTick('${d}','${jq(n)}')">${fertig?"✓ Fertig":"Fertig"}</button></div></div>`;});
  h+=`<div class="card"><h4>Übung hinzufügen</h4><input class="n" id="exq" oninput="exSearch()" placeholder="Übung suchen, z. B. Kniebeugen"><div id="exres"></div>
  <div class="brow"><button class="btn g" onclick="exNewForm()">+ Eigene</button><button class="btn g" onclick="S.tsub='lib';save();render()">Alle Übungen</button></div><button class="btn g" onclick="gOpen()">🎮 Pausenspiele</button></div>
  <details class="card"><summary>Ganze Einheit einsetzen</summary><small style="display:block;color:var(--mut);margin:-4px 0 8px">Setzt eine fertige Einheit deiner Vorlage auf diesen Tag.</small>
@@ -2052,9 +2053,7 @@ function setAdd(d,n){S.sets[d]=S.sets[d]||{};S.sets[d][n]=S.sets[d][n]||[];
  const last=S.sets[d][n].slice(-1)[0],l=letzteSaetze(n,d),std=stdKg(n),lz=l?l.sets.slice(-1)[0]:null;
  const kg=last?(+last.kg||0):(lz?(+lz.kg||0):std),reps=last?(last.reps||10):(lz?(lz.reps||10):10);
  S.sets[d][n].push({kg,reps,u:last&&last.u?1:undefined});save();render();}
-function setDel(d,n,k){S.sets[d][n].splice(k,1);save();render();}
-function setEdit(d,n,k,f,v){const q=S.sets[d][n][k];q[f]=parseFloat(String(v).replace(",","."))||0;q.u=1;delete q.pf;save();
- const vol=volOf(d,S.wk,S.day);const el=document.getElementById("tv");if(el)el.textContent=vol.kg+" kg";}
+function setEdit(d,n,k,f,v){const q=S.sets[d][n][k];q[f]=Math.max(0,parseFloat(String(v).replace(",","."))||0);q.u=1;delete q.au;delete q.pf;save();}
 function loadSplit(k,idx){
  const t=SPLITS[k]||SPLITS[splitName()];if(!t)return;
  const e=t.einheiten[idx===undefined?(trDays().indexOf(S.day)>=0?trDays().indexOf(S.day):0):idx];
@@ -2077,10 +2076,10 @@ function exNewSave(){const n=$("#en").value.trim();if(!n){toast("Bitte einen Nam
  save();logInfo("training","eigene Übung angelegt",{name:n});closeSheet();render();}
 function tPlan(){
  const wk=S.wk;
- let h=`<div class="wkpick"><button class="nav" onclick="wkShift(-1)">‹</button><span>${fmtWeek(wk)}</span><button class="nav" onclick="wkShift(1)">›</button></div>`;
+ let h=`<div class="wkpick"><button class="nav" aria-label="Vorherige Woche" onclick="wkShift(-1)">‹</button><span>${fmtWeek(wk)}</span><button class="nav" aria-label="Nächste Woche" onclick="wkShift(1)">›</button></div>`;
  if(S.trPlan!==splitName())autoPlanWeeks();
  h+=`<div class="card"><div class="row"><b>${esc(splitName())}</b><span>${trDays().length}× pro Woche</span></div>
- <small style="display:block;color:var(--mut)">Trainingstage: ${trDays().map(i=>WOCHENTAGE[i]).join(", ")} · Standardplan unter Übungen</small></div>`;
+ <small style="display:block;color:var(--mut)">Trainingstage: ${trDays().map(i=>WOCHENTAGE[i]).join(", ")} · ändern unter Plan</small></div>`;
  let gesamt=0,erledigt=0,ruhe=true;
  for(let i=0;i<7;i++){
   const key=wk+"|"+i,t=S.train[key]||[],d=dISO(wk,i),ist=trDays().includes(i),vol=volOf(d,wk,i);
@@ -2105,6 +2104,7 @@ function prSets(d,n){const s=(S.sets[d]&&S.sets[d][n])||[];if(!s.length)return "
  return satzText(n,best);}
 function prTick(d,n){S.prDone=S.prDone||{};const k=d+"|"+n;
  if(S.prDone[k])delete S.prDone[k];else S.prDone[k]=1;
+ ((S.sets[d]&&S.sets[d][n])||[]).forEach(x=>{if(S.prDone[k])x.ok=1;else delete x.ok;});
  logInfo("training",S.prDone[k]?"Übung abgehakt":"Haken zurückgenommen",{datum:d,uebung:n});
  save();render();}
 function tProg(){
@@ -2260,36 +2260,37 @@ function viewWeight(){
   const letzte=+w[ks[ks.length-1]],vorher=ks.length>1?+w[ks[ks.length-2]]:letzte;
   const min=Math.min(...ks.map(k=>+w[k])),max=Math.max(...ks.map(k=>+w[k]));
   h+=`<div class="card"><h4>Überblick</h4>
-  <div class="row"><b>Aktuell</b><span>${letzte.toFixed(1)} kg <small style="color:var(--mut)">(${ks[ks.length-1]})</small></span></div>
+  <div class="row"><b>Aktuell</b><span>${letzte.toFixed(1)} kg <small style="color:var(--mut)">(${fmtDat(ks[ks.length-1])})</small></span></div>
   <div class="row"><span>Veränderung zur letzten Messung</span><span>${(letzte-vorher>=0?"+":"")+(letzte-vorher).toFixed(1)} kg</span></div>
   ${start?`<div class="row"><span>Seit Start</span><span>${(letzte-start>=0?"+":"")+(letzte-start).toFixed(1)} kg</span></div>`:""}
   ${ziel?`<div class="row"><span>Bis zum Ziel</span><span>${(letzte-ziel).toFixed(1)} kg</span></div>${(()=>{const ges=Math.abs((start||letzte)-ziel),rest=Math.abs(letzte-ziel),pc=ges>0.05?Math.max(0,Math.min(100,Math.round((1-rest/ges)*100))):100;return `<div class="row"><span>Fortschritt zum Ziel</span><span>${pc} %</span></div><div class="bar"><i style="width:${pc}%"></i></div>`;})()}`:""}
   <div class="row"><span>Spanne</span><span>${min.toFixed(1)} – ${max.toFixed(1)} kg</span></div>
   <div class="row"><span>Messungen</span><span>${ks.length}</span></div></div>`;
   h+=wChart();
-  h+=`<details class="card"><summary>Alle Messungen</summary>${ks.slice(-20).reverse().map(k=>`<div class="row"><span>${k}</span><span>${(+w[k]).toFixed(1)} kg <button class="x" onclick="wDel('${k}')">✕</button></span></div>`).join("")}</details>`;
+  h+=`<details class="card"><summary>Alle Messungen</summary>${ks.slice(-20).reverse().map(k=>`<div class="row"><span>${fmtDat(k)}</span><span>${(+w[k]).toFixed(1).replace(".",",")} kg <button class="x" aria-label="Messung vom ${fmtDat(k)} löschen" onclick="wDel('${k}')">✕</button></span></div>`).join("")}</details>`;
   }
  return h+zielKarte;
 }
 function wAdd(){const d=$("#wd").value,v=parseFloat(($("#wv").value||"").replace(",","."));
  if(!d||!isFinite(v)){toast("Bitte Datum und Gewicht eingeben.");return;}
+ if(v<20||v>400){toast("Bitte ein Gewicht zwischen 20 und 400 kg eingeben.");return;}
+ if(d>todayISO()){toast("Das Datum liegt in der Zukunft.");return;}
  S.weight=S.weight||{};S.weight[d]=v;if(!S.wStart)S.wStart=v;
- save();logInfo("gewicht","Gewicht eingetragen",{datum:d,kg:v});render();}
-function wDel(k){delete S.weight[k];save();render();}
+ save();logInfo("gewicht","Gewicht eingetragen",{datum:d,kg:v});render();toast("Gewicht gespeichert: "+String(v).replace(".",",")+" kg.");}
+function wDel(k){if(!confirm("Messung vom "+fmtDat(k)+" löschen?"))return;delete S.weight[k];save();render();}
 /* ---------- EINSTELLUNGEN ---------- */
-function sTabs_alt(){const l=[["profil","Profil"],["ziele","Ziele"],["ki","Foto-KI"],["daten","Daten"],["info","Info"]];
- return `<div class="sub">${l.map(([k,n])=>`<button class="${(S.mtab||"profil")==k?'on':''}" onclick="S.mtab='${k}';save();render()">${n}</button>`).join("")}</div>`;}
 function viewSettings(){
- if(S.mtab&&S.mtab!="menu"){const f={profil:sProfil,ziele:sZiele,training:sTraining,ki:sKI,daten:sDaten,info:sInfo,recht:sRecht}[S.mtab];if(f)return f();S.mtab=null;}
+ if(S.mtab&&S.mtab!="menu"){const f={profil:sProfil,ziele:sZiele,training:sTraining,erinnerung:sErinnerung,ki:sKI,daten:sDaten,info:sInfo,recht:sRecht}[S.mtab];if(f)return f();S.mtab=null;}
  const w=S.weight||{},ks=Object.keys(w).sort(),lw=ks.length?(+w[ks[ks.length-1]]).toFixed(1)+" kg":"";
  const info={profil:[S.age?S.age+" Jahre":"",S.height?S.height+" cm":"",lw].filter(Boolean).join(" · ")||"Alter, Größe, Gewicht und Ziel",
   ziele:S.kcal+" kcal · "+S.prot+" g Eiweiß"+(S.kh?" · "+S.kh+" g KH":""),
   training:"Satzpause "+fmtPause(S.restSek||90)+" · "+(S.restPlan===false?"immer gleich":"wie im Plan"),
+  erinnerung:(()=>{const r=rem(),a=[r.tr.on?"Training":"",r.wa.on?"Wasser":"",r.es.on?"Mahlzeiten":""].filter(Boolean);return a.length?a.join(", "):"Aus";})(),
   ki:S.key?"Schlüssel hinterlegt":"Kein Schlüssel eingetragen",
   daten:S.lastBackup?"Letzte Sicherung am "+new Date(S.lastBackup).toLocaleDateString("de-DE"):"Noch keine Sicherung",
   info:"Version "+PUBLIC_V,recht:"Datenschutz, Impressum, Gesundheitshinweis"};
  const li=([k,n,ic])=>`<button class="li" onclick="S.mtab='${k}';render()"><span class="ic2">${ic}</span><span class="t"><b>${n}</b><small>${esc(info[k])}</small></span><span class="chev">›</span></button>`;
- return `<div class="card list">${MEHR.slice(0,3).map(li).join("")}</div><div class="card list">${MEHR.slice(3).map(li).join("")}</div>`;
+ return `<div class="card list">${MEHR.slice(0,4).map(li).join("")}</div><div class="card list">${MEHR.slice(4).map(li).join("")}</div>`;
 }
 function sProfil(){
  const w=S.weight||{},ks=Object.keys(w).sort();
@@ -2336,6 +2337,8 @@ function sTraining(){return `<div class="card"><h4>Satzpause</h4>
  <input class="n" type="number" inputmode="numeric" min="10" max="900" value="${S.restSek||90}" onchange="restSetzen(this.value)">
  <div class="chips">${[45,60,90,120,180,240].map(x=>`<button class="${(S.restSek||90)==x?'p':''}" onclick="restSetzen(${x})">${fmtPause(x)}</button>`).join("")}</div>
  </div>
+ <div class="card"><div class="sw"><b>Pause automatisch starten</b><button class="swb ${S.restAuto!==false?"on":""}" role="switch" aria-checked="${S.restAuto!==false}" aria-label="Pause automatisch starten" onclick="S.restAuto=${S.restAuto===false};save();render()"></button></div>
+ <small style="display:block;color:var(--mut)">Sobald du im heutigen Training einen Satz abhakst, läuft die Pause von selbst los.</small></div>
  <div class="card"><h4>Pausenspiele</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">Während einer Satzpause kannst du in der Pausenleiste ein kurzes Spiel starten. Die Pause wird dadurch nicht länger.</small><button class="btn g" onclick="gOpen()">Spiele und Rekorde ansehen</button></div>`;}
 function zielFortschritt(){
  const start=S.wStart,ziel=S.wGoal,dEnde=S.wGoalDate;
@@ -2436,24 +2439,27 @@ function sDaten(){
  <div class="card"><h4>Zurücksetzen</h4>
  <button class="btn g" onclick="wipe('plan')">Wochenplan löschen</button>
  <button class="btn g" onclick="wipe('log')">Essensprotokoll löschen</button>
- <button class="btn g" onclick="wipe('train')">Training löschen</button>
+ <button class="btn g" onclick="wipe('train')">Training und Läufe löschen</button>
  <button class="btn g" onclick="wipe('weight')">Gewichtsdaten löschen</button>
  <button class="btn g" onclick="wipe('supp')">Supplements löschen</button>
  <button class="btn g" onclick="wipe('custom')">Eigene Gerichte löschen</button>
- <button class="btn g" style="background:#fee2e2;color:var(--danger);border-color:#fecaca" onclick="wipe('all')">Alles löschen</button></div>`;
+ <button class="btn g" style="color:var(--danger);border-color:var(--danger)" onclick="wipe('all')">Alles löschen</button></div>`;
 }
 function zahl(){let n=0;[S.plan,S.log,S.train,S.sets,S.weight,S.supp,S.suppDone,S.water].forEach(o=>{try{n+=JSON.stringify(o||{}).length}catch(e){}});return n;}
 function wipe(was){
- const namen={plan:"Wochenplan",log:"Essensprotokoll",train:"Training",weight:"Gewichtsdaten",supp:"Supplements",custom:"eigene Gerichte",all:"alle Daten"};
+ const namen={plan:"Wochenplan",log:"Essensprotokoll",train:"Training und eingetragene Läufe",weight:"Gewichtsdaten",supp:"Supplements",custom:"eigene Gerichte",all:"alle Daten"};
  if(!confirm("Wirklich "+namen[was]+" löschen? Das lässt sich nicht rückgängig machen."))return;
  if(was=="plan"){S.plan={};S.done={};}
  else if(was=="log"){S.log={};S.water={};}
- else if(was=="train"){S.train={};S.sets={};S.prDone={};S.trSets={};}
+ else if(was=="train"){S.train={};S.sets={};S.prDone={};S.trSets={};S.runs=[];}
  else if(was=="weight"){S.weight={};}
  else if(was=="supp"){S.supp={};S.suppDone={};}
  else if(was=="custom"){const ids=(S.custom||[]).map(c=>c.id);for(const k in S.plan)S.plan[k]=S.plan[k].filter(e=>!ids.includes(e.id));S.custom=[];}
  else if(was=="all"){if(!confirm("Wirklich alles löschen, auch Einstellungen und Ziele?"))return;
-  try{localStorage.removeItem("fitplan")}catch(e){};location.reload();return;}
+  (async()=>{try{clearTimeout(nativTimer);clearTimeout(remTimer);localStorage.removeItem("fitplan");localStorage.removeItem("fitplan_remsig");localStorage.removeItem("fitplan_remfired");}catch(e){}
+   try{const P=PL("Preferences");if(P)await P.remove({key:"fitplan"});}catch(e){}
+   try{const N=PL("LocalNotifications");if(N){const pd=await N.getPending();if(pd&&pd.notifications&&pd.notifications.length)await N.cancel({notifications:pd.notifications.map(x=>({id:x.id}))});}}catch(e){}
+   location.reload();})();return;}
  save();logInfo("einstellungen","Daten gelöscht: "+was);render();
 }
 function backupJson(){const daten=Object.assign({},S);delete daten.key; // API-Schlüssel gehört nicht in eine Sicherung
@@ -2503,7 +2509,7 @@ function importFile(inp){
 }
 function rechtText(k){const ph=(v,t)=>v?esc(v):`<span style="color:var(--danger)">[${t}]</span>`;
  return RECHT[k].replace(/\{name\}/g,ph(ANBIETER.name,"Name")).replace(/\{anschrift\}/g,ph(ANBIETER.anschrift,"Anschrift")).replace(/\{mail\}/g,ph(ANBIETER.mail,"E-Mail"));}
-function rechtZeigen(k){sheet(`<div class="recht">${rechtText(k)}</div><button class="btn g" onclick="closeSheet()">Schließen</button>`);}
+function rechtZeigen(k){const zur=!S.onb;sheet(`<div class="recht">${rechtText(k)}</div><button class="btn g" onclick="${zur?"willkommen()":"closeSheet()"}">${zur?"Zurück":"Schließen"}</button>`);}
 function sRecht(){const li=(k,t,s)=>`<button class="li" onclick="rechtZeigen('${k}')"><span class="t"><b>${t}</b><small>${s}</small></span><span class="chev">›</span></button>`;
  return `<div class="card list">${li("ds","Datenschutzerklärung","Was mit deinen Daten passiert")}${li("imp","Impressum","Anbieter und Kontakt")}${li("ges","Gesundheitshinweis","Wofür die App gedacht ist")}${li("liz","Quellen und Lizenzen","Open Food Facts und mehr")}</div>`;}
 function willkommen(){
@@ -2533,6 +2539,79 @@ function sInfo(){
  <button class="btn g" onclick="logClear()">Diagnoseprotokoll löschen</button></div>
  <div class="card"><h4>Hinweis</h4>
  <small style="color:var(--mut)">Nährwerte, Portionsgrößen und Supplementmengen sind Richtwerte. Die Bedarfsberechnung ist eine Schätzung mit der Mifflin-St.-Jeor-Formel. Bei gesundheitlichen Fragen wende dich an eine Ärztin, einen Arzt oder eine Ernährungsberatung.</small></div>`;}
+/* ---------- ERINNERUNGEN (Training, Wasser, Mahlzeiten) ----------
+   In der installierten App plant das Telefon sie fest ein (auch wenn die App zu ist).
+   Im Browser gibt es keine verlässliche Zeitplanung: dort kommen sie nur, solange die App läuft. */
+const REM_STD=()=>({tr:{on:false,t:"17:00"},wa:{on:false,von:"09:00",bis:"19:00",alle:120},es:{on:false,f:"08:00",m:"12:30",a:"18:30",s:""}});
+function rem(){const d=REM_STD();S.rem=S.rem||{};["tr","wa","es"].forEach(k=>{S.rem[k]=Object.assign(d[k],S.rem[k]||{});});return S.rem;}
+const hm=t=>{const m=/^(\d{1,2}):(\d{2})$/.exec(t||"");return m&&+m[1]<24&&+m[2]<60?{h:+m[1],m:+m[2]}:null;};
+function remLauftage(){try{return typeof RUN_DB!=="undefined"&&rProg()?rDays():[];}catch(e){return [];}}
+function remListe(){ // {id,wd: 0=Mo..6=So oder null=täglich,h,m,titel,text}
+ const r=rem(),out=[];
+ if(r.tr.on){const z=hm(r.tr.t);if(z){const ein=einheiten(),kt=trDays(),lt=remLauftage();
+  for(let i=0;i<7;i++){const k=kt.includes(i),l=lt.includes(i);if(!k&&!l)continue;
+   const name=k?(ein[kt.indexOf(i)%Math.max(1,ein.length)]||["Krafttraining"])[0]:"";
+   out.push({id:100+i,wd:i,h:z.h,m:z.m,titel:"Training heute",text:k&&l?name+" und ein Lauf stehen im Plan.":k?name+" steht im Plan.":"Heute steht ein Lauf im Plan."});}}}
+ if(r.wa.on){const a=hm(r.wa.von),b=hm(r.wa.bis),st=Math.max(30,+r.wa.alle||120);
+  if(a&&b){let k=0;for(let t=a.h*60+a.m;t<=b.h*60+b.m&&k<24;t+=st,k++)out.push({id:200+k,wd:null,h:Math.floor(t/60),m:t%60,titel:"Wasser trinken",text:"Zeit für ein Glas Wasser."});}}
+ if(r.es.on)SLOTS.forEach(([sl,n],k)=>{const z=hm(r.es[sl]);if(z)out.push({id:300+k,wd:null,h:z.h,m:z.m,sl,titel:"Zeit für "+(sl=="s"?"einen Snack":sl=="f"?"das Frühstück":"das "+n),text:"Trag danach kurz ein, was du gegessen hast."});});
+ return out;}
+const remSigSetzen=l=>{try{localStorage.setItem("fitplan_remsig",JSON.stringify(l))}catch(e){}};
+async function remPlanen(fragen){
+ const liste=remListe(),N=PL("LocalNotifications");
+ if(N){try{
+   let p=await N.checkPermissions();
+   if(p.display!="granted"&&fragen&&liste.length)p=await N.requestPermissions();
+   const pend=await N.getPending(),alt=((pend&&pend.notifications)||[]).filter(x=>x.id>=100&&x.id<400).map(x=>({id:x.id}));
+   if(alt.length)await N.cancel({notifications:alt});
+   if(p.display!="granted"){if(liste.length)logWarn("erinnerung","Benachrichtigungen nicht erlaubt");return liste.length?"verboten":"ok";}
+   if(liste.length)await N.schedule({notifications:liste.map(x=>({id:x.id,title:x.titel,body:x.text,schedule:{on:Object.assign({hour:x.h,minute:x.m},x.wd==null?{}:{weekday:x.wd==6?1:x.wd+2}),allowWhileIdle:true}}))});
+   remSigSetzen(liste);logInfo("erinnerung","Erinnerungen eingeplant",{anzahl:liste.length});return "ok";
+  }catch(e){logWarn("erinnerung","Planen fehlgeschlagen: "+(e&&e.message||e));return "fehler";}}
+ remSigSetzen(liste);
+ if(!liste.length)return "ok";
+ if(!("Notification" in window))return "fehlt";
+ if(Notification.permission=="default"&&fragen){try{await Notification.requestPermission();}catch(e){}}
+ return Notification.permission=="granted"?"ok":(Notification.permission=="denied"?"verboten":"offen");}
+function remSync(){ // nach Änderungen an Trainingstagen, Laufplan oder Einstellungen neu einplanen
+ if(!S.rem)return;let alt="";try{alt=localStorage.getItem("fitplan_remsig")||""}catch(e){}
+ if(JSON.stringify(remListe())!==alt)remPlanen(false);}
+let REM_ST="";
+async function remSet(g,k,v){rem()[g][k]=v;save();REM_ST=await remPlanen(true);render();
+ if(REM_ST=="verboten")toast("Benachrichtigungen sind für Gainora nicht erlaubt. Erlaube sie in den Einstellungen deines "+(NATIV?"Telefons":"Browsers")+".");}
+function remZeit(g,k,v,pflicht){if(!v&&pflicht){toast("Bitte eine Uhrzeit wählen.");render();return;}
+ if(g=="wa"){const r=rem().wa,a=hm(k=="von"?v:r.von),b=hm(k=="bis"?v:r.bis);if(a&&b&&a.h*60+a.m>b.h*60+b.m){toast("Das Ende muss nach dem Beginn liegen.");render();return;}}
+ remSet(g,k,v);}
+// Browser: prüfen, ob gerade eine Erinnerung fällig ist (nur solange die App läuft)
+function remNoetig(x){const heute=todayISO();
+ if(x.id<200){const t=S.train[weekOf(0)+"|"+x.wd]||[];return !(t.length&&t.every(n=>prDone(heute,n)));}
+ if(x.id<300)return ((S.water||{})[heute]||0)<(S.waterGoal||2500);
+ return !(S.log[heute]||[]).some(e=>(e.s||(e.ref?String(e.ref.split("|")[1]||"").replace(/^\d+/,"")[0]:""))==x.sl);}
+function remZeigen(x){const o={body:x.text,icon:"icon-192.png",badge:"icon-192.png",tag:"gainora-"+x.id};
+ const direkt=()=>{try{new Notification(x.titel,o)}catch(e){}};
+ try{if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(r=>r?r.showNotification(x.titel,o):direkt()).catch(direkt);else direkt();}catch(e){direkt();}}
+function remTick(){if(NATIV||!S.rem||!("Notification" in window)||Notification.permission!="granted")return;
+ const now=new Date(),wd=dayIndex(now),min=now.getHours()*60+now.getMinutes(),heute=todayISO();
+ let f={};try{f=JSON.parse(localStorage.getItem("fitplan_remfired")||"{}")||{}}catch(e){}
+ if(f.d!==heute)f={d:heute,ids:[]};const vorher=f.ids.length;
+ remListe().forEach(x=>{if(x.wd!=null&&x.wd!=wd)return;const t=x.h*60+x.m;if(min<t||min>t+20||f.ids.includes(x.id))return;f.ids.push(x.id);if(remNoetig(x))remZeigen(x);});
+ if(f.ids.length!=vorher)try{localStorage.setItem("fitplan_remfired",JSON.stringify(f))}catch(e){}}
+setInterval(remTick,30000);
+function sErinnerung(){const r=rem(),n=remListe();
+ const sw=(g,t,sub)=>`<div class="sw"><b>${t}</b><button class="swb ${r[g].on?"on":""}" role="switch" aria-checked="${r[g].on?"true":"false"}" aria-label="${t} ${r[g].on?"ausschalten":"einschalten"}" onclick="remSet('${g}','on',${!r[g].on})"></button></div><small style="display:block;color:var(--mut);margin:0 0 ${r[g].on?10:0}px">${sub}</small>`;
+ const zeit=(g,k,l,pflicht)=>`<div><label>${l}</label><input class="n" type="time" value="${esc(r[g][k]||"")}" onchange="remZeit('${g}','${k}',this.value,${pflicht?1:0})"></div>`;
+ const kt=trDays(),lt=remLauftage(),tage=[0,1,2,3,4,5,6].filter(i=>kt.includes(i)||lt.includes(i)).map(i=>WOCHENTAGE[i]).join(", ");
+ const wasserN=n.filter(x=>x.id>=200&&x.id<300).length;
+ const st=REM_ST=="verboten"||(!NATIV&&"Notification" in window&&Notification.permission=="denied"&&n.length)?`<div class="card" style="border-color:var(--warn)"><b>Benachrichtigungen sind nicht erlaubt</b><small style="display:block;color:var(--mut);margin-top:4px">Erlaube sie für Gainora in den Einstellungen deines ${NATIV?"Telefons":"Browsers"}, sonst kommt keine Erinnerung an.</small></div>`:"";
+ return st+`<div class="card">${sw("tr","Training","An deinen Trainingstagen"+(tage?" ("+tage+")":"")+". Lauftage aus deinem Laufplan zählen mit.")}
+ ${r.tr.on?`<div class="g2">${zeit("tr","t","Uhrzeit",true)}<div></div></div>`:""}</div>
+ <div class="card">${sw("wa","Wasser","Regelmäßig über den Tag verteilt.")}
+ ${r.wa.on?`<div class="g2">${zeit("wa","von","Von",true)}${zeit("wa","bis","Bis",true)}</div>
+ <label>Abstand</label><select class="n" onchange="remSet('wa','alle',+this.value)">${[[60,"jede Stunde"],[90,"alle 1,5 Stunden"],[120,"alle 2 Stunden"],[180,"alle 3 Stunden"]].map(([v,t])=>`<option value="${v}" ${(+r.wa.alle||120)==v?"selected":""}>${t}</option>`).join("")}</select>
+ <small style="display:block;color:var(--mut)">${wasserN} Erinnerungen pro Tag</small>`:""}</div>
+ <div class="card">${sw("es","Mahlzeiten","Zur gewählten Uhrzeit. Leere Felder bleiben ohne Erinnerung.")}
+ ${r.es.on?`<div class="g2">${SLOTS.map(([sl,nm])=>zeit("es",sl,nm,false)).join("")}</div>`:""}</div>
+ <small style="display:block;color:var(--mut);margin:8px 4px">${NATIV?"Die Erinnerungen plant dein Telefon selbst ein. Sie kommen auch, wenn die App geschlossen ist, und brauchen kein Internet.":"Im Browser kommen Erinnerungen nur, solange Gainora geöffnet ist oder im Hintergrund läuft. Verlässlich und auch bei geschlossener App funktionieren sie in der installierten App aus dem Store."}</small>`;}
 /* ---------- SUPPLEMENTS ---------- */
 const suppByName=n=>(S.suppLib||[]).concat(SUPPS).find(x=>x.n===n);
 const allSupps=()=>(S.suppLib||[]).concat(SUPPS);
@@ -2541,42 +2620,7 @@ function suppPlan(d){return S.supp[d]||[];}
 function suppOf(d){
  return suppPlan(d).map(n=>{const x=suppByName(n);return {n,x,taken:!!S.suppDone[sdKey(d,n)]};});
 }
-function suppHinweisKarte(){
- return `<div class="card" style="border-color:var(--warn)"><b>Hinweis</b><small style="display:block;color:var(--mut);margin-top:4px">Die Mengen sind übliche Richtwerte und keine Empfehlung für dich. Ob ein Präparat sinnvoll ist, hängt von Ernährung, Blutwerten und Medikamenten ab. Bei Medikamenteneinnahme, Schwangerschaft oder Erkrankungen kläre es vorher mit Arzt oder Apotheke. Die Vorlagen unten sind nur Beispiele.</small></div>`;
-}
 function suppHinweisZeile(x){return x&&x.h?`<small style="color:var(--warn-t);display:block">ℹ️ ${esc(x.h)}</small>`:"";}
-function viewSuppPlan(){
- const wk=S.wk;
- let h=`<div class="wkpick"><button class="nav" onclick="wkShift(-1)">‹</button><span>${fmtWeek(wk)}</span><button class="nav" onclick="wkShift(1)">›</button></div>`;
- h+=suppHinweisKarte();
- const days=DAYS.map((x,i)=>{const d=dISO(wk,i),p=S.supp[d]||[];
-  return `<button class="${i==S.day?'on':''}" onclick="S.day=${i};save();render()">${DAYS[i]}<small>${+d.slice(8,10)}.${+d.slice(5,7)}.</small>${p.length?'<i>'+p.length+'</i>':''}</button>`;}).join("");
- h+=`<div class="days">${days}</div>`;
- const isoD=dISO(wk,S.day),plan=S.supp[isoD]||[];
- h+=`<div class="card"><div class="row"><b>${fmtDay(wk,S.day)}</b><span class="badge">${plan.length} Präparat(e)</span></div>
- <small style="display:block;color:var(--mut)">Was hier steht, erscheint unter Heute zum Abhaken. Änderungen gelten nur für diesen Tag.</small></div>`;
- if(!plan.length)h+=`<div class="card"><div class="empty">Für diesen Tag ist nichts geplant.</div></div>`;
- plan.forEach(n=>{const x=suppByName(n)||{n};
-  h+=`<div class="card"><div class="meal"><div style="flex:1"><b>${esc(x.n)}</b>
-  ${x.e||x.w?`<small>${x.e?esc(x.e):""}${x.e&&x.w?" · ":""}${x.w?esc(x.w):""}</small>`:""}
-  ${x.z?`<small>${esc(x.z)}</small>`:""}${suppHinweisZeile(x)}</div>
-  <button class="x" onclick="suppRemove('${isoD}','${jq(x.n)}')">✕</button></div></div>`;});
- h+=`<div class="card"><h4>Präparat hinzufügen</h4><input class="n" id="sq" oninput="suppSearch()" placeholder="z. B. Magnesium"><div id="sres"></div>
- <button class="btn g" onclick="suppNewForm()">+ Eigenes Präparat</button></div>`;
- // Wochenübersicht der Planung
- let hk="",anz=0;
- for(let i=0;i<7;i++){const d=dISO(wk,i),p=S.supp[d]||[];anz+=p.length;
-  hk+=`<div class="row"><span>${fmtDay(wk,i)}</span><span>${p.length?p.map(esc).join(", "):"–"}</span></div>`;}
- h+=`<div class="card"><h4>Wochenplan</h4>${hk}<hr><div class="row"><b>Geplante Einnahmen</b><span>${anz}</span></div></div>`;
- h+=`<div class="card"><h4>Kopieren</h4>
- <button class="btn g" onclick="suppWeek('${isoD}',true)">Dieser Tag → ganze Woche</button>
- <button class="btn g" onclick="suppWeek('${isoD}',false)">Diese Woche leeren</button></div>`;
- h+=`<div class="card"><h4>Vorlagen</h4><small style="display:block;color:var(--mut);margin:-4px 0 8px">Beispielauswahl, keine Empfehlung. Setzt sie auf den gewählten Tag.</small>
- ${[["Basis",["Vitamin D3","Magnesium"]],
-    ["Muskelaufbau",["Kreatin","Whey-Protein","Vitamin D3","Magnesium","Omega-3 (Fischöl)"]],
-    ["Abnehmen",["Whey-Protein","Multivitamin","Omega-3 (Fischöl)"]]].map(([n,l])=>`<button class="btn g" onclick="suppTemplate('${n}')">${n}</button>`).join("")}</div>`;
- return h;
-}
 function suppTemplate(n){
  const t={"Basis":["Vitamin D3","Magnesium"],"Muskelaufbau":["Kreatin","Whey-Protein","Vitamin D3","Magnesium","Omega-3 (Fischöl)"],"Abnehmen":["Whey-Protein","Multivitamin","Omega-3 (Fischöl)"]}[n];
  if(!t)return;
@@ -2595,31 +2639,6 @@ function suppSerie(n){ // aufeinanderfolgende GEPLANTE Tage, an denen genommen w
   else if(i==0)continue; // heute noch offen: Serie nicht abbrechen
   else break;}
  return serie;
-}
-function viewSupp(){
- const isoD=dISO(S.wk,S.day);
- let h=`<div class="wkpick"><button class="nav" onclick="dayShift(-1)">‹</button><span>${fmtDay(S.wk,S.day)}</span><button class="nav" onclick="dayShift(1)">›</button></div>`;
- const plan=suppPlan(isoD),lst=suppOf(isoD);
- const gen=lst.filter(x=>x.taken).length;
- h+=`<div class="card"><div class="row"><b>Heute genommen</b><span>${plan.length?gen+" von "+plan.length:"nichts geplant"}</span></div>
- ${plan.length?bar("",gen,plan.length,""):""}
- <small style="display:block;color:var(--mut)">Tippe auf ein Präparat, sobald du es genommen hast. Den Plan änderst du weiter unten.</small></div>`;
- if(!plan.length)h+=`<div class="card"><div class="empty">Für diesen Tag ist nichts geplant. Lege es unter Planen → Woche an.</div></div>`;
- lst.forEach(x=>{const ref=sdKey(isoD,x.n);
-  h+=`<div class="card"><div class="meal"><div style="flex:1"><b>${esc(x.n)}</b>
-  ${x.x&&(x.x.e||x.x.w)?`<small>${x.x.e?esc(x.x.e):""}${x.x.e&&x.x.w?" · ":""}${x.x.w?esc(x.x.w):""}</small>`:""}
-  ${x.x&&x.x.z?`<small>${esc(x.x.z)}</small>`:""}${suppHinweisZeile(x.x)}${suppSerie(x.n)>=2?`<small style="color:var(--brand)">🔥 ${suppSerie(x.n)} Tage in Folge</small>`:""}</div>
-  <button class="ok ${x.taken?'on':''}" onclick="suppTick('${isoD}','${jq(x.n)}')">${x.taken?"✓ genommen":"nehmen"}</button></div></div>`;});
- let hk="",genW=0;
- for(let i=0;i<7;i++){const d=dISO(S.wk,i),p=suppPlan(d),g=p.filter(n=>S.suppDone[sdKey(d,n)]).length;
-  if(g)genW+=g;
-  hk+=`<div class="row"><span>${fmtDay(S.wk,i)}</span><span>${p.length?g+" / "+p.length:"–"}</span></div>`;}
- h+=`<div class="card"><h4>Diese Woche</h4>${hk}<hr><div class="row"><b>Einnahmen</b><span>${genW}</span></div></div>`;
- const tage=[...new Set(Object.keys(S.suppDone||{}).filter(k=>S.suppDone[k]).map(k=>k.split("|")[0]))].sort().reverse().slice(0,7);
- if(tage.length)h+=`<div class="card"><h4>Letzte Einnahmen</h4>${tage.map(d=>{
-  const namen=suppPlan(d).filter(n=>S.suppDone[sdKey(d,n)]);
-  return `<div class="row"><span>${d}</span><span>${namen.length?namen.map(esc).join(", "):"–"}</span></div>`;}).join("")}</div>`;
- return h;
 }
 function suppSearch(){
  const q=($("#sq")&&$("#sq").value||"").toLowerCase().trim();
@@ -2656,10 +2675,10 @@ function suppNewSave(){const n=$("#sn").value.trim();if(!n){toast("Bitte einen N
 function viewGoal(){
  let h=`<div class="card"><h4>Tagesziele</h4>
  <small style="display:block;color:var(--mut);margin:-4px 0 8px">Schnellwahl</small><div class="chips" style="margin-bottom:12px"><button class="p" onclick="preset(1900,150)">Abnehmen</button><button class="p" onclick="preset(2800,170)">Muskelaufbau</button></div>
- <label>Kalorien (kcal)</label><input class="n" type="number" value="${S.kcal}" onchange="S.kcal=+this.value;save()">
- <label>Eiweiß (g)</label><input class="n" type="number" value="${S.prot}" onchange="S.prot=+this.value;save()">
- <label>Kohlenhydrate (g, optional)</label><input class="n" type="number" value="${S.kh||""}" onchange="S.kh=+this.value||null;save()">
- <label>Fett (g, optional)</label><input class="n" type="number" value="${S.fett||""}" onchange="S.fett=+this.value||null;save()">
+ <label>Kalorien (kcal)</label><input class="n" type="number" inputmode="numeric" value="${S.kcal}" onchange="zielSetzen('kcal',this.value)">
+ <label>Eiweiß (g)</label><input class="n" type="number" inputmode="numeric" value="${S.prot}" onchange="zielSetzen('prot',this.value)">
+ <label>Kohlenhydrate (g, optional)</label><input class="n" type="number" inputmode="numeric" value="${S.kh||""}" onchange="zielSetzen('kh',this.value)">
+ <label>Fett (g, optional)</label><input class="n" type="number" inputmode="numeric" value="${S.fett||""}" onchange="zielSetzen('fett',this.value)">
  <button class="btn g" onclick="uebernehmeAusTag()">Nährwerte des Tages übernehmen</button>
  <button class="btn g" onclick="uebernehmeAusWoche()">Wochenschnitt übernehmen</button>
  <small style="display:block;color:var(--mut);margin-top:10px">Die Vorlagen sind grobe Richtwerte. Faustregel: 1,6 bis 2,2 g Eiweiß pro kg Körpergewicht; zum Abnehmen etwa 300 bis 500 kcal unter dem Bedarf, für Muskelaufbau etwa 200 bis 300 kcal darüber. </small></div>
@@ -2672,13 +2691,13 @@ function viewGoal(){
  </div>`;
  return h;
 }
+function zielSetzen(k,v){const G={kcal:[800,8000,"Kalorien"],prot:[20,500,"Eiweiß"],kh:[0,1500,"Kohlenhydrate"],fett:[0,500,"Fett"]}[k],x=Math.round(+v);
+ if((k=="kh"||k=="fett")&&!(x>0)){S[k]=null;save();render();return;}
+ if(!(x>=G[0]&&x<=G[1])){toast(G[2]+": bitte einen Wert zwischen "+G[0]+" und "+G[1]+" eingeben.");render();return;}
+ S[k]=x;save();render();}
 function openWeek(w){S.wk=w;S.weekView=w;S.day=0;S.wkLock=true;save();tab="plan";sub.plan="plan";render();}
-function preset(k,p){S.kcal=k;S.prot=p;save();render();}
+function preset(k,p){S.kcal=k;S.prot=p;save();render();toast("Tagesziel gesetzt: "+k+" kcal und "+p+" g Eiweiß.");}
 /* ---------- GEGESSEN ---------- */
-function makroZeilen(t){
- const z=(l,v,ziel)=>ziel>0?bar(l,v,ziel,"g"):`<div class="row"><span>${l}</span><span>${Math.round(v)} g</span></div>`;
- return z("Kohlenhydrate",t.h,S.kh)+z("Fett",t.f,S.fett);
-}
 function wasserKarte(isoD){
  const ml=((S.water||{})[isoD])||0,ziel=S.waterGoal||2500,f=x=>(x/1000).toFixed(2).replace(".",",");
  return `<div class="card"><div class="row" style="margin-top:0"><b>Wasser</b><span>${f(ml)} von ${(ziel/1000).toFixed(1).replace(".",",")} l</span></div>
@@ -2729,7 +2748,7 @@ function viewEat(){
  if(!pl.length&&!log.length)h+=`<div class="hint">Für diesen Tag ist noch nichts geplant. <button class="lnk" onclick="tab='plan';sub.plan='plan';render()">Im Wochenplan planen</button></div>`;
  h+=runHeute();
  h+=wasserKarte(isoD);
- h+=`<button class="fab" onclick="addSheet()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Essen</button>`;
+ h+=`<button class="fab" onclick="addSheet()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Essen</button><div style="height:64px" aria-hidden="true"></div>`;
  return h;
 }
 function addSheet(slot){
@@ -2773,7 +2792,7 @@ function eatPick(){sheet(pickerHtml("","eatMeal","Gericht wählen"));}
 function eatMeal(id){const m=meal(id);
  sheet(`<h4>${esc(m.n)}</h4><label>Portionen</label><input class="n" id="eq" type="number" step="0.5" value="1" inputmode="decimal">
  <button class="btn" onclick="logMeal(${id})">Eintragen</button><button class="btn g" onclick="closeSheet()">Abbrechen</button>`);}
-function logMeal(id){const m=meal(id),q=parseFloat($("#eq").value.replace(",","."))||1;
+function logMeal(id){const m=meal(id),q=Math.max(0.25,Math.min(20,parseFloat($("#eq").value.replace(",","."))||1));
  const dch=dISO(S.wk,S.day);(S.log[dch]=S.log[dch]||[]).push({s:ADD_SLOT||undefined,n:m.n+(q!=1?` (${q}×)`:""),k:m.k*q,p:m.p*q,h:m.h*q,f:m.f*q});save();closeSheet();render();}
 function freeForm(){
  sheet(`<h4>Etwas anderes gegessen</h4><label>Was?</label><input class="n" id="gn" placeholder="z. B. Pizza, Eis, Döner">
@@ -2786,7 +2805,7 @@ function logFree(){const n=$("#gn").value.trim();if(!n){toast("Bitte eingeben, w
  const dch=dISO(S.wk,S.day);(S.log[dch]=S.log[dch]||[]).push({s:ADD_SLOT||undefined,n,k:v("#gk"),p:v("#gp"),h:v("#gh"),f:v("#gf")});save();closeSheet();render();}
 function viewWeek(){
  const wk=S.weekView||S.wk;
- let h=`<div class="wkpick"><button class="nav" onclick="weekShift(-1)">‹</button><span>${fmtWeek(wk)}</span><button class="nav" onclick="weekShift(1)">›</button></div>`;
+ let h=`<div class="wkpick"><button class="nav" aria-label="Vorherige Woche" onclick="weekShift(-1)">‹</button><span>${fmtWeek(wk)}</span><button class="nav" aria-label="Nächste Woche" onclick="weekShift(1)">›</button></div>`;
  h+=`<div class="card"><h4>Plan und tatsächlich</h4><small style="display:block;color:var(--mut);margin:-6px 0 4px">Ziel pro Tag: ${nf(S.kcal)} kcal · ${S.prot} g Eiweiß</small>`;
  let sk=0,sp=0,n=0,eingeplant=0;
  for(let i=0;i<7;i++){

@@ -1,7 +1,7 @@
 // Fit-Wochenplan – Offline-Zwischenspeicher
 // Bei jeder neuen App-Fassung diese Kennung hochzählen (v2, v3, ...).
 // Dann wirft der Browser die alte Fassung weg und lädt die neue.
-const CACHE = "fitplan-v26";
+const CACHE = "fitplan-v27";
 const DATEIEN = ["./", "./index.html", "./essensplan.html", "./rezepte.js","./trainingssysteme.js","./laufplaene.js","./uebungen.js","./uebungen.js?v=3.7", "./uebungen/bankdruecken.webp","./uebungen/bankdruecken-muskeln.webp","./manifest.json", "./icon-180.png", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png"];
 
 self.addEventListener("install", e => {
@@ -63,4 +63,11 @@ self.addEventListener("fetch", e => {
 // Meldung an die App, wenn der Zwischenspeicher erneuert wurde
 self.addEventListener("message", e => {
   if (e.data === "update") self.skipWaiting();
+});
+
+// Tippen auf eine Erinnerung öffnet die App bzw. holt sie nach vorn.
+self.addEventListener("notificationclick", e => {
+  e.notification.close();
+  e.waitUntil(self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(l =>
+    l.length ? l[0].focus() : self.clients.openWindow("./essensplan.html")));
 });

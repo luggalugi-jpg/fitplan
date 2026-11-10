@@ -58,7 +58,10 @@ TAG FÜR TAG
 KRAFTTRAINING
 • 55 Trainingspläne aus bewährten Systemen wie Ganzkörper, Push/Pull/Beine, PHUL, 5×5 und GVT
 • Sätze, Gewichte und Wiederholungen eintragen, Bestleistungen und Fortschritt je Übung
+• Steigerungsvorschlag je Übung aus deinem letzten Training
+• Sätze einzeln abhaken, die Pause startet von selbst
 • Pausen-Timer mit Benachrichtigung, Pausenlänge frei einstellbar
+• Erinnerungen für Training, Wasser und Mahlzeiten, frei einstellbar
 
 LAUFEN
 • 55 Laufpläne vom Einstieg bis zum Marathon

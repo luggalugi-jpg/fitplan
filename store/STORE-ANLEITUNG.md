@@ -35,6 +35,7 @@ Diese Anleitung passt zum Ordner `app/` (Capacitor 8) und den drei Abläufen unt
 ## Schritt 4 – Vor dem Einreichen auf echten Geräten prüfen
 - Erster Start, Daten eintragen, App schließen und neu öffnen: alles noch da?
 - Pause starten, App in den Hintergrund: kommt die Benachrichtigung?
+- Mehr → Erinnerungen: Training, Wasser oder Mahlzeiten einschalten, Uhrzeit auf in zwei Minuten stellen, App schließen: kommt die Erinnerung? Nach einem Neustart des Telefons auch noch?
 - Barcode scannen (Android lädt den Google-Scanner beim ersten Mal nach).
 - Sicherung erstellen und wieder einlesen.
 - Foto-Analyse mit eigenem Schlüssel.
