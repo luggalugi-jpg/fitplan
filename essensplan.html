@@ -661,7 +661,7 @@ function bar(l,v,max,u){const pc=max>0?Math.max(0,Math.min(100,v/max*100)):0;ret
 function weekBar(){
  const wk=S.wk,heute=todayISO(),aktiv=dISO(wk,S.day)==heute;
  const days=DAYS.map((x,i)=>{const d=dISO(wk,i),has=entries(wk,i).length||((S.log[d]||[]).length);
-  return `<button class="${i==S.day?'on':''} ${d==heute?'td':''}" onclick="S.day=${i};save();render()">${DAYS[i]}<small>${+d.slice(8,10)}</small>${has?'<i></i>':''}</button>`;}).join("");
+  return `<button class="${i==S.day?'on':''} ${d==heute?'td':''}" onclick="S.day=${i};S.wkLock=true;save();render()">${DAYS[i]}<small>${+d.slice(8,10)}</small>${has?'<i></i>':''}</button>`;}).join("");
  return `<div class="wkpick"><button class="nav" aria-label="Vorheriger Tag" onclick="dayShift(-1)">‹</button>
  <span>${tagLabel(wk,S.day)}${aktiv?'':'<button class="heute" onclick="goToday()">Heute</button>'}</span>
  <button class="nav" aria-label="Nächster Tag" onclick="dayShift(1)">›</button></div>
@@ -1585,7 +1585,7 @@ function viewTrain(){
 function tBars(){
  const wk=S.wk;
  const days=DAYS.map((x,i)=>{const d=dISO(wk,i),t=S.train[wk+"|"+i]||[];
-  return `<button class="${i==S.day?'on':''} ${d==todayISO()?'td':''}" onclick="S.day=${i};save();render()">${DAYS[i]}<small>${+d.slice(8,10)}</small>${t.length?'<i></i>':''}</button>`;}).join("");
+  return `<button class="${i==S.day?'on':''} ${d==todayISO()?'td':''}" onclick="S.day=${i};S.wkLock=true;save();render()">${DAYS[i]}<small>${+d.slice(8,10)}</small>${t.length?'<i></i>':''}</button>`;}).join("");
  return `<div class="wkpick"><button class="nav" aria-label="Vorheriger Tag" onclick="dayShift(-1)">‹</button><span>${tagLabel(wk,S.day)}${dISO(wk,S.day)==todayISO()?'':'<button class="heute" onclick="goToday()">Heute</button>'}</span><button class="nav" aria-label="Nächster Tag" onclick="dayShift(1)">›</button></div><div class="days">${days}</div>`;
 }
 
@@ -1854,8 +1854,12 @@ function runHeute(){const q=rProg();if(!q)return "";const wk=S.wk,i=S.day,d=dISO
 const G={pi:null,run:null,tm:[],iv:[],hadRest:false,over:false};
 /* ---------- Serien: Training und Essen ---------- */
 function trGeplant(d){const t=new Date(d+"T12:00:00");return ((S.train||{})[weekKey(t)+"|"+dayIndex(t)]||[]).length>0;}
-function trainiertAm(d){const s=(S.sets||{})[d]||{};return Object.keys(s).some(n=>echteEinheit(d,n))||rLogs().some(x=>x.d==d);}
-function trainSerie(){ // Trainings in Folge: ein ausgelassenes GEPLANTES Training bricht die Serie, Ruhetage nicht (höchstens 3 am Stück)
+function uebFertig(d,n){const s=((S.sets||{})[d]||{})[n]||[];return prDone(d,n)||(s.length>0&&s.every(x=>x.ok||x.u));}
+function trainiertAm(d){ // Tag zählt nur, wenn das geplante Training vollständig erledigt ist (Ersatzübungen zählen mit)
+ const fertig=Object.keys((S.sets||{})[d]||{}).filter(n=>uebFertig(d,n)).length;
+ if(trGeplant(d)){const t=new Date(d+"T12:00:00");return fertig>=((S.train||{})[weekKey(t)+"|"+dayIndex(t)]||[]).length;}
+ return fertig>0||rLogs().some(x=>x.d==d);}
+function trainSerie(){ // Trainings in Folge: ein ausgelassenes oder unvollständiges GEPLANTES Training bricht die Serie, Ruhetage nicht (höchstens 3 am Stück)
  const ds=Object.keys(S.sets||{}).concat(rLogs().map(x=>x.d)).filter(Boolean).sort();if(!ds.length)return 0;
  const heute=todayISO(),erst=ds[0];let serie=0,frei=0;
  for(let i=0;i<1100;i++){const d=tagMinus(heute,i);if(d<erst)break;
