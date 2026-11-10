@@ -340,7 +340,7 @@ window.UEB_TXT={
 "Kabelcrunch":{s:["Vor dem Kabelzug knien, Seilgriff oben eingehängt.","Seil neben dem Kopf halten.","Bauch anspannen und den Oberkörper nach unten einrollen, Ellbogen Richtung Knie.","Hüfte bleibt ruhig.","Langsam wieder aufrichten."],a:"Beim Einrollen ausatmen, beim Aufrichten einatmen.",f:["Mit den Armen ziehen","Hüfte sitzt nach hinten ab","Zu schwer"],t:["Die Bewegung kommt aus dem Bauch, nicht aus der Hüfte."],l:"Crunches am Boden."}
 };
 /* Eigene Übungsvideos: a = Schleife (animiertes WebP), i = Bild mit den beanspruchten Muskeln (optional).
-   Übungen ohne Eintrag zeigen die 3D-Animation. Neue GIFs mit werkzeuge/gifopt.py aufbereiten. */
+   Übungen ohne Eintrag zeigen die 3D-Animation. Neue Videos mit werkzeuge/videoopt.py aufbereiten (GIFs aus Einzelbildern: gifopt.py). */
 window.UEB_MEDIA={
-"Bankdrücken":{a:"uebungen/bankdruecken.webp",i:"uebungen/bankdruecken-muskeln.webp"}
+"Kniebeugen":{a:"uebungen/kniebeugen.webp"}
 };

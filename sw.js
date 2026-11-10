@@ -1,8 +1,8 @@
 // Fit-Wochenplan – Offline-Zwischenspeicher
 // Bei jeder neuen App-Fassung diese Kennung hochzählen (v2, v3, ...).
 // Dann wirft der Browser die alte Fassung weg und lädt die neue.
-const CACHE = "fitplan-v27";
-const DATEIEN = ["./", "./index.html", "./essensplan.html", "./rezepte.js","./trainingssysteme.js","./laufplaene.js","./uebungen.js","./uebungen.js?v=3.7", "./uebungen/bankdruecken.webp","./uebungen/bankdruecken-muskeln.webp","./manifest.json", "./icon-180.png", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png"];
+const CACHE = "fitplan-v28";
+const DATEIEN = ["./", "./index.html", "./essensplan.html", "./rezepte.js","./trainingssysteme.js","./laufplaene.js","./uebungen.js","./uebungen.js?v=3.10", "./uebungen/kniebeugen.webp","./manifest.json", "./icon-180.png", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png"];
 
 self.addEventListener("install", e => {
   self.skipWaiting();
