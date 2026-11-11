@@ -201,6 +201,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--brand);outline-offs
 .gletters{display:grid;grid-template-columns:repeat(auto-fit,minmax(48px,1fr));gap:8px}
 .gletters button{min-height:52px;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--txt);font-size:22px;font-weight:800;font-family:inherit;touch-action:manipulation}
 .gletters button:disabled{opacity:.25}
+.athk{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 14px;margin:0 0 10px;font:inherit;color:var(--txt);cursor:pointer}
+.athk>div{flex:1;min-width:0}.athk b{font-size:15px}.athk small{color:var(--mut);font-size:12px}
+.athl{flex:none;display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--brand);color:#fff;font-weight:800;font-size:18px;font-variant-numeric:tabular-nums}
 .gdaily{background:var(--brand-l);border-radius:14px;padding:12px 14px;margin:0 0 8px}.gdaily small{display:block;margin-top:2px;color:var(--brand-d)}
 .gscore{font-size:30px;font-weight:760;text-align:center;margin:8px 0;font-variant-numeric:tabular-nums}
 .gres{text-align:center}.gover{text-align:center;padding:6px 0}.gover b{font-size:20px}
@@ -410,7 +413,7 @@ if(typeof RDB!=="undefined"&&typeof FOODS_NEU!=="undefined")(function(){
   if(dup)return;FOODS.push({n:a[0],k:a[1],p:a[2],h:a[3],f:a[4],g:a[5]});bases.push(w);});
 })();
 const fitsSlot=(m,s)=>m.c==s||(m.x&&m.x.indexOf(s)>=0);
-const PUBLIC_V="3.12";
+const PUBLIC_V="3.13";
 /* Anbieter für Impressum und Datenschutz – vor der Veröffentlichung ausfüllen */
 const ANBIETER={name:"Luca Preikschas",anschrift:"Herzog-Wilhelm-Str. 32, 94572 Schöfweg",mail:"gainora.app@gmail.com"};
 const RECHT={"ds": "<h2>Datenschutzerklärung</h2>\n<p><b>Stand:</b> 10. November 2026</p>\n<h3>1. Verantwortlicher</h3>\n<p>{name}<br>{anschrift}<br>E-Mail: {mail}</p>\n<h3>2. Grundsatz: Deine Daten bleiben auf deinem Gerät</h3>\n<p>Gainora funktioniert ohne Benutzerkonto und ohne eigenen Server. Alles, was du einträgst – Essensplan, Mahlzeiten, Gewicht, Trainings, Läufe, Supplements, Ziele und Einstellungen – wird ausschließlich lokal im Speicher der App auf deinem Gerät abgelegt. Wir erhalten diese Daten nicht und können sie nicht einsehen.</p>\n<p>Die App enthält keine Werbung, keine Analyse- oder Tracking-Werkzeuge und gibt keine Daten zu Werbezwecken weiter.</p>\n<p>Angaben wie Körpergewicht, Ernährung und Trainingsdaten können Gesundheitsdaten sein. Sie werden nur auf deinem Gerät verarbeitet, um dir die Funktionen der App bereitzustellen.</p>\n<h3>3. Funktionen mit Internetverbindung</h3>\n<p>Nur die folgenden Funktionen nehmen Verbindung zu Diensten Dritter auf, und zwar nur, wenn du sie selbst auslöst:</p>\n<p><b>Foto-Analyse (optional):</b> Wenn du unter „Foto-Analyse“ einen eigenen Schlüssel für die Google Gemini API hinterlegst und ein Foto analysieren lässt, wird das Foto zusammen mit einer Anweisung direkt von deinem Gerät an Google gesendet (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Verarbeitung auch in den USA möglich). Google verarbeitet die Daten nach den Bedingungen, die du mit Google für deinen Schlüssel vereinbart hast. Dein Schlüssel wird nur auf deinem Gerät gespeichert und nicht in Sicherungsdateien übernommen. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), die du jederzeit widerrufen kannst, indem du den Schlüssel löschst.</p>\n<p><b>Barcode-Suche:</b> Wenn du einen Barcode scannst oder eingibst, wird die Produktnummer an Open Food Facts gesendet (Open Food Facts, 21 rue des Iles, 94100 Saint-Maur-des-Fossés, Frankreich), um Nährwerte abzurufen. Dabei wird technisch bedingt deine IP-Adresse übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir gewünschten Funktion).</p>\n<p><b>Webversion:</b> Wenn du die App im Browser nutzt, wird sie über GitHub Pages ausgeliefert (GitHub B.V., Niederlande / GitHub, Inc., USA). Dabei verarbeitet GitHub technisch notwendige Zugriffsdaten wie die IP-Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (sichere Bereitstellung der Webseite).</p>\n<h3>4. Berechtigungen</h3>\n<p><b>Kamera:</b> nur zum Scannen von Barcodes und für Fotos zur Foto-Analyse, jeweils erst wenn du die Funktion startest. <b>Benachrichtigungen:</b> nur für lokale Erinnerungen, die du selbst einschaltest (Ende der Satzpause, Training, Wasser, Mahlzeiten); sie werden auf dem Gerät erzeugt, nicht über einen Server. <b>Standort:</b> nur, damit die Pausenspiele in deinem Gym freigeschaltet werden – beim Speichern eines Gyms und wenn du ein Spiel startest. Der Standort wird ausschließlich auf deinem Gerät mit den gespeicherten Gym-Koordinaten verglichen und nicht an uns oder Dritte übertragen. Gespeichert werden nur die Koordinaten deiner Gyms, auf dem Gerät und in Sicherungsdateien, die du selbst erstellst.</p>\n<h3>5. Sicherungen und Diagnoseprotokoll</h3>\n<p>Sicherungsdateien und das Diagnoseprotokoll entstehen nur, wenn du sie selbst erstellst. Wohin du sie speicherst oder sendest, entscheidest du. Das Diagnoseprotokoll enthält technische Angaben zur Fehlersuche (z. B. App-Version, Gerätetyp, Fehlermeldungen) und bleibt auf deinem Gerät, bis du es teilst.</p>\n<h3>6. Speicherdauer und Löschung</h3>\n<p>Die Daten bleiben gespeichert, bis du sie in der App unter „Daten & Sicherung“ löschst oder die App deinstallierst.</p>\n<h3>7. Deine Rechte</h3>\n<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch und Widerruf erteilter Einwilligungen (Art. 15–21 DSGVO). Da wir deine App-Daten nicht speichern, kannst du die meisten Rechte direkt in der App ausüben. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Behörde deines Wohnorts.</p>\n<h3>8. Kinder</h3>\n<p>Die App richtet sich nicht an Kinder unter 16 Jahren.</p>\n<h3>9. Änderungen</h3>\n<p>Wir passen diese Erklärung an, wenn sich die App oder die Rechtslage ändert. Es gilt die jeweils in der App veröffentlichte Fassung.</p>", "imp": "<h2>Impressum</h2>\n<p>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>\n<p>{name}<br>{anschrift}</p>\n<p><b>Kontakt:</b> E-Mail: {mail}</p>\n<p><b>Verantwortlich für den Inhalt:</b> {name}, Anschrift wie oben</p>", "ges": "<h2>Gesundheitshinweis</h2>\n<p>Gainora ist ein Hilfsmittel zur Planung von Ernährung und Training. Die App ist kein Medizinprodukt und ersetzt keine ärztliche, ernährungsmedizinische oder sportmedizinische Beratung.</p>\n<p>Kalorienbedarf, Nährwerte, Portionsgrößen, Supplementmengen, Trainings- und Laufpläne sind Richtwerte und Vorlagen. Sie berücksichtigen keine Erkrankungen, Medikamente, Schwangerschaft oder individuelle Belastbarkeit. Die Bedarfsberechnung ist eine Schätzung (Mifflin-St.-Jeor-Formel). Foto-Analysen und Produktdaten aus Open Food Facts können ungenau sein.</p>\n<p>Sprich vor einer deutlichen Ernährungsumstellung, vor Nahrungsergänzungsmitteln und vor dem Beginn eines intensiven Trainings mit einer Ärztin oder einem Arzt, besonders bei Vorerkrankungen. Brich das Training bei Schmerzen, Schwindel oder Atemnot ab.</p>", "liz": "<h2>Quellen und Lizenzen</h2>\n<p><b>Produktdaten:</b> Barcode-Suche mit Daten von <a href=\"https://world.openfoodfacts.org\">Open Food Facts</a>. Die Datenbank steht unter der Open Database License (ODbL), die Inhalte unter der Database Contents License.</p>\n<p><b>Foto-Analyse:</b> Google Gemini API, nur mit deinem eigenen Schlüssel.</p>\n<p><b>Rezepte, Lebensmittel, Übungen, Trainings- und Laufpläne:</b> eigene Zusammenstellung für Gainora. Die Nährwerte sind aus den Zutaten berechnet.</p>\n<p><b>Spiele:</b> „Blocksturz“ und die übrigen Pausenspiele sind eigene Umsetzungen.</p>"};
@@ -707,6 +710,7 @@ function render(){
  const bk=(tab=="eat")||(tab=="more"&&!S.mtab)?backupBanner():"";
  const app=$("#app"),v=[tab,sub[tab],S.tmode,S.tsub,S.rsub,S.mtab].join("/");
  app.innerHTML=kopf()+rdbHinweis()+bk+h;
+ try{lvCheck();}catch(e){logWarn("level","Level-Prüfung fehlgeschlagen: "+e.message);}
  if(v!=lastView){if(lastView){window.scrollTo(0,0);app.classList.remove("fx");void app.offsetWidth;app.classList.add("fx");}lastView=v;}
 }
 /* ---------- PLANEN ---------- */
@@ -1984,8 +1988,41 @@ function gWoTap(i){const run=G.run;if(!run||run.game!="wort"||run.lock||run.pick
 function gWoBack(){const run=G.run;if(!run||run.game!="wort"||run.lock)return;run.pick.pop();gWoDraw(run);}
 function gWoSkip(){const run=G.run;if(!run||run.game!="wort"||run.lock)return;$("#gi").textContent="Gesucht war: "+run.w;gWoNext(run);}
 function gS(){S.games=S.games||{xp:0,plays:0,best:{},daily:{}};S.games.best=S.games.best||{};S.games.daily=S.games.daily||{};return S.games;}
-const GTITEL=["Aufwärmer","Pumper","Eisenfreund","Stemmer","Hantelheld","Kraftprotz","Legende"];
-function gLevel(){const x=gS().xp,lv=Math.floor(x/150)+1;return {lv,in:x%150,t:GTITEL[Math.min(lv-1,GTITEL.length-1)]};}
+/* ---------- Athleten-Level: ein Level aus Training, Bestwerten, Läufen und Pausenspielen ---------- */
+const GTITEL=["Aufwärmer","Neuling","Pumper","Eisenfreund","Stemmer","Hantelheld","Kraftprotz","Eisenbeißer","Athlet","Champion","Titan","Legende"];
+const XP_UEB=10,XP_KOMPLETT=30,XP_PR=25,XP_LAUF=20;
+function athXP(){ // wird aus dem Verlauf berechnet, damit nichts doppelt zählt
+ const heute=todayISO(),r={uebungen:0,komplett:0,pr:0,lauf:0,spiele:gS().xp||0,anzPr:0,anzUeb:0,anzKomplett:0,anzLauf:0};
+ const tage=Object.keys(S.sets||{}).filter(d=>d<=heute).sort(),best={};
+ tage.forEach(d=>{const st=S.sets[d]||{};
+  Object.keys(st).forEach(n=>{if(!echteEinheit(d,n)||!uebFertig(d,n))return;r.anzUeb++;
+   const b=Math.max(0,...(st[n]||[]).map(x=>e1rm(x.kg,x.reps)));
+   if(b>0){if(best[n]>0&&b>best[n]+0.05)r.anzPr++;if(!(best[n]>=b))best[n]=b;}});
+  if(trGeplant(d)&&trainiertAm(d))r.anzKomplett++;});
+ rLogs().filter(x=>x.d<=heute).forEach(x=>{r.anzLauf++;r.lauf+=Math.min(Math.round((x.km||0)*2),40);});
+ r.uebungen=r.anzUeb*XP_UEB;r.komplett=r.anzKomplett*XP_KOMPLETT;r.pr=r.anzPr*XP_PR;r.lauf+=r.anzLauf*XP_LAUF;
+ r.total=r.uebungen+r.komplett+r.pr+r.lauf+r.spiele;return r;}
+const lvSchritt=n=>150+50*(n-1);                       // XP von Level n zu n+1
+const lvStart=L=>150*(L-1)+25*(L-1)*(L-2);             // XP, ab denen Level L erreicht ist
+function gLevel(){const x=athXP().total;let lv=1;while(x>=lvStart(lv+1))lv++;
+ const need=lvSchritt(lv);return {lv,xp:x,in:x-lvStart(lv),need,t:GTITEL[Math.min(Math.floor((lv-1)/2),GTITEL.length-1)]};}
+function lvCheck(){const L=gLevel();if(S.lvSeen==null){S.lvSeen=L.lv;save();return;}
+ if(L.lv>S.lvSeen){S.lvSeen=L.lv;save();haptik(60);toast(`⭐ Level ${L.lv} erreicht – ${L.t}!`);logInfo("level","Level erreicht",{level:L.lv});}}
+function athKarte(){const L=gLevel();
+ return `<button class="athk" onclick="athOpen()" aria-label="Athleten-Level ${L.lv}, Details"><span class="athl">${L.lv}</span><div><b>${L.t}</b><div class="bar" style="margin:5px 0 3px"><i style="width:${Math.min(100,L.in/L.need*100)}%"></i></div><small>${L.in} / ${L.need} XP bis Level ${L.lv+1}</small></div><span aria-hidden="true" style="color:var(--mut)">›</span></button>`;}
+function athOpen(){const L=gLevel(),x=athXP();
+ const z=(t,a,v)=>`<div class="row"><span>${t}${a!=null?` <small style="color:var(--mut)">(${a}×)</small>`:""}</span><b>${v} XP</b></div>`;
+ sheet(`<div class="ghero"><div><small>Athleten-Level ${L.lv}</small><b>${L.t}</b></div><div class="gxp"><b>${L.xp}</b><small>XP gesamt</small></div></div>
+ <div class="bar" style="margin:8px 0 4px"><i style="width:${Math.min(100,L.in/L.need*100)}%"></i></div><small style="display:block;color:var(--mut);margin-bottom:14px">Noch ${L.need-L.in} XP bis Level ${L.lv+1}</small>
+ <h4>Deine XP</h4>${z("Erledigte Übungen",x.anzUeb,x.uebungen)}${z("Komplette Trainings",x.anzKomplett,x.komplett)}${z("Neue Bestwerte",x.anzPr,x.pr)}${z("Läufe",x.anzLauf,x.lauf)}${z("Pausenspiele",null,x.spiele)}
+ <h4 style="margin-top:16px">So sammelst du XP</h4>
+ <div class="row"><span>Übung vollständig erledigt</span><b>+${XP_UEB}</b></div>
+ <div class="row"><span>Geplantes Training komplett</span><b>+${XP_KOMPLETT}</b></div>
+ <div class="row"><span>Neuer Bestwert (geschätztes 1RM)</span><b>+${XP_PR}</b></div>
+ <div class="row"><span>Lauf (+2 je km, max. 40)</span><b>+${XP_LAUF}</b></div>
+ <div class="row"><span>Pausenspiel in der Satzpause</span><b>volle XP</b></div>
+ <div class="row"><span>Freies Pausenspiel</span><b>halbe XP</b></div>
+ <button class="btn g" style="width:100%;margin-top:14px" onclick="closeSheet()">Schließen</button>`);}
 function gDaily(){const d=todayISO();let h=0;for(const c of d)h=(h*31+c.charCodeAt(0))>>>0;const g=h%7,v=Math.floor(h/7)%4;
  const def=[{g:"reaction",t:60+v*20,txt:`Reaction Rush: mindestens ${60+v*20} Punkte`},{g:"memory",t:4+v,txt:`Farbfolge: mindestens Level ${4+v}`},{g:"numbers",t:60-v*8,txt:`Number Blitz: in höchstens ${60-v*8} Sekunden`},{g:"stroop",t:80+v*20,txt:`Farbwort: mindestens ${80+v*20} Punkte`},{g:"math",t:80+v*20,txt:`Kopfrechnen: mindestens ${80+v*20} Punkte`},{g:"tetris",t:400+v*300,txt:`Blocksturz: mindestens ${400+v*300} Punkte`},{g:"wort",t:50+v*20,txt:`Wortsalat: mindestens ${50+v*20} Punkte`}][g];
  const dl=gS().daily;def.done=dl.d==d&&!!dl.done;return def;}
@@ -1997,7 +2034,7 @@ function gAward(game,val,xp){const g=gS(),b=g.best,heute=todayISO();g.plays++;le
  if(g.last!=heute){g.streak=(g.last==tagMinus(heute,1))?(g.streak||0)+1:1;g.last=heute;if(g.streak>=2)serie=Math.min(g.streak,7)*2;}
  const dc=gDaily();let bonus=0;
  if(!dc.done&&dc.g==game&&val>0&&(game=="numbers"?val<=dc.t:val>=dc.t)){bonus=50;g.daily={d:heute,done:true};g.dc=(g.dc||0)+1;}
- g.xp+=xp+bonus+serie;const neuE=gAchCheck();save();return {xp,bonus,serie,neu,neuE};}
+ g.xp+=xp+bonus+serie;const neuE=gAchCheck();save();try{lvCheck();}catch(e){}return {xp,bonus,serie,neu,neuE};}
 function gm(h){const e=document.getElementById("gm");if(e)e.innerHTML=h;}
 function gStopRun(){if(G.run&&G.run.to)clearTimeout(G.run.to);if(G.key){document.removeEventListener("keydown",G.key);G.key=null;}G.run=null;G.tm.forEach(clearTimeout);G.iv.forEach(clearInterval);G.tm=[];G.iv=[];}
 function gStop(){gStopRun();if(G.pi){clearInterval(G.pi);G.pi=null;const rb=document.getElementById("restbar");if(rb&&restT)rb.style.display="flex";}}
@@ -2020,8 +2057,8 @@ function gSchnell(){const s=restT?Math.max(0,Math.ceil((restEnd-Date.now())/1000
  const l=s<35?["numbers","memory"]:s<90?["reaction","stroop","math","numbers"].concat(s>=50?["wort"]:[]):["tetris","reaction","stroop","math","wort"];gStart(l[Math.floor(Math.random()*l.length)]);}
 function gHome(){gStopRun();const g=gS(),L=gLevel(),dc=gDaily(),b=g.best,n=g.n||{},GL=GLIST(b);g.ach=g.ach||[];
  const aktiv=g.last==todayISO()||g.last==tagMinus(todayISO(),1)?(g.streak||0):0;
- gm(`<div class="ghero"><div><small>Level ${L.lv}</small><b>${L.t}</b></div><div class="gxp"><b>${g.xp}</b><small>XP</small></div></div>
- <div class="bar" style="margin:8px 0 4px"><i style="width:${L.in/150*100}%"></i></div><small style="display:block;color:var(--mut);margin-bottom:12px">Noch ${150-L.in} XP bis Level ${L.lv+1}${aktiv>=2?` · 🔥 ${aktiv} Tage in Folge`:""}</small>
+ gm(`<div class="ghero"><div><small>Athleten-Level ${L.lv}</small><b>${L.t}</b></div><div class="gxp"><b>${L.xp}</b><small>XP</small></div></div>
+ <div class="bar" style="margin:8px 0 4px"><i style="width:${Math.min(100,L.in/L.need*100)}%"></i></div><small style="display:block;color:var(--mut);margin-bottom:12px">Noch ${L.need-L.in} XP bis Level ${L.lv+1} · Training und Spiele zählen zusammen${aktiv>=2?` · 🔥 ${aktiv} Tage in Folge`:""}</small>
  ${gymZeile()}${wertZeile()}<button class="btn" onclick="gSchnell()">▶ ${restT?"Passendes Spiel für die Pause":"Zufälliges Spiel starten"}</button>
  <div class="gdaily" style="margin-top:10px" onclick="gStart('${dc.g}')"><b>🎯 Tages-Challenge</b><small>${dc.txt}${dc.done?" · geschafft ✓":" · +50 XP"}</small></div>
  ${Object.keys(GL).map(k=>`<div class="opt" onclick="gStart('${k}')"><span class="ic2">${GL[k][0]}</span><div><b>${GL[k][1]}${dc.g==k&&!dc.done?' <span class="tag">Challenge</span>':""}</b><small>${GL[k][2]} · Rekord: ${GL[k][3]}${n[k]?" · "+n[k]+"×":""}</small></div></div>`).join("")}
@@ -2106,9 +2143,9 @@ function gEnd(run,partial){if(!run||(G.run!==run&&!partial))return "";
  else if(run.game=="tetris"){val=run.score;xp=Math.round(val/40)+run.lines*2;txt=val+" Punkte · "+run.lines+" Reihen";}
  else{const done=run.next==17;val=done?run.sec:0;xp=done?20+Math.max(0,Math.round((60-val)/3)):Math.floor((run.next-1)/2);txt=done?val+" Sekunden":(run.next-1)+" von 16";}
  const wert=!!(run.pid&&satzPause&&satzPause.id==run.pid&&!satzPause.used&&val>0);
- if(wert){satzPause.used=true;gWertSpeichern(run,val);}
+ if(wert){satzPause.used=true;gWertSpeichern(run,val);}else xp=Math.round(xp/2);   // freie Runde: halbe XP
  const a=(val>0||xp>0)?gAward(run.game,val,xp):{xp:0,bonus:0,neu:false};if(wert&&!(val>0||xp>0))save();
- const html=`<div class="gres"><div class="gscore">${txt}</div><p class="gwt ${wert?"on":""}">${wert?"✓ Gewertet für die Rangliste":"Freie Runde – zählt nicht für die Rangliste"}</p>${a.neu?"<p><b>🏆 Neuer Rekord</b></p>":""}<p class="sum">+${a.xp} XP${a.bonus?" · +"+a.bonus+" XP Tages-Challenge geschafft":""}${a.serie?" · +"+a.serie+" XP Serie":""}</p>${(a.neuE||[]).map(e=>`<div class="gach on" style="margin:8px auto 0;max-width:260px"><span>${e[1]}</span><b>${e[2]}</b><small>Erfolg freigeschaltet</small></div>`).join("")}</div>`;
+ const html=`<div class="gres"><div class="gscore">${txt}</div><p class="gwt ${wert?"on":""}">${wert?"✓ Gewertet für die Rangliste":"Freie Runde – zählt nicht für die Rangliste"}</p>${a.neu?"<p><b>🏆 Neuer Rekord</b></p>":""}<p class="sum">+${a.xp} XP${wert||!a.xp?"":" (freie Runde: halbe XP)"}${a.bonus?" · +"+a.bonus+" XP Tages-Challenge geschafft":""}${a.serie?" · +"+a.serie+" XP Serie":""}</p>${(a.neuE||[]).map(e=>`<div class="gach on" style="margin:8px auto 0;max-width:260px"><span>${e[1]}</span><b>${e[2]}</b><small>Erfolg freigeschaltet</small></div>`).join("")}</div>`;
  if(partial)return html;
  gStopRun();gm(html+`<button class="btn" style="width:100%;margin:12px 0 6px" onclick="gStart('${run.game}')">Nochmal</button><button class="btn g" style="width:100%;margin:0" onclick="gHome()">Spielemenü</button>`);return "";}
 function gReaction(){gStopRun();const run=G.run={game:"reaction",score:0,left:30,can:false,arm:0};
@@ -2147,7 +2184,7 @@ function tDay(){
  const vol=volOf(d,wk,i);
  let h=tBars();
  const fert=(S.train[key]||[]).filter(n=>prDone(d,n)).length;
- if(d==todayISO())h+=serieZeile(trainSerie(),"Trainings in Folge");
+ if(d==todayISO())h+=athKarte()+serieZeile(trainSerie(),"Trainings in Folge");
  h+=`<div class="card"><div class="row" style="margin-top:0"><b style="font-size:16px">${(S.train[key]||[]).length?"Training":"Kein Training geplant"}</b><span class="badge">${fert} von ${(S.train[key]||[]).length} erledigt</span></div>
  ${(S.train[key]||[]).length?bar("",fert,(S.train[key]||[]).length,""):""}
  ${vol.kg||vol.reps?`<div class="row"><span>Volumen</span><span>${nf(vol.kg)} kg · ${vol.reps} Wiederholungen</span></div>`:""}</div>`;
