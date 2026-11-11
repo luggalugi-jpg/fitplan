@@ -1,6 +1,6 @@
 # Angaben zum Datenschutz in den Stores
 
-Grundlage: Die App speichert alles nur auf dem Gerät. Daten verlassen das Gerät nur bei zwei Funktionen, die der Nutzer selbst auslöst:
+Grundlage: Die App speichert alles nur auf dem Gerät. Daten verlassen das Gerät nur bei drei Funktionen, die der Nutzer selbst auslöst (die dritte ist die freiwillige Rangliste, siehe unten):
 1. **Foto-Analyse** (optional, eigener Google-Gemini-Schlüssel): Das Foto geht direkt an Google.
 2. **Barcode-Suche**: Die Produktnummer geht an Open Food Facts (keine personenbezogenen Daten außer der technisch nötigen IP-Adresse).
 
@@ -17,7 +17,19 @@ Diese Antworten sind ein Vorschlag nach bestem Wissen, keine Rechtsberatung. Du 
 | Erhoben / geteilt | Erhoben: **Ja**. Geteilt: **Nein** – die Übertragung an Google erfolgt auf ausdrücklichen Wunsch des Nutzers (Ausnahme „vom Nutzer initiierte Übertragung“). |
 | Verarbeitung | **Optional** (Nutzer kann die Funktion weglassen); **kurzzeitig** (nicht gespeichert durch dich) |
 | Zweck | **App-Funktionen** |
-| Alles andere (Gesundheit, Fitness, Standort, Kontakte, Kennungen, App-Aktivität, Absturzberichte) | **Nicht erhoben** – bleibt auf dem Gerät |
+| Alles andere (Gesundheit, Standort, Kontakte, Absturzberichte) | **Nicht erhoben** – bleibt auf dem Gerät |
+
+**Rangliste (ab Version 3.16, freiwillig, nur nach Einwilligung):** Diese Daten gehen an den eigenen Server (Supabase, Paris). Supabase ist Auftragsverarbeiter – das zählt bei Google nicht als „Teilen“. Alle Einträge: **erhoben: Ja, geteilt: Nein, optional, Zweck: App-Funktionen**, Löschung in der App (Teilnahme beenden).
+
+| Datentyp (Play) | Was genau |
+|---|---|
+| **Persönliche Daten → Name** | Spitzname (frei gewählt, für andere sichtbar) |
+| **Persönliche Daten → Andere Info** | Geschlecht und Altersgruppe (freiwillig, nur für den Vergleich) |
+| **Gesundheit und Fitness → Fitnessinformationen** | Trainingstage, erledigte Übungen, beste Sätze (Gewicht, Wiederholungen), Körpergewicht (freiwillig) |
+| **App-Aktivitäten → Andere Aktionen** | Ergebnisse gewerteter Pausenspiele mit Start- und Endzeit |
+| **App-Info und Leistung / Geräte- oder andere IDs** | zufällige Nutzerkennung des anonymen Kontos → bei „Geräte- oder andere IDs“ angeben |
+
+Die Frage „Können Nutzer das Löschen beantragen?“ bleibt **Ja**: Mehr → Daten & Sicherung → „Teilnahme beenden und Daten löschen“ löscht sofort alles auf dem Server. Wer die App ohne das löscht, kann per E-Mail die Löschung verlangen (steht in der Datenschutzerklärung). Google verlangt bei Konten zusätzlich eine **Web-Adresse zum Löschen** – dafür die Datenschutz-URL mit dem Abschnitt Speicherdauer und Löschung angeben.
 
 **Standort (ab Version 3.11):** Die App fragt den genauen Standort ab, um die Pausenspiele nur im gespeicherten Gym freizuschalten. Der Abgleich passiert ausschließlich auf dem Gerät, nichts wird übertragen. Nach Googles Regeln gelten Daten, die das Gerät nicht verlassen, nicht als „erhoben“ – Standort bleibt daher **nicht erhoben**. Die Berechtigung (ACCESS_FINE_LOCATION, nur im Vordergrund) muss trotzdem in der Datenschutzerklärung stehen – ist erledigt. Keine Hintergrund-Standorterklärung nötig.
 
@@ -35,6 +47,10 @@ Empfehlung (vorsichtige Variante):
 | Datentyp | Angabe |
 |---|---|
 | **Fotos oder Videos** | Erhoben für **App-Funktionalität**, **nicht mit der Identität verknüpft**, **kein Tracking** |
+| **Fitness** (Rangliste, freiwillig) | Erhoben für **App-Funktionalität**, **mit der Identität verknüpft** (anonymes Konto), **kein Tracking** |
+| **Name** (Spitzname) | wie Fitness |
+| **Nutzer-ID** | wie Fitness |
+| **Gameplay-Inhalte / Sonstige Nutzungsdaten** (Spielergebnisse) | wie Fitness |
 | Alle anderen Typen | Nicht erhoben |
 
 Begründung: Apple zählt Daten als „erhoben“, wenn sie das Gerät verlassen und ein Dritter sie länger als für die sofortige Antwort behalten könnte. Bei der Gemini API hängt das von Googles Bedingungen für den Schlüssel des Nutzers ab. Die vorsichtige Angabe ist daher „Fotos – App-Funktionalität“.

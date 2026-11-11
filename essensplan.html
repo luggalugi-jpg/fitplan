@@ -207,6 +207,15 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--brand);outline-offs
 .smk{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin:0 0 12px;display:flex;flex-direction:column;gap:8px}
 .smk small{color:var(--mut);font-size:13px;line-height:1.4}.smk .btn{margin:0}.smk.on{background:var(--brand-l);border-color:transparent}.smk.on small{color:var(--brand-d)}
 .vs.pl{background:var(--bg)}
+.avg{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px;margin:4px 0 6px}
+.avg button{aspect-ratio:1;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-size:22px;padding:0;touch-action:manipulation}.avg button.on{border:2px solid var(--brand);background:var(--brand-l)}
+label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.45;color:var(--txt);font-weight:400}label.ck input{margin-top:3px;flex:none;width:18px;height:18px}
+.rll{display:flex;flex-direction:column;gap:4px}
+.rlz{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:12px;border:1px solid var(--line)}
+.rlz.ich{background:var(--brand-l);border-color:transparent}.rlz.auf{box-shadow:inset 3px 0 0 var(--brand)}.rlz.ab{box-shadow:inset 3px 0 0 var(--danger)}
+.rlp{width:22px;text-align:right;font-variant-numeric:tabular-nums;color:var(--mut);font-size:13px}.rla{font-size:20px}.rln{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rlz b{font-variant-numeric:tabular-nums}.rlm{width:32px;height:32px;border:0;background:none;color:var(--mut);font-size:15px;flex:none}
+.rlwait{padding:28px 6px;text-align:center;color:var(--mut)}
 .gdaily{background:var(--brand-l);border-radius:14px;padding:12px 14px;margin:0 0 8px}.gdaily small{display:block;margin-top:2px;color:var(--brand-d)}
 .gscore{font-size:30px;font-weight:760;text-align:center;margin:8px 0;font-variant-numeric:tabular-nums}
 .gres{text-align:center}.gover{text-align:center;padding:6px 0}.gover b{font-size:20px}
@@ -416,10 +425,10 @@ if(typeof RDB!=="undefined"&&typeof FOODS_NEU!=="undefined")(function(){
   if(dup)return;FOODS.push({n:a[0],k:a[1],p:a[2],h:a[3],f:a[4],g:a[5]});bases.push(w);});
 })();
 const fitsSlot=(m,s)=>m.c==s||(m.x&&m.x.indexOf(s)>=0);
-const PUBLIC_V="3.15";
+const PUBLIC_V="3.16";
 /* Anbieter für Impressum und Datenschutz – vor der Veröffentlichung ausfüllen */
 const ANBIETER={name:"Luca Preikschas",anschrift:"Herzog-Wilhelm-Str. 32, 94572 Schöfweg",mail:"gainpilot.app@gmail.com"};
-const RECHT={"ds": "<h2>Datenschutzerklärung</h2>\n<p><b>Stand:</b> 10. November 2026</p>\n<h3>1. Verantwortlicher</h3>\n<p>{name}<br>{anschrift}<br>E-Mail: {mail}</p>\n<h3>2. Grundsatz: Deine Daten bleiben auf deinem Gerät</h3>\n<p>GainPilot funktioniert ohne Benutzerkonto und ohne eigenen Server. Alles, was du einträgst – Essensplan, Mahlzeiten, Gewicht, Trainings, Läufe, Supplements, Ziele und Einstellungen – wird ausschließlich lokal im Speicher der App auf deinem Gerät abgelegt. Wir erhalten diese Daten nicht und können sie nicht einsehen.</p>\n<p>Die App enthält keine Werbung, keine Analyse- oder Tracking-Werkzeuge und gibt keine Daten zu Werbezwecken weiter.</p>\n<p>Angaben wie Körpergewicht, Ernährung und Trainingsdaten können Gesundheitsdaten sein. Sie werden nur auf deinem Gerät verarbeitet, um dir die Funktionen der App bereitzustellen.</p>\n<h3>3. Funktionen mit Internetverbindung</h3>\n<p>Nur die folgenden Funktionen nehmen Verbindung zu Diensten Dritter auf, und zwar nur, wenn du sie selbst auslöst:</p>\n<p><b>Foto-Analyse (optional):</b> Wenn du unter „Foto-Analyse“ einen eigenen Schlüssel für die Google Gemini API hinterlegst und ein Foto analysieren lässt, wird das Foto zusammen mit einer Anweisung direkt von deinem Gerät an Google gesendet (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Verarbeitung auch in den USA möglich). Google verarbeitet die Daten nach den Bedingungen, die du mit Google für deinen Schlüssel vereinbart hast. Dein Schlüssel wird nur auf deinem Gerät gespeichert und nicht in Sicherungsdateien übernommen. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), die du jederzeit widerrufen kannst, indem du den Schlüssel löschst.</p>\n<p><b>Barcode-Suche:</b> Wenn du einen Barcode scannst oder eingibst, wird die Produktnummer an Open Food Facts gesendet (Open Food Facts, 21 rue des Iles, 94100 Saint-Maur-des-Fossés, Frankreich), um Nährwerte abzurufen. Dabei wird technisch bedingt deine IP-Adresse übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir gewünschten Funktion).</p>\n<p><b>Webversion:</b> Wenn du die App im Browser nutzt, wird sie über GitHub Pages ausgeliefert (GitHub B.V., Niederlande / GitHub, Inc., USA). Dabei verarbeitet GitHub technisch notwendige Zugriffsdaten wie die IP-Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (sichere Bereitstellung der Webseite).</p>\n<h3>4. Berechtigungen</h3>\n<p><b>Kamera:</b> nur zum Scannen von Barcodes und für Fotos zur Foto-Analyse, jeweils erst wenn du die Funktion startest. <b>Benachrichtigungen:</b> nur für lokale Erinnerungen, die du selbst einschaltest (Ende der Satzpause, Training, Wasser, Mahlzeiten); sie werden auf dem Gerät erzeugt, nicht über einen Server. <b>Standort:</b> nur, damit die Pausenspiele in deinem Gym freigeschaltet werden – beim Speichern eines Gyms und wenn du ein Spiel startest. Der Standort wird ausschließlich auf deinem Gerät mit den gespeicherten Gym-Koordinaten verglichen und nicht an uns oder Dritte übertragen. Gespeichert werden nur die Koordinaten deiner Gyms, auf dem Gerät und in Sicherungsdateien, die du selbst erstellst.</p>\n<h3>5. Sicherungen und Diagnoseprotokoll</h3>\n<p>Sicherungsdateien und das Diagnoseprotokoll entstehen nur, wenn du sie selbst erstellst. Wohin du sie speicherst oder sendest, entscheidest du. Das Diagnoseprotokoll enthält technische Angaben zur Fehlersuche (z. B. App-Version, Gerätetyp, Fehlermeldungen) und bleibt auf deinem Gerät, bis du es teilst.</p>\n<h3>6. Speicherdauer und Löschung</h3>\n<p>Die Daten bleiben gespeichert, bis du sie in der App unter „Daten & Sicherung“ löschst oder die App deinstallierst.</p>\n<h3>7. Deine Rechte</h3>\n<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch und Widerruf erteilter Einwilligungen (Art. 15–21 DSGVO). Da wir deine App-Daten nicht speichern, kannst du die meisten Rechte direkt in der App ausüben. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Behörde deines Wohnorts.</p>\n<h3>8. Kinder</h3>\n<p>Die App richtet sich nicht an Kinder unter 16 Jahren.</p>\n<h3>9. Änderungen</h3>\n<p>Wir passen diese Erklärung an, wenn sich die App oder die Rechtslage ändert. Es gilt die jeweils in der App veröffentlichte Fassung.</p>", "imp": "<h2>Impressum</h2>\n<p>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>\n<p>{name}<br>{anschrift}</p>\n<p><b>Kontakt:</b> E-Mail: {mail}</p>\n<p><b>Verantwortlich für den Inhalt:</b> {name}, Anschrift wie oben</p>", "ges": "<h2>Gesundheitshinweis</h2>\n<p>GainPilot ist ein Hilfsmittel zur Planung von Ernährung und Training. Die App ist kein Medizinprodukt und ersetzt keine ärztliche, ernährungsmedizinische oder sportmedizinische Beratung.</p>\n<p>Kalorienbedarf, Nährwerte, Portionsgrößen, Supplementmengen, Trainings- und Laufpläne sind Richtwerte und Vorlagen. Sie berücksichtigen keine Erkrankungen, Medikamente, Schwangerschaft oder individuelle Belastbarkeit. Die Bedarfsberechnung ist eine Schätzung (Mifflin-St.-Jeor-Formel). Foto-Analysen und Produktdaten aus Open Food Facts können ungenau sein.</p>\n<p>Sprich vor einer deutlichen Ernährungsumstellung, vor Nahrungsergänzungsmitteln und vor dem Beginn eines intensiven Trainings mit einer Ärztin oder einem Arzt, besonders bei Vorerkrankungen. Brich das Training bei Schmerzen, Schwindel oder Atemnot ab.</p>", "liz": "<h2>Quellen und Lizenzen</h2>\n<p><b>Produktdaten:</b> Barcode-Suche mit Daten von <a href=\"https://world.openfoodfacts.org\">Open Food Facts</a>. Die Datenbank steht unter der Open Database License (ODbL), die Inhalte unter der Database Contents License.</p>\n<p><b>Foto-Analyse:</b> Google Gemini API, nur mit deinem eigenen Schlüssel.</p>\n<p><b>Rezepte, Lebensmittel, Übungen, Trainings- und Laufpläne:</b> eigene Zusammenstellung für GainPilot. Die Nährwerte sind aus den Zutaten berechnet.</p>\n<p><b>Spiele:</b> „Blocksturz“ und die übrigen Pausenspiele sind eigene Umsetzungen.</p>"};
+const RECHT={"ds": "<h2>Datenschutzerklärung</h2>\n<p><b>Stand:</b> 11. November 2026</p>\n<h3>1. Verantwortlicher</h3>\n<p>{name}<br>{anschrift}<br>E-Mail: {mail}</p>\n<h3>2. Grundsatz: Deine Daten bleiben auf deinem Gerät</h3>\n<p>GainPilot funktioniert ohne Benutzerkonto und ohne eigenen Server. Alles, was du einträgst – Essensplan, Mahlzeiten, Gewicht, Trainings, Läufe, Supplements, Ziele und Einstellungen – wird ausschließlich lokal im Speicher der App auf deinem Gerät abgelegt. Wir erhalten diese Daten nicht und können sie nicht einsehen. Einzige Ausnahme ist die freiwillige Rangliste (Abschnitt 3).</p>\n<p>Die App enthält keine Werbung, keine Analyse- oder Tracking-Werkzeuge und gibt keine Daten zu Werbezwecken weiter.</p>\n<p>Angaben wie Körpergewicht, Ernährung und Trainingsdaten können Gesundheitsdaten sein. Sie werden nur auf deinem Gerät verarbeitet, um dir die Funktionen der App bereitzustellen.</p>\n<h3>3. Funktionen mit Internetverbindung</h3>\n<p>Nur die folgenden Funktionen nehmen Verbindung zu Diensten Dritter auf, und zwar nur, wenn du sie selbst auslöst:</p>\n<p><b>Foto-Analyse (optional):</b> Wenn du unter „Foto-Analyse“ einen eigenen Schlüssel für die Google Gemini API hinterlegst und ein Foto analysieren lässt, wird das Foto zusammen mit einer Anweisung direkt von deinem Gerät an Google gesendet (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Verarbeitung auch in den USA möglich). Google verarbeitet die Daten nach den Bedingungen, die du mit Google für deinen Schlüssel vereinbart hast. Dein Schlüssel wird nur auf deinem Gerät gespeichert und nicht in Sicherungsdateien übernommen. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), die du jederzeit widerrufen kannst, indem du den Schlüssel löschst.</p>\n<p><b>Barcode-Suche:</b> Wenn du einen Barcode scannst oder eingibst, wird die Produktnummer an Open Food Facts gesendet (Open Food Facts, 21 rue des Iles, 94100 Saint-Maur-des-Fossés, Frankreich), um Nährwerte abzurufen. Dabei wird technisch bedingt deine IP-Adresse übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir gewünschten Funktion).</p>\n<p><b>Webversion:</b> Wenn du die App im Browser nutzt, wird sie über GitHub Pages ausgeliefert (GitHub B.V., Niederlande / GitHub, Inc., USA). Dabei verarbeitet GitHub technisch notwendige Zugriffsdaten wie die IP-Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (sichere Bereitstellung der Webseite).</p><p><b>Rangliste (freiwillig):</b> Nur wenn du unter „Rangliste“ ausdrücklich einwilligst, überträgt die App Daten an unseren Server: eine zufällige Nutzerkennung (ohne E-Mail-Adresse oder Klarnamen), deinen Spitznamen und Avatar, je Trainingstag die Zahl erledigter Übungen und ob das geplante Training komplett war, deine Trainings-Serie, deinen besten Satz je Übung (Gewicht, Wiederholungen und das daraus geschätzte Maximalgewicht) sowie die Ergebnisse gewerteter Pausenspiele mit Start- und Endzeit. Freiwillig kommen Geschlecht, Altersgruppe und Körpergewicht hinzu, damit du nur mit ähnlichen Personen verglichen wirst. Daraus werden Wochenliga, Kraft-Rangliste und Spiel-Bestenlisten berechnet. Andere Teilnehmer sehen deinen Spitznamen, Avatar, deine Punkte und Platzierung in deiner Liga-Gruppe, deine Spielergebnisse in dieser Gruppe und – wenn du zu den zehn Besten einer Übung gehörst – deinen Bestwert dort. Geschlecht, Altersgruppe und Körpergewicht sehen andere nicht. Auffällige Werte und Meldungen anderer Teilnehmer werden gespeichert, um Missbrauch zu prüfen. Der Server wird von Supabase Pte. Ltd. (65 Chulia Street #38-02/03, OCBC Centre, Singapur 049513) als Auftragsverarbeiter betrieben, das Rechenzentrum steht in Paris (EU). Soweit Supabase von außerhalb der EU auf Daten zugreift, geschieht das auf Grundlage der EU-Standardvertragsklauseln. Rechtsgrundlage ist deine ausdrückliche Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO). Du kannst sie jederzeit widerrufen, indem du unter „Daten &amp; Sicherung“ die Teilnahme beendest – dann werden alle Ranglisten-Daten auf dem Server sofort gelöscht.</p>\n<h3>4. Berechtigungen</h3>\n<p><b>Kamera:</b> nur zum Scannen von Barcodes und für Fotos zur Foto-Analyse, jeweils erst wenn du die Funktion startest. <b>Benachrichtigungen:</b> nur für lokale Erinnerungen, die du selbst einschaltest (Ende der Satzpause, Training, Wasser, Mahlzeiten); sie werden auf dem Gerät erzeugt, nicht über einen Server. <b>Standort:</b> nur, damit die Pausenspiele in deinem Gym freigeschaltet werden – beim Speichern eines Gyms und wenn du ein Spiel startest. Der Standort wird ausschließlich auf deinem Gerät mit den gespeicherten Gym-Koordinaten verglichen und nicht an uns oder Dritte übertragen. Gespeichert werden nur die Koordinaten deiner Gyms, auf dem Gerät und in Sicherungsdateien, die du selbst erstellst.</p>\n<h3>5. Sicherungen und Diagnoseprotokoll</h3>\n<p>Sicherungsdateien und das Diagnoseprotokoll entstehen nur, wenn du sie selbst erstellst. Wohin du sie speicherst oder sendest, entscheidest du. Das Diagnoseprotokoll enthält technische Angaben zur Fehlersuche (z. B. App-Version, Gerätetyp, Fehlermeldungen) und bleibt auf deinem Gerät, bis du es teilst.</p>\n<h3>6. Speicherdauer und Löschung</h3>\n<p>Die Daten bleiben gespeichert, bis du sie in der App unter „Daten & Sicherung“ löschst oder die App deinstallierst. Ranglisten-Daten auf dem Server werden gelöscht, sobald du die Teilnahme beendest. Hast du die App ohne Beenden der Teilnahme gelöscht, schreib uns eine E-Mail mit deinem Spitznamen, dann löschen wir sie.</p>\n<h3>7. Deine Rechte</h3>\n<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch und Widerruf erteilter Einwilligungen (Art. 15–21 DSGVO). Da wir deine App-Daten nicht speichern, kannst du die meisten Rechte direkt in der App ausüben. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Behörde deines Wohnorts.</p>\n<h3>8. Kinder</h3>\n<p>Die App richtet sich nicht an Kinder unter 16 Jahren.</p>\n<h3>9. Änderungen</h3>\n<p>Wir passen diese Erklärung an, wenn sich die App oder die Rechtslage ändert. Es gilt die jeweils in der App veröffentlichte Fassung.</p>", "imp": "<h2>Impressum</h2>\n<p>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>\n<p>{name}<br>{anschrift}</p>\n<p><b>Kontakt:</b> E-Mail: {mail}</p>\n<p><b>Verantwortlich für den Inhalt:</b> {name}, Anschrift wie oben</p>", "ges": "<h2>Gesundheitshinweis</h2>\n<p>GainPilot ist ein Hilfsmittel zur Planung von Ernährung und Training. Die App ist kein Medizinprodukt und ersetzt keine ärztliche, ernährungsmedizinische oder sportmedizinische Beratung.</p>\n<p>Kalorienbedarf, Nährwerte, Portionsgrößen, Supplementmengen, Trainings- und Laufpläne sind Richtwerte und Vorlagen. Sie berücksichtigen keine Erkrankungen, Medikamente, Schwangerschaft oder individuelle Belastbarkeit. Die Bedarfsberechnung ist eine Schätzung (Mifflin-St.-Jeor-Formel). Foto-Analysen und Produktdaten aus Open Food Facts können ungenau sein.</p>\n<p>Sprich vor einer deutlichen Ernährungsumstellung, vor Nahrungsergänzungsmitteln und vor dem Beginn eines intensiven Trainings mit einer Ärztin oder einem Arzt, besonders bei Vorerkrankungen. Brich das Training bei Schmerzen, Schwindel oder Atemnot ab.</p>", "liz": "<h2>Quellen und Lizenzen</h2>\n<p><b>Produktdaten:</b> Barcode-Suche mit Daten von <a href=\"https://world.openfoodfacts.org\">Open Food Facts</a>. Die Datenbank steht unter der Open Database License (ODbL), die Inhalte unter der Database Contents License.</p>\n<p><b>Foto-Analyse:</b> Google Gemini API, nur mit deinem eigenen Schlüssel.</p>\n<p><b>Rezepte, Lebensmittel, Übungen, Trainings- und Laufpläne:</b> eigene Zusammenstellung für GainPilot. Die Nährwerte sind aus den Zutaten berechnet.</p>\n<p><b>Spiele:</b> „Blocksturz“ und die übrigen Pausenspiele sind eigene Umsetzungen.</p>"};
 /* Läuft die Seite als installierte App (Capacitor)? */
 const NATIV=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
 const PL=n=>NATIV&&window.Capacitor.Plugins?window.Capacitor.Plugins[n]||null:null;
@@ -714,6 +723,7 @@ function render(){
  const app=$("#app"),v=[tab,sub[tab],S.tmode,S.tsub,S.rsub,S.mtab].join("/");
  app.innerHTML=kopf()+rdbHinweis()+bk+h;
  try{lvCheck();}catch(e){logWarn("level","Level-Prüfung fehlgeschlagen: "+e.message);}
+ try{rlTick();}catch(e){logWarn("rangliste","Abgleich fehlgeschlagen: "+e.message);}
  if(v!=lastView){if(lastView){window.scrollTo(0,0);app.classList.remove("fx");void app.offsetWidth;app.classList.add("fx");}lastView=v;}
 }
 /* ---------- PLANEN ---------- */
@@ -2024,7 +2034,8 @@ function pauseWertbar(){return !!(restT&&satzPause&&!satzPause.used&&Date.now()-
 function gWertSpeichern(run,val){S.gwert=S.gwert||[];
  S.gwert.push({d:todayISO(),w:weekKey(new Date()),g:run.game,v:val,a:run.t0w,e:Date.now(),u:satzPause.ueb});
  if(S.gwert.length>400)S.gwert=S.gwert.slice(-400);
- logInfo("spiele","Runde gewertet",{spiel:run.game,wert:val});}
+ logInfo("spiele","Runde gewertet",{spiel:run.game,wert:val});
+ rlPush("gp_spiel",{p_game:run.game,p_score:Math.round(val),p_start:run.t0w,p_end:Date.now()});}
 function wertZeile(){
  if(pauseWertbar())return `<div class="gwz on">🏆 Die nächste Runde wird für die Rangliste gewertet.</div>`;
  if(restT&&satzPause&&satzPause.used)return `<div class="gwz">In dieser Pause wurde schon gewertet. Weitere Runden sind frei.</div>`;
@@ -2049,6 +2060,132 @@ function gWoTap(i){const run=G.run;if(!run||run.game!="wort"||run.lock||run.pick
   G.tm.push(setTimeout(()=>{if(G.run!==run)return;run.lock=false;run.pick=[];gWoDraw(run);},550));}}
 function gWoBack(){const run=G.run;if(!run||run.game!="wort"||run.lock)return;run.pick.pop();gWoDraw(run);}
 function gWoSkip(){const run=G.run;if(!run||run.game!="wort"||run.lock)return;$("#gi").textContent="Gesucht war: "+run.w;gWoNext(run);}
+/* ---------- Rangliste (freiwillig, Server: Supabase in der EU) ----------
+   Anmeldung anonym, ohne E-Mail. Die Zugangsschlüssel liegen nur im Gerätespeicher (nicht in Sicherungsdateien).
+   Punkte, Ligen und Prüfungen rechnet ausschließlich der Server (supabase/rangliste.sql). */
+const SB_URL="https://gvzesjpzlktcmzcpmtul.supabase.co",SB_KEY="sb_publishable_LDjiwcNu6NrClp1ElW60Xg_q7zFyGZ1";
+const LIGEN=[["Bronze","🥉"],["Silber","🥈"],["Gold","🥇"],["Platin","💠"],["Diamant","💎"]];
+const AVATARE=["🦁","🐺","🐻","🦊","🐯","🦅","🦍","🐂","🦈","🐉","🦄","🐼","🐨","🦘","🐗","🦬","🐆","🦉","🐧","🐢","🐙","🦖","🐝","🦌","🐲","🔥","⚡","💪","🏋️","🏃","🚴","🥊"];
+const ALTER=[["u20","unter 20"],["20-29","20–29"],["30-39","30–39"],["40-49","40–49"],["50+","50+"]];
+const rl=()=>(S.rl=S.rl||{on:false});
+function sbTok(){try{return JSON.parse(localStorage.getItem("gp_sb")||"null");}catch(e){return null;}}
+function sbTokSet(t){try{if(t)localStorage.setItem("gp_sb",JSON.stringify(t));else localStorage.removeItem("gp_sb");}catch(e){}}
+async function sbReq(pfad,body,tok){const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),15000);
+ try{return await fetch(SB_URL+pfad,{method:"POST",signal:ctl.signal,headers:{"apikey":SB_KEY,"Content-Type":"application/json",...(tok?{"Authorization":"Bearer "+tok}:{})},body:JSON.stringify(body||{})});}
+ finally{clearTimeout(to);}}
+function sbMerk(j,alt){const t={at:j.access_token,rt:j.refresh_token,exp:j.expires_at||(Date.now()/1000+(j.expires_in||3600)),uid:(j.user&&j.user.id)||(alt&&alt.uid)};sbTokSet(t);return t;}
+async function sbAuth(neu){let t=sbTok();
+ if(t&&!neu&&t.exp>Date.now()/1000+60)return t;
+ if(t&&t.rt&&!neu){const r=await sbReq("/auth/v1/token?grant_type=refresh_token",{refresh_token:t.rt});
+  if(r.ok)return sbMerk(await r.json(),t);
+  if(r.status>=500||r.status==429)throw new Error("Server nicht erreichbar ("+r.status+")");
+  logWarn("rangliste","Anmeldung abgelaufen, neues anonymes Konto",{status:r.status});}
+ const r=await sbReq("/auth/v1/signup",{data:{}});
+ if(!r.ok){const tx=await r.text().catch(()=>"");throw new Error("Anmeldung fehlgeschlagen ("+r.status+") "+tx.slice(0,120));}
+ const j=await r.json();rl().neuKonto=!!t;return sbMerk(j);}
+async function sbRpc(fn,args,wdh){const t=await sbAuth();
+ const r=await sbReq("/rest/v1/rpc/"+fn,args||{},t.at);
+ if(r.status==401&&!wdh){const x=sbTok();if(x){x.exp=0;sbTokSet(x);}return sbRpc(fn,args,true);}
+ if(!r.ok){const tx=await r.text().catch(()=>"");throw new Error(fn+": "+r.status+" "+tx.slice(0,160));}
+ return r.json();}
+/* Warteschlange: Meldungen gehen raus, sobald Netz da ist */
+function rlPush(fn,a){if(!rl().on)return;(rl().q=rl().q||[]).push({fn,a});if(rl().q.length>300)rl().q=rl().q.slice(-300);save();rlFlush();}
+let rlLauf=null;
+function rlFlush(){if(!rlLauf)rlLauf=rlSenden().finally(()=>{rlLauf=null;});return rlLauf;}
+async function rlSenden(){const R=rl();if(!R.on||!(R.q||[]).length||(typeof navigator!="undefined"&&navigator.onLine===false))return;
+ {while(R.q.length){const it=R.q[0];let j;
+   try{j=await sbRpc(it.fn,it.a);}catch(e){logWarn("rangliste","Senden später",{fn:it.fn,fehler:e.message});break;}
+   R.q.shift();save();
+   if(j&&j.ok===false&&j.fehler)logWarn("rangliste",j.fehler,{fn:it.fn});
+   if(j&&j.geprueft&&j.hinweis)toast(j.hinweis);
+   if(it.fn=="gp_bestwert"&&j&&j.neu&&j.pts)toast("🏆 Neuer Bestwert: +"+j.pts+" Liga-Punkte");}}
+}
+/* Abgleich nach jedem Neuzeichnen: Trainingstage und Bestwerte der laufenden Woche */
+function rlBesterSatz(d,n){let b=null;((S.sets[d]||{})[n]||[]).forEach(x=>{const kg=+x.kg||0,r=+x.reps||0;if(kg>0&&r>=1&&r<=20&&(x.ok||x.u)){const e=e1rm(kg,r);if(!b||e>b.e)b={kg,r,e};}});return b;}
+function rlGewicht(){const w=S.weight||{},k=Object.keys(w).sort();return k.length?+w[k[k.length-1]]:null;}
+let rlTimer=null;
+function rlTick(){if(!rl().on||!rl().ready)return;clearTimeout(rlTimer);rlTimer=setTimeout(rlAbgleich,2500);}
+function rlAbgleich(){const R=rl(),heute=todayISO(),mo=weekOf(0);if(!R.on||!R.ready)return;R.sent=R.sent||{};R.best=R.best||{};
+ for(let i=0;i<7;i++){const d=tagMinus(mo,-i);if(d>heute)break;
+  const n=Object.keys((S.sets||{})[d]||{}).filter(x=>echteEinheit(d,x)&&uebFertig(d,x)).length,komplett=trGeplant(d)&&trainiertAm(d);
+  const sig=n+"|"+(komplett?1:0);
+  if(R.sent[d]!==sig&&(n>0||R.sent[d]!=null)){R.sent[d]=sig;rlPush("gp_training",{p_day:d,p_ex:n,p_complete:komplett,p_streak:d==heute?trainSerie():0});}
+  Object.keys((S.sets||{})[d]||{}).forEach(x=>{if(!echteEinheit(d,x))return;const b=rlBesterSatz(d,x);
+   if(b&&b.e>(R.best[x]||0)+0.05){R.best[x]=b.e;rlPush("gp_bestwert",{p_ex:x,p_kg:b.kg,p_reps:b.r,p_bw:rlGewicht(),p_day:d});}});}
+ Object.keys(R.sent).forEach(d=>{if(d<mo)delete R.sent[d];});save();}
+function rlBasis(){ // beim Mitmachen: bisherige Bestwerte als Ausgangswert (bringen keine Punkte)
+ const R=rl(),beste={};R.best={};
+ Object.keys(S.sets||{}).forEach(d=>Object.keys(S.sets[d]||{}).forEach(n=>{if(!echteEinheit(d,n))return;const b=rlBesterSatz(d,n);if(b&&(!beste[n]||b.e>beste[n].e))beste[n]=b;}));
+ Object.keys(beste).forEach(n=>{const b=beste[n];R.best[n]=b.e;R.q=(R.q||[]);R.q.push({fn:"gp_bestwert",a:{p_ex:n,p_kg:b.kg,p_reps:b.r,p_bw:rlGewicht(),p_day:todayISO()}});});}
+/* Oberfläche */
+function rlKarte(){const R=rl();
+ if(!R.on)return `<button class="athk" onclick="rlSetup()" aria-label="Rangliste: mitmachen"><span class="athl" style="background:var(--brand-l);color:var(--brand-d)">🏆</span><div><b>Rangliste</b><small style="display:block">Wochenliga mit anderen – freiwillig, ohne Konto</small></div><span aria-hidden="true" style="color:var(--mut)">›</span></button>`;
+ const c=R.cache,L=LIGEN[(c&&c.liga)||0];
+ return `<button class="athk" onclick="rlOpen('liga')" aria-label="Rangliste öffnen"><span class="athl" style="background:var(--brand-l);color:var(--brand-d)">${L[1]}</span><div><b>${L[0]}-Liga</b><small style="display:block">${c&&c.ich?`Platz ${c.ich.platz} von ${c.anzahl} · ${c.ich.pkt} Punkte`:"Tippen zum Laden"}</small></div><span aria-hidden="true" style="color:var(--mut)">›</span></button>`;}
+let RLF={av:0};
+function rlSetup(){const R=rl(),alt=S.age?(S.age<20?"u20":S.age<30?"20-29":S.age<40?"30-39":S.age<50?"40-49":"50+"):"";
+ RLF={av:R.avatar!=null?R.avatar:Math.floor(Math.random()*AVATARE.length)};
+ sheet(`<h4>Rangliste</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">Miss dich jede Woche mit rund 30 anderen in deiner Liga. Punkte gibt es vor allem fürs Training und für eigene Bestwerte, Pausenspiele zählen höchstens zu einem Viertel. Kein Konto, keine E-Mail.</small>
+ <label>Spitzname (3–20 Zeichen)</label><input class="n" id="rlNick" maxlength="20" autocomplete="off" value="${esc(R.nick||"")}">
+ <label>Avatar</label><div class="avg" id="rlAv">${AVATARE.map((a,i)=>`<button class="${i==RLF.av?"on":""}" aria-label="Avatar ${i+1}" onclick="RLF.av=${i};document.querySelectorAll('#rlAv button').forEach((b,k)=>b.classList.toggle('on',k==${i}))">${a}</button>`).join("")}</div>
+ <h4 style="margin-top:14px">Für die Kraft-Rangliste (freiwillig)</h4><small style="display:block;color:var(--mut);margin:-4px 0 8px">Damit vergleicht dich die App nur mit ähnlichen Personen. Andere sehen diese Angaben nicht.</small>
+ <div class="g2"><div><label>Geschlecht</label><select class="n" id="rlSex"><option value="">keine Angabe</option><option value="m" ${(R.sex||(S.sex=="f"?"w":"m"))=="m"?"selected":""}>männlich</option><option value="w" ${(R.sex||(S.sex=="f"?"w":""))=="w"?"selected":""}>weiblich</option></select></div>
+ <div><label>Alter</label><select class="n" id="rlAge"><option value="">keine Angabe</option>${ALTER.map(([k,t])=>`<option value="${k}" ${(R.age||alt)==k?"selected":""}>${t}</option>`).join("")}</select></div></div>
+ <label class="ck"><input type="checkbox" id="rlBw" ${R.bw!==false?"checked":""}><span>Körpergewicht mitsenden${rlGewicht()?` (${String(rlGewicht()).replace(".",",")} kg)`:""} – für den Vergleich nach Gewichtsklasse</span></label>
+ <label class="ck" style="margin-top:12px"><input type="checkbox" id="rlOk" ${R.on?"checked":""}><span>Ich willige ein, dass mein Spitzname, Avatar, meine Trainingstage, Bestwerte und gewerteten Spielergebnisse – und die freiwilligen Angaben oben – für die Rangliste an den Server (Supabase, Rechenzentrum in Paris) übertragen werden. Widerruf jederzeit unter Mehr → Daten & Sicherung. <a href="#" onclick="closeSheet();S.tab='more';tab='more';S.mtab='recht';render();return false">Datenschutz</a></span></label>
+ <div id="rlMsg" style="font-size:13px;color:var(--danger);margin:8px 0 0"></div>
+ <button class="btn" style="width:100%;margin-top:10px" id="rlGo" onclick="rlSpeichern()">${R.on?"Speichern":"Mitmachen"}</button><button class="btn g" style="width:100%" onclick="closeSheet()">Abbrechen</button>`);}
+async function rlSpeichern(){const nick=($("#rlNick").value||"").trim(),msg=$("#rlMsg"),btn=$("#rlGo");
+ if(!$("#rlOk").checked){msg.textContent="Bitte bestätige die Einwilligung, sonst kann die Rangliste nicht funktionieren.";return;}
+ if(!/^[A-Za-z0-9ÄÖÜäöüß_.-]{3,20}$/.test(nick)){msg.textContent="Erlaubt sind 3–20 Zeichen: Buchstaben, Zahlen, Punkt, Strich und Unterstrich.";return;}
+ const sex=$("#rlSex").value,age=$("#rlAge").value,bw=$("#rlBw").checked;
+ btn.disabled=true;btn.textContent="Wird gespeichert …";msg.textContent="";
+ try{const j=await sbRpc("gp_profil_speichern",{p_nick:nick,p_avatar:RLF.av,p_sex:sex||null,p_age:age||null,p_bw:bw?rlGewicht():null});
+  if(!j.ok){msg.textContent=j.fehler||"Das hat nicht geklappt.";btn.disabled=false;btn.textContent="Mitmachen";return;}
+  const R=rl(),erst=!R.on;Object.assign(R,{on:true,ready:true,nick,avatar:RLF.av,sex,age,bw,seit:R.seit||todayISO()});
+  if(erst){rlBasis();R.sent={};}save();logInfo("rangliste",erst?"Teilnahme gestartet":"Profil geändert");
+  rlAbgleich();toast(erst?"Willkommen in der Rangliste!":"Profil gespeichert.");rlOpen("liga");}
+ catch(e){logErr("rangliste","Profil speichern: "+e.message);msg.textContent="Keine Verbindung zum Server. Prüfe dein Internet und versuch es nochmal.";btn.disabled=false;btn.textContent="Mitmachen";}}
+let RLT={tab:"liga",ex:null,spiel:"reaction"};
+function rlOpen(t){RLT.tab=t||RLT.tab;rlZeigen(`<div class="rlwait">Lädt …</div>`);rlLaden();}
+function rlZeigen(inhalt){const tabs=[["liga","Liga"],["kraft","Kraft"],["spiele","Spiele"]];
+ sheet(`<div class="sub" style="margin:0 0 12px">${tabs.map(([k,n])=>`<button class="${RLT.tab==k?"on":""}" onclick="rlOpen('${k}')">${n}</button>`).join("")}</div><div id="rlBody">${inhalt}</div>
+ <div style="display:flex;gap:8px;margin-top:12px"><button class="btn g" style="flex:1;margin:0" onclick="rlSetup()">Profil</button><button class="btn g" style="flex:1;margin:0" onclick="closeSheet()">Schließen</button></div>`);}
+async function rlLaden(){const t=RLT.tab;await rlFlush();
+ try{let h="";
+  if(t=="liga"){const j=await sbRpc("gp_liga");if(!j.ok)return rlKeinProfil();rl().cache={liga:j.liga,anzahl:j.anzahl,ich:j.ich,zeit:Date.now()};save();h=rlLigaHtml(j);}
+  else if(t=="kraft"){const ex=RLT.ex||Object.keys(rl().best||{})[0]||"";const j=await sbRpc("gp_kraft",{p_ex:ex});if(!j.ok)return rlKeinProfil();if(!RLT.ex&&j.uebungen&&j.uebungen.length&&!j.uebungen.includes(ex)){RLT.ex=j.uebungen[0];return rlLaden();}h=rlKraftHtml(j,ex);}
+  else{const j=await sbRpc("gp_spiele",{p_game:RLT.spiel});if(!j.ok)return rlKeinProfil();h=rlSpieleHtml(j);}
+  if(RLT.tab==t){const b=$("#rlBody");if(b)b.innerHTML=h;}}
+ catch(e){logWarn("rangliste","Laden: "+e.message);const b=$("#rlBody");if(b)b.innerHTML=`<div class="rlwait">Keine Verbindung zum Server.<br><button class="btn g" style="margin-top:10px" onclick="rlOpen()">Nochmal versuchen</button></div>`;}}
+function rlKeinProfil(){rl().ready=false;save();closeSheet();rlSetup();}
+const rlZeile=(x,wert)=>`<div class="rlz ${x.ich?"ich":""} ${x.zone||""}"><span class="rlp">${x.platz||""}</span><span class="rla" aria-hidden="true">${AVATARE[x.avatar]||"🙂"}</span><span class="rln">${esc(x.nick)}${x.ich?" (du)":""}</span><b>${wert}</b>${x.ich?`<span class="rlm"></span>`:`<button class="rlm" aria-label="${esc(x.nick)} melden" onclick="rlMelden('${x.id}','${jq(x.nick)}')">⚑</button>`}</div>`;
+function rlLigaHtml(j){const L=LIGEN[j.liga||0],ich=j.ich||{},bis=fmtDat(tagMinus(j.woche,-6));
+ return `<div class="ghero"><div><small>${L[1]} ${L[0]}-Liga · bis ${bis}</small><b>Platz ${ich.platz||"–"} von ${j.anzahl}</b></div><div class="gxp"><b>${ich.pkt||0}</b><small>Punkte</small></div></div>
+ <small style="display:block;color:var(--mut);margin:8px 0 10px">Training ${ich.training||0} · Bestwerte ${ich.bestwerte||0} · Serie ${ich.serie||0} · Spiele ${ich.spiele||0}<br>${j.auf==1?"Platz 1 steigt auf":j.auf?`Die besten ${j.auf} steigen auf`:"Auf- und Abstieg ab 3 Teilnehmern"}${j.ab==1?", der Letzte steigt ab":j.ab?`, die letzten ${j.ab} steigen ab`:""}. Neue Woche ab Montag.</small>
+ <div class="rll">${(j.liste||[]).map(x=>rlZeile(x,x.pkt)).join("")}</div>
+ <details style="margin-top:10px"><summary style="font-size:13px;color:var(--mut)">So gibt es Punkte</summary><small style="display:block;color:var(--mut);line-height:1.5;margin-top:6px">10 je erledigter Übung (max. 12 am Tag), +30 für ein komplettes geplantes Training, +25 je neuem Bestwert (max. 3 am Tag), Serien-Bonus bis +20 je Trainingstag. Gewertete Pausenspiele bringen Punkte, aber höchstens ein Viertel deiner Wochenpunkte. Auffällige Sprünge werden geprüft und nicht gewertet.</small></details>`;}
+function rlStufe(p){return p==null?"":p>=90?"Elite":p>=60?"Erfahren":p>=25?"Fortgeschritten":"Einsteiger";}
+function rlKraftHtml(j,ex){const ue=j.uebungen||[];
+ if(!ue.length)return `<div class="rlwait">Noch keine Bestwerte übertragen. Sobald du eine Übung mit Gewicht abhakst, erscheint sie hier.</div>`;
+ const fm=v=>String(v).replace(".",",");
+ return `<label>Übung</label><select class="n" onchange="RLT.ex=this.value;rlOpen('kraft')">${ue.map(n=>`<option ${n==ex?"selected":""}>${esc(n)}</option>`).join("")}</select>
+ <div class="ghero" style="margin-top:10px"><div><small>Dein Bestwert (geschätztes 1RM)</small><b>${j.e1rm!=null?fm(j.e1rm)+" kg":"–"}${j.rel!=null?` · ${fm(j.rel)}× Körpergewicht`:""}</b></div></div>
+ <p style="margin:10px 0">${j.perzentil!=null&&j.vergleich>=5?`<b>Stärker als ${j.perzentil} %</b> deiner Vergleichsgruppe (${j.vergleich} Personen) – Stufe <b>${rlStufe(j.perzentil)}</b>`:`Noch zu wenige Personen in deiner Vergleichsgruppe (mindestens 5).`}</p>
+ <h4>Top 10</h4><div class="rll">${(j.top||[]).map((x,i)=>rlZeile(Object.assign({platz:i+1},x),fm(x.e1rm)+" kg")).join("")}</div>`;}
+const RL_SPIELE=[["reaction","⚡ Reaction"],["memory","🧠 Farbfolge"],["numbers","🔢 Number Blitz"],["stroop","🎨 Farbwort"],["math","➕ Kopfrechnen"],["tetris","🧱 Blocksturz"],["wort","🔤 Wortsalat"]];
+function rlSpieleHtml(j){const ein=RLT.spiel=="numbers"?" s":RLT.spiel=="memory"?"":" P.";
+ return `<div class="chips" style="margin-bottom:10px">${RL_SPIELE.map(([k,n])=>`<button class="${RLT.spiel==k?"p":""}" onclick="RLT.spiel='${k}';rlOpen('spiele')">${n}</button>`).join("")}</div>
+ <small style="display:block;color:var(--mut);margin-bottom:8px">Wochenbeste in deiner Liga-Gruppe. Es zählen nur Runden aus echten Satzpausen.</small>
+ <div class="rll">${(j.liste||[]).map((x,i)=>rlZeile(Object.assign({platz:i+1},x),(RLT.spiel=="memory"?"Level ":"")+x.wert+ein)).join("")||`<div class="rlwait">Diese Woche noch keine gewertete Runde.</div>`}</div>`;}
+async function rlMelden(id,nick){if(!confirm(`„${nick}“ melden? Nutze das bei unrealistischen Werten oder einem unpassenden Spitznamen.`))return;
+ try{const j=await sbRpc("gp_melden",{p_target:id,p_grund:"aus der App"});toast(j.ok?"Danke, die Meldung ist eingegangen.":(j.fehler||"Meldung nicht möglich."));}catch(e){toast("Keine Verbindung zum Server.");}}
+async function rlBeenden(){if(!confirm("Teilnahme an der Rangliste beenden? Dein Profil, deine Punkte und alle übertragenen Werte werden auf dem Server gelöscht. Deine Daten in der App bleiben erhalten."))return;
+ try{if(sbTok())await sbRpc("gp_loeschen");}catch(e){logErr("rangliste","Löschen: "+e.message);alert("Keine Verbindung zum Server. Die Daten konnten nicht gelöscht werden – bitte versuch es mit Internet nochmal.");return;}
+ clearTimeout(rlTimer);sbTokSet(null);S.rl={on:false};save();logInfo("rangliste","Teilnahme beendet, Serverdaten gelöscht");toast("Teilnahme beendet, Daten auf dem Server gelöscht.");render();}
+function rlDatenKarte(){const R=rl();
+ return `<div class="card"><h4>Rangliste</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">${R.on?`Du machst mit als „${esc(R.nick||"")}“. Übertragen werden Spitzname, Avatar, Trainingstage, Bestwerte und gewertete Spielergebnisse${R.sex||R.age||R.bw?" sowie deine freiwilligen Vergleichsangaben":""}.${(R.q||[]).length?` ${R.q.length} Meldung(en) warten auf Internet.`:""}`:"Du machst nicht mit. Es werden keine Daten an einen Server übertragen."}</small>
+ ${R.on?`<button class="btn g" onclick="rlSetup()">Profil bearbeiten</button><button class="btn g" style="color:var(--danger);border-color:var(--danger)" onclick="rlBeenden()">Teilnahme beenden und Daten löschen</button>`:`<button class="btn g" onclick="rlSetup()">Mitmachen …</button>`}</div>`;}
 function gS(){S.games=S.games||{xp:0,plays:0,best:{},daily:{}};S.games.best=S.games.best||{};S.games.daily=S.games.daily||{};return S.games;}
 /* ---------- Athleten-Level: ein Level aus Training, Bestwerten, Läufen und Pausenspielen ---------- */
 const GTITEL=["Aufwärmer","Neuling","Pumper","Eisenfreund","Stemmer","Hantelheld","Kraftprotz","Eisenbeißer","Athlet","Champion","Titan","Legende"];
@@ -2121,7 +2258,7 @@ function gHome(){gStopRun();const g=gS(),L=gLevel(),dc=gDaily(),b=g.best,n=g.n||
  const aktiv=g.last==todayISO()||g.last==tagMinus(todayISO(),1)?(g.streak||0):0;
  gm(`<div class="ghero"><div><small>Athleten-Level ${L.lv}</small><b>${L.t}</b></div><div class="gxp"><b>${L.xp}</b><small>XP</small></div></div>
  <div class="bar" style="margin:8px 0 4px"><i style="width:${Math.min(100,L.in/L.need*100)}%"></i></div><small style="display:block;color:var(--mut);margin-bottom:12px">Noch ${L.need-L.in} XP bis Level ${L.lv+1} · Training und Spiele zählen zusammen${aktiv>=2?` · 🔥 ${aktiv} Tage in Folge`:""}</small>
- ${gymZeile()}${wertZeile()}<button class="btn" onclick="gSchnell()">▶ ${restT?"Passendes Spiel für die Pause":"Zufälliges Spiel starten"}</button>
+ ${gymZeile()}${wertZeile()}${rl().on?`<button class="btn g" style="margin:0 0 8px" onclick="rlOpen('spiele')">🏆 Rangliste ansehen</button>`:""}<button class="btn" onclick="gSchnell()">▶ ${restT?"Passendes Spiel für die Pause":"Zufälliges Spiel starten"}</button>
  <div class="gdaily" style="margin-top:10px" onclick="gStart('${dc.g}')"><b>🎯 Tages-Challenge</b><small>${dc.txt}${dc.done?" · geschafft ✓":" · +50 XP"}</small></div>
  ${Object.keys(GL).map(k=>`<div class="opt" onclick="gStart('${k}')"><span class="ic2">${GL[k][0]}</span><div><b>${GL[k][1]}${dc.g==k&&!dc.done?' <span class="tag">Challenge</span>':""}</b><small>${GL[k][2]} · Rekord: ${GL[k][3]}${n[k]?" · "+n[k]+"×":""}</small></div></div>`).join("")}
  <h4 style="margin-top:16px">Erfolge <span style="color:var(--mut);font-weight:600;font-size:14px">${g.ach.length} von ${GACH.length}</span></h4>
@@ -2246,7 +2383,7 @@ function tDay(){
  const vol=volOf(d,wk,i);
  let h=tBars();
  const fert=(S.train[key]||[]).filter(n=>prDone(d,n)).length;
- if(d==todayISO())h+=athKarte()+serieZeile(trainSerie(),"Trainings in Folge")+deloadKarte();
+ if(d==todayISO())h+=athKarte()+rlKarte()+serieZeile(trainSerie(),"Trainings in Folge")+deloadKarte();
  h+=`<div class="card"><div class="row" style="margin-top:0"><b style="font-size:16px">${(S.train[key]||[]).length?"Training":"Kein Training geplant"}</b><span class="badge">${fert} von ${(S.train[key]||[]).length} erledigt</span></div>
  ${(S.train[key]||[]).length?bar("",fert,(S.train[key]||[]).length,""):""}
  ${vol.kg||vol.reps?`<div class="row"><span>Volumen</span><span>${nf(vol.kg)} kg · ${vol.reps} Wiederholungen</span></div>`:""}</div>`;
@@ -2676,6 +2813,7 @@ function sDaten(){
  <button class="btn g" onclick="importData()">Daten einlesen</button>
  <input type="file" id="impFile" accept=".json,application/json" style="display:none" onchange="importFile(this)">
  <div id="dmsg" style="font-size:13px;color:var(--mut);margin-top:6px"></div></div>
+ ${rlDatenKarte()}
  <div class="card"><h4>Zurücksetzen</h4>
  <button class="btn g" onclick="wipe('plan')">Wochenplan löschen</button>
  <button class="btn g" onclick="wipe('log')">Essensprotokoll löschen</button>
@@ -2837,6 +2975,7 @@ function remTick(){if(NATIV||!S.rem||!("Notification" in window)||Notification.p
  remListe().forEach(x=>{if(x.wd!=null&&x.wd!=wd)return;const t=x.h*60+x.m;if(min<t||min>t+20||f.ids.includes(x.id))return;f.ids.push(x.id);if(remNoetig(x))remZeigen(x);});
  if(f.ids.length!=vorher)try{localStorage.setItem("fitplan_remfired",JSON.stringify(f))}catch(e){}}
 setInterval(remTick,30000);
+window.addEventListener("online",()=>{try{rlFlush();}catch(e){}});setTimeout(()=>{try{rlFlush();}catch(e){}},4000);
 function sErinnerung(){const r=rem(),n=remListe();
  const sw=(g,t,sub)=>`<div class="sw"><b>${t}</b><button class="swb ${r[g].on?"on":""}" role="switch" aria-checked="${r[g].on?"true":"false"}" aria-label="${t} ${r[g].on?"ausschalten":"einschalten"}" onclick="remSet('${g}','on',${!r[g].on})"></button></div><small style="display:block;color:var(--mut);margin:0 0 ${r[g].on?10:0}px">${sub}</small>`;
  const zeit=(g,k,l,pflicht)=>`<div><label>${l}</label><input class="n" type="time" value="${esc(r[g][k]||"")}" onchange="remZeit('${g}','${k}',this.value,${pflicht?1:0})"></div>`;
