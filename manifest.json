@@ -1,6 +1,6 @@
 {
- "name": "Gainora",
- "short_name": "Gainora",
+ "name": "GainPilot",
+ "short_name": "GainPilot",
  "lang": "de",
  "start_url": "./essensplan.html",
  "scope": "./",

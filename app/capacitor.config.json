@@ -1,6 +1,6 @@
 {
-  "appId": "de.preikschas.gainora",
-  "appName": "Gainora",
+  "appId": "de.preikschas.gainpilot",
+  "appName": "GainPilot",
   "webDir": "www",
   "backgroundColor": "#f1f3ee",
   "android": {

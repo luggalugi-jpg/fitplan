@@ -86,5 +86,5 @@ jobs:
           rm -f "$RUNNER_TEMP/sign.env" app/upload.jks
       - uses: actions/upload-artifact@v4
         with:
-          name: gainora-android-${{ github.run_number }}
+          name: gainpilot-android-${{ github.run_number }}
           path: app/android/app/build/outputs/bundle/release/app-release.aab

@@ -1,4 +1,4 @@
-# Gainora in Play Store und App Store bringen
+# GainPilot in Play Store und App Store bringen
 
 Diese Anleitung passt zum Ordner `app/` (Capacitor 8) und den drei Abläufen unter **Actions** in deinem GitHub-Repo. Du brauchst keinen Mac und kein Android Studio: Gebaut wird in der Cloud bei GitHub.
 
@@ -10,9 +10,9 @@ Diese Anleitung passt zum Ordner `app/` (Capacitor 8) und den drei Abläufen unt
 - Neues App-Icon, Startbild, Feature-Grafik, Store-Screenshots, Store-Texte, Datenschutz-Antworten.
 
 ## Schritt 1 – Angaben (erledigt)
-- Anbieter in App und Webseiten: Luca Preikschas, Herzog-Wilhelm-Str. 32, 94572 Schöfweg, gainora.app@gmail.com
-- App-Name: **Gainora**
-- App-Kennung (Bundle-ID / Paketname): `de.preikschas.gainora` – **nach der ersten Veröffentlichung nie mehr ändern**
+- Anbieter in App und Webseiten: Luca Preikschas, Herzog-Wilhelm-Str. 32, 94572 Schöfweg, gainpilot.app@gmail.com
+- App-Name: **GainPilot**
+- App-Kennung (Bundle-ID / Paketname): `de.preikschas.gainpilot` – **nach der ersten Veröffentlichung nie mehr ändern**
 - Datenschutz-Adresse für beide Stores: `https://luggalugi-jpg.github.io/fitplan/datenschutz.html` (nach dem Hochladen prüfen, ob sie erreichbar ist)
 
 ## Schritt 2 – Android (Google Play)
@@ -42,6 +42,6 @@ Diese Anleitung passt zum Ordner `app/` (Capacitor 8) und den drei Abläufen unt
 - Dunkelmodus, große Schrift, iPhone mit Notch / Dynamic Island, kleines Android-Gerät.
 
 ## Bekannte Punkte, die du entscheiden musst
-- **Name**: Eine Websuche nach „Gainora“ ergab keine App und keine Marke mit diesem Namen (Stand 9.11.2026). Vor dem Anlegen trotzdem selbst prüfen: Suche in Play Store und App Store, DPMAregister (Klassen 9, 41, 44) und TMview/EUIPO. Wer den Namen dauerhaft absichern will, kann ihn beim DPMA als Marke anmelden (ab 290 €).
+- **Name**: Festgelegt am 11.11.2026 (vorher Arbeitstitel Gainora). Eine kurze Websuche nach „GainPilot“ ergab keine App mit genau diesem Namen (Stand 10.11.2026) – das ersetzt keine Markenrecherche. Vor dem Anlegen trotzdem selbst prüfen: Suche in Play Store und App Store, DPMAregister (Klassen 9, 41, 44) und TMview/EUIPO. Wer den Namen dauerhaft absichern will, kann ihn beim DPMA als Marke anmelden (ab 290 €).
 - **Händler-Status (EU)**: Beide Stores fragen, ob du als Händler (Trader) auftrittst. Wer Geld verdient oder gewerblich handelt, muss Adresse, Telefon und E-Mail öffentlich im Store zeigen. Für eine kostenlose Hobby-App ohne Einnahmen kommt meist „kein Händler“ in Frage – im Zweifel rechtlich beraten lassen.
 - **Foto-Analyse mit eigenem Schlüssel**: Funktioniert, ist aber für normale Nutzer umständlich. Später wäre ein eigener kleiner Server mit deinem Schlüssel möglich (dann ändern sich Datenschutz und Kosten).
