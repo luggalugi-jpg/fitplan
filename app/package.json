@@ -1,6 +1,6 @@
 {
   "name": "gainora-app",
-  "version": "3.13.0",
+  "version": "3.14.0",
   "private": true,
   "description": "Native Hülle (Capacitor) für Gainora – Play Store und App Store",
   "scripts": {
