@@ -427,7 +427,8 @@ do $$ declare f record; begin
   for f in select p.oid::regprocedure as sig, p.proname from pg_proc p join pg_namespace n on n.oid = p.pronamespace
             where n.nspname = 'public' and p.proname like 'gp\_%' loop
     execute format('revoke all on function %s from public, anon, authenticated', f.sig);
-    if f.proname in ('gp_profil_speichern','gp_training','gp_bestwert','gp_spiel','gp_liga','gp_kraft','gp_spiele','gp_melden','gp_loeschen') then
+    if f.proname in ('gp_profil_speichern','gp_training','gp_bestwert','gp_spiel','gp_liga','gp_kraft','gp_spiele','gp_melden','gp_loeschen',
+                     'gp_sicherung_speichern','gp_sicherung_info','gp_sicherung_laden','gp_sicherung_loeschen','gp_rangliste_loeschen') then
       execute format('grant execute on function %s to authenticated', f.sig);
     end if;
   end loop;

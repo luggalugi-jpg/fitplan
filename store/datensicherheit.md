@@ -29,6 +29,19 @@ Diese Antworten sind ein Vorschlag nach bestem Wissen, keine Rechtsberatung. Du 
 | **App-Aktivitäten → Andere Aktionen** | Ergebnisse gewerteter Pausenspiele mit Start- und Endzeit |
 | **App-Info und Leistung / Geräte- oder andere IDs** | zufällige Nutzerkennung des anonymen Kontos → bei „Geräte- oder andere IDs“ angeben |
 
+**Konto und Cloud-Sicherung (ab Version 3.17, freiwillig):** zusätzlich angeben – erhoben: Ja, geteilt: Nein, optional, Zweck: App-Funktionen und Kontoverwaltung:
+
+| Datentyp (Play) | Was genau |
+|---|---|
+| **Persönliche Daten → E-Mail-Adresse** | Anmeldung, Bestätigungs- und Passwort-Mails |
+| **Gesundheit und Fitness → Gesundheitsinformationen und Fitnessinformationen** | Cloud-Sicherung enthält Gewicht, Ernährung, Training |
+| **Persönliche Daten → Andere Info** | Profilangaben in der Sicherung (Alter, Größe, Ziele) |
+| **App-Aktivitäten → Andere nutzergenerierte Inhalte** | eigene Gerichte, Pläne, Notizen in der Sicherung |
+
+Apple zusätzlich: **E-Mail-Adresse** und **Gesundheit** – App-Funktionalität, mit Identität verknüpft, kein Tracking.
+
+**Account-Löschung (Pflicht bei Konten):** In der App unter Mehr → Konto & Cloud → „Konto löschen“. Für Google zusätzlich eine Web-Adresse angeben, unter der man die Löschung beantragen kann: die Datenschutz-URL (Abschnitt 6 nennt die E-Mail-Adresse).
+
 Die Frage „Können Nutzer das Löschen beantragen?“ bleibt **Ja**: Mehr → Daten & Sicherung → „Teilnahme beenden und Daten löschen“ löscht sofort alles auf dem Server. Wer die App ohne das löscht, kann per E-Mail die Löschung verlangen (steht in der Datenschutzerklärung). Google verlangt bei Konten zusätzlich eine **Web-Adresse zum Löschen** – dafür die Datenschutz-URL mit dem Abschnitt Speicherdauer und Löschung angeben.
 
 **Standort (ab Version 3.11):** Die App fragt den genauen Standort ab, um die Pausenspiele nur im gespeicherten Gym freizuschalten. Der Abgleich passiert ausschließlich auf dem Gerät, nichts wird übertragen. Nach Googles Regeln gelten Daten, die das Gerät nicht verlassen, nicht als „erhoben“ – Standort bleibt daher **nicht erhoben**. Die Berechtigung (ACCESS_FINE_LOCATION, nur im Vordergrund) muss trotzdem in der Datenschutzerklärung stehen – ist erledigt. Keine Hintergrund-Standorterklärung nötig.

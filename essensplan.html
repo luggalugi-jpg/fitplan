@@ -425,10 +425,10 @@ if(typeof RDB!=="undefined"&&typeof FOODS_NEU!=="undefined")(function(){
   if(dup)return;FOODS.push({n:a[0],k:a[1],p:a[2],h:a[3],f:a[4],g:a[5]});bases.push(w);});
 })();
 const fitsSlot=(m,s)=>m.c==s||(m.x&&m.x.indexOf(s)>=0);
-const PUBLIC_V="3.16";
+const PUBLIC_V="3.17";
 /* Anbieter für Impressum und Datenschutz – vor der Veröffentlichung ausfüllen */
 const ANBIETER={name:"Luca Preikschas",anschrift:"Herzog-Wilhelm-Str. 32, 94572 Schöfweg",mail:"gainpilot.app@gmail.com"};
-const RECHT={"ds": "<h2>Datenschutzerklärung</h2>\n<p><b>Stand:</b> 11. November 2026</p>\n<h3>1. Verantwortlicher</h3>\n<p>{name}<br>{anschrift}<br>E-Mail: {mail}</p>\n<h3>2. Grundsatz: Deine Daten bleiben auf deinem Gerät</h3>\n<p>GainPilot funktioniert ohne Benutzerkonto und ohne eigenen Server. Alles, was du einträgst – Essensplan, Mahlzeiten, Gewicht, Trainings, Läufe, Supplements, Ziele und Einstellungen – wird ausschließlich lokal im Speicher der App auf deinem Gerät abgelegt. Wir erhalten diese Daten nicht und können sie nicht einsehen. Einzige Ausnahme ist die freiwillige Rangliste (Abschnitt 3).</p>\n<p>Die App enthält keine Werbung, keine Analyse- oder Tracking-Werkzeuge und gibt keine Daten zu Werbezwecken weiter.</p>\n<p>Angaben wie Körpergewicht, Ernährung und Trainingsdaten können Gesundheitsdaten sein. Sie werden nur auf deinem Gerät verarbeitet, um dir die Funktionen der App bereitzustellen.</p>\n<h3>3. Funktionen mit Internetverbindung</h3>\n<p>Nur die folgenden Funktionen nehmen Verbindung zu Diensten Dritter auf, und zwar nur, wenn du sie selbst auslöst:</p>\n<p><b>Foto-Analyse (optional):</b> Wenn du unter „Foto-Analyse“ einen eigenen Schlüssel für die Google Gemini API hinterlegst und ein Foto analysieren lässt, wird das Foto zusammen mit einer Anweisung direkt von deinem Gerät an Google gesendet (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Verarbeitung auch in den USA möglich). Google verarbeitet die Daten nach den Bedingungen, die du mit Google für deinen Schlüssel vereinbart hast. Dein Schlüssel wird nur auf deinem Gerät gespeichert und nicht in Sicherungsdateien übernommen. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), die du jederzeit widerrufen kannst, indem du den Schlüssel löschst.</p>\n<p><b>Barcode-Suche:</b> Wenn du einen Barcode scannst oder eingibst, wird die Produktnummer an Open Food Facts gesendet (Open Food Facts, 21 rue des Iles, 94100 Saint-Maur-des-Fossés, Frankreich), um Nährwerte abzurufen. Dabei wird technisch bedingt deine IP-Adresse übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir gewünschten Funktion).</p>\n<p><b>Webversion:</b> Wenn du die App im Browser nutzt, wird sie über GitHub Pages ausgeliefert (GitHub B.V., Niederlande / GitHub, Inc., USA). Dabei verarbeitet GitHub technisch notwendige Zugriffsdaten wie die IP-Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (sichere Bereitstellung der Webseite).</p><p><b>Rangliste (freiwillig):</b> Nur wenn du unter „Rangliste“ ausdrücklich einwilligst, überträgt die App Daten an unseren Server: eine zufällige Nutzerkennung (ohne E-Mail-Adresse oder Klarnamen), deinen Spitznamen und Avatar, je Trainingstag die Zahl erledigter Übungen und ob das geplante Training komplett war, deine Trainings-Serie, deinen besten Satz je Übung (Gewicht, Wiederholungen und das daraus geschätzte Maximalgewicht) sowie die Ergebnisse gewerteter Pausenspiele mit Start- und Endzeit. Freiwillig kommen Geschlecht, Altersgruppe und Körpergewicht hinzu, damit du nur mit ähnlichen Personen verglichen wirst. Daraus werden Wochenliga, Kraft-Rangliste und Spiel-Bestenlisten berechnet. Andere Teilnehmer sehen deinen Spitznamen, Avatar, deine Punkte und Platzierung in deiner Liga-Gruppe, deine Spielergebnisse in dieser Gruppe und – wenn du zu den zehn Besten einer Übung gehörst – deinen Bestwert dort. Geschlecht, Altersgruppe und Körpergewicht sehen andere nicht. Auffällige Werte und Meldungen anderer Teilnehmer werden gespeichert, um Missbrauch zu prüfen. Der Server wird von Supabase Pte. Ltd. (65 Chulia Street #38-02/03, OCBC Centre, Singapur 049513) als Auftragsverarbeiter betrieben, das Rechenzentrum steht in Paris (EU). Soweit Supabase von außerhalb der EU auf Daten zugreift, geschieht das auf Grundlage der EU-Standardvertragsklauseln. Rechtsgrundlage ist deine ausdrückliche Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO). Du kannst sie jederzeit widerrufen, indem du unter „Daten &amp; Sicherung“ die Teilnahme beendest – dann werden alle Ranglisten-Daten auf dem Server sofort gelöscht.</p>\n<h3>4. Berechtigungen</h3>\n<p><b>Kamera:</b> nur zum Scannen von Barcodes und für Fotos zur Foto-Analyse, jeweils erst wenn du die Funktion startest. <b>Benachrichtigungen:</b> nur für lokale Erinnerungen, die du selbst einschaltest (Ende der Satzpause, Training, Wasser, Mahlzeiten); sie werden auf dem Gerät erzeugt, nicht über einen Server. <b>Standort:</b> nur, damit die Pausenspiele in deinem Gym freigeschaltet werden – beim Speichern eines Gyms und wenn du ein Spiel startest. Der Standort wird ausschließlich auf deinem Gerät mit den gespeicherten Gym-Koordinaten verglichen und nicht an uns oder Dritte übertragen. Gespeichert werden nur die Koordinaten deiner Gyms, auf dem Gerät und in Sicherungsdateien, die du selbst erstellst.</p>\n<h3>5. Sicherungen und Diagnoseprotokoll</h3>\n<p>Sicherungsdateien und das Diagnoseprotokoll entstehen nur, wenn du sie selbst erstellst. Wohin du sie speicherst oder sendest, entscheidest du. Das Diagnoseprotokoll enthält technische Angaben zur Fehlersuche (z. B. App-Version, Gerätetyp, Fehlermeldungen) und bleibt auf deinem Gerät, bis du es teilst.</p>\n<h3>6. Speicherdauer und Löschung</h3>\n<p>Die Daten bleiben gespeichert, bis du sie in der App unter „Daten & Sicherung“ löschst oder die App deinstallierst. Ranglisten-Daten auf dem Server werden gelöscht, sobald du die Teilnahme beendest. Hast du die App ohne Beenden der Teilnahme gelöscht, schreib uns eine E-Mail mit deinem Spitznamen, dann löschen wir sie.</p>\n<h3>7. Deine Rechte</h3>\n<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch und Widerruf erteilter Einwilligungen (Art. 15–21 DSGVO). Da wir deine App-Daten nicht speichern, kannst du die meisten Rechte direkt in der App ausüben. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Behörde deines Wohnorts.</p>\n<h3>8. Kinder</h3>\n<p>Die App richtet sich nicht an Kinder unter 16 Jahren.</p>\n<h3>9. Änderungen</h3>\n<p>Wir passen diese Erklärung an, wenn sich die App oder die Rechtslage ändert. Es gilt die jeweils in der App veröffentlichte Fassung.</p>", "imp": "<h2>Impressum</h2>\n<p>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>\n<p>{name}<br>{anschrift}</p>\n<p><b>Kontakt:</b> E-Mail: {mail}</p>\n<p><b>Verantwortlich für den Inhalt:</b> {name}, Anschrift wie oben</p>", "ges": "<h2>Gesundheitshinweis</h2>\n<p>GainPilot ist ein Hilfsmittel zur Planung von Ernährung und Training. Die App ist kein Medizinprodukt und ersetzt keine ärztliche, ernährungsmedizinische oder sportmedizinische Beratung.</p>\n<p>Kalorienbedarf, Nährwerte, Portionsgrößen, Supplementmengen, Trainings- und Laufpläne sind Richtwerte und Vorlagen. Sie berücksichtigen keine Erkrankungen, Medikamente, Schwangerschaft oder individuelle Belastbarkeit. Die Bedarfsberechnung ist eine Schätzung (Mifflin-St.-Jeor-Formel). Foto-Analysen und Produktdaten aus Open Food Facts können ungenau sein.</p>\n<p>Sprich vor einer deutlichen Ernährungsumstellung, vor Nahrungsergänzungsmitteln und vor dem Beginn eines intensiven Trainings mit einer Ärztin oder einem Arzt, besonders bei Vorerkrankungen. Brich das Training bei Schmerzen, Schwindel oder Atemnot ab.</p>", "liz": "<h2>Quellen und Lizenzen</h2>\n<p><b>Produktdaten:</b> Barcode-Suche mit Daten von <a href=\"https://world.openfoodfacts.org\">Open Food Facts</a>. Die Datenbank steht unter der Open Database License (ODbL), die Inhalte unter der Database Contents License.</p>\n<p><b>Foto-Analyse:</b> Google Gemini API, nur mit deinem eigenen Schlüssel.</p>\n<p><b>Rezepte, Lebensmittel, Übungen, Trainings- und Laufpläne:</b> eigene Zusammenstellung für GainPilot. Die Nährwerte sind aus den Zutaten berechnet.</p>\n<p><b>Spiele:</b> „Blocksturz“ und die übrigen Pausenspiele sind eigene Umsetzungen.</p>"};
+const RECHT={"ds": "<h2>Datenschutzerklärung</h2>\n<p><b>Stand:</b> 11. November 2026</p>\n<h3>1. Verantwortlicher</h3>\n<p>{name}<br>{anschrift}<br>E-Mail: {mail}</p>\n<h3>2. Grundsatz: Deine Daten bleiben auf deinem Gerät</h3>\n<p>GainPilot funktioniert ohne Benutzerkonto und ohne eigenen Server. Alles, was du einträgst – Essensplan, Mahlzeiten, Gewicht, Trainings, Läufe, Supplements, Ziele und Einstellungen – wird ausschließlich lokal im Speicher der App auf deinem Gerät abgelegt. Wir erhalten diese Daten nicht und können sie nicht einsehen. Ausnahmen sind die freiwillige Rangliste und das freiwillige Konto mit Cloud-Sicherung (Abschnitt 3).</p>\n<p>Die App enthält keine Werbung, keine Analyse- oder Tracking-Werkzeuge und gibt keine Daten zu Werbezwecken weiter.</p>\n<p>Angaben wie Körpergewicht, Ernährung und Trainingsdaten können Gesundheitsdaten sein. Sie werden nur auf deinem Gerät verarbeitet, um dir die Funktionen der App bereitzustellen.</p>\n<h3>3. Funktionen mit Internetverbindung</h3>\n<p>Nur die folgenden Funktionen nehmen Verbindung zu Diensten Dritter auf, und zwar nur, wenn du sie selbst auslöst:</p>\n<p><b>Foto-Analyse (optional):</b> Wenn du unter „Foto-Analyse“ einen eigenen Schlüssel für die Google Gemini API hinterlegst und ein Foto analysieren lässt, wird das Foto zusammen mit einer Anweisung direkt von deinem Gerät an Google gesendet (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Verarbeitung auch in den USA möglich). Google verarbeitet die Daten nach den Bedingungen, die du mit Google für deinen Schlüssel vereinbart hast. Dein Schlüssel wird nur auf deinem Gerät gespeichert und nicht in Sicherungsdateien übernommen. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), die du jederzeit widerrufen kannst, indem du den Schlüssel löschst.</p>\n<p><b>Barcode-Suche:</b> Wenn du einen Barcode scannst oder eingibst, wird die Produktnummer an Open Food Facts gesendet (Open Food Facts, 21 rue des Iles, 94100 Saint-Maur-des-Fossés, Frankreich), um Nährwerte abzurufen. Dabei wird technisch bedingt deine IP-Adresse übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir gewünschten Funktion).</p>\n<p><b>Webversion:</b> Wenn du die App im Browser nutzt, wird sie über GitHub Pages ausgeliefert (GitHub B.V., Niederlande / GitHub, Inc., USA). Dabei verarbeitet GitHub technisch notwendige Zugriffsdaten wie die IP-Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (sichere Bereitstellung der Webseite).</p><p><b>Rangliste (freiwillig):</b> Nur wenn du unter „Rangliste“ ausdrücklich einwilligst, überträgt die App Daten an unseren Server: eine zufällige Nutzerkennung (ohne E-Mail-Adresse oder Klarnamen), deinen Spitznamen und Avatar, je Trainingstag die Zahl erledigter Übungen und ob das geplante Training komplett war, deine Trainings-Serie, deinen besten Satz je Übung (Gewicht, Wiederholungen und das daraus geschätzte Maximalgewicht) sowie die Ergebnisse gewerteter Pausenspiele mit Start- und Endzeit. Freiwillig kommen Geschlecht, Altersgruppe und Körpergewicht hinzu, damit du nur mit ähnlichen Personen verglichen wirst. Daraus werden Wochenliga, Kraft-Rangliste und Spiel-Bestenlisten berechnet. Andere Teilnehmer sehen deinen Spitznamen, Avatar, deine Punkte und Platzierung in deiner Liga-Gruppe, deine Spielergebnisse in dieser Gruppe und – wenn du zu den zehn Besten einer Übung gehörst – deinen Bestwert dort. Geschlecht, Altersgruppe und Körpergewicht sehen andere nicht. Auffällige Werte und Meldungen anderer Teilnehmer werden gespeichert, um Missbrauch zu prüfen. Der Server wird von Supabase Pte. Ltd. (65 Chulia Street #38-02/03, OCBC Centre, Singapur 049513) als Auftragsverarbeiter betrieben, das Rechenzentrum steht in Paris (EU). Soweit Supabase von außerhalb der EU auf Daten zugreift, geschieht das auf Grundlage der EU-Standardvertragsklauseln. Rechtsgrundlage ist deine ausdrückliche Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO). Du kannst sie jederzeit widerrufen, indem du unter „Daten &amp; Sicherung“ die Teilnahme beendest – dann werden alle Ranglisten-Daten auf dem Server sofort gelöscht.</p><p><b>Konto und Cloud-Sicherung (freiwillig):</b> Wenn du unter „Konto &amp; Cloud“ ein Konto erstellst, speichern wir deine E-Mail-Adresse und dein Passwort (nur als verschlüsselter Hash) auf unserem Server, um dich anzumelden, dir Bestätigungs- und Passwort-Links zu schicken und dein Konto zu schützen. Für den Versand dieser E-Mails setzen wir einen E-Mail-Dienstleister als Auftragsverarbeiter ein. Schaltest du die Cloud-Sicherung ein, wird eine komprimierte Kopie aller App-Daten – einschließlich Gesundheitsdaten wie Gewicht, Ernährung und Training, aber ohne den Schlüssel für die Foto-Analyse – übertragen und gespeichert. Sie wird bei jeder neuen Sicherung ersetzt. Server, Auftragsverarbeiter und Standardvertragsklauseln sind dieselben wie bei der Rangliste (Supabase, Rechenzentrum in Paris). Rechtsgrundlage für das Konto ist Art. 6 Abs. 1 lit. b DSGVO (von dir gewünschte Funktion), für die Cloud-Sicherung deine ausdrückliche Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO). Du kannst die Cloud-Sicherung jederzeit ausschalten und löschen oder unter „Konto &amp; Cloud“ dein Konto löschen – dann werden Konto, Sicherung und Ranglisten-Daten auf dem Server sofort gelöscht.</p>\n<h3>4. Berechtigungen</h3>\n<p><b>Kamera:</b> nur zum Scannen von Barcodes und für Fotos zur Foto-Analyse, jeweils erst wenn du die Funktion startest. <b>Benachrichtigungen:</b> nur für lokale Erinnerungen, die du selbst einschaltest (Ende der Satzpause, Training, Wasser, Mahlzeiten); sie werden auf dem Gerät erzeugt, nicht über einen Server. <b>Standort:</b> nur, damit die Pausenspiele in deinem Gym freigeschaltet werden – beim Speichern eines Gyms und wenn du ein Spiel startest. Der Standort wird ausschließlich auf deinem Gerät mit den gespeicherten Gym-Koordinaten verglichen und nicht an uns oder Dritte übertragen. Gespeichert werden nur die Koordinaten deiner Gyms, auf dem Gerät und in Sicherungsdateien, die du selbst erstellst.</p>\n<h3>5. Sicherungen und Diagnoseprotokoll</h3>\n<p>Sicherungsdateien und das Diagnoseprotokoll entstehen nur, wenn du sie selbst erstellst. Wohin du sie speicherst oder sendest, entscheidest du. Das Diagnoseprotokoll enthält technische Angaben zur Fehlersuche (z. B. App-Version, Gerätetyp, Fehlermeldungen) und bleibt auf deinem Gerät, bis du es teilst.</p>\n<h3>6. Speicherdauer und Löschung</h3>\n<p>Die Daten bleiben gespeichert, bis du sie in der App unter „Daten & Sicherung“ löschst oder die App deinstallierst. Ranglisten-Daten auf dem Server werden gelöscht, sobald du die Teilnahme beendest; Konto und Cloud-Sicherung, sobald du das Konto löschst. Hast du die App ohne Beenden der Teilnahme gelöscht, schreib uns eine E-Mail mit deinem Spitznamen, dann löschen wir sie.</p>\n<h3>7. Deine Rechte</h3>\n<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch und Widerruf erteilter Einwilligungen (Art. 15–21 DSGVO). Da wir deine App-Daten nicht speichern, kannst du die meisten Rechte direkt in der App ausüben. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Behörde deines Wohnorts.</p>\n<h3>8. Kinder</h3>\n<p>Die App richtet sich nicht an Kinder unter 16 Jahren.</p>\n<h3>9. Änderungen</h3>\n<p>Wir passen diese Erklärung an, wenn sich die App oder die Rechtslage ändert. Es gilt die jeweils in der App veröffentlichte Fassung.</p>", "imp": "<h2>Impressum</h2>\n<p>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>\n<p>{name}<br>{anschrift}</p>\n<p><b>Kontakt:</b> E-Mail: {mail}</p>\n<p><b>Verantwortlich für den Inhalt:</b> {name}, Anschrift wie oben</p>", "ges": "<h2>Gesundheitshinweis</h2>\n<p>GainPilot ist ein Hilfsmittel zur Planung von Ernährung und Training. Die App ist kein Medizinprodukt und ersetzt keine ärztliche, ernährungsmedizinische oder sportmedizinische Beratung.</p>\n<p>Kalorienbedarf, Nährwerte, Portionsgrößen, Supplementmengen, Trainings- und Laufpläne sind Richtwerte und Vorlagen. Sie berücksichtigen keine Erkrankungen, Medikamente, Schwangerschaft oder individuelle Belastbarkeit. Die Bedarfsberechnung ist eine Schätzung (Mifflin-St.-Jeor-Formel). Foto-Analysen und Produktdaten aus Open Food Facts können ungenau sein.</p>\n<p>Sprich vor einer deutlichen Ernährungsumstellung, vor Nahrungsergänzungsmitteln und vor dem Beginn eines intensiven Trainings mit einer Ärztin oder einem Arzt, besonders bei Vorerkrankungen. Brich das Training bei Schmerzen, Schwindel oder Atemnot ab.</p>", "liz": "<h2>Quellen und Lizenzen</h2>\n<p><b>Produktdaten:</b> Barcode-Suche mit Daten von <a href=\"https://world.openfoodfacts.org\">Open Food Facts</a>. Die Datenbank steht unter der Open Database License (ODbL), die Inhalte unter der Database Contents License.</p>\n<p><b>Foto-Analyse:</b> Google Gemini API, nur mit deinem eigenen Schlüssel.</p>\n<p><b>Rezepte, Lebensmittel, Übungen, Trainings- und Laufpläne:</b> eigene Zusammenstellung für GainPilot. Die Nährwerte sind aus den Zutaten berechnet.</p>\n<p><b>Spiele:</b> „Blocksturz“ und die übrigen Pausenspiele sind eigene Umsetzungen.</p>"};
 /* Läuft die Seite als installierte App (Capacitor)? */
 const NATIV=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
 const PL=n=>NATIV&&window.Capacitor.Plugins?window.Capacitor.Plugins[n]||null:null;
@@ -640,6 +640,7 @@ let nativTimer=null;
 function nativSichern(json){const P=PL("Preferences");if(!P)return;clearTimeout(nativTimer);nativTimer=setTimeout(()=>{P.set({key:"fitplan",value:json}).catch(e=>logWarn("speicher","Native Sicherung fehlgeschlagen: "+e.message));},400);}
 let remTimer=null;
 const save=()=>{try{const j=JSON.stringify(S);localStorage.setItem("fitplan",j);if(NATIV)nativSichern(j);}catch(e){logErr("speicher","Speichern fehlgeschlagen: "+e.message)}
+ try{if(typeof cloudTick=="function")cloudTick();}catch(e){}
  clearTimeout(remTimer);remTimer=setTimeout(()=>{try{remSync()}catch(e){}},1500);};
 // iOS kann den Web-Speicher bei Platzmangel leeren: dann aus dem nativen Speicher zurückholen
 if(NATIV&&!localStorage.getItem("fitplan")){const P=PL("Preferences");if(P)P.get({key:"fitplan"}).then(r=>{if(r&&r.value){localStorage.setItem("fitplan",r.value);location.reload();}}).catch(()=>{});}
@@ -702,7 +703,7 @@ function rdbHinweis(){
 }
 let lastView="";
 const TITEL={plan:"Planen",fit:"Training",prog:"Fortschritt",more:"Mehr"};
-const MEHR=[["profil","Profil & Gewicht","👤"],["ziele","Ziele & Nährwerte","🎯"],["training","Training & Pausen","⏱"],["erinnerung","Erinnerungen","🔔"],["ki","Foto-Analyse","📷"],["daten","Daten & Sicherung","💾"],["info","Über die App","ℹ️"],["recht","Rechtliches","§"]];
+const MEHR=[["profil","Profil & Gewicht","👤"],["ziele","Ziele & Nährwerte","🎯"],["training","Training & Pausen","⏱"],["erinnerung","Erinnerungen","🔔"],["konto","Konto & Cloud","☁️"],["ki","Foto-Analyse","📷"],["daten","Daten & Sicherung","💾"],["info","Über die App","ℹ️"],["recht","Rechtliches","§"]];
 function kopf(){
  if(tab=="eat")return "";
  if(tab=="more"&&S.mtab){const e=MEHR.find(x=>x[0]==S.mtab);return `<div class="ph"><div class="tl"><button class="back" aria-label="Zurück zu Mehr" onclick="S.mtab=null;render()">‹</button><h1 style="font-size:22px">${e?e[1]:"Mehr"}</h1></div></div>`;}
@@ -2070,8 +2071,8 @@ const ALTER=[["u20","unter 20"],["20-29","20–29"],["30-39","30–39"],["40-49"
 const rl=()=>(S.rl=S.rl||{on:false});
 function sbTok(){try{return JSON.parse(localStorage.getItem("gp_sb")||"null");}catch(e){return null;}}
 function sbTokSet(t){try{if(t)localStorage.setItem("gp_sb",JSON.stringify(t));else localStorage.removeItem("gp_sb");}catch(e){}}
-async function sbReq(pfad,body,tok){const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),15000);
- try{return await fetch(SB_URL+pfad,{method:"POST",signal:ctl.signal,headers:{"apikey":SB_KEY,"Content-Type":"application/json",...(tok?{"Authorization":"Bearer "+tok}:{})},body:JSON.stringify(body||{})});}
+async function sbReq(pfad,body,tok,methode){const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),20000),m=methode||"POST";
+ try{return await fetch(SB_URL+pfad,{method:m,signal:ctl.signal,headers:{"apikey":SB_KEY,"Content-Type":"application/json",...(tok?{"Authorization":"Bearer "+tok}:{})},...(m=="GET"?{}:{body:JSON.stringify(body||{})})});}
  finally{clearTimeout(to);}}
 function sbMerk(j,alt){const t={at:j.access_token,rt:j.refresh_token,exp:j.expires_at||(Date.now()/1000+(j.expires_in||3600)),uid:(j.user&&j.user.id)||(alt&&alt.uid)};sbTokSet(t);return t;}
 async function sbAuth(neu){let t=sbTok();
@@ -2079,7 +2080,9 @@ async function sbAuth(neu){let t=sbTok();
  if(t&&t.rt&&!neu){const r=await sbReq("/auth/v1/token?grant_type=refresh_token",{refresh_token:t.rt});
   if(r.ok)return sbMerk(await r.json(),t);
   if(r.status>=500||r.status==429)throw new Error("Server nicht erreichbar ("+r.status+")");
+  if(["aktiv","passwort"].includes(konto().status)){konto().status="abgemeldet";save();throw new Error("abgemeldet");}
   logWarn("rangliste","Anmeldung abgelaufen, neues anonymes Konto",{status:r.status});}
+ if(konto().status=="abgemeldet")throw new Error("abgemeldet");
  const r=await sbReq("/auth/v1/signup",{data:{}});
  if(!r.ok){const tx=await r.text().catch(()=>"");throw new Error("Anmeldung fehlgeschlagen ("+r.status+") "+tx.slice(0,120));}
  const j=await r.json();rl().neuKonto=!!t;return sbMerk(j);}
@@ -2145,7 +2148,7 @@ async function rlSpeichern(){const nick=($("#rlNick").value||"").trim(),msg=$("#
   const R=rl(),erst=!R.on;Object.assign(R,{on:true,ready:true,nick,avatar:RLF.av,sex,age,bw,seit:R.seit||todayISO()});
   if(erst){rlBasis();R.sent={};}save();logInfo("rangliste",erst?"Teilnahme gestartet":"Profil geändert");
   rlAbgleich();toast(erst?"Willkommen in der Rangliste!":"Profil gespeichert.");rlOpen("liga");}
- catch(e){logErr("rangliste","Profil speichern: "+e.message);msg.textContent="Keine Verbindung zum Server. Prüfe dein Internet und versuch es nochmal.";btn.disabled=false;btn.textContent="Mitmachen";}}
+ catch(e){logErr("rangliste","Profil speichern: "+e.message);msg.textContent=e.message=="abgemeldet"?"Du bist abgemeldet. Melde dich unter Mehr → Konto & Cloud neu an.":/Anonymous|anonymous_provider/i.test(e.message)?"Die Rangliste ist auf dem Server gerade nicht freigeschaltet.":"Keine Verbindung zum Server. Prüfe dein Internet und versuch es nochmal.";btn.disabled=false;btn.textContent="Mitmachen";}}
 let RLT={tab:"liga",ex:null,spiel:"reaction"};
 function rlOpen(t){RLT.tab=t||RLT.tab;rlZeigen(`<div class="rlwait">Lädt …</div>`);rlLaden();}
 function rlZeigen(inhalt){const tabs=[["liga","Liga"],["kraft","Kraft"],["spiele","Spiele"]];
@@ -2181,11 +2184,173 @@ function rlSpieleHtml(j){const ein=RLT.spiel=="numbers"?" s":RLT.spiel=="memory"
 async function rlMelden(id,nick){if(!confirm(`„${nick}“ melden? Nutze das bei unrealistischen Werten oder einem unpassenden Spitznamen.`))return;
  try{const j=await sbRpc("gp_melden",{p_target:id,p_grund:"aus der App"});toast(j.ok?"Danke, die Meldung ist eingegangen.":(j.fehler||"Meldung nicht möglich."));}catch(e){toast("Keine Verbindung zum Server.");}}
 async function rlBeenden(){if(!confirm("Teilnahme an der Rangliste beenden? Dein Profil, deine Punkte und alle übertragenen Werte werden auf dem Server gelöscht. Deine Daten in der App bleiben erhalten."))return;
- try{if(sbTok())await sbRpc("gp_loeschen");}catch(e){logErr("rangliste","Löschen: "+e.message);alert("Keine Verbindung zum Server. Die Daten konnten nicht gelöscht werden – bitte versuch es mit Internet nochmal.");return;}
- clearTimeout(rlTimer);sbTokSet(null);S.rl={on:false};save();logInfo("rangliste","Teilnahme beendet, Serverdaten gelöscht");toast("Teilnahme beendet, Daten auf dem Server gelöscht.");render();}
+ const mitKonto=konto().status=="aktiv";
+ try{if(sbTok())await sbRpc(mitKonto?"gp_rangliste_loeschen":"gp_loeschen");}catch(e){logErr("rangliste","Löschen: "+e.message);alert("Keine Verbindung zum Server. Die Daten konnten nicht gelöscht werden – bitte versuch es mit Internet nochmal.");return;}
+ clearTimeout(rlTimer);if(!mitKonto)sbTokSet(null);S.rl={on:false};save();logInfo("rangliste","Teilnahme beendet, Serverdaten gelöscht");toast("Teilnahme beendet, Daten auf dem Server gelöscht.");render();}
 function rlDatenKarte(){const R=rl();
  return `<div class="card"><h4>Rangliste</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">${R.on?`Du machst mit als „${esc(R.nick||"")}“. Übertragen werden Spitzname, Avatar, Trainingstage, Bestwerte und gewertete Spielergebnisse${R.sex||R.age||R.bw?" sowie deine freiwilligen Vergleichsangaben":""}.${(R.q||[]).length?` ${R.q.length} Meldung(en) warten auf Internet.`:""}`:"Du machst nicht mit. Es werden keine Daten an einen Server übertragen."}</small>
  ${R.on?`<button class="btn g" onclick="rlSetup()">Profil bearbeiten</button><button class="btn g" style="color:var(--danger);border-color:var(--danger)" onclick="rlBeenden()">Teilnahme beenden und Daten löschen</button>`:`<button class="btn g" onclick="rlSetup()">Mitmachen …</button>`}</div>`;}
+/* ---------- Konto und Cloud-Sicherung (freiwillig) ----------
+   Ein Konto ist das anonyme Ranglisten-Konto plus bestätigter E-Mail und Passwort.
+   Die Cloud-Sicherung legt die komplette App-Sicherung komprimiert auf dem Server ab. */
+const SB_SITE="https://luggalugi-jpg.github.io/fitplan/essensplan.html";
+const konto=()=>(S.konto=S.konto||{status:"keins"});   // keins | wartet | passwort | aktiv | abgemeldet
+const mailOk=m=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m||"");
+function sbFehler(j,st){const c=(j&&(j.error_code||j.code))||"",m=(j&&(j.msg||j.error_description||j.message))||"";
+ if(st==429||/rate_limit|rate limit/i.test(c+m))return "Gerade wurden zu viele E-Mails verschickt. Bitte versuch es in einer Stunde nochmal.";
+ if(/email_exists|user_already_exists|already been registered/i.test(c+m))return "Für diese E-Mail gibt es schon ein Konto. Melde dich stattdessen an.";
+ if(/weak_password|password should/i.test(c+m))return "Das Passwort ist zu schwach. Nimm mindestens 8 Zeichen.";
+ if(/invalid_credentials|invalid login/i.test(c+m))return "E-Mail oder Passwort stimmt nicht.";
+ if(/email_not_confirmed/i.test(c+m))return "Bitte bestätige zuerst deine E-Mail-Adresse über den Link in der E-Mail.";
+ if(/email_address_invalid|invalid.*email|not authorized/i.test(c+m))return "An diese E-Mail-Adresse kann gerade nichts gesendet werden. Prüfe die Adresse oder versuch eine andere.";
+ if(/same_password/i.test(c+m))return "Das neue Passwort muss sich vom alten unterscheiden.";
+ return "Das hat nicht geklappt"+(m?": "+m:".");}
+async function sbJson(r){try{return await r.json();}catch(e){return {};}}
+function jwtSub(at){try{let b=at.split(".")[1].replace(/-/g,"+").replace(/_/g,"/");while(b.length%4)b+="=";return JSON.parse(atob(b)).sub;}catch(e){return null;}}
+async function sbUser(){const t=await sbAuth(),r=await sbReq("/auth/v1/user",null,t.at,"GET");if(!r.ok)throw new Error("Nutzer "+r.status);return r.json();}
+async function sbNeuToken(){const x=sbTok();if(x){x.exp=0;sbTokSet(x);}return sbAuth();}
+async function kontoErstellen(){const em=($("#kMail").value||"").trim().toLowerCase(),msg=$("#kMsg"),btn=$("#kGo");
+ if(!mailOk(em)){msg.textContent="Bitte gib eine gültige E-Mail-Adresse ein.";return;}
+ if(!$("#kOk").checked){msg.textContent="Bitte bestätige die Einwilligung.";return;}
+ btn.disabled=true;btn.textContent="Wird gesendet …";msg.textContent="";
+ try{const t=await sbAuth(),r=await sbReq("/auth/v1/user?redirect_to="+encodeURIComponent(SB_SITE),{email:em},t.at,"PUT"),j=await sbJson(r);
+  if(!r.ok){msg.textContent=sbFehler(j,r.status);logWarn("konto","Konto erstellen: "+(j.error_code||r.status));btn.disabled=false;btn.textContent="Bestätigungs-E-Mail senden";return;}
+  const K=konto();Object.assign(K,{status:(j.email&&!j.is_anonymous)?"passwort":"wartet",email:em,cloud:$("#kCloud").checked,seit:Date.now()});save();
+  logInfo("konto","Konto angelegt, wartet auf Bestätigung");closeSheet();render();
+  if(K.status=="passwort")kontoForm("passwort");}
+ catch(e){logErr("konto","Konto erstellen: "+e.message);msg.textContent="Keine Verbindung zum Server.";btn.disabled=false;btn.textContent="Bestätigungs-E-Mail senden";}}
+async function kontoErneut(){const K=konto();
+ try{const t=await sbAuth(),r=await sbReq("/auth/v1/user?redirect_to="+encodeURIComponent(SB_SITE),{email:K.email},t.at,"PUT"),j=await sbJson(r);
+  toast(r.ok?"E-Mail wurde erneut gesendet.":sbFehler(j,r.status));}catch(e){toast("Keine Verbindung zum Server.");}}
+async function kontoPruefen(still){const K=konto();
+ try{const u=await sbUser();
+  if(u.email&&u.email_confirmed_at&&!u.is_anonymous){await sbNeuToken();K.email=u.email;if(K.status=="wartet")K.status="passwort";save();render();if(!still&&K.status=="passwort")kontoForm("passwort");return true;}
+  if(!still)toast("Noch nicht bestätigt. Tippe auf den Link in der E-Mail an "+K.email+" (auch im Spam-Ordner nachsehen).");}
+ catch(e){if(!still)toast("Keine Verbindung zum Server.");}
+ return false;}
+async function kontoPasswort(){const a=$("#kPw").value||"",b=$("#kPw2").value||"",msg=$("#kMsg"),btn=$("#kGo");
+ if(a.length<8){msg.textContent="Das Passwort braucht mindestens 8 Zeichen.";return;}
+ if(a!==b){msg.textContent="Die beiden Passwörter sind nicht gleich.";return;}
+ btn.disabled=true;msg.textContent="";
+ try{const tok=RECOV?RECOV.at:(await sbAuth()).at,r=await sbReq("/auth/v1/user",{password:a},tok,"PUT"),j=await sbJson(r);
+  if(!r.ok){msg.textContent=sbFehler(j,r.status);btn.disabled=false;return;}
+  const K=konto(),warReset=!!RECOV;
+  if(RECOV){sbMerk(RECOV.roh);K.email=j.email||K.email;RECOV=null;}
+  const neu=K.status!="aktiv";K.status="aktiv";save();logInfo("konto",warReset?"Passwort zurückgesetzt":"Passwort festgelegt");closeSheet();
+  toast(warReset?"Neues Passwort gespeichert. Du bist angemeldet.":"Passwort gespeichert. Dein Konto ist fertig.");
+  if(neu&&warReset)await nachAnmeldung();else if(K.cloud)cloudJetzt(true);render();}
+ catch(e){logErr("konto","Passwort: "+e.message);msg.textContent="Keine Verbindung zum Server.";btn.disabled=false;}}
+async function kontoAnmelden(){const em=($("#kMail").value||"").trim().toLowerCase(),pw=$("#kPw").value||"",msg=$("#kMsg"),btn=$("#kGo");
+ if(!mailOk(em)||!pw){msg.textContent="Bitte E-Mail und Passwort eingeben.";return;}
+ btn.disabled=true;btn.textContent="Anmelden …";msg.textContent="";
+ try{const r=await sbReq("/auth/v1/token?grant_type=password",{email:em,password:pw}),j=await sbJson(r);
+  if(!r.ok){msg.textContent=sbFehler(j,r.status);btn.disabled=false;btn.textContent="Anmelden";return;}
+  const alt=sbTok();
+  if(alt&&alt.uid&&alt.uid!==(j.user&&j.user.id)&&konto().status!="aktiv"&&konto().status!="abgemeldet"){ // altes anonymes Ranglisten-Konto aufräumen
+   try{await sbReq("/rest/v1/rpc/gp_loeschen",{},alt.at);}catch(e){}}
+  sbMerk(j);S.konto={status:"aktiv",email:em,cloud:true,seit:Date.now()};S.rl={on:false};save();logInfo("konto","Angemeldet");closeSheet();
+  await nachAnmeldung();}
+ catch(e){logErr("konto","Anmelden: "+e.message);msg.textContent="Keine Verbindung zum Server.";btn.disabled=false;btn.textContent="Anmelden";}}
+async function nachAnmeldung(){ // Sicherung anbieten, Ranglisten-Profil übernehmen
+ try{const i=await sbRpc("gp_sicherung_info");
+  if(i.vorhanden&&confirm(`Für dein Konto gibt es eine Cloud-Sicherung vom ${new Date(i.zeit).toLocaleString("de-DE")}.\n\nAuf dieses Gerät laden? Die Daten hier werden dabei ersetzt.`)){await cloudLaden(true);}
+  else if(hatDaten()&&konto().cloud)cloudJetzt(true);}
+ catch(e){logWarn("konto","Sicherung prüfen: "+e.message);}
+ try{const l=await sbRpc("gp_liga");if(l&&l.ok){const ich=(l.liste||[]).find(x=>x.ich)||{};
+  S.rl=Object.assign(S.rl&&S.rl.on?S.rl:{},{on:true,ready:true,nick:ich.nick||rl().nick,avatar:ich.avatar!=null?ich.avatar:rl().avatar,cache:{liga:l.liga,anzahl:l.anzahl,ich:l.ich}});rlBasisLeise();save();}}
+ catch(e){}
+ toast("Angemeldet als "+konto().email);render();}
+function rlBasisLeise(){const R=rl();R.best=R.best||{};Object.keys(S.sets||{}).forEach(d=>Object.keys(S.sets[d]||{}).forEach(n=>{if(!echteEinheit(d,n))return;const b=rlBesterSatz(d,n);if(b&&b.e>(R.best[n]||0))R.best[n]=b.e;}));}
+async function kontoVergessen(){const em=($("#kMail").value||"").trim().toLowerCase(),msg=$("#kMsg");
+ if(!mailOk(em)){msg.textContent="Gib oben deine E-Mail-Adresse ein, dann schicken wir dir einen Link.";return;}
+ try{const r=await sbReq("/auth/v1/recover?redirect_to="+encodeURIComponent(SB_SITE),{email:em}),j=await sbJson(r);
+  msg.style.color=r.ok?"var(--brand-d)":"var(--danger)";msg.textContent=r.ok?"Falls es ein Konto gibt, kommt gleich eine E-Mail mit einem Link zum Zurücksetzen.":sbFehler(j,r.status);}
+ catch(e){msg.textContent="Keine Verbindung zum Server.";}}
+async function kontoAbmelden(){if(!confirm("Abmelden? Deine Daten bleiben auf diesem Gerät. Die Rangliste und die Cloud-Sicherung pausieren, bis du dich wieder anmeldest."))return;
+ if(konto().cloud&&konto().status=="aktiv"){try{await cloudJetzt(true);}catch(e){}}
+ clearTimeout(cloudTimer);clearTimeout(rlTimer);sbTokSet(null);S.konto={status:"keins"};S.rl={on:false};save();logInfo("konto","Abgemeldet");toast("Abgemeldet.");render();}
+async function kontoLoeschen(){if(!confirm("Konto endgültig löschen? Dein Konto, die Cloud-Sicherung und alle Ranglisten-Daten werden auf dem Server gelöscht. Die Daten auf diesem Gerät bleiben."))return;
+ if(!confirm("Wirklich löschen? Das lässt sich nicht rückgängig machen."))return;
+ try{await sbRpc("gp_loeschen");}catch(e){logErr("konto","Löschen: "+e.message);alert("Keine Verbindung zum Server oder du bist abgemeldet. Melde dich an und versuch es mit Internet nochmal.");return;}
+ clearTimeout(cloudTimer);clearTimeout(rlTimer);sbTokSet(null);S.konto={status:"keins"};S.rl={on:false};save();logInfo("konto","Konto gelöscht");toast("Konto und Serverdaten gelöscht.");render();}
+function kontoCloud(an){const K=konto();
+ if(an&&!confirm("Cloud-Sicherung einschalten? Dann wird eine Kopie aller App-Daten – auch Gewicht, Ernährung und Training – verschlüsselt übertragen und auf dem Server (Supabase, Paris) gespeichert."))return;
+ K.cloud=an;save();if(an)cloudJetzt(true);else if(confirm("Soll die vorhandene Sicherung auf dem Server auch gelöscht werden?")){sbRpc("gp_sicherung_loeschen").then(()=>toast("Cloud-Sicherung gelöscht.")).catch(()=>toast("Keine Verbindung zum Server."));K.letzte=null;K.hash=null;save();}
+ render();}
+let RECOV=null;
+function kontoForm(art){const K=konto();
+ const kopf={neu:"Konto erstellen",login:"Anmelden",passwort:"Passwort festlegen",reset:"Neues Passwort",aendern:"Passwort ändern"}[art];
+ let h=`<h4>${kopf}</h4>`;
+ if(art=="neu")h+=`<small style="display:block;color:var(--mut);margin:-4px 0 10px">Mit einem Konto bleiben deine Daten und dein Ranglisten-Platz erhalten, wenn du das Handy wechselst. Du bekommst eine E-Mail zum Bestätigen, danach legst du ein Passwort fest.</small>
+  <label>E-Mail-Adresse</label><input class="n" id="kMail" type="email" inputmode="email" autocomplete="email" value="${esc(K.email||"")}">
+  <label class="ck"><input type="checkbox" id="kCloud" checked><span>Cloud-Sicherung einschalten: eine Kopie aller App-Daten automatisch auf dem Server speichern</span></label>
+  <label class="ck" style="margin-top:10px"><input type="checkbox" id="kOk"><span>Ich willige ein, dass meine E-Mail-Adresse und – falls eingeschaltet – eine Sicherung meiner App-Daten (auch Gesundheitsdaten wie Gewicht, Ernährung und Training) auf dem Server von Supabase in Paris gespeichert werden. Widerruf jederzeit durch Löschen des Kontos. <a href="#" onclick="closeSheet();S.tab='more';tab='more';S.mtab='recht';render();return false">Datenschutz</a></span></label>`;
+ if(art=="login")h+=`<label>E-Mail-Adresse</label><input class="n" id="kMail" type="email" inputmode="email" autocomplete="email" value="${esc(K.email||"")}">
+  <label>Passwort</label><input class="n" id="kPw" type="password" autocomplete="current-password">`;
+ if(art=="passwort"||art=="reset"||art=="aendern")h+=`<label>Neues Passwort (mind. 8 Zeichen)</label><input class="n" id="kPw" type="password" autocomplete="new-password"><label>Passwort wiederholen</label><input class="n" id="kPw2" type="password" autocomplete="new-password">`;
+ const fn={neu:"kontoErstellen",login:"kontoAnmelden",passwort:"kontoPasswort",reset:"kontoPasswort",aendern:"kontoPasswort"}[art];
+ const knopf={neu:"Bestätigungs-E-Mail senden",login:"Anmelden",passwort:"Passwort speichern",reset:"Passwort speichern",aendern:"Passwort speichern"}[art];
+ h+=`<div id="kMsg" style="font-size:13px;color:var(--danger);margin:8px 0 0"></div><button class="btn" style="width:100%;margin-top:10px" id="kGo" onclick="${fn}()">${knopf}</button>`;
+ if(art=="login")h+=`<button class="btn g" style="width:100%" onclick="kontoVergessen()">Passwort vergessen?</button>`;
+ h+=`<button class="btn g" style="width:100%" onclick="${art=="reset"?"RECOV=null;":""}closeSheet()">Abbrechen</button>`;
+ sheet(h);}
+function sKonto(){const K=konto(),st=K.status;
+ if(st=="keins")return `<div class="card"><h4>Konto & Cloud-Sicherung</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">Ohne Konto bleibt alles wie bisher nur auf diesem Gerät. Mit einem Konto (freiwillig):</small>
+  <div class="row"><span>☁️ Automatische Sicherung aller Daten</span></div><div class="row"><span>📱 Handywechsel ohne Datenverlust</span></div><div class="row"><span>🏆 Ranglisten-Platz und Spitzname bleiben erhalten</span></div>
+  <button class="btn" style="margin-top:10px" onclick="kontoForm('neu')">Konto erstellen</button><button class="btn g" onclick="kontoForm('login')">Ich habe schon ein Konto – anmelden</button></div>`;
+ if(st=="wartet")return `<div class="card"><h4>Bestätige deine E-Mail</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">Wir haben eine E-Mail an <b>${esc(K.email)}</b> geschickt. Tippe auf den Link darin und komm dann hierher zurück. Keine E-Mail da? Schau auch im Spam-Ordner nach.</small>
+  <button class="btn" onclick="kontoPruefen()">Ich habe bestätigt</button><button class="btn g" onclick="kontoErneut()">E-Mail erneut senden</button><button class="btn g" onclick="S.konto={status:'keins'};save();render()">Andere E-Mail-Adresse / abbrechen</button></div>`;
+ if(st=="passwort")return `<div class="card"><h4>Fast fertig</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">Deine E-Mail <b>${esc(K.email)}</b> ist bestätigt. Leg jetzt noch ein Passwort fest, damit du dich auf anderen Geräten anmelden kannst.</small><button class="btn" onclick="kontoForm('passwort')">Passwort festlegen</button></div>`;
+ if(st=="abgemeldet")return `<div class="card"><h4>Bitte neu anmelden</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">Deine Anmeldung für <b>${esc(K.email||"")}</b> ist abgelaufen. Deine Daten auf diesem Gerät sind sicher.</small><button class="btn" onclick="kontoForm('login')">Anmelden</button><button class="btn g" onclick="S.konto={status:'keins'};S.rl={on:false};sbTokSet(null);save();render()">Ohne Konto weiter</button></div>`;
+ const lz=K.letzte?new Date(K.letzte).toLocaleString("de-DE",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})+" Uhr":"noch nie";
+ return `<div class="card"><h4>Dein Konto</h4><div class="row"><span>E-Mail</span><span>${esc(K.email||"")}</span></div>
+  <div class="row"><span>Rangliste</span><span>${rl().on?"dabei als „"+esc(rl().nick||"")+"“":"nicht dabei"}</span></div></div>
+  <div class="card"><h4>Cloud-Sicherung</h4><div class="sw"><b>Automatisch sichern</b><button class="swb ${K.cloud?"on":""}" role="switch" aria-checked="${K.cloud?"true":"false"}" aria-label="Cloud-Sicherung ${K.cloud?"ausschalten":"einschalten"}" onclick="kontoCloud(${!K.cloud})"></button></div>
+  <small style="display:block;color:var(--mut);margin:4px 0 10px">${K.cloud?"Nach Änderungen wird automatisch gesichert, höchstens alle 5 Minuten. Letzte Sicherung: "+lz:"Aus. Deine Daten liegen nur auf diesem Gerät."}</small>
+  ${K.cloud?`<button class="btn g" id="cJetzt" onclick="cloudJetzt(true,true)">Jetzt sichern</button>`:""}<button class="btn g" onclick="cloudLaden()">Sicherung auf dieses Gerät laden</button></div>
+  <div class="card"><button class="btn g" onclick="kontoForm('aendern')">Passwort ändern</button><button class="btn g" onclick="kontoAbmelden()">Abmelden</button>
+  <button class="btn g" style="color:var(--danger);border-color:var(--danger)" onclick="kontoLoeschen()">Konto löschen</button></div>`;}
+/* Cloud-Sicherung */
+let cloudTimer=null,cloudLauf=false;
+function cloudInhalt(){const d=Object.assign({},S);delete d.key;delete d.konto;return JSON.stringify({app:"GainPilot",version:PUBLIC_V,stand:new Date().toISOString(),daten:d});}
+function hashStr(x){let h=5381;for(let i=0;i<x.length;i++)h=((h<<5)+h+x.charCodeAt(i))|0;return h>>>0;}
+async function packen(str){if(typeof CompressionStream=="undefined"){return "j:"+btoa(unescape(encodeURIComponent(str)));}
+ const buf=new Uint8Array(await new Response(new Blob([str]).stream().pipeThrough(new CompressionStream("gzip"))).arrayBuffer());
+ let bin="";for(let i=0;i<buf.length;i+=0x8000)bin+=String.fromCharCode.apply(null,buf.subarray(i,i+0x8000));return "g:"+btoa(bin);}
+async function entpacken(x){if(x.startsWith("j:"))return decodeURIComponent(escape(atob(x.slice(2))));
+ const bin=atob(x.slice(2)),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
+ return await new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("gzip"))).text();}
+function cloudTick(){const K=S.konto;if(!K||K.status!="aktiv"||!K.cloud)return;clearTimeout(cloudTimer);
+ const warte=Math.max(30000,(K.letzte||0)+5*60000-Date.now());cloudTimer=setTimeout(()=>cloudJetzt(false),warte);}
+async function cloudJetzt(sofort,zeigen){const K=konto();if(K.status!="aktiv"||!K.cloud||cloudLauf)return;
+ if(typeof navigator!="undefined"&&navigator.onLine===false)return;
+ const roh=cloudInhalt(),hv=hashStr(roh.replace(/"stand":"[^"]*",/,""));
+ if(!sofort&&K.hash===hv)return;
+ cloudLauf=true;const b=document.getElementById("cJetzt");if(b&&zeigen){b.disabled=true;b.textContent="Wird gesichert …";}
+ try{const data=await packen(roh),j=await sbRpc("gp_sicherung_speichern",{p_data:data,p_version:PUBLIC_V,p_geraet:(NATIV?"App":"Web")+" "+(navigator.platform||"").slice(0,30)});
+  if(j&&j.ok){K.letzte=Date.now();K.hash=hv;save();logInfo("konto","Cloud-Sicherung gespeichert",{kb:Math.round(data.length/1024)});if(zeigen)toast("Gesichert ("+Math.max(1,Math.round(data.length/1024))+" KB).");}
+  else{logWarn("konto","Cloud-Sicherung: "+((j&&j.fehler)||"?"));if(zeigen)toast((j&&j.fehler)||"Sichern hat nicht geklappt.");}}
+ catch(e){logWarn("konto","Cloud-Sicherung später: "+e.message);if(zeigen)toast(e.message=="abgemeldet"?"Bitte melde dich neu an.":"Keine Verbindung zum Server.");}
+ finally{cloudLauf=false;if(S.mtab=="konto"&&tab=="more"&&!document.querySelector(".modal"))render();}}
+async function cloudLaden(ohneFrage){
+ try{const j=await sbRpc("gp_sicherung_laden");
+  if(!j.ok){toast(j.fehler||"Laden nicht möglich.");return;}
+  if(!j.vorhanden){toast("Es gibt noch keine Cloud-Sicherung.");return;}
+  if(!ohneFrage&&!confirm(`Sicherung vom ${new Date(j.zeit).toLocaleString("de-DE")} laden? Die Daten auf diesem Gerät werden ersetzt.`))return;
+  const o=JSON.parse(await entpacken(j.data));sicherungAnwenden(o.daten||o);
+  konto().hash=null;konto().letzte=Date.parse(j.zeit)||Date.now();save();logInfo("konto","Cloud-Sicherung geladen",{stand:o.stand});toast("Sicherung geladen.");render();}
+ catch(e){logErr("konto","Cloud laden: "+e.message);toast(e.message=="abgemeldet"?"Bitte melde dich neu an.":"Die Sicherung konnte nicht geladen werden.");}}
+function sicherungAnwenden(d){const keepKey=S.key,keepKonto=S.konto;Object.keys(S).forEach(k=>delete S[k]);
+ Object.assign(S,DEFAULTS(),d);delete S.key;if(keepKey)S.key=keepKey;if(keepKonto)S.konto=keepKonto;S.onb=1;}
+/* Links aus E-Mails (Bestätigung, Passwort zurücksetzen) */
+function kontoLinkPruefen(){const h=location.hash||"";if(!/access_token=|error_description=/.test(h))return;
+ const p=new URLSearchParams(h.replace(/^#/,""));try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}
+ if(p.get("error_description")){const m=p.get("error_description");setTimeout(()=>toast(/expired|invalid/i.test(m)?"Der Link ist ungültig oder abgelaufen. Fordere einfach einen neuen an.":"Fehler: "+m),600);logWarn("konto","Link-Fehler: "+m);return;}
+ const roh={access_token:p.get("access_token"),refresh_token:p.get("refresh_token"),expires_in:+p.get("expires_in")||3600,expires_at:+p.get("expires_at")||0},typ=p.get("type"),sub=jwtSub(roh.access_token),alt=sbTok();
+ if(typ=="recovery"){RECOV={at:roh.access_token,roh};setTimeout(()=>kontoForm("reset"),600);return;}
+ if(alt&&alt.uid===sub){sbMerk(roh,alt);setTimeout(()=>kontoPruefen(true).then(ok=>{if(ok){S.tab="more";tab="more";S.mtab="konto";render();if(konto().status=="passwort")kontoForm("passwort");}}),600);}
+ else setTimeout(()=>toast("E-Mail bestätigt. Öffne jetzt GainPilot auf deinem Handy und tippe unter Mehr → Konto auf „Ich habe bestätigt“."),600);
+ logInfo("konto","Link aus E-Mail geöffnet",{typ});}
 function gS(){S.games=S.games||{xp:0,plays:0,best:{},daily:{}};S.games.best=S.games.best||{};S.games.daily=S.games.daily||{};return S.games;}
 /* ---------- Athleten-Level: ein Level aus Training, Bestwerten, Läufen und Pausenspielen ---------- */
 const GTITEL=["Aufwärmer","Neuling","Pumper","Eisenfreund","Stemmer","Hantelheld","Kraftprotz","Eisenbeißer","Athlet","Champion","Titan","Legende"];
@@ -2657,13 +2822,14 @@ function wAdd(){const d=$("#wd").value,v=parseFloat(($("#wv").value||"").replace
 function wDel(k){if(!confirm("Messung vom "+fmtDat(k)+" löschen?"))return;delete S.weight[k];save();render();}
 /* ---------- EINSTELLUNGEN ---------- */
 function viewSettings(){
- if(S.mtab&&S.mtab!="menu"){const f={profil:sProfil,ziele:sZiele,training:sTraining,erinnerung:sErinnerung,ki:sKI,daten:sDaten,info:sInfo,recht:sRecht}[S.mtab];if(f)return f();S.mtab=null;}
+ if(S.mtab&&S.mtab!="menu"){const f={profil:sProfil,ziele:sZiele,training:sTraining,erinnerung:sErinnerung,konto:sKonto,ki:sKI,daten:sDaten,info:sInfo,recht:sRecht}[S.mtab];if(f)return f();S.mtab=null;}
  const w=S.weight||{},ks=Object.keys(w).sort(),lw=ks.length?(+w[ks[ks.length-1]]).toFixed(1)+" kg":"";
  const info={profil:[S.age?S.age+" Jahre":"",S.height?S.height+" cm":"",lw].filter(Boolean).join(" · ")||"Alter, Größe, Gewicht und Ziel",
   ziele:S.kcal+" kcal · "+S.prot+" g Eiweiß"+(S.kh?" · "+S.kh+" g KH":""),
   training:"Satzpause "+fmtPause(S.restSek||90)+" · "+(S.restPlan===false?"immer gleich":"wie im Plan"),
   erinnerung:(()=>{const r=rem(),a=[r.tr.on?"Training":"",r.wa.on?"Wasser":"",r.es.on?"Mahlzeiten":""].filter(Boolean);return a.length?a.join(", "):"Aus";})(),
   ki:S.key?"Schlüssel hinterlegt":"Kein Schlüssel eingetragen",
+  konto:(()=>{const K=konto();return K.status=="aktiv"?K.email+(K.cloud?" · Cloud an":""):K.status=="wartet"?"E-Mail bestätigen":K.status=="passwort"?"Passwort festlegen":K.status=="abgemeldet"?"Bitte neu anmelden":"Kein Konto · freiwillig";})(),
   daten:S.lastBackup?"Letzte Sicherung am "+new Date(S.lastBackup).toLocaleDateString("de-DE"):"Noch keine Sicherung",
   info:"Version "+PUBLIC_V,recht:"Datenschutz, Impressum, Gesundheitshinweis"};
  const li=([k,n,ic])=>`<button class="li" onclick="S.mtab='${k}';render()"><span class="ic2">${ic}</span><span class="t"><b>${n}</b><small>${esc(info[k])}</small></span><span class="chev">›</span></button>`;
@@ -2858,6 +3024,7 @@ function backupFaellig(){
  if(!hatDaten())return null;
  if(!S.firstUse){S.firstUse=Date.now();save();}
  if(S.backupSnooze&&S.backupSnooze>Date.now())return null;
+ if(S.konto&&S.konto.status=="aktiv"&&S.konto.cloud&&S.konto.letzte&&Date.now()-S.konto.letzte<7*864e5)return null;
  const basis=S.lastBackup||S.firstUse,tage=(Date.now()-basis)/864e5;
  if(S.lastBackup?tage<7:tage<2)return null;
  return {tage:Math.floor((Date.now()-(S.lastBackup||0))/864e5),nie:!S.lastBackup};
@@ -2876,8 +3043,7 @@ function importFile(inp){
    const d=o&&o.daten?o.daten:(o&&o.plan!==undefined?o:null);
    if(!d)throw new Error("Keine GainPilot-Daten gefunden.");
    if(!confirm("Vorhandene Daten überschreiben?"))return;
-   const keepKey=S.key;Object.keys(S).forEach(k=>delete S[k]);
-   Object.assign(S,DEFAULTS(),d);delete S.key;if(keepKey)S.key=keepKey;
+   sicherungAnwenden(d);
    save();logInfo("einstellungen","Sicherung eingelesen",{stand:o.stand||"?"});
    toast("Daten eingelesen.");render();
   }catch(e){toast("Datei konnte nicht gelesen werden: "+e.message);logErr("einstellungen","Import fehlgeschlagen: "+e.message);}
@@ -3218,7 +3384,10 @@ if(!S.onb&&!Object.keys(S.log||{}).length&&!Object.keys(S.plan||{}).length)setTi
 // Beim Start immer mit dem heutigen Tag beginnen
 S.wk=weekOf(0);S.day=dayIndex(new Date());S.wkLock=false;S.mtab=null;
 let wegSeit=0;
-document.addEventListener("visibilitychange",()=>{if(document.hidden){wegSeit=Date.now();return;}
+try{kontoLinkPruefen();}catch(e){logErr("konto","Link: "+e.message);}
+setTimeout(()=>{try{if(konto().status=="wartet")kontoPruefen(true);}catch(e){}},3000);
+document.addEventListener("visibilitychange",()=>{if(document.hidden){wegSeit=Date.now();try{if(konto().status=="aktiv"&&konto().cloud)cloudJetzt(false);}catch(e){}return;}
+ try{if(konto().status=="wartet")kontoPruefen(true);}catch(e){}
  if(wegSeit&&Date.now()-wegSeit>30*60000&&!document.querySelector(".modal")){S.wk=weekOf(0);S.day=dayIndex(new Date());S.wkLock=false;render();}});
 render();
 </script>
