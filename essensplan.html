@@ -193,6 +193,14 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--brand);outline-offs
 .serie{display:flex;align-items:center;gap:6px;background:var(--brand-l);color:var(--brand-d);border-radius:14px;padding:9px 14px;margin:0 0 12px;font-size:14px}.serie b{font-size:17px;font-variant-numeric:tabular-nums}
 .gymz{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:0 0 10px}.gymz>span{font-size:20px}.gymz small{display:block;color:var(--mut)}
 .gymz.on{background:var(--brand-l);border-color:transparent}.gymz.on small{color:var(--brand-d)}
+.gwz{font-size:13px;color:var(--mut);margin:-2px 2px 10px}.gwz.on{color:var(--brand-d);font-weight:600}
+.gwt{font-size:13px;color:var(--mut);margin:4px 0 0}.gwt.on{color:var(--brand-d);font-weight:700}
+.gslots{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;min-height:50px;margin:14px 0 16px}
+.gslots span{width:30px;height:44px;border-bottom:3px solid var(--line);font-size:24px;font-weight:800;display:grid;place-items:center}
+.gslots.ok span{color:var(--brand);border-color:var(--brand)}.gslots.bad span{color:var(--danger);border-color:var(--danger)}
+.gletters{display:grid;grid-template-columns:repeat(auto-fit,minmax(48px,1fr));gap:8px}
+.gletters button{min-height:52px;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--txt);font-size:22px;font-weight:800;font-family:inherit;touch-action:manipulation}
+.gletters button:disabled{opacity:.25}
 .gdaily{background:var(--brand-l);border-radius:14px;padding:12px 14px;margin:0 0 8px}.gdaily small{display:block;margin-top:2px;color:var(--brand-d)}
 .gscore{font-size:30px;font-weight:760;text-align:center;margin:8px 0;font-variant-numeric:tabular-nums}
 .gres{text-align:center}.gover{text-align:center;padding:6px 0}.gover b{font-size:20px}
@@ -1653,6 +1661,7 @@ function setOk(d,n,k,ps){const s=(S.sets[d]&&S.sets[d][n])||[],x=s[k];if(!x)retu
  if(alle)S.prDone[key]=1;else delete S.prDone[key];
  save();render();
  if(!x.ok)return;haptik(30);
+ if(d==todayISO())satzPause={id:Date.now(),ts:Date.now(),used:false,ueb:n};
  const offen=(S.train[S.wk+"|"+S.day]||[]).some(m=>!prDone(d,m));
  if(!offen){restStop();toast("Training geschafft. Stark!");logInfo("training","Einheit abgeschlossen",{datum:d});}
  else if(S.restAuto!==false&&d==todayISO())restStart(ps);}
@@ -1942,11 +1951,43 @@ function gymName(id){const g=gyms().find(x=>x.id==id);if(!g)return;const n=promp
 function gymListe(){const ab=gymWechselAb();
  return `<h4 style="margin-top:16px">Meine Gyms</h4><small style="display:block;color:var(--mut);margin:-4px 0 8px">Die Pausenspiele lassen sich nur dort spielen. Ein Gym speicherst du direkt vor Ort, wenn du die Spiele öffnest.${ab>Date.now()&&gyms().length?" Ein weiteres Gym ist ab "+gymDatum(ab)+" möglich.":""}</small>
  ${gyms().map(g=>`<div class="row"><span>📍 ${esc(g.n)}</span><span><button class="btn g" style="margin:0 6px 0 0;width:auto;min-height:32px;padding:5px 10px;font-size:13px;display:inline-flex" onclick="gymName(${g.id})">Umbenennen</button><button class="x" aria-label="${esc(g.n)} löschen" onclick="gymDel(${g.id})">✕</button></span></div>`).join("")||"<small>Noch kein Gym gespeichert.</small>"}`;}
+/* ---------- Wertung: nur die erste Runde in einer echten Satzpause zählt ---------- */
+let satzPause=null;           // wird beim Abhaken eines Satzes gesetzt
+const PAUSE_MAX=10*60e3;      // eine Satzpause gilt höchstens 10 Minuten
+function pauseWertbar(){return !!(restT&&satzPause&&!satzPause.used&&Date.now()-satzPause.ts<PAUSE_MAX);}
+function gWertSpeichern(run,val){S.gwert=S.gwert||[];
+ S.gwert.push({d:todayISO(),w:weekKey(new Date()),g:run.game,v:val,a:run.t0w,e:Date.now(),u:satzPause.ueb});
+ if(S.gwert.length>400)S.gwert=S.gwert.slice(-400);
+ logInfo("spiele","Runde gewertet",{spiel:run.game,wert:val});}
+function wertZeile(){
+ if(pauseWertbar())return `<div class="gwz on">🏆 Die nächste Runde wird für die Rangliste gewertet.</div>`;
+ if(restT&&satzPause&&satzPause.used)return `<div class="gwz">In dieser Pause wurde schon gewertet. Weitere Runden sind frei.</div>`;
+ return `<div class="gwz">Gewertet wird nur die erste Runde in einer Satzpause, nachdem du einen Satz abgehakt hast.</div>`;}
+/* ---------- Wortsalat ---------- */
+const GWORT=["HANTEL","PAUSE","MUSKEL","PROTEIN","RUDERN","PLANK","BIZEPS","TRIZEPS","SCHULTER","WADEN","BAUCH","RÜCKEN","BRUST","KRAFT","AUSDAUER","SPRINT","LAUFEN","DEHNEN","GEWICHT","SCHEIBE","STANGE","AUFWÄRMEN","AUSFALL","DIPS","KLIMMZUG","KALORIEN","KREATIN","WASSER","SCHLAF","ERHOLUNG","TRAINING","ZIRKEL","KNIEBEUGE","KABELZUG","LATZUG","CURLS","FITNESS","ATHLET","REKORD","SERIE","PULS","BALANCE","SPRUNG","MATTE","HALTUNG","TECHNIK","DISZIPLIN","MAGNESIUM","BEINE","NACKEN","GRIFF","SATZ","POWER","KONDITION","SCHWEISS","ENERGIE"];
+const GWS=new Set(GWORT);
+function gWort(){gStopRun();const run=G.run={game:"wort",score:0,left:45,w:"",l:[],pick:[],n:0,last:"",lock:false};
+ gm(`<h4>🔤 Wortsalat</h4><div class="gscore" id="gs">0 Punkte</div><p class="sum" id="gi">Bilde aus den Buchstaben einen Fitness-Begriff.</p><div class="gslots" id="gsl"></div><div class="gletters" id="glt"></div>
+ <div style="display:flex;gap:8px;margin-top:12px"><button class="btn g" style="flex:1;margin:0" onclick="gWoBack()">⌫ Zurück</button><button class="btn g" style="flex:1;margin:0" onclick="gWoSkip()">Überspringen</button></div><p class="sum" id="gl">45 Sekunden</p>`);
+ gWoNext(run);gTimer(run);}
+function gWoNext(run){let w;do{w=GWORT[Math.floor(Math.random()*GWORT.length)];}while(w==run.last);run.last=w;run.w=w;run.pick=[];
+ let l;do{l=mische(w.split(""));}while(l.join("")==w);run.l=l;gWoDraw(run);}
+function gWoDraw(run,cls){const s=$("#gsl");if(s){s.className="gslots"+(cls?" "+cls:"");s.innerHTML=run.w.split("").map((_,i)=>`<span>${run.pick[i]!=null?run.l[run.pick[i]]:""}</span>`).join("");}
+ const t=$("#glt");if(t)t.innerHTML=run.l.map((c,i)=>`<button ${run.pick.includes(i)?"disabled":""} onclick="gWoTap(${i})">${c}</button>`).join("");}
+function gWoTap(i){const run=G.run;if(!run||run.game!="wort"||run.lock||run.pick.includes(i))return;run.pick.push(i);gBuzz(8);
+ if(run.pick.length<run.w.length){gWoDraw(run);return;}
+ const t=run.pick.map(k=>run.l[k]).join("");run.lock=true;
+ if(t==run.w||GWS.has(t)){const p=10+Math.max(0,run.w.length-4)*2;run.score+=p;run.n++;$("#gi").textContent="Richtig! +"+p;$("#gs").textContent=run.score+" Punkte";gBuzz(20);gWoDraw(run,"ok");
+  G.tm.push(setTimeout(()=>{if(G.run!==run)return;run.lock=false;gWoNext(run);},450));}
+ else{$("#gi").textContent="Nicht ganz – nochmal.";gBuzz(40);gWoDraw(run,"bad");
+  G.tm.push(setTimeout(()=>{if(G.run!==run)return;run.lock=false;run.pick=[];gWoDraw(run);},550));}}
+function gWoBack(){const run=G.run;if(!run||run.game!="wort"||run.lock)return;run.pick.pop();gWoDraw(run);}
+function gWoSkip(){const run=G.run;if(!run||run.game!="wort"||run.lock)return;$("#gi").textContent="Gesucht war: "+run.w;gWoNext(run);}
 function gS(){S.games=S.games||{xp:0,plays:0,best:{},daily:{}};S.games.best=S.games.best||{};S.games.daily=S.games.daily||{};return S.games;}
 const GTITEL=["Aufwärmer","Pumper","Eisenfreund","Stemmer","Hantelheld","Kraftprotz","Legende"];
 function gLevel(){const x=gS().xp,lv=Math.floor(x/150)+1;return {lv,in:x%150,t:GTITEL[Math.min(lv-1,GTITEL.length-1)]};}
-function gDaily(){const d=todayISO();let h=0;for(const c of d)h=(h*31+c.charCodeAt(0))>>>0;const g=h%6,v=Math.floor(h/6)%4;
- const def=[{g:"reaction",t:60+v*20,txt:`Reaction Rush: mindestens ${60+v*20} Punkte`},{g:"memory",t:4+v,txt:`Farbfolge: mindestens Level ${4+v}`},{g:"numbers",t:60-v*8,txt:`Number Blitz: in höchstens ${60-v*8} Sekunden`},{g:"stroop",t:80+v*20,txt:`Farbwort: mindestens ${80+v*20} Punkte`},{g:"math",t:80+v*20,txt:`Kopfrechnen: mindestens ${80+v*20} Punkte`},{g:"tetris",t:400+v*300,txt:`Blocksturz: mindestens ${400+v*300} Punkte`}][g];
+function gDaily(){const d=todayISO();let h=0;for(const c of d)h=(h*31+c.charCodeAt(0))>>>0;const g=h%7,v=Math.floor(h/7)%4;
+ const def=[{g:"reaction",t:60+v*20,txt:`Reaction Rush: mindestens ${60+v*20} Punkte`},{g:"memory",t:4+v,txt:`Farbfolge: mindestens Level ${4+v}`},{g:"numbers",t:60-v*8,txt:`Number Blitz: in höchstens ${60-v*8} Sekunden`},{g:"stroop",t:80+v*20,txt:`Farbwort: mindestens ${80+v*20} Punkte`},{g:"math",t:80+v*20,txt:`Kopfrechnen: mindestens ${80+v*20} Punkte`},{g:"tetris",t:400+v*300,txt:`Blocksturz: mindestens ${400+v*300} Punkte`},{g:"wort",t:50+v*20,txt:`Wortsalat: mindestens ${50+v*20} Punkte`}][g];
  const dl=gS().daily;def.done=dl.d==d&&!!dl.done;return def;}
 function gAward(game,val,xp){const g=gS(),b=g.best,heute=todayISO();g.plays++;let neu=false;
  g.n=g.n||{};g.n[game]=(g.n[game]||0)+1;
@@ -1972,16 +2013,16 @@ const GACH=[["erst","🎮","Erste Runde",g=>g.plays>=1],["p25","🏃","Stammgast
  ["s3","🔥","3 Tage in Folge",g=>(g.streak||0)>=3],["s7","🌟","7 Tage in Folge",g=>(g.streak||0)>=7],["dc5","🎯","5 Tages-Challenges",g=>(g.dc||0)>=5],
  ["lv5","⭐","Level 5 erreicht",g=>gLevel().lv>=5],["re150","⚡","Reaction: 150 Punkte",g=>(g.best.reaction||0)>=150],["me8","🧠","Farbfolge: Level 8",g=>(g.best.memory||0)>=8],
  ["nu20","🔢","Number Blitz unter 20 s",g=>g.best.numbers>0&&g.best.numbers<=20],["st200","🎨","Farbwort: 200 Punkte",g=>(g.best.stroop||0)>=200],
- ["ma200","➕","Kopfrechnen: 200 Punkte",g=>(g.best.math||0)>=200],["te2k","🧱","Blocksturz: 2.000 Punkte",g=>(g.best.tetris||0)>=2000]];
+ ["ma200","➕","Kopfrechnen: 200 Punkte",g=>(g.best.math||0)>=200],["te2k","🧱","Blocksturz: 2.000 Punkte",g=>(g.best.tetris||0)>=2000],["wo150","🔤","Wortsalat: 150 Punkte",g=>(g.best.wort||0)>=150]];
 function gAchCheck(){const g=gS();g.ach=g.ach||[];const neu=GACH.filter(a=>!g.ach.includes(a[0])&&a[3](g));neu.forEach(a=>g.ach.push(a[0]));return neu;}
-const GLIST=b=>({tetris:["🧱","Blocksturz","Fallende Blöcke, läuft bis die Pause endet",b.tetris?b.tetris+" Punkte":"–"],reaction:["⚡","Reaction Rush","30 Sekunden, Treffer zählen",b.reaction?b.reaction+" Punkte":"–"],stroop:["🎨","Farbwort","30 Sekunden, Farbe statt Wort",b.stroop?b.stroop+" Punkte":"–"],math:["➕","Kopfrechnen","30 Sekunden, Ergebnis wählen",b.math?b.math+" Punkte":"–"],memory:["🧠","Farbfolge","Farben merken und nachtippen",b.memory?"Level "+b.memory:"–"],numbers:["🔢","Number Blitz","1 bis 16, Fehler kosten 2 s",b.numbers?b.numbers+" s":"–"]});
+const GLIST=b=>({tetris:["🧱","Blocksturz","Fallende Blöcke, läuft bis die Pause endet",b.tetris?b.tetris+" Punkte":"–"],reaction:["⚡","Reaction Rush","30 Sekunden, Treffer zählen",b.reaction?b.reaction+" Punkte":"–"],stroop:["🎨","Farbwort","30 Sekunden, Farbe statt Wort",b.stroop?b.stroop+" Punkte":"–"],math:["➕","Kopfrechnen","30 Sekunden, Ergebnis wählen",b.math?b.math+" Punkte":"–"],memory:["🧠","Farbfolge","Farben merken und nachtippen",b.memory?"Level "+b.memory:"–"],numbers:["🔢","Number Blitz","1 bis 16, Fehler kosten 2 s",b.numbers?b.numbers+" s":"–"],wort:["🔤","Wortsalat","45 Sekunden, Fitness-Begriffe bilden",b.wort?b.wort+" Punkte":"–"]});
 function gSchnell(){const s=restT?Math.max(0,Math.ceil((restEnd-Date.now())/1000)):999;
- const l=s<35?["numbers","memory"]:s<90?["reaction","stroop","math","numbers"]:["tetris","reaction","stroop","math"];gStart(l[Math.floor(Math.random()*l.length)]);}
+ const l=s<35?["numbers","memory"]:s<90?["reaction","stroop","math","numbers"].concat(s>=50?["wort"]:[]):["tetris","reaction","stroop","math","wort"];gStart(l[Math.floor(Math.random()*l.length)]);}
 function gHome(){gStopRun();const g=gS(),L=gLevel(),dc=gDaily(),b=g.best,n=g.n||{},GL=GLIST(b);g.ach=g.ach||[];
  const aktiv=g.last==todayISO()||g.last==tagMinus(todayISO(),1)?(g.streak||0):0;
  gm(`<div class="ghero"><div><small>Level ${L.lv}</small><b>${L.t}</b></div><div class="gxp"><b>${g.xp}</b><small>XP</small></div></div>
  <div class="bar" style="margin:8px 0 4px"><i style="width:${L.in/150*100}%"></i></div><small style="display:block;color:var(--mut);margin-bottom:12px">Noch ${150-L.in} XP bis Level ${L.lv+1}${aktiv>=2?` · 🔥 ${aktiv} Tage in Folge`:""}</small>
- ${gymZeile()}<button class="btn" onclick="gSchnell()">▶ ${restT?"Passendes Spiel für die Pause":"Zufälliges Spiel starten"}</button>
+ ${gymZeile()}${wertZeile()}<button class="btn" onclick="gSchnell()">▶ ${restT?"Passendes Spiel für die Pause":"Zufälliges Spiel starten"}</button>
  <div class="gdaily" style="margin-top:10px" onclick="gStart('${dc.g}')"><b>🎯 Tages-Challenge</b><small>${dc.txt}${dc.done?" · geschafft ✓":" · +50 XP"}</small></div>
  ${Object.keys(GL).map(k=>`<div class="opt" onclick="gStart('${k}')"><span class="ic2">${GL[k][0]}</span><div><b>${GL[k][1]}${dc.g==k&&!dc.done?' <span class="tag">Challenge</span>':""}</b><small>${GL[k][2]} · Rekord: ${GL[k][3]}${n[k]?" · "+n[k]+"×":""}</small></div></div>`).join("")}
  <h4 style="margin-top:16px">Erfolge <span style="color:var(--mut);font-weight:600;font-size:14px">${g.ach.length} von ${GACH.length}</span></h4>
@@ -1989,7 +2030,8 @@ function gHome(){gStopRun();const g=gS(),L=gLevel(),dc=gDaily(),b=g.best,n=g.n||
  <small class="sum">${g.plays} Spiele gespielt</small>
  <button class="btn g" onclick="closeSheet()">Schließen</button>`);}
 function gStart(k){if(!gymFrei()){gymSperre(k);return;}gStartFrei(k);}
-function gStartFrei(k){({reaction:gReaction,memory:gMemory,numbers:gNumbers,stroop:gStroop,math:gMath,tetris:gTetris})[k]();}
+function gStartFrei(k){({reaction:gReaction,memory:gMemory,numbers:gNumbers,stroop:gStroop,math:gMath,tetris:gTetris,wort:gWort})[k]();
+ if(G.run){G.run.t0w=Date.now();G.run.pid=pauseWertbar()?satzPause.id:0;}}
 const gBuzz=ms=>haptik(ms);
 function gTimer(run){G.iv.push(setInterval(()=>{if(G.run!==run)return;run.left--;const e=$("#gl");if(e)e.textContent=run.left+" Sekunden";if(run.left<=0)gEnd(run);},1000));}
 const GSTR=[["Rot","#e25555"],["Blau","#4a8cf0"],["Gelb","#e8bd3f"],["Grün","#3cbf7a"]];
@@ -2059,12 +2101,14 @@ function gMa(v){const run=G.run;if(!run||run.game!="math")return;
 function gEnd(run,partial){if(!run||(G.run!==run&&!partial))return "";
  let val,xp,txt;
  if(run.game=="reaction"){val=run.score;xp=Math.round(val/5);txt=val+" Punkte";}
- else if(run.game=="stroop"||run.game=="math"){val=run.score;xp=Math.round(val/5);txt=val+" Punkte";}
+ else if(run.game=="stroop"||run.game=="math"||run.game=="wort"){val=run.score;xp=Math.round(val/5);txt=val+(run.game=="wort"?" Punkte · "+run.n+" Wörter":" Punkte");}
  else if(run.game=="memory"){val=run.level!=null?run.level:Math.max(0,run.seq.length-1);xp=val*6;txt="Level "+val;}
  else if(run.game=="tetris"){val=run.score;xp=Math.round(val/40)+run.lines*2;txt=val+" Punkte · "+run.lines+" Reihen";}
  else{const done=run.next==17;val=done?run.sec:0;xp=done?20+Math.max(0,Math.round((60-val)/3)):Math.floor((run.next-1)/2);txt=done?val+" Sekunden":(run.next-1)+" von 16";}
- const a=(val>0||xp>0)?gAward(run.game,val,xp):{xp:0,bonus:0,neu:false};
- const html=`<div class="gres"><div class="gscore">${txt}</div>${a.neu?"<p><b>🏆 Neuer Rekord</b></p>":""}<p class="sum">+${a.xp} XP${a.bonus?" · +"+a.bonus+" XP Tages-Challenge geschafft":""}${a.serie?" · +"+a.serie+" XP Serie":""}</p>${(a.neuE||[]).map(e=>`<div class="gach on" style="margin:8px auto 0;max-width:260px"><span>${e[1]}</span><b>${e[2]}</b><small>Erfolg freigeschaltet</small></div>`).join("")}</div>`;
+ const wert=!!(run.pid&&satzPause&&satzPause.id==run.pid&&!satzPause.used&&val>0);
+ if(wert){satzPause.used=true;gWertSpeichern(run,val);}
+ const a=(val>0||xp>0)?gAward(run.game,val,xp):{xp:0,bonus:0,neu:false};if(wert&&!(val>0||xp>0))save();
+ const html=`<div class="gres"><div class="gscore">${txt}</div><p class="gwt ${wert?"on":""}">${wert?"✓ Gewertet für die Rangliste":"Freie Runde – zählt nicht für die Rangliste"}</p>${a.neu?"<p><b>🏆 Neuer Rekord</b></p>":""}<p class="sum">+${a.xp} XP${a.bonus?" · +"+a.bonus+" XP Tages-Challenge geschafft":""}${a.serie?" · +"+a.serie+" XP Serie":""}</p>${(a.neuE||[]).map(e=>`<div class="gach on" style="margin:8px auto 0;max-width:260px"><span>${e[1]}</span><b>${e[2]}</b><small>Erfolg freigeschaltet</small></div>`).join("")}</div>`;
  if(partial)return html;
  gStopRun();gm(html+`<button class="btn" style="width:100%;margin:12px 0 6px" onclick="gStart('${run.game}')">Nochmal</button><button class="btn g" style="width:100%;margin:0" onclick="gHome()">Spielemenü</button>`);return "";}
 function gReaction(){gStopRun();const run=G.run={game:"reaction",score:0,left:30,can:false,arm:0};
