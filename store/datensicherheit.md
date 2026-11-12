@@ -25,8 +25,8 @@ Diese Antworten sind ein Vorschlag nach bestem Wissen, keine Rechtsberatung. Du 
 |---|---|
 | **Persönliche Daten → Name** | Spitzname (frei gewählt, für andere sichtbar) |
 | **Persönliche Daten → Andere Info** | Geschlecht und Altersgruppe (freiwillig, nur für den Vergleich) |
-| **Gesundheit und Fitness → Fitnessinformationen** | Trainingstage, erledigte Übungen, beste Sätze (Gewicht, Wiederholungen), Körpergewicht (freiwillig) |
-| **App-Aktivitäten → Andere Aktionen** | Ergebnisse gewerteter Pausenspiele mit Start- und Endzeit |
+| **Gesundheit und Fitness → Fitnessinformationen** | Trainingstage, erledigte Übungen, beste Sätze (Gewicht, Wiederholungen), schnellster Lauf (Datum, Distanz, Dauer, ab 3.23), Körpergewicht (freiwillig) |
+| **App-Aktivitäten → Andere Aktionen** | Ergebnisse gewerteter Pausenspiele mit Start- und Endzeit; Freundesgruppen (Name, Mitgliedschaft, ab 3.23) |
 | **App-Info und Leistung / Geräte- oder andere IDs** | zufällige Nutzerkennung des anonymen Kontos → bei „Geräte- oder andere IDs“ angeben |
 
 **Konto und Cloud-Sicherung (ab Version 3.17, freiwillig):** zusätzlich angeben – erhoben: Ja, geteilt: Nein, optional, Zweck: App-Funktionen und Kontoverwaltung:
