@@ -1,6 +1,6 @@
 {
   "name": "gainpilot-app",
-  "version": "3.23.0",
+  "version": "3.24.0",
   "private": true,
   "description": "Native Hülle (Capacitor) für GainPilot – Play Store und App Store",
   "scripts": {
@@ -11,6 +11,7 @@
     "ios": "npm run sync && cap open ios"
   },
   "dependencies": {
+    "@capacitor-mlkit/barcode-scanning": "^8.0.0",
     "@capacitor/android": "^8.0.0",
     "@capacitor/browser": "^8.0.0",
     "@capacitor/core": "^8.0.0",
@@ -22,7 +23,7 @@
     "@capacitor/preferences": "^8.0.0",
     "@capacitor/share": "^8.0.0",
     "@capacitor/splash-screen": "^8.0.0",
-    "@capacitor-mlkit/barcode-scanning": "^8.0.0"
+    "@revenuecat/purchases-capacitor": "^13.0.1"
   },
   "devDependencies": {
     "@capacitor/assets": "^3.0.5",

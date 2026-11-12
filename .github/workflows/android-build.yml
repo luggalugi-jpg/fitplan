@@ -23,6 +23,11 @@ jobs:
           M=android/app/src/main/AndroidManifest.xml
           grep -q ACCESS_FINE_LOCATION $M || sed -i 's#</manifest>#    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />\n    <uses-feature android:name="android.hardware.location.gps" android:required="false" />\n</manifest>#' $M
           grep -E "LOCATION|location.gps" $M
+      - name: Startmodus für In-App-Käufe (RevenueCat braucht singleTop)
+        run: |
+          M=android/app/src/main/AndroidManifest.xml
+          sed -i 's/android:launchMode="singleTask"/android:launchMode="singleTop"/' $M
+          grep -o 'android:launchMode="[a-zA-Z]*"' $M || true
       - name: Icons und Startbild
         run: npx capacitor-assets generate --android --iconBackgroundColor "#111317" --iconBackgroundColorDark "#111317" --splashBackgroundColor "#111317" --splashBackgroundColorDark "#111317"
       - name: Synchronisieren

@@ -40,6 +40,15 @@ Diese Antworten sind ein Vorschlag nach bestem Wissen, keine Rechtsberatung. Du 
 
 Apple zusätzlich: **E-Mail-Adresse** und **Gesundheit** – App-Funktionalität, mit Identität verknüpft, kein Tracking.
 
+**Premium-Abo (ab Version 3.24, erst aktiv, wenn die Abo-Produkte angelegt sind):** Zahlung über Google Play bzw. Apple, Abo-Verwaltung über RevenueCat (Auftragsverarbeiter, USA, EU-Standardvertragsklauseln). Zusätzlich angeben – erhoben: Ja, geteilt: Nein, **nicht** optional für Käufer, Zweck: App-Funktionen und Kontoverwaltung:
+
+| Datentyp (Play) | Was genau |
+|---|---|
+| **Finanzinformationen → Kaufverlauf** | Abo-Produkt, Kauf- und Ablaufdatum (keine Zahlungsdaten – die hat nur Google) |
+| **App-Info und Leistung / Geräte- oder andere IDs** | App-Nutzerkennung bei RevenueCat (ist schon wegen der Rangliste angegeben) |
+
+Apple zusätzlich: **Kaufverlauf** – App-Funktionalität, mit Identität verknüpft, kein Tracking. Die Werbe-ID (IDFA/GAID) sammelt RevenueCat nur, wenn man das ausdrücklich einschaltet – bleibt aus.
+
 **Account-Löschung (Pflicht bei Konten):** In der App unter Mehr → Konto & Cloud → „Konto löschen“. Für Google zusätzlich eine Web-Adresse angeben, unter der man die Löschung beantragen kann: die Datenschutz-URL (Abschnitt 6 nennt die E-Mail-Adresse).
 
 Die Frage „Können Nutzer das Löschen beantragen?“ bleibt **Ja**: Mehr → Daten & Sicherung → „Teilnahme beenden und Daten löschen“ löscht sofort alles auf dem Server. Wer die App ohne das löscht, kann per E-Mail die Löschung verlangen (steht in der Datenschutzerklärung). Google verlangt bei Konten zusätzlich eine **Web-Adresse zum Löschen** – dafür die Datenschutz-URL mit dem Abschnitt Speicherdauer und Löschung angeben.
