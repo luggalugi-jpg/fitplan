@@ -24,7 +24,7 @@ jobs:
           grep -q ACCESS_FINE_LOCATION $M || sed -i 's#</manifest>#    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />\n    <uses-feature android:name="android.hardware.location.gps" android:required="false" />\n</manifest>#' $M
           grep -E "LOCATION|location.gps" $M
       - name: Icons und Startbild
-        run: npx capacitor-assets generate --android --iconBackgroundColor "#0E1116" --iconBackgroundColorDark "#0E1116" --splashBackgroundColor "#0E1116" --splashBackgroundColorDark "#0E1116"
+        run: npx capacitor-assets generate --android --iconBackgroundColor "#111317" --iconBackgroundColorDark "#111317" --splashBackgroundColor "#111317" --splashBackgroundColorDark "#111317"
       - name: Synchronisieren
         run: npx cap sync android
       - name: Ziel-API 36 und Versionsnummer

@@ -1,6 +1,6 @@
 {
   "name": "gainpilot-app",
-  "version": "3.18.0",
+  "version": "3.19.0",
   "private": true,
   "description": "Native Hülle (Capacitor) für GainPilot – Play Store und App Store",
   "scripts": {
