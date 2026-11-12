@@ -1,11 +1,11 @@
 {
   "name": "gainpilot-app",
-  "version": "3.19.0",
+  "version": "3.20.0",
   "private": true,
   "description": "Native Hülle (Capacitor) für GainPilot – Play Store und App Store",
   "scripts": {
     "web": "node scripts/copy-web.mjs",
-    "icons": "capacitor-assets generate --iconBackgroundColor \"#1c7a4b\" --iconBackgroundColorDark \"#0d1310\" --splashBackgroundColor \"#1c7a4b\" --splashBackgroundColorDark \"#0d1310\"",
+    "icons": "capacitor-assets generate --iconBackgroundColor \"#111317\" --iconBackgroundColorDark \"#111317\" --splashBackgroundColor \"#111317\" --splashBackgroundColorDark \"#111317\"",
     "sync": "npm run web && cap sync",
     "android": "npm run sync && cap open android",
     "ios": "npm run sync && cap open ios"

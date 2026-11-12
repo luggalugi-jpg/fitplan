@@ -7,7 +7,7 @@
  "display": "standalone",
  "orientation": "portrait",
  "background_color": "#111317",
- "theme_color": "#1c7a4b",
+ "theme_color": "#111317",
  "description": "Wochenplan, Einkaufsliste, Nährwerte, Training, Supplements und Gewicht",
  "icons": [
   {

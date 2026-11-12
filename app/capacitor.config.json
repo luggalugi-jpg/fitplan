@@ -2,7 +2,7 @@
   "appId": "de.preikschas.gainpilot",
   "appName": "GainPilot",
   "webDir": "www",
-  "backgroundColor": "#f1f3ee",
+  "backgroundColor": "#111317",
   "android": {
     "allowMixedContent": false
   },
@@ -13,11 +13,11 @@
     "SplashScreen": {
       "launchShowDuration": 500,
       "launchAutoHide": true,
-      "backgroundColor": "#1c7a4b",
+      "backgroundColor": "#111317",
       "showSpinner": false
     },
     "LocalNotifications": {
-      "iconColor": "#1c7a4b"
+      "iconColor": "#C6F432"
     }
   }
 }
