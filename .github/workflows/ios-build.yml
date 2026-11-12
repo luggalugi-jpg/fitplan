@@ -23,7 +23,7 @@ jobs:
       - name: iOS-Projekt anlegen
         run: "[ -d ios ] || npx cap add ios"
       - name: Icons und Startbild
-        run: npx capacitor-assets generate --ios --iconBackgroundColor "#1c7a4b" --splashBackgroundColor "#1c7a4b" --splashBackgroundColorDark "#0d1310"
+        run: npx capacitor-assets generate --ios --iconBackgroundColor "#0E1116" --splashBackgroundColor "#0E1116" --splashBackgroundColorDark "#0E1116"
       - name: Synchronisieren
         run: npx cap sync ios
       - name: Info.plist, Version
