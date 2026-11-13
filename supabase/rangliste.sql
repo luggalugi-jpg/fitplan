@@ -136,6 +136,9 @@ create table if not exists public.gp_fmember(
   primary key(gid, uid)
 );
 create index if not exists gp_fmember_uid on public.gp_fmember(uid);
+-- Premium (vom Gerät gemeldet; später per RevenueCat-Webhook) und Gruppengröße
+alter table public.gp_profile add column if not exists premium boolean not null default false;
+alter table public.gp_fgroup add column if not exists maxp int not null default 50;
 
 create table if not exists public.gp_report(
   id bigserial primary key,
@@ -624,9 +627,21 @@ begin
     exit when not exists (select 1 from gp_fgroup where code = c);
     i := i + 1; if i > 20 then raise exception 'kein Code'; end if;
   end loop;
-  insert into gp_fgroup(name, code, owner) values (n, c, u) returning id into g;
+  insert into gp_fgroup(name, code, owner, maxp)
+    values (n, c, u, case when (select premium from gp_profile where id = u) then 50 else 3 end) returning id into g;
   insert into gp_fmember(gid, uid) values (g, u);
   return jsonb_build_object('ok', true, 'id', g, 'code', c, 'name', n);
+end $$;
+
+-- Premium-Status melden: setzt die Größe der eigenen Gruppen (Free 3, Premium 50; bestehende Mitglieder bleiben)
+create or replace function public.gp_premium_melden(p_aktiv boolean) returns jsonb
+language plpgsql security definer set search_path = public as $$
+declare u uuid := gp_uid();
+begin
+  update gp_profile set premium = coalesce(p_aktiv, false) where id = u;
+  if not found then return jsonb_build_object('ok', false, 'profil', false); end if;
+  update gp_fgroup set maxp = case when coalesce(p_aktiv, false) then 50 else 3 end where owner = u;
+  return jsonb_build_object('ok', true);
 end $$;
 
 create or replace function public.gp_gruppe_beitreten(p_code text) returns jsonb
@@ -644,7 +659,11 @@ begin
   end if;
   perform pg_advisory_xact_lock(hashtext('gp_fg ' || gr.id));
   select count(*) into n from gp_fmember where gid = gr.id;
-  if n >= 50 then return jsonb_build_object('ok', false, 'fehler', 'Die Gruppe ist voll (50 Personen).'); end if;
+  if n >= least(gr.maxp, 50) then
+    return jsonb_build_object('ok', false, 'fehler', case when gr.maxp < 50
+      then 'Die Gruppe ist voll (' || gr.maxp || ' Personen). Wer sie erstellt hat, kann sie mit Premium vergrößern.'
+      else 'Die Gruppe ist voll (50 Personen).' end);
+  end if;
   insert into gp_fmember(gid, uid) values (gr.id, u) on conflict do nothing;
   return jsonb_build_object('ok', true, 'id', gr.id, 'name', gr.name);
 end $$;
@@ -699,7 +718,7 @@ begin
            'kraft', w.kraft, 'lauf', w.lauf, 'spiele', w.spiele, 'fleiss', w.fleiss, 'gesamt', w.gesamt, 'rang', gp_rang(w.gesamt),
            'liga', p.league, 'monat', coalesce((select mm.train + mm.pr + mm.game + mm.streak from gp_member mm where mm.week = mo and mm.uid = m.uid), 0))), '[]')
     into r from gp_fmember m join gp_profile p on p.id = m.uid cross join lateral gp_werte(m.uid) w where m.gid = p_gid;
-  return jsonb_build_object('ok', true, 'id', gr.id, 'name', gr.name, 'code', gr.code, 'admin', gr.owner = u, 'mitglieder', r);
+  return jsonb_build_object('ok', true, 'id', gr.id, 'name', gr.name, 'code', gr.code, 'admin', gr.owner = u, 'max', gr.maxp, 'mitglieder', r);
 end $$;
 
 -- ---------- Rechte: nur angemeldete Nutzer (auch anonyme) dürfen die App-Funktionen aufrufen ----------
@@ -709,7 +728,7 @@ do $$ declare f record; begin
     execute format('revoke all on function %s from public, anon, authenticated', f.sig);
     if f.proname in ('gp_profil_speichern','gp_training','gp_bestwert','gp_spiel','gp_liga','gp_melden','gp_loeschen',
                      'gp_lauf','gp_kraftlauf','gp_saison','gp_gesamt','gp_gruppe_erstellen','gp_gruppe_beitreten','gp_gruppe_verlassen',
-                     'gp_gruppe_entfernen','gp_gruppen','gp_gruppe',
+                     'gp_gruppe_entfernen','gp_gruppen','gp_gruppe','gp_premium_melden',
                      'gp_sicherung_speichern','gp_sicherung_info','gp_sicherung_laden','gp_sicherung_loeschen','gp_rangliste_loeschen') then
       execute format('grant execute on function %s to authenticated', f.sig);
     end if;
