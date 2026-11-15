@@ -342,6 +342,6 @@ window.UEB_TXT={
 /* Eigene Übungsvideos: v = MP4-Video (Schleife, ohne Ton), p = Vorschaubild, a = Schleife als animiertes WebP, i = Bild mit den beanspruchten Muskeln (optional).
    Übungen ohne Eintrag zeigen die 3D-Animation. Neue Videos mit werkzeuge/videoopt.py aufbereiten (GIFs aus Einzelbildern: gifopt.py). */
 window.UEB_MEDIA={
-"Kniebeugen":{a:"uebungen/kniebeugen.webp"},
-"Bankdrücken":{v:"uebungen/bankdruecken.mp4",p:"uebungen/bankdruecken.jpg"}
+"Bankdrücken":{v:"uebungen/bankdruecken.mp4",p:"uebungen/bankdruecken.jpg"},
+"Kniebeugen":{v:"uebungen/kniebeugen.mp4",p:"uebungen/kniebeugen.jpg"}
 };
