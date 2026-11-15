@@ -339,8 +339,9 @@ window.UEB_TXT={
 "Russian Twist":{s:["Hinsetzen, Knie gebeugt, Fersen am Boden.","Oberkörper mit geradem Rücken etwas nach hinten lehnen.","Hände oder ein Gewicht vor der Brust halten.","Oberkörper abwechselnd nach links und rechts drehen."],a:"Bei jeder Drehung ausatmen.",f:["Runder Rücken","Nur die Arme bewegen sich","Zu schnell"],t:["Schwerer: Füße vom Boden heben."],l:"Ohne Gewicht und mit weniger Rücklage."},
 "Kabelcrunch":{s:["Vor dem Kabelzug knien, Seilgriff oben eingehängt.","Seil neben dem Kopf halten.","Bauch anspannen und den Oberkörper nach unten einrollen, Ellbogen Richtung Knie.","Hüfte bleibt ruhig.","Langsam wieder aufrichten."],a:"Beim Einrollen ausatmen, beim Aufrichten einatmen.",f:["Mit den Armen ziehen","Hüfte sitzt nach hinten ab","Zu schwer"],t:["Die Bewegung kommt aus dem Bauch, nicht aus der Hüfte."],l:"Crunches am Boden."}
 };
-/* Eigene Übungsvideos: a = Schleife (animiertes WebP), i = Bild mit den beanspruchten Muskeln (optional).
+/* Eigene Übungsvideos: v = MP4-Video (Schleife, ohne Ton), p = Vorschaubild, a = Schleife als animiertes WebP, i = Bild mit den beanspruchten Muskeln (optional).
    Übungen ohne Eintrag zeigen die 3D-Animation. Neue Videos mit werkzeuge/videoopt.py aufbereiten (GIFs aus Einzelbildern: gifopt.py). */
 window.UEB_MEDIA={
-"Kniebeugen":{a:"uebungen/kniebeugen.webp"}
+"Kniebeugen":{a:"uebungen/kniebeugen.webp"},
+"Bankdrücken":{v:"uebungen/bankdruecken.mp4",p:"uebungen/bankdruecken.jpg"}
 };

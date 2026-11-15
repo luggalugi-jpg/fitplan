@@ -1,8 +1,8 @@
 // Fit-Wochenplan – Offline-Zwischenspeicher
 // Bei jeder neuen App-Fassung diese Kennung hochzählen (v2, v3, ...).
 // Dann wirft der Browser die alte Fassung weg und lädt die neue.
-const CACHE = "fitplan-v47";
-const DATEIEN = ["./", "./index.html", "./essensplan.html", "./rezepte.js","./trainingssysteme.js","./laufplaene.js","./laufanleitungen.js","./nutzungsbedingungen.html","./uebungen.js","./uebungen.js?v=3.10", "./uebungen/kniebeugen.webp","./manifest.json", "./icon-180.png", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png"];
+const CACHE = "fitplan-v48";
+const DATEIEN = ["./", "./index.html", "./essensplan.html", "./rezepte.js","./trainingssysteme.js","./laufplaene.js","./laufanleitungen.js","./nutzungsbedingungen.html","./uebungen.js","./uebungen.js?v=3.28", "./uebungen/kniebeugen.webp","./uebungen/bankdruecken.jpg","./manifest.json", "./icon-180.png", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png"];
 
 self.addEventListener("install", e => {
   self.skipWaiting();
@@ -24,6 +24,8 @@ self.addEventListener("fetch", e => {
   if (req.method !== "GET") return;
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
+  // Videos lädt der Browser selbst in Teilstücken (Range); nicht über den Zwischenspeicher leiten
+  if (/\.(mp4|webm)$/.test(url.pathname)) return;
 
   // Seiten, Skripte und Daten immer zuerst aus dem Netz holen, damit Änderungen sofort ankommen.
   const istSeite = req.mode === "navigate" || /\.(html?|js|json)$/.test(url.pathname) || url.pathname.endsWith("/");
