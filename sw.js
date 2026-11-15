@@ -1,8 +1,8 @@
 // Fit-Wochenplan – Offline-Zwischenspeicher
 // Bei jeder neuen App-Fassung diese Kennung hochzählen (v2, v3, ...).
 // Dann wirft der Browser die alte Fassung weg und lädt die neue.
-const CACHE = "fitplan-v51";
-const DATEIEN = ["./", "./index.html", "./essensplan.html", "./rezepte.js","./trainingssysteme.js","./laufplaene.js","./laufanleitungen.js","./nutzungsbedingungen.html","./uebungen.js","./uebungen.js?v=3.31","./uebungen/bankdruecken.jpg","./uebungen/dips.jpg","./uebungen/kniebeugen.jpg","./uebungen/kurzhantel-flys.jpg","./uebungen/liegestuetze.jpg","./uebungen/schraegbankdruecken.jpg","./manifest.json", "./icon-180.png", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png"];
+const CACHE = "fitplan-v52";
+const DATEIEN = ["./", "./index.html", "./essensplan.html", "./rezepte.js","./trainingssysteme.js","./laufplaene.js","./laufanleitungen.js","./nutzungsbedingungen.html","./uebungen.js","./uebungen.js?v=3.32","./uebungen/bankdruecken.jpg","./uebungen/dips.jpg","./uebungen/kniebeugen.jpg","./uebungen/kurzhantel-flys.jpg","./uebungen/liegestuetze.jpg","./uebungen/schraegbankdruecken.jpg","./uebungen/schulterdruecken.jpg","./uebungen/seitheben.jpg","./manifest.json", "./icon-180.png", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png"];
 
 self.addEventListener("install", e => {
   self.skipWaiting();

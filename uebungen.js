@@ -347,5 +347,7 @@ window.UEB_MEDIA={
 "Kniebeugen":{v:"uebungen/kniebeugen.mp4",p:"uebungen/kniebeugen.jpg"},
 "Kurzhantel-Flys":{v:"uebungen/kurzhantel-flys.mp4",p:"uebungen/kurzhantel-flys.jpg"},
 "Liegestütze":{v:"uebungen/liegestuetze.mp4",p:"uebungen/liegestuetze.jpg"},
-"Schrägbankdrücken":{v:"uebungen/schraegbankdruecken.mp4",p:"uebungen/schraegbankdruecken.jpg"}
+"Schrägbankdrücken":{v:"uebungen/schraegbankdruecken.mp4",p:"uebungen/schraegbankdruecken.jpg"},
+"Schulterdrücken":{v:"uebungen/schulterdruecken.mp4",p:"uebungen/schulterdruecken.jpg"},
+"Seitheben":{v:"uebungen/seitheben.mp4",p:"uebungen/seitheben.jpg"}
 };
