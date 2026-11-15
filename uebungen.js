@@ -344,6 +344,8 @@ window.UEB_TXT={
 window.UEB_MEDIA={
 "Bankdrücken":{v:"uebungen/bankdruecken.mp4",p:"uebungen/bankdruecken.jpg"},
 "Dips":{v:"uebungen/dips.mp4",p:"uebungen/dips.jpg"},
+"Face Pulls":{v:"uebungen/face-pulls.mp4",p:"uebungen/face-pulls.jpg"},
+"Frontheben":{v:"uebungen/frontheben.mp4",p:"uebungen/frontheben.jpg"},
 "Kniebeugen":{v:"uebungen/kniebeugen.mp4",p:"uebungen/kniebeugen.jpg"},
 "Kurzhantel-Flys":{v:"uebungen/kurzhantel-flys.mp4",p:"uebungen/kurzhantel-flys.jpg"},
 "Liegestütze":{v:"uebungen/liegestuetze.mp4",p:"uebungen/liegestuetze.jpg"},
