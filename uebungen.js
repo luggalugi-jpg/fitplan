@@ -347,6 +347,7 @@ window.UEB_MEDIA={
 "Beinbeuger":{v:"uebungen/beinbeuger.mp4",p:"uebungen/beinbeuger.jpg"},
 "Beinpresse":{v:"uebungen/beinpresse.mp4",p:"uebungen/beinpresse.jpg"},
 "Beinstrecker":{v:"uebungen/beinstrecker.mp4",p:"uebungen/beinstrecker.jpg"},
+"Bizepscurls":{v:"uebungen/bizepscurls.mp4",p:"uebungen/bizepscurls.jpg"},
 "Dips":{v:"uebungen/dips.mp4",p:"uebungen/dips.jpg"},
 "Face Pulls":{v:"uebungen/face-pulls.mp4",p:"uebungen/face-pulls.jpg"},
 "Frontheben":{v:"uebungen/frontheben.mp4",p:"uebungen/frontheben.jpg"},
