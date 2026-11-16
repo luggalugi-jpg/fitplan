@@ -363,5 +363,6 @@ window.UEB_MEDIA={
 "Schrägbankdrücken":{v:"uebungen/schraegbankdruecken.mp4",p:"uebungen/schraegbankdruecken.jpg"},
 "Schulterdrücken":{v:"uebungen/schulterdruecken.mp4",p:"uebungen/schulterdruecken.jpg"},
 "Seitheben":{v:"uebungen/seitheben.mp4",p:"uebungen/seitheben.jpg"},
+"Trizepsdrücken am Kabel":{v:"uebungen/trizepsdruecken-kabel.mp4",p:"uebungen/trizepsdruecken-kabel.jpg"},
 "Wadenheben":{v:"uebungen/wadenheben.mp4",p:"uebungen/wadenheben.jpg"}
 };
