@@ -360,5 +360,6 @@ window.UEB_MEDIA={
 "Rückenstrecken":{v:"uebungen/rueckenstrecken.mp4",p:"uebungen/rueckenstrecken.jpg"},
 "Schrägbankdrücken":{v:"uebungen/schraegbankdruecken.mp4",p:"uebungen/schraegbankdruecken.jpg"},
 "Schulterdrücken":{v:"uebungen/schulterdruecken.mp4",p:"uebungen/schulterdruecken.jpg"},
-"Seitheben":{v:"uebungen/seitheben.mp4",p:"uebungen/seitheben.jpg"}
+"Seitheben":{v:"uebungen/seitheben.mp4",p:"uebungen/seitheben.jpg"},
+"Wadenheben":{v:"uebungen/wadenheben.mp4",p:"uebungen/wadenheben.jpg"}
 };
