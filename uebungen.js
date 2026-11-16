@@ -351,6 +351,7 @@ window.UEB_MEDIA={
 "Dips":{v:"uebungen/dips.mp4",p:"uebungen/dips.jpg"},
 "Face Pulls":{v:"uebungen/face-pulls.mp4",p:"uebungen/face-pulls.jpg"},
 "Frontheben":{v:"uebungen/frontheben.mp4",p:"uebungen/frontheben.jpg"},
+"Hammercurls":{v:"uebungen/hammercurls.mp4",p:"uebungen/hammercurls.jpg"},
 "Klimmzüge":{v:"uebungen/klimmzuege.mp4",p:"uebungen/klimmzuege.jpg"},
 "Kniebeugen":{v:"uebungen/kniebeugen.mp4",p:"uebungen/kniebeugen.jpg"},
 "Kreuzheben":{v:"uebungen/kreuzheben.mp4",p:"uebungen/kreuzheben.jpg"},
