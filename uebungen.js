@@ -351,6 +351,7 @@ window.UEB_MEDIA={
 "Kurzhantel-Flys":{v:"uebungen/kurzhantel-flys.mp4",p:"uebungen/kurzhantel-flys.jpg"},
 "Latzug":{v:"uebungen/latzug.mp4",p:"uebungen/latzug.jpg"},
 "Liegestütze":{v:"uebungen/liegestuetze.mp4",p:"uebungen/liegestuetze.jpg"},
+"Rudern mit Kurzhantel":{v:"uebungen/rudern-kurzhantel.mp4",p:"uebungen/rudern-kurzhantel.jpg"},
 "Schrägbankdrücken":{v:"uebungen/schraegbankdruecken.mp4",p:"uebungen/schraegbankdruecken.jpg"},
 "Schulterdrücken":{v:"uebungen/schulterdruecken.mp4",p:"uebungen/schulterdruecken.jpg"},
 "Seitheben":{v:"uebungen/seitheben.mp4",p:"uebungen/seitheben.jpg"}
