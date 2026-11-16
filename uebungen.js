@@ -344,6 +344,7 @@ window.UEB_TXT={
 window.UEB_MEDIA={
 "Ausfallschritte":{v:"uebungen/ausfallschritte.mp4",p:"uebungen/ausfallschritte.jpg"},
 "Bankdrücken":{v:"uebungen/bankdruecken.mp4",p:"uebungen/bankdruecken.jpg"},
+"Beinbeuger":{v:"uebungen/beinbeuger.mp4",p:"uebungen/beinbeuger.jpg"},
 "Beinpresse":{v:"uebungen/beinpresse.mp4",p:"uebungen/beinpresse.jpg"},
 "Dips":{v:"uebungen/dips.mp4",p:"uebungen/dips.jpg"},
 "Face Pulls":{v:"uebungen/face-pulls.mp4",p:"uebungen/face-pulls.jpg"},
