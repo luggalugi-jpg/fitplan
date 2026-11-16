@@ -353,6 +353,7 @@ window.UEB_MEDIA={
 "Latzug":{v:"uebungen/latzug.mp4",p:"uebungen/latzug.jpg"},
 "Liegestütze":{v:"uebungen/liegestuetze.mp4",p:"uebungen/liegestuetze.jpg"},
 "Rudern mit Kurzhantel":{v:"uebungen/rudern-kurzhantel.mp4",p:"uebungen/rudern-kurzhantel.jpg"},
+"Rückenstrecken":{v:"uebungen/rueckenstrecken.mp4",p:"uebungen/rueckenstrecken.jpg"},
 "Schrägbankdrücken":{v:"uebungen/schraegbankdruecken.mp4",p:"uebungen/schraegbankdruecken.jpg"},
 "Schulterdrücken":{v:"uebungen/schulterdruecken.mp4",p:"uebungen/schulterdruecken.jpg"},
 "Seitheben":{v:"uebungen/seitheben.mp4",p:"uebungen/seitheben.jpg"}
