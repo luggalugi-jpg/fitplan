@@ -342,6 +342,7 @@ window.UEB_TXT={
 /* Eigene Übungsvideos: v = MP4-Video (Schleife, ohne Ton), p = Vorschaubild, a = Schleife als animiertes WebP, i = Bild mit den beanspruchten Muskeln (optional).
    Übungen ohne Eintrag zeigen die 3D-Animation. Neue Videos mit werkzeuge/videoopt.py aufbereiten (GIFs aus Einzelbildern: gifopt.py). */
 window.UEB_MEDIA={
+"Ausfallschritte":{v:"uebungen/ausfallschritte.mp4",p:"uebungen/ausfallschritte.jpg"},
 "Bankdrücken":{v:"uebungen/bankdruecken.mp4",p:"uebungen/bankdruecken.jpg"},
 "Beinpresse":{v:"uebungen/beinpresse.mp4",p:"uebungen/beinpresse.jpg"},
 "Dips":{v:"uebungen/dips.mp4",p:"uebungen/dips.jpg"},
