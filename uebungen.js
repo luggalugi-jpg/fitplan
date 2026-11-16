@@ -343,6 +343,7 @@ window.UEB_TXT={
    Übungen ohne Eintrag zeigen die 3D-Animation. Neue Videos mit werkzeuge/videoopt.py aufbereiten (GIFs aus Einzelbildern: gifopt.py). */
 window.UEB_MEDIA={
 "Bankdrücken":{v:"uebungen/bankdruecken.mp4",p:"uebungen/bankdruecken.jpg"},
+"Beinpresse":{v:"uebungen/beinpresse.mp4",p:"uebungen/beinpresse.jpg"},
 "Dips":{v:"uebungen/dips.mp4",p:"uebungen/dips.jpg"},
 "Face Pulls":{v:"uebungen/face-pulls.mp4",p:"uebungen/face-pulls.jpg"},
 "Frontheben":{v:"uebungen/frontheben.mp4",p:"uebungen/frontheben.jpg"},
