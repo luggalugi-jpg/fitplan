@@ -77,7 +77,7 @@ U = [
  "He performs three slow calf raises: the heels lower below the step for a stretch, then rise as high as possible onto the toes, hold briefly, then lower."),
 ("Hip Thrust","hip-thrust","Hip thrust start: he sits on the floor in front of a flat bench, only his shoulder blades lean back against the long side edge of the bench, the bench runs crosswise behind his upper back, buttocks just above the floor, knees bent, feet flat on the floor, a padded barbell rests across his hip crease held with both hands.",
  "the glutes","hamstrings","Flat bench with light grey metal frame and black pad, barbell with black plates and a hip pad.",
- "He performs three slow hip thrusts: the hips drive up until thighs and torso form a straight line with vertical shins, glutes squeezed, then lower slowly."),
+ "He performs three slow hip thrusts: the hips drive up until thighs and torso form a straight line with vertical shins, glutes squeezed, then lower slowly. The front thighs stay grey the whole time, never red; only the buttocks under the hips are red."),
 ("Bizepscurls","bizepscurls","He stands upright holding a dumbbell in each hand, arms straight down, palms facing forward.",
  "the biceps","forearms","Two black dumbbells.",
  "He performs three slow biceps curls: the elbows stay close to the body, the dumbbells curl up to the shoulders, then lower slowly to straight arms. No swinging."),
