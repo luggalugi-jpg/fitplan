@@ -348,6 +348,7 @@ window.UEB_MEDIA={
 "Frontheben":{v:"uebungen/frontheben.mp4",p:"uebungen/frontheben.jpg"},
 "Klimmzüge":{v:"uebungen/klimmzuege.mp4",p:"uebungen/klimmzuege.jpg"},
 "Kniebeugen":{v:"uebungen/kniebeugen.mp4",p:"uebungen/kniebeugen.jpg"},
+"Kreuzheben":{v:"uebungen/kreuzheben.mp4",p:"uebungen/kreuzheben.jpg"},
 "Kurzhantel-Flys":{v:"uebungen/kurzhantel-flys.mp4",p:"uebungen/kurzhantel-flys.jpg"},
 "Latzug":{v:"uebungen/latzug.mp4",p:"uebungen/latzug.jpg"},
 "Liegestütze":{v:"uebungen/liegestuetze.mp4",p:"uebungen/liegestuetze.jpg"},
