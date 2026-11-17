@@ -345,6 +345,7 @@ window.UEB_MEDIA={
 "Ausfallschritte":{v:"uebungen/ausfallschritte.mp4",p:"uebungen/ausfallschritte.jpg"},
 "Bankdrücken":{v:"uebungen/bankdruecken.mp4",p:"uebungen/bankdruecken.jpg"},
 "Beinbeuger":{v:"uebungen/beinbeuger.mp4",p:"uebungen/beinbeuger.jpg"},
+"Beinheben":{v:"uebungen/beinheben.mp4",p:"uebungen/beinheben.jpg"},
 "Beinpresse":{v:"uebungen/beinpresse.mp4",p:"uebungen/beinpresse.jpg"},
 "Beinstrecker":{v:"uebungen/beinstrecker.mp4",p:"uebungen/beinstrecker.jpg"},
 "Bizepscurls":{v:"uebungen/bizepscurls.mp4",p:"uebungen/bizepscurls.jpg"},
