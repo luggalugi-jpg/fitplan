@@ -362,6 +362,7 @@ window.UEB_MEDIA={
 "Liegestütze":{v:"uebungen/liegestuetze.mp4",p:"uebungen/liegestuetze.jpg"},
 "Plank":{v:"uebungen/plank.mp4",p:"uebungen/plank.jpg"},
 "Rudern mit Kurzhantel":{v:"uebungen/rudern-kurzhantel.mp4",p:"uebungen/rudern-kurzhantel.jpg"},
+"Russian Twist":{v:"uebungen/russian-twist.mp4",p:"uebungen/russian-twist.jpg"},
 "Rückenstrecken":{v:"uebungen/rueckenstrecken.mp4",p:"uebungen/rueckenstrecken.jpg"},
 "Schrägbankdrücken":{v:"uebungen/schraegbankdruecken.mp4",p:"uebungen/schraegbankdruecken.jpg"},
 "Schulterdrücken":{v:"uebungen/schulterdruecken.mp4",p:"uebungen/schulterdruecken.jpg"},
