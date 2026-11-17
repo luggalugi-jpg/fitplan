@@ -353,7 +353,7 @@ window.UEB_MEDIA={
 "Dips":{v:"uebungen/dips.mp4",p:"uebungen/dips.jpg"},
 "Face Pulls":{v:"uebungen/face-pulls.mp4",p:"uebungen/face-pulls.jpg"},
 "Frontheben":{v:"uebungen/frontheben.mp4",p:"uebungen/frontheben.jpg"},
-"Hammercurls":{v:"uebungen/hammercurls.mp4",p:"uebungen/hammercurls.jpg"},
+"Hammercurls":{a:"uebungen/hammercurls.webp"},
 "Hip Thrust":{a:"uebungen/hip-thrust.webp"},
 "Kabelcrunch":{v:"uebungen/kabelcrunch.mp4",p:"uebungen/kabelcrunch.jpg"},
 "Klimmzüge":{v:"uebungen/klimmzuege.mp4",p:"uebungen/klimmzuege.jpg"},
