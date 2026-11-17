@@ -366,6 +366,7 @@ window.UEB_MEDIA={
 "Schrägbankdrücken":{v:"uebungen/schraegbankdruecken.mp4",p:"uebungen/schraegbankdruecken.jpg"},
 "Schulterdrücken":{v:"uebungen/schulterdruecken.mp4",p:"uebungen/schulterdruecken.jpg"},
 "Seitheben":{v:"uebungen/seitheben.mp4",p:"uebungen/seitheben.jpg"},
+"Seitstütz":{v:"uebungen/seitstuetz.mp4",p:"uebungen/seitstuetz.jpg"},
 "Trizeps-Kickbacks":{v:"uebungen/trizeps-kickbacks.mp4",p:"uebungen/trizeps-kickbacks.jpg"},
 "Trizepsdrücken am Kabel":{v:"uebungen/trizepsdruecken-kabel.mp4",p:"uebungen/trizepsdruecken-kabel.jpg"},
 "Unterarmcurls":{v:"uebungen/unterarmcurls.mp4",p:"uebungen/unterarmcurls.jpg"},
