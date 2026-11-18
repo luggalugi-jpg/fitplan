@@ -140,6 +140,24 @@ create index if not exists gp_fmember_uid on public.gp_fmember(uid);
 alter table public.gp_profile add column if not exists premium boolean not null default false;
 alter table public.gp_fgroup add column if not exists maxp int not null default 50;
 
+-- Studio-Rangliste: ein Heim-Studio pro Person (nur der Ort des Studios, nie der eigene Standort)
+create table if not exists public.gp_studio(
+  id bigserial primary key,
+  name text not null,
+  lat numeric(7,4) not null,
+  lon numeric(8,4) not null,
+  owner uuid references public.gp_profile(id) on delete set null,
+  created_at timestamptz not null default now()
+);
+create index if not exists gp_studio_ort on public.gp_studio(lat, lon);
+create table if not exists public.gp_studio_member(
+  uid uuid primary key references public.gp_profile(id) on delete cascade,
+  sid bigint not null references public.gp_studio(id) on delete cascade,
+  joined_at timestamptz not null default now()
+);
+create index if not exists gp_studio_member_sid on public.gp_studio_member(sid);
+alter table public.gp_profile add column if not exists studio_at timestamptz;
+
 create table if not exists public.gp_report(
   id bigserial primary key,
   reporter uuid references public.gp_profile(id) on delete set null,
@@ -151,7 +169,7 @@ create table if not exists public.gp_report(
 -- Kein direkter Zugriff aus der App auf die Tabellen
 do $$ declare t text; begin
   foreach t in array array['gp_profile','gp_group','gp_member','gp_train_day','gp_strength','gp_pr','gp_game','gp_week_done','gp_report',
-                         'gp_run','gp_season','gp_season_done','gp_fgroup','gp_fmember'] loop
+                         'gp_run','gp_season','gp_season_done','gp_fgroup','gp_fmember','gp_studio','gp_studio_member'] loop
     execute format('alter table public.%I enable row level security', t);
     execute format('revoke all on public.%I from anon, authenticated', t);
   end loop;
@@ -721,6 +739,124 @@ begin
   return jsonb_build_object('ok', true, 'id', gr.id, 'name', gr.name, 'code', gr.code, 'admin', gr.owner = u, 'max', gr.maxp, 'mitglieder', r);
 end $$;
 
+-- ---------- Studio-Rangliste: „Wer ist der Stärkste in deinem Studio?“ ----------
+create or replace function public.gp_abstand(a_lat numeric, a_lon numeric, b_lat numeric, b_lon numeric) returns int
+language sql immutable set search_path = public as $$
+  select round(6371000 * sqrt(power(radians(b_lat - a_lat), 2) + power(radians(b_lon - a_lon) * cos(radians((a_lat + b_lat) / 2)), 2)))::int
+$$;
+
+create or replace function public.gp_ort_ok(p_lat numeric, p_lon numeric) returns boolean
+language sql immutable set search_path = public as $$
+  select p_lat is not null and p_lon is not null and p_lat between -90 and 90 and p_lon between -180 and 180 and not (p_lat = 0 and p_lon = 0)
+$$;
+
+-- Studios in der Nähe (bis 300 m) – zur Auswahl beim Festlegen
+create or replace function public.gp_studio_suchen(p_lat numeric, p_lon numeric) returns jsonb
+language plpgsql security definer set search_path = public as $$
+declare u uuid := gp_uid(); r jsonb;
+begin
+  if not exists (select 1 from gp_profile where id = u) then return jsonb_build_object('ok', false, 'profil', false); end if;
+  if not gp_ort_ok(p_lat, p_lon) then return jsonb_build_object('ok', false, 'fehler', 'Ungültiger Standort.'); end if;
+  delete from gp_studio s where s.lat between p_lat - 0.004 and p_lat + 0.004 and s.lon between p_lon - 0.007 and p_lon + 0.007
+    and not exists (select 1 from gp_studio_member m where m.sid = s.id);   -- verwaiste Studios (z. B. nach Kontolöschung)
+  select coalesce(jsonb_agg(jsonb_build_object('id', x.id, 'name', x.name, 'abstand', x.a, 'anzahl', x.n) order by x.a), '[]') into r
+    from (select s.id, s.name, gp_abstand(p_lat, p_lon, s.lat, s.lon) a, (select count(*) from gp_studio_member m where m.sid = s.id) n
+            from gp_studio s where s.lat between p_lat - 0.004 and p_lat + 0.004 and s.lon between p_lon - 0.007 and p_lon + 0.007
+           order by 3 limit 5) x
+   where x.a <= 300;
+  return jsonb_build_object('ok', true, 'studios', r);
+end $$;
+
+-- Heim-Studio festlegen: bestehendem Studio beitreten (p_sid) oder neues anlegen (p_name)
+create or replace function public.gp_studio_waehlen(p_sid bigint, p_name text, p_lat numeric, p_lon numeric) returns jsonb
+language plpgsql security definer set search_path = public as $$
+declare u uuid := gp_uid(); pr gp_profile; st gp_studio; alt bigint; n text := btrim(regexp_replace(coalesce(p_name, ''), '\s+', ' ', 'g'));
+begin
+  select * into pr from gp_profile where id = u;
+  if not found then return jsonb_build_object('ok', false, 'profil', false); end if;
+  if not gp_ort_ok(p_lat, p_lon) then return jsonb_build_object('ok', false, 'fehler', 'Ungültiger Standort.'); end if;
+  select sid into alt from gp_studio_member where uid = u;
+  if alt is not null and alt = p_sid then
+    select * into st from gp_studio where id = alt;
+    return jsonb_build_object('ok', true, 'id', st.id, 'name', st.name, 'schon', true);
+  end if;
+  -- Wechsel höchstens alle 7 Tage (in der ersten Stunde nach einer Wahl frei korrigierbar)
+  if pr.studio_at is not null and pr.studio_at > now() - interval '7 days' and pr.studio_at < now() - interval '1 hour' then
+    return jsonb_build_object('ok', false, 'fehler', 'Dein Studio kannst du ab ' || to_char((pr.studio_at + interval '7 days') at time zone 'Europe/Berlin', 'DD.MM.YYYY') || ' wechseln.');
+  end if;
+  if p_sid is not null then
+    select * into st from gp_studio where id = p_sid;
+    if not found then return jsonb_build_object('ok', false, 'fehler', 'Dieses Studio gibt es nicht mehr.'); end if;
+    if gp_abstand(p_lat, p_lon, st.lat, st.lon) > 400 then
+      return jsonb_build_object('ok', false, 'fehler', 'Du bist zu weit von diesem Studio entfernt. Leg es fest, wenn du dort bist.');
+    end if;
+  else
+    if not gp_gruppenname_ok(n) then
+      return jsonb_build_object('ok', false, 'fehler', 'Der Name geht nicht. Erlaubt sind 3–30 Zeichen: Buchstaben, Zahlen, Leerzeichen und . _ - !');
+    end if;
+    if (select count(*) from gp_studio where owner = u and created_at > now() - interval '1 day') >= 3 then
+      return jsonb_build_object('ok', false, 'fehler', 'Heute kannst du kein weiteres Studio anlegen.');
+    end if;
+    insert into gp_studio(name, lat, lon, owner) values (n, round(p_lat, 4), round(p_lon, 4), u) returning * into st;
+  end if;
+  insert into gp_studio_member(uid, sid) values (u, st.id) on conflict (uid) do update set sid = excluded.sid, joined_at = now();
+  update gp_profile set studio_at = now() where id = u;
+  if alt is not null and alt <> st.id and not exists (select 1 from gp_studio_member where sid = alt) then delete from gp_studio where id = alt; end if;
+  return jsonb_build_object('ok', true, 'id', st.id, 'name', st.name);
+end $$;
+
+create or replace function public.gp_studio_verlassen() returns jsonb
+language plpgsql security definer set search_path = public as $$
+declare u uuid := gp_uid(); alt bigint;
+begin
+  delete from gp_studio_member where uid = u returning sid into alt;
+  if alt is not null then update gp_profile set studio_at = now() where id = u; end if;
+  if alt is not null and not exists (select 1 from gp_studio_member where sid = alt) then delete from gp_studio where id = alt; end if;
+  return jsonb_build_object('ok', true);
+end $$;
+
+-- Umbenennen: wer das Studio angelegt hat (oder, wenn diese Person nicht mehr dabei ist, das älteste Mitglied)
+create or replace function public.gp_studio_umbenennen(p_name text) returns jsonb
+language plpgsql security definer set search_path = public as $$
+declare u uuid := gp_uid(); st gp_studio; n text := btrim(regexp_replace(coalesce(p_name, ''), '\s+', ' ', 'g'));
+begin
+  select s.* into st from gp_studio s join gp_studio_member m on m.sid = s.id where m.uid = u;
+  if not found then return jsonb_build_object('ok', false, 'fehler', 'Du hast noch kein Studio.'); end if;
+  if st.owner is distinct from u and (st.owner is not null and exists (select 1 from gp_studio_member where uid = st.owner and sid = st.id)
+     or u <> (select uid from gp_studio_member where sid = st.id order by joined_at, uid limit 1)) then
+    return jsonb_build_object('ok', false, 'fehler', 'Nur wer das Studio angelegt hat, kann es umbenennen.');
+  end if;
+  if not gp_gruppenname_ok(n) then
+    return jsonb_build_object('ok', false, 'fehler', 'Der Name geht nicht. Erlaubt sind 3–30 Zeichen: Buchstaben, Zahlen, Leerzeichen und . _ - !');
+  end if;
+  update gp_studio set name = n, owner = u where id = st.id;
+  return jsonb_build_object('ok', true, 'name', n);
+end $$;
+
+-- Das eigene Studio mit den Wertungen seiner Mitglieder (beste 100 nach Gesamt-Rating plus man selbst)
+create or replace function public.gp_studio() returns jsonb
+language plpgsql security definer set search_path = public as $$
+declare u uuid := gp_uid(); st gp_studio; r jsonb; n int; mo date := gp_week();
+begin
+  if not exists (select 1 from gp_profile where id = u) then return jsonb_build_object('ok', false, 'profil', false); end if;
+  select s.* into st from gp_studio s join gp_studio_member m on m.sid = s.id where m.uid = u;
+  if not found then return jsonb_build_object('ok', true, 'studio', null); end if;
+  select count(*) into n from gp_studio_member where sid = st.id;
+  select coalesce(jsonb_agg(jsonb_build_object('id', x.uid, 'nick', p.nick, 'avatar', p.avatar, 'ich', x.uid = u,
+           'kraft', x.kraft, 'lauf', x.lauf, 'spiele', x.spiele, 'fleiss', x.fleiss, 'gesamt', x.gesamt, 'rang', gp_rang(x.gesamt),
+           'liga', p.league, 'monat', coalesce((select mm.train + mm.pr + mm.game + mm.streak from gp_member mm where mm.week = mo and mm.uid = x.uid), 0))), '[]')
+    into r
+    from (select m.uid, w.* from gp_studio_member m cross join lateral gp_werte(m.uid) w where m.sid = st.id
+           order by (m.uid = u) desc, w.gesamt desc, m.uid limit 101) x
+    join gp_profile p on p.id = x.uid;
+  return jsonb_build_object('ok', true, 'studio', jsonb_build_object('id', st.id, 'name', st.name, 'anzahl', n,
+    'admin', st.owner = u or (not exists (select 1 from gp_studio_member where uid = st.owner and sid = st.id)
+                                and u = (select uid from gp_studio_member where sid = st.id order by joined_at, uid limit 1)),
+    'wechsel', (select case when studio_at > now() - interval '7 days' and studio_at < now() - interval '1 hour'
+                  then to_char((studio_at + interval '7 days') at time zone 'Europe/Berlin', 'DD.MM.YYYY') end from gp_profile where id = u)),
+    'mitglieder', r);
+end $$;
+
 -- ---------- Rechte: nur angemeldete Nutzer (auch anonyme) dürfen die App-Funktionen aufrufen ----------
 do $$ declare f record; begin
   for f in select p.oid::regprocedure as sig, p.proname from pg_proc p join pg_namespace n on n.oid = p.pronamespace
@@ -729,6 +865,7 @@ do $$ declare f record; begin
     if f.proname in ('gp_profil_speichern','gp_training','gp_bestwert','gp_spiel','gp_liga','gp_melden','gp_loeschen',
                      'gp_lauf','gp_kraftlauf','gp_saison','gp_gesamt','gp_gruppe_erstellen','gp_gruppe_beitreten','gp_gruppe_verlassen',
                      'gp_gruppe_entfernen','gp_gruppen','gp_gruppe','gp_premium_melden',
+                     'gp_studio_suchen','gp_studio_waehlen','gp_studio_verlassen','gp_studio_umbenennen','gp_studio',
                      'gp_sicherung_speichern','gp_sicherung_info','gp_sicherung_laden','gp_sicherung_loeschen','gp_rangliste_loeschen') then
       execute format('grant execute on function %s to authenticated', f.sig);
     end if;

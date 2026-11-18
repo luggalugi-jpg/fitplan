@@ -17,7 +17,7 @@ Diese Antworten sind ein Vorschlag nach bestem Wissen, keine Rechtsberatung. Du 
 | Erhoben / geteilt | Erhoben: **Ja**. Geteilt: **Nein** – die Übertragung an Google erfolgt auf ausdrücklichen Wunsch des Nutzers (Ausnahme „vom Nutzer initiierte Übertragung“). |
 | Verarbeitung | **Optional** (Nutzer kann die Funktion weglassen); **kurzzeitig** (nicht gespeichert durch dich) |
 | Zweck | **App-Funktionen** |
-| Alles andere (Gesundheit, Standort, Kontakte, Absturzberichte) | **Nicht erhoben** – bleibt auf dem Gerät |
+| Alles andere (Gesundheit, Standort, Kontakte, Absturzberichte) | **Nicht erhoben** – bleibt auf dem Gerät (Ausnahme: Studio-Rangliste, siehe unten) |
 
 **Rangliste (ab Version 3.16, freiwillig, nur nach Einwilligung):** Diese Daten gehen an den eigenen Server (Supabase, Paris). Supabase ist Auftragsverarbeiter – das zählt bei Google nicht als „Teilen“. Alle Einträge: **erhoben: Ja, geteilt: Nein, optional, Zweck: App-Funktionen**, Löschung in der App (Teilnahme beenden).
 
@@ -26,7 +26,8 @@ Diese Antworten sind ein Vorschlag nach bestem Wissen, keine Rechtsberatung. Du 
 | **Persönliche Daten → Name** | Spitzname (frei gewählt, für andere sichtbar) |
 | **Persönliche Daten → Andere Info** | Geschlecht und Altersgruppe (freiwillig, nur für den Vergleich) |
 | **Gesundheit und Fitness → Fitnessinformationen** | Trainingstage, erledigte Übungen, beste Sätze (Gewicht, Wiederholungen), schnellster Lauf (Datum, Distanz, Dauer, ab 3.23), Körpergewicht (freiwillig) |
-| **App-Aktivitäten → Andere Aktionen** | Ergebnisse gewerteter Pausenspiele mit Start- und Endzeit; Freundesgruppen (Name, Mitgliedschaft, ab 3.23) |
+| **App-Aktivitäten → Andere Aktionen** | Ergebnisse gewerteter Pausenspiele mit Start- und Endzeit; Freundesgruppen (Name, Mitgliedschaft, ab 3.23); Mitgliedschaft im Heim-Studio (ab 3.70) |
+| **Standort → Genauer Standort** (ab 3.70) | Nur wenn der Nutzer in der Rangliste sein Studio festlegt: aktueller Standort einmalig zur Suche nach Studios in der Nähe (nicht gespeichert); gespeichert wird der Ort des Studios (auf ca. 10 m gerundet) zusammen mit der Mitgliedschaft. Optional, Zweck: App-Funktionen. Bei Apple: **Genauer Standort**, App-Funktionalität, mit Identität verknüpft, kein Tracking. |
 | **App-Info und Leistung / Geräte- oder andere IDs** | zufällige Nutzerkennung des anonymen Kontos → bei „Geräte- oder andere IDs“ angeben |
 
 **Konto und Cloud-Sicherung (ab Version 3.17, freiwillig):** zusätzlich angeben – erhoben: Ja, geteilt: Nein, optional, Zweck: App-Funktionen und Kontoverwaltung:
