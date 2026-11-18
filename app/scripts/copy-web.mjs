@@ -14,6 +14,8 @@ const dateien = [
   ["trainingssysteme.js", "trainingssysteme.js"],
   ["laufplaene.js", "laufplaene.js"],
   ["uebungen.js", "uebungen.js"],
+  ["laufanleitungen.js", "laufanleitungen.js"],
+  ["anleitung.js", "anleitung.js"],
 ];
 
 rmSync(ziel, { recursive: true, force: true });
