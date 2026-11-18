@@ -220,6 +220,7 @@ label.ck{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:
 .pwopt{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
 .pwp{position:relative;display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;color:var(--txt);font:inherit}
 .pwp small{display:block;color:var(--mut);font-size:12px;margin-top:2px}.pwp.on{border-color:var(--brand);background:var(--brand-l)}
+.exptag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--brand-l);color:var(--brand-d);margin-left:6px;vertical-align:middle}
 .pwtag{position:absolute;top:-9px;right:12px;background:var(--grad);color:var(--on);font-style:normal;font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px}
 .pwlock{width:100%;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:none;border:none;color:var(--txt);font:inherit;padding:16px}.pwlock small{color:var(--mut)}
 ul.anl{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.5}ul.anl li::marker{color:var(--brand)}
@@ -445,7 +446,7 @@ if(typeof RDB!=="undefined"&&typeof FOODS_NEU!=="undefined")(function(){
   if(dup)return;FOODS.push({n:a[0],k:a[1],p:a[2],h:a[3],f:a[4],g:a[5]});bases.push(w);});
 })();
 const fitsSlot=(m,s)=>m.c==s||(m.x&&m.x.indexOf(s)>=0);
-const PUBLIC_V="3.70";
+const PUBLIC_V="3.71";
 /* Anbieter für Impressum und Datenschutz – vor der Veröffentlichung ausfüllen */
 const ANBIETER={name:"Luca Preikschas",anschrift:"Herzog-Wilhelm-Str. 32, 94572 Schöfweg",mail:"gainpilot.app@gmail.com"};
 const RECHT={"ds": "<h2>Datenschutzerklärung</h2>\n<p><b>Stand:</b> 18. November 2026</p>\n<h3>1. Verantwortlicher</h3>\n<p>{name}<br>{anschrift}<br>E-Mail: {mail}</p>\n<h3>2. Grundsatz: Deine Daten bleiben auf deinem Gerät</h3>\n<p>GainPilot funktioniert ohne Benutzerkonto und ohne eigenen Server. Alles, was du einträgst – Essensplan, Mahlzeiten, Gewicht, Trainings, Läufe, Supplements, Ziele und Einstellungen – wird ausschließlich lokal im Speicher der App auf deinem Gerät abgelegt. Wir erhalten diese Daten nicht und können sie nicht einsehen. Ausnahmen sind die freiwillige Rangliste, das freiwillige Konto mit Cloud-Sicherung und ein freiwilliges Premium-Abo (Abschnitt 3).</p>\n<p>Die App enthält keine Werbung, keine Analyse- oder Tracking-Werkzeuge und gibt keine Daten zu Werbezwecken weiter.</p>\n<p>Angaben wie Körpergewicht, Ernährung und Trainingsdaten können Gesundheitsdaten sein. Sie werden nur auf deinem Gerät verarbeitet, um dir die Funktionen der App bereitzustellen.</p>\n<h3>3. Funktionen mit Internetverbindung</h3>\n<p>Nur die folgenden Funktionen nehmen Verbindung zu Diensten Dritter auf, und zwar nur, wenn du sie selbst auslöst:</p>\n<p><b>Foto-Analyse (optional):</b> Wenn du unter „Foto-Analyse“ einen eigenen Schlüssel für die Google Gemini API hinterlegst und ein Foto analysieren lässt, wird das Foto zusammen mit einer Anweisung direkt von deinem Gerät an Google gesendet (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Verarbeitung auch in den USA möglich). Google verarbeitet die Daten nach den Bedingungen, die du mit Google für deinen Schlüssel vereinbart hast. Dein Schlüssel wird nur auf deinem Gerät gespeichert und nicht in Sicherungsdateien übernommen. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), die du jederzeit widerrufen kannst, indem du den Schlüssel löschst.</p>\n<p><b>Barcode-Suche:</b> Wenn du einen Barcode scannst oder eingibst, wird die Produktnummer an Open Food Facts gesendet (Open Food Facts, 21 rue des Iles, 94100 Saint-Maur-des-Fossés, Frankreich), um Nährwerte abzurufen. Dabei wird technisch bedingt deine IP-Adresse übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir gewünschten Funktion).</p>\n<p><b>Webversion:</b> Wenn du die App im Browser nutzt, wird sie über GitHub Pages ausgeliefert (GitHub B.V., Niederlande / GitHub, Inc., USA). Dabei verarbeitet GitHub technisch notwendige Zugriffsdaten wie die IP-Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (sichere Bereitstellung der Webseite).</p><p><b>Rangliste (freiwillig):</b> Nur wenn du unter „Rangliste“ ausdrücklich einwilligst, überträgt die App Daten an unseren Server: eine zufällige Nutzerkennung (ohne E-Mail-Adresse oder Klarnamen), deinen Spitznamen und Avatar, je Trainingstag die Zahl erledigter Übungen und ob das geplante Training komplett war, deine Trainings-Serie, deinen besten Satz je Übung (Gewicht, Wiederholungen und das daraus geschätzte Maximalgewicht), deinen schnellsten Lauf ab 3 km der letzten 60 Tage (Datum, Distanz und Dauer), die Ergebnisse gewerteter Pausenspiele mit Start- und Endzeit sowie die Freundesgruppen, die du erstellst oder denen du beitrittst. Wenn du unter „Freunde“ dein Studio festlegst, wird dein aktueller Standort einmalig an den Server geschickt, nur um Studios in der Nähe zu finden – er wird dabei nicht gespeichert. Gespeichert werden der Name und der Ort des Studios (auf etwa 10 m gerundet) sowie dass du dort trainierst und wann du es zuletzt gewechselt hast. Freiwillig kommen Geschlecht, Altersgruppe und Körpergewicht hinzu, damit du nur mit ähnlichen Personen verglichen wirst. Daraus werden Kraft- und Lauf-Wertung, die monatliche Spiele-Saison, das Gesamt-Rating und die Monatsliga berechnet. Andere Teilnehmer sehen deinen Spitznamen und Avatar zusammen mit deinen Wertungspunkten (Kraft, Lauf, Spiele, Gesamt) und Platzierungen in den Ranglisten sowie deine Punkte in deiner Liga-Gruppe. Mitglieder deiner Freundesgruppen und alle, die dasselbe Studio festgelegt haben, sehen zusätzlich deine Liga-Stufe und Monatspunkte. Den Ort des Studios sehen andere nicht, nur seinen Namen und – bei der Auswahl vor Ort – die ungefähre Entfernung. Einzelne Gewichte, Laufzeiten oder Spielergebnisse sehen andere nicht. Geschlecht, Altersgruppe und Körpergewicht sehen andere nicht. Auffällige Werte und Meldungen anderer Teilnehmer werden gespeichert, um Missbrauch zu prüfen. Der Server wird von Supabase Pte. Ltd. (65 Chulia Street #38-02/03, OCBC Centre, Singapur 049513) als Auftragsverarbeiter betrieben, das Rechenzentrum steht in Paris (EU). Soweit Supabase von außerhalb der EU auf Daten zugreift, geschieht das auf Grundlage der EU-Standardvertragsklauseln. Rechtsgrundlage ist deine ausdrückliche Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO). Du kannst sie jederzeit widerrufen, indem du unter „Daten &amp; Sicherung“ die Teilnahme beendest – dann werden alle Ranglisten-Daten auf dem Server sofort gelöscht.</p><p><b>Konto und Cloud-Sicherung (freiwillig):</b> Wenn du unter „Konto &amp; Cloud“ ein Konto erstellst, speichern wir deine E-Mail-Adresse und dein Passwort (nur als verschlüsselter Hash) auf unserem Server, um dich anzumelden, dir Bestätigungs- und Passwort-Links zu schicken und dein Konto zu schützen. Für den Versand dieser E-Mails setzen wir einen E-Mail-Dienstleister als Auftragsverarbeiter ein. Schaltest du die Cloud-Sicherung ein, wird eine komprimierte Kopie aller App-Daten – einschließlich Gesundheitsdaten wie Gewicht, Ernährung und Training, aber ohne den Schlüssel für die Foto-Analyse – übertragen und gespeichert. Sie wird bei jeder neuen Sicherung ersetzt. Server, Auftragsverarbeiter und Standardvertragsklauseln sind dieselben wie bei der Rangliste (Supabase, Rechenzentrum in Paris). Rechtsgrundlage für das Konto ist Art. 6 Abs. 1 lit. b DSGVO (von dir gewünschte Funktion), für die Cloud-Sicherung deine ausdrückliche Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO). Du kannst die Cloud-Sicherung jederzeit ausschalten und löschen oder unter „Konto &amp; Cloud“ dein Konto löschen – dann werden Konto, Sicherung und Ranglisten-Daten auf dem Server sofort gelöscht.</p>\n<p><b>Premium-Abo (In-App-Kauf, freiwillig):</b> Wenn du in der App aus dem Play Store oder App Store ein Premium-Abo abschließt, wickeln ausschließlich Google (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) bzw. Apple (Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irland) die Zahlung in eigener Verantwortung ab; wir erhalten keine Zahlungs- oder Kontodaten. Zur Verwaltung des Abos – Prüfung, ob Premium aktiv ist, Verlängerung und Wiederherstellen von Käufen – nutzen wir RevenueCat, Inc. (1032 E Brandon Blvd #3003, Brandon, FL 33511, USA) als Auftragsverarbeiter. Dabei werden eine zufällige App-Nutzerkennung (nimmst du an der Rangliste teil oder hast ein Konto, deine Server-Kennung), Kauf- und Transaktionsdaten (Produkt, Kauf- und Ablaufdatum, Preis, Währung, Store-Land), technische Angaben wie Betriebssystem und App-Version sowie die IP-Adresse verarbeitet. Die Verarbeitung findet in den USA statt; Grundlage der Übermittlung sind die EU-Standardvertragsklauseln. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Erfüllung des Abo-Vertrags), für gesetzliche Aufbewahrungspflichten Art. 6 Abs. 1 lit. c DSGVO. Ob Premium aktiv ist, speichert die App zusätzlich lokal auf deinem Gerät. Nimmst du an der Rangliste teil, speichert der Server zusätzlich, ob bei dir Premium aktiv ist – das bestimmt, wie viele Personen deine eigenen Freundesgruppen aufnehmen können. In der Webversion gibt es keine Käufe und keine Übertragung an RevenueCat.</p>\n<h3>4. Berechtigungen</h3>\n<p><b>Kamera:</b> nur zum Scannen von Barcodes und für Fotos zur Foto-Analyse, jeweils erst wenn du die Funktion startest. <b>Benachrichtigungen:</b> nur für lokale Erinnerungen, die du selbst einschaltest (Ende der Satzpause, Training, Wasser, Mahlzeiten); sie werden auf dem Gerät erzeugt, nicht über einen Server. <b>Standort:</b> nur, damit die Pausenspiele in deinem Gym freigeschaltet werden – beim Speichern eines Gyms und wenn du ein Spiel startest. Der Standort wird ausschließlich auf deinem Gerät mit den gespeicherten Gym-Koordinaten verglichen und nicht an uns oder Dritte übertragen. Gespeichert werden nur die Koordinaten deiner Gyms, auf dem Gerät und in Sicherungsdateien, die du selbst erstellst.</p>\n<h3>5. Sicherungen und Diagnoseprotokoll</h3>\n<p>Sicherungsdateien und das Diagnoseprotokoll entstehen nur, wenn du sie selbst erstellst. Wohin du sie speicherst oder sendest, entscheidest du. Das Diagnoseprotokoll enthält technische Angaben zur Fehlersuche (z. B. App-Version, Gerätetyp, Fehlermeldungen) und bleibt auf deinem Gerät, bis du es teilst.</p>\n<h3>6. Speicherdauer und Löschung</h3>\n<p>Die Daten bleiben gespeichert, bis du sie in der App unter „Daten & Sicherung“ löschst oder die App deinstallierst. Ranglisten-Daten auf dem Server werden gelöscht, sobald du die Teilnahme beendest; Konto und Cloud-Sicherung, sobald du das Konto löschst. Abo-Daten bei RevenueCat werden gelöscht, sobald sie für die Abo-Verwaltung und gesetzliche Aufbewahrungspflichten nicht mehr nötig sind. Hast du die App ohne Beenden der Teilnahme gelöscht, schreib uns eine E-Mail mit deinem Spitznamen, dann löschen wir sie.</p>\n<h3>7. Deine Rechte</h3>\n<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch und Widerruf erteilter Einwilligungen (Art. 15–21 DSGVO). Da wir deine App-Daten nicht speichern, kannst du die meisten Rechte direkt in der App ausüben. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Behörde deines Wohnorts.</p>\n<h3>8. Kinder</h3>\n<p>Die App richtet sich nicht an Kinder unter 16 Jahren.</p>\n<h3>9. Änderungen</h3>\n<p>Wir passen diese Erklärung an, wenn sich die App oder die Rechtslage ändert. Es gilt die jeweils in der App veröffentlichte Fassung.</p>", "imp": "<h2>Impressum</h2>\n<p>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>\n<p>{name}<br>{anschrift}</p>\n<p><b>Kontakt:</b> E-Mail: {mail}</p>\n<p><b>Verantwortlich für den Inhalt:</b> {name}, Anschrift wie oben</p>", "ges": "<h2>Gesundheitshinweis</h2>\n<p>GainPilot ist ein Hilfsmittel zur Planung von Ernährung und Training. Die App ist kein Medizinprodukt und ersetzt keine ärztliche, ernährungsmedizinische oder sportmedizinische Beratung.</p>\n<p>Kalorienbedarf, Nährwerte, Portionsgrößen, Supplementmengen, Trainings- und Laufpläne sind Richtwerte und Vorlagen. Sie berücksichtigen keine Erkrankungen, Medikamente, Schwangerschaft oder individuelle Belastbarkeit. Die Bedarfsberechnung ist eine Schätzung (Mifflin-St.-Jeor-Formel). Foto-Analysen und Produktdaten aus Open Food Facts können ungenau sein.</p>\n<p>Sprich vor einer deutlichen Ernährungsumstellung, vor Nahrungsergänzungsmitteln und vor dem Beginn eines intensiven Trainings mit einer Ärztin oder einem Arzt, besonders bei Vorerkrankungen. Brich das Training bei Schmerzen, Schwindel oder Atemnot ab.</p>", "liz": "<h2>Quellen und Lizenzen</h2>\n<p><b>Produktdaten:</b> Barcode-Suche mit Daten von <a href=\"https://world.openfoodfacts.org\">Open Food Facts</a>. Die Datenbank steht unter der Open Database License (ODbL), die Inhalte unter der Database Contents License.</p>\n<p><b>Foto-Analyse:</b> Google Gemini API, nur mit deinem eigenen Schlüssel.</p>\n<p><b>Rezepte, Lebensmittel, Übungen, Trainings- und Laufpläne:</b> eigene Zusammenstellung für GainPilot. Die Nährwerte sind aus den Zutaten berechnet.</p>\n<p><b>Spiele:</b> „Blocksturz“ und die übrigen Pausenspiele sind eigene Umsetzungen.</p>", "nb": "<h2>Nutzungsbedingungen</h2>\n<p><b>Stand:</b> 13. November 2026</p>\n<h3>1. Anbieter und Geltung</h3>\n<p>GainPilot wird angeboten von {name}, {anschrift}, E-Mail: {mail}. Diese Bedingungen gelten für die Nutzung von GainPilot als Web-App und als App aus Google Play und dem Apple App Store.</p>\n<h3>2. Leistungen</h3>\n<p>Die Grundfunktionen von GainPilot sind kostenlos. Zusätzliche Funktionen gibt es mit einem freiwilligen Premium-Abo (Abschnitt 3). Welche Funktionen kostenlos sind und welche zu Premium gehören, steht in der App unter „Mehr → Premium“ und auf der Bezahlseite.</p>\n<p>Pläne, Anleitungen, Nährwerte und Auswertungen sind allgemeine Informationen und ersetzen keine ärztliche oder ernährungsfachliche Beratung; es gilt der Gesundheitshinweis. Online-Funktionen wie Rangliste, Konto, Cloud-Sicherung und Barcode-Suche brauchen eine Internetverbindung und Dienste Dritter; eine ständige Verfügbarkeit können wir nicht zusagen. Funktionen können weiterentwickelt, geändert oder eingestellt werden; Premium-Funktionen werden während einer bezahlten Laufzeit nicht ohne gleichwertigen Ersatz eingeschränkt.</p>\n<h3>3. Premium-Abo</h3>\n<p><b>Laufzeiten und Preise:</b> Premium gibt es als Abo mit monatlicher oder jährlicher Laufzeit und gegebenenfalls als einmaligen Kauf ohne Laufzeit. Der Preis und die Laufzeit werden vor dem Kauf im Store angezeigt; es gilt der dort angezeigte Preis.</p>\n<p><b>Kauf und Zahlung:</b> Kauf, Zahlung und Rechnung laufen ausschließlich über Google Play bzw. den Apple App Store. Dafür gelten zusätzlich die Bedingungen des jeweiligen Stores.</p>\n<p><b>Testphase:</b> Wird eine kostenlose Testphase angeboten, ist sie für die angezeigte Dauer kostenlos. Kündigst du nicht spätestens 24 Stunden vor ihrem Ende, geht sie automatisch in das gewählte kostenpflichtige Abo über. Eine Testphase gibt es je Person und Store nur einmal.</p>\n<p><b>Automatische Verlängerung und Kündigung:</b> Das Abo verlängert sich automatisch um die gleiche Laufzeit, wenn es nicht spätestens 24 Stunden vor Ablauf gekündigt wird. Kündigen kannst du jederzeit in den Abo-Einstellungen deines Google-Play-Kontos bzw. deiner Apple-ID; das Löschen der App beendet das Abo nicht. Nach einer Kündigung bleibt Premium bis zum Ende der bezahlten Laufzeit aktiv.</p>\n<p><b>Erstattungen und Widerruf:</b> Erstattungen und ein gesetzliches Widerrufsrecht richten sich nach den Regeln des Stores, über den du gekauft hast.</p>\n<p><b>Preisänderungen:</b> Preisänderungen für laufende Abos werden über den Store angekündigt und gelten nach dessen Regeln frühestens für die nächste Laufzeit.</p>\n<p><b>Ende von Premium:</b> Endet Premium, bleiben deine Daten erhalten; Premium-Funktionen sind dann wieder gesperrt.</p>\n<p><b>Käufe wiederherstellen:</b> Auf einem neuen Gerät stellst du Premium über „Käufe wiederherstellen“ mit demselben Store-Konto wieder her.</p>\n<h3>4. Gratis-Premium für Einladungen</h3>\n<p>Bieten wir für das Einladen von Freunden kostenlose Premium-Zeit an, gelten die dabei angezeigten Bedingungen. Ein Anspruch darauf besteht nicht. Bei Missbrauch, etwa mit Scheinkonten, können Gutschriften verweigert oder entzogen werden.</p>\n<h3>5. Rangliste und Gruppen</h3>\n<p>Die Teilnahme an Rangliste und Freundesgruppen ist freiwillig. Spitznamen und Gruppennamen dürfen niemanden beleidigen, keine fremden Rechte verletzen und keine echten Namen anderer Personen enthalten. Ergebnisse müssen ehrlich zustande kommen. Bei Verstößen können Einträge entfernt und Teilnehmer ausgeschlossen werden.</p>\n<h3>6. Haftung</h3>\n<p>Wir haften unbeschränkt bei Vorsatz und grober Fahrlässigkeit, bei Verletzung von Leben, Körper oder Gesundheit sowie nach dem Produkthaftungsgesetz. Bei leichter Fahrlässigkeit haften wir nur bei Verletzung einer wesentlichen Vertragspflicht und begrenzt auf den vorhersehbaren, typischen Schaden. Für die kostenlosen Funktionen haften wir im Übrigen nur bei Vorsatz und grober Fahrlässigkeit. Für Datenverlust haften wir nur in dem Umfang, der bei regelmäßiger Datensicherung entstanden wäre – nutze dafür die Sicherung in der App.</p>\n<h3>7. Änderungen dieser Bedingungen</h3>\n<p>Wir können diese Bedingungen ändern, etwa wenn sich die App oder die Rechtslage ändert. Wesentliche Änderungen teilen wir in der App mit. Für laufende Abos gelten Änderungen, die dich benachteiligen, frühestens ab der nächsten Laufzeit.</p>\n<h3>8. Schlussbestimmungen</h3>\n<p>Es gilt deutsches Recht. Ist dein gewöhnlicher Aufenthalt in einem anderen Staat der EU, bleiben dir die zwingenden Verbraucherschutzvorschriften dieses Staates erhalten. Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Sollte eine Bestimmung unwirksam sein, bleiben die übrigen wirksam.</p>"};
@@ -665,9 +666,11 @@ const save=()=>{try{const j=JSON.stringify(S);localStorage.setItem("fitplan",j);
 // iOS kann den Web-Speicher bei Platzmangel leeren: dann aus dem nativen Speicher zurückholen
 if(NATIV&&!localStorage.getItem("fitplan")){const P=PL("Preferences");if(P)P.get({key:"fitplan"}).then(r=>{if(r&&r.value){localStorage.setItem("fitplan",r.value);location.reload();}}).catch(()=>{});}
 function haptik(ms){const H=PL("Haptics");if(H){try{if(ms>=150)H.notification({type:"SUCCESS"});else H.impact({style:ms>=40?"MEDIUM":"LIGHT"});}catch(e){}return;}try{if(navigator.vibrate)navigator.vibrate(ms);}catch(e){}}
+function b64Bytes(b){let s="";for(let i=0;i<b.length;i+=0x8000)s+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000));return btoa(s);}
 async function dateiTeilen(name,inhalt,mime){
  const F=PL("Filesystem"),SH=PL("Share");
- if(F&&SH){const w=await F.writeFile({path:name,data:inhalt,directory:"CACHE",encoding:"utf8"});await SH.share({title:name,url:w.uri,dialogTitle:"Datei sichern oder senden"});return "nativ";}
+ const bin=inhalt instanceof Uint8Array;
+ if(F&&SH){const w=await F.writeFile(bin?{path:name,data:b64Bytes(inhalt),directory:"CACHE"}:{path:name,data:inhalt,directory:"CACHE",encoding:"utf8"});await SH.share({title:name,url:w.uri,dialogTitle:"Datei sichern oder senden"});return "nativ";}
  const f=new File([inhalt],name,{type:mime});
  if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:name});return "geteilt";}
  const b=new Blob([inhalt],{type:mime}),u=URL.createObjectURL(b),a=document.createElement("a");
@@ -2432,7 +2435,7 @@ const PREMIUM={
  gratisAnim:["Kniebeugen","Bankdrücken","Kreuzheben","Schulterdrücken","Klimmzüge","Rudern mit Langhantel","Liegestütze","Plank"], // Grundübungen
  titel:"Hol dir GainPilot Premium",untertitel:"Alle Übungen, alle Statistiken, keine Grenzen.",
  vorteile:[["🧍","Alle 3D-Übungsanimationen"],["📈","Unbegrenzte Fortschritts-Statistiken"],["⚡","Unbegrenzte Pläne per Knopfdruck"]],
- mehr:"Außerdem: alle Pausenspiele und eigene Freundesgruppen ohne Größengrenze.",
+ mehr:"Außerdem: alle Pausenspiele, eigene Freundesgruppen ohne Größengrenze und der Export als PDF-Bericht und CSV.",
  nb:"https://luggalugi-jpg.github.io/fitplan/nutzungsbedingungen.html"};
 function prem(){try{return JSON.parse(localStorage.getItem("gp_prem")||"null")||{};}catch(e){return {};}}
 function premSetzen(p){try{localStorage.setItem("gp_prem",JSON.stringify(p));}catch(e){}}
@@ -3313,6 +3316,7 @@ function sDaten(){
  <button class="btn g" onclick="importData()">Daten einlesen</button>
  <input type="file" id="impFile" accept=".json,application/json" style="display:none" onchange="importFile(this)">
  <div id="dmsg" style="font-size:13px;color:var(--mut);margin-top:6px"></div></div>
+ ${expKarte()}
  ${rlDatenKarte()}
  <div class="card"><h4>Zurücksetzen</h4>
  <button class="btn g" onclick="wipe('plan')">Wochenplan löschen</button>
@@ -3353,6 +3357,169 @@ async function exportData(){
  msg("Sicherung erstellt: "+name+" ("+Math.round(inhalt.length/1024)+" KB)");
  if(!document.getElementById("dmsg"))render();else{const b=document.getElementById("bkBanner");if(b)b.remove();}
 }
+/* ---------- Datenexport (Premium): CSV für Excel und PDF-Bericht ----------
+   Die kostenlose Sicherung (JSON) bleibt davon unberührt. Alles wird auf dem Gerät erzeugt. */
+let EXP={tage:91,b:{g:1,e:1,t:1,l:1}};
+const EXP_ZEIT=[[28,"4 Wochen"],[91,"3 Monate"],[365,"12 Monate"],[0,"Alles"]];
+const EXP_BER=[["g","⚖️ Gewicht"],["e","🍽️ Ernährung"],["t","🏋️ Training"],["l","🏃 Laufen"]];
+function expKarte(){
+ return `<div class="card"><h4>Daten exportieren ${premAn()&&!istPremium()?'<span class="exptag">🔒 Premium</span>':""}</h4>
+ <small style="display:block;color:var(--mut);margin:-4px 0 10px">Deine Werte als Tabelle für Excel oder Numbers (CSV) oder als übersichtlicher PDF-Bericht – z. B. für deinen Coach oder Arzt.</small>
+ <label>Zeitraum</label><div class="chips" style="margin:0 0 10px">${EXP_ZEIT.map(([t,n])=>`<button class="${EXP.tage==t?"p":""}" onclick="EXP.tage=${t};render()">${n}</button>`).join("")}</div>
+ <label>Inhalt</label><div class="chips" style="margin:0 0 12px">${EXP_BER.map(([k,n])=>`<button class="${EXP.b[k]?"p":""}" aria-pressed="${!!EXP.b[k]}" onclick="EXP.b.${k}=EXP.b.${k}?0:1;render()">${n}</button>`).join("")}</div>
+ <div style="display:flex;gap:8px"><button class="btn" style="flex:1;margin:0" onclick="expStart('pdf')">📄 PDF-Bericht</button><button class="btn g" style="flex:1;margin:0" onclick="expStart('csv')">📊 CSV (Excel)</button></div>
+ <div id="expMsg" style="font-size:13px;color:var(--mut);margin-top:6px"></div></div>`;}
+function expAb(){return EXP.tage?tagMinus(todayISO(),EXP.tage-1):"0000-00-00";}
+const expIn=d=>d>=expAb()&&d<=todayISO();
+const expZ=(x,n)=>x==null||x===""||isNaN(x)?"":(n==null?String(x):(+x).toFixed(n)).replace(".",",");
+function expSlot(e){const s=e.s||(e.ref?String(e.ref.split("|")[1]||"").replace(/^\d+/,"")[0]:"");const f=SLOTS.find(x=>x[0]==s);return f?f[1]:"";}
+function expDaten(){const D={};
+ if(EXP.b.g)D.g=Object.keys(S.weight||{}).filter(expIn).sort().map(d=>({d,kg:+S.weight[d]})).filter(x=>x.kg>0);
+ if(EXP.b.e){const tage=new Set(Object.keys(S.log||{}).filter(d=>expIn(d)&&(S.log[d]||[]).length).concat(Object.keys(S.water||{}).filter(expIn)));
+  D.e=[...tage].sort().map(d=>{const t=eaten(d);return {d,k:t.k,p:t.p,h:t.h,f:t.f,w:(S.water||{})[d]||0,n:(S.log[d]||[]).length};});
+  D.eL=[];D.e.forEach(x=>(S.log[x.d]||[]).forEach(e=>D.eL.push({d:x.d,s:expSlot(e),n:e.n||"",k:e.k,p:e.p,h:e.h,f:e.f})));}
+ if(EXP.b.t){D.t=[];Object.keys(S.sets||{}).filter(expIn).sort().forEach(d=>Object.keys(S.sets[d]||{}).forEach(n=>{if(!echteEinheit(d,n))return;let i=0;
+   (S.sets[d][n]||[]).forEach(x=>{const kg=+x.kg||0,r=+x.reps||0;if(!(x.ok||x.u)||!(kg>0||r>0))return;D.t.push({d,n,i:++i,kg,r,e:e1rm(kg,r)});});}));}
+ if(EXP.b.l)D.l=rLogs().filter(x=>expIn(x.d)&&x.km>0).slice().sort((a,b)=>a.d<b.d?-1:1);
+ return D;}
+function expLeer(D){return !Object.keys(D).some(k=>k!="eL"&&D[k]&&D[k].length);}
+async function expStart(art){const msg=t=>{const m=$("#expMsg");if(m)m.textContent=t;};
+ if(!istPremium())return paywall("Der Export als CSV und PDF-Bericht gehört zu Premium. Die Sicherung als Datei bleibt kostenlos.");
+ if(!EXP_BER.some(([k])=>EXP.b[k]))return msg("Wähle mindestens einen Inhalt aus.");
+ const D=expDaten();if(expLeer(D))return msg("Für diesen Zeitraum gibt es noch keine Daten.");
+ msg("Wird erstellt …");
+ try{let name,inhalt,mime;const st=todayISO();
+  if(art=="csv"){const f=expCsvDateien(D),k=Object.keys(f);
+   if(k.length==1){name="gainpilot-"+k[0].replace(".csv","")+"-"+st+".csv";inhalt=f[k[0]];mime="text/csv";}
+   else{name="gainpilot-export-"+st+".zip";inhalt=zipErstellen(f);mime="application/zip";}}
+  else{name="gainpilot-bericht-"+st+".pdf";inhalt=expPdf(D);mime="application/pdf";}
+  const wie=await dateiTeilen(name,inhalt,mime);
+  logInfo("export","Export erstellt",{art,bytes:inhalt.length,wie});msg((art=="pdf"?"PDF-Bericht":"Export")+" erstellt: "+name);}
+ catch(e){if(e&&(e.name=="AbortError"||/cancel/i.test(e.message||"")))return msg("Abgebrochen.");logErr("export","Export fehlgeschlagen: "+e.message);msg("Export fehlgeschlagen: "+e.message);}}
+/* CSV im deutschen Excel-Format: Semikolon, Dezimalkomma, UTF-8 mit BOM */
+function csvFeld(v){v=v==null?"":String(v);if(/^[=+@\t\r]/.test(v)||/^-[^\d]/.test(v))v="'"+v;return /[;"\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}
+function csvText(kopf,zeilen){return "﻿"+[kopf].concat(zeilen).map(z=>z.map(csvFeld).join(";")).join("\r\n")+"\r\n";}
+const csvDat=d=>d.slice(8,10)+"."+d.slice(5,7)+"."+d.slice(0,4);
+function expCsvDateien(D){const f={};
+ if(D.g&&D.g.length)f["gewicht.csv"]=csvText(["Datum","Gewicht (kg)"],D.g.map(x=>[csvDat(x.d),expZ(x.kg,1)]));
+ if(D.e&&D.e.length){f["ernaehrung-tage.csv"]=csvText(["Datum","kcal","Eiweiß (g)","Kohlenhydrate (g)","Fett (g)","Wasser (ml)","Einträge","Ziel kcal"],
+   D.e.map(x=>[csvDat(x.d),Math.round(x.k),Math.round(x.p),Math.round(x.h),Math.round(x.f),Math.round(x.w),x.n,S.kcal||""]));
+  if(D.eL.length)f["ernaehrung-eintraege.csv"]=csvText(["Datum","Mahlzeit","Lebensmittel / Gericht","kcal","Eiweiß (g)","Kohlenhydrate (g)","Fett (g)"],
+   D.eL.map(x=>[csvDat(x.d),x.s,x.n,Math.round(x.k),expZ(x.p,1),expZ(x.h,1),expZ(x.f,1)]));}
+ if(D.t&&D.t.length)f["training-saetze.csv"]=csvText(["Datum","Übung","Satz","Gewicht (kg)","Wiederholungen","Geschätztes Maximalgewicht (kg)"],
+   D.t.map(x=>[csvDat(x.d),x.n,x.i,expZ(x.kg),x.r,x.e?expZ(x.e,1):""]));
+ if(D.l&&D.l.length)f["laeufe.csv"]=csvText(["Datum","Distanz (km)","Dauer","Pace (min/km)","Puls (Ø)","Anstrengung (1–10)","Notiz"],
+   D.l.map(x=>[csvDat(x.d),expZ(x.km,2),fmtDur(x.sec),fmtDur(x.sec/x.km),x.hr||"",x.rpe||"",x.note||""]));
+ return f;}
+/* Kleiner ZIP-Packer (ohne Kompression) für mehrere CSV-Dateien */
+let CRC_T=null;
+function crc32(b){if(!CRC_T){CRC_T=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;CRC_T[n]=c>>>0;}}
+ let c=0xFFFFFFFF;for(let i=0;i<b.length;i++)c=CRC_T[(c^b[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0;}
+function zipErstellen(dateien){const enc=new TextEncoder(),teile=[],zentral=[];let off=0;
+ const jetzt=new Date(),zt=(jetzt.getHours()<<11)|(jetzt.getMinutes()<<5)|(jetzt.getSeconds()>>1),zd=((jetzt.getFullYear()-1980)<<9)|((jetzt.getMonth()+1)<<5)|jetzt.getDate();
+ const kopf=(n)=>{const b=new Uint8Array(n),v=new DataView(b.buffer);return [b,v];};
+ Object.keys(dateien).forEach(name=>{const nb=enc.encode(name),db=enc.encode(dateien[name]),crc=crc32(db);
+  const [l,lv]=kopf(30);lv.setUint32(0,0x04034b50,true);lv.setUint16(4,20,true);lv.setUint16(6,0x0800,true);lv.setUint16(8,0,true);lv.setUint16(10,zt,true);lv.setUint16(12,zd,true);
+  lv.setUint32(14,crc,true);lv.setUint32(18,db.length,true);lv.setUint32(22,db.length,true);lv.setUint16(26,nb.length,true);lv.setUint16(28,0,true);
+  const [c,cv]=kopf(46);cv.setUint32(0,0x02014b50,true);cv.setUint16(4,20,true);cv.setUint16(6,20,true);cv.setUint16(8,0x0800,true);cv.setUint16(10,0,true);cv.setUint16(12,zt,true);cv.setUint16(14,zd,true);
+  cv.setUint32(16,crc,true);cv.setUint32(20,db.length,true);cv.setUint32(24,db.length,true);cv.setUint16(28,nb.length,true);cv.setUint32(42,off,true);
+  teile.push(l,nb,db);zentral.push(c,nb);off+=30+nb.length+db.length;});
+ const zl=zentral.reduce((a,x)=>a+x.length,0),[e,ev]=kopf(22);ev.setUint32(0,0x06054b50,true);ev.setUint16(8,Object.keys(dateien).length,true);ev.setUint16(10,Object.keys(dateien).length,true);
+ ev.setUint32(12,zl,true);ev.setUint32(16,off,true);
+ const alle=teile.concat(zentral,[e]),out=new Uint8Array(alle.reduce((a,x)=>a+x.length,0));let p=0;alle.forEach(x=>{out.set(x,p);p+=x.length;});return out;}
+/* Kleiner PDF-Schreiber (A4, Helvetica, WinAnsi) – reicht für Text, Tabellen und Linien-Diagramme */
+const PDF_W={" ":278,",":278,".":278,":":278,"-":333,"/":278,"(":333,")":333,"%":889,"×":584,"–":556,"Ø":778,"I":278,"i":222,"l":222,"j":222,"f":278,"t":278,"r":333,"m":833,"w":722,"W":944,"M":833};
+function pdfBreite(t,gr,fett){let w=0;for(const ch of String(t)){let x=PDF_W[ch];if(x==null)x=/[0-9]/.test(ch)?556:/[A-ZÄÖÜ]/.test(ch)?(fett?722:667):556;w+=x;}return w*gr/1000*(fett?1.04:1);}
+const PDF_MAP={"€":128,"‚":130,"„":132,"…":133,"‰":137,"‘":145,"’":146,"“":147,"”":148,"•":149,"–":150,"—":151,"™":153};
+function pdfTxt(t){let o="";for(const ch of String(t)){let c=PDF_MAP[ch]||ch.charCodeAt(0);if(ch.length>1||c>255||(c>126&&c<160&&!PDF_MAP[ch]))c=63;
+ if(c==40||c==41||c==92)o+="\\"+String.fromCharCode(c);else if(c<32)o+=" ";else o+=String.fromCharCode(c);}return o;}
+function pdfFarbe(h){h=h.replace("#","");return [0,2,4].map(i=>(parseInt(h.substr(i,2),16)/255).toFixed(3)).join(" ");}
+function pdfNeu(){const P={seiten:[],s:null,y:0,W:595,H:842,R:48};
+ P.seite=()=>{P.s=[];P.seiten.push(P.s);P.y=P.H-56;};
+ P.op=t=>P.s.push(t);
+ P.text=(x,y,t,o={})=>{const gr=o.gr||10,fe=!!o.fett;let xx=x;if(o.a=="r")xx=x-pdfBreite(t,gr,fe);else if(o.a=="c")xx=x-pdfBreite(t,gr,fe)/2;
+  P.op(`BT ${pdfFarbe(o.f||"#1A1D23")} rg /${fe?"F2":"F1"} ${gr} Tf ${xx.toFixed(1)} ${y.toFixed(1)} Td (${pdfTxt(t)}) Tj ET`);};
+ P.rect=(x,y,w,h,f)=>P.op(`${pdfFarbe(f)} rg ${x.toFixed(1)} ${y.toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)} re f`);
+ P.linie=(pts,f,b)=>{if(pts.length<2)return;P.op(`${pdfFarbe(f)} RG ${b||1} w 1 J 1 j `+pts.map((p,i)=>`${p[0].toFixed(1)} ${p[1].toFixed(1)} ${i?"l":"m"}`).join(" ")+" S");};
+ P.platz=h=>{if(P.y-h<60){P.seite();return true;}return false;};
+ P.abschnitt=t=>{P.platz(70);P.y-=10;P.rect(P.R,P.y-2,4,16,"#22D3EE");P.text(P.R+12,P.y+2,t,{gr:14,fett:true});P.y-=22;};
+ P.absatz=(t,o={})=>{const gr=o.gr||9.5,max=P.W-2*P.R;let z="";const zeilen=[];String(t).split(" ").forEach(w=>{const n=z?z+" "+w:w;if(pdfBreite(n,gr)>max&&z){zeilen.push(z);z=w;}else z=n;});if(z)zeilen.push(z);
+  zeilen.forEach(l=>{P.platz(gr+4);P.text(P.R,P.y,l,{gr,f:o.f||"#4B5563"});P.y-=gr+3.5;});P.y-=4;};
+ P.tabelle=(sp,zeilen)=>{const x0=P.R,b=P.W-2*P.R,summe=sp.reduce((a,c)=>a+c.w,0),f=b/summe;
+  const kopf=()=>{P.rect(x0,P.y-5,b,17,"#111317");let x=x0;sp.forEach(c=>{const w=c.w*f;P.text(c.a=="r"?x+w-6:x+6,P.y,c.t,{gr:8.5,fett:true,f:"#FFFFFF",a:c.a});x+=w;});P.y-=17;};
+  kopf();zeilen.forEach((z,i)=>{if(P.platz(15))kopf();if(i%2)P.rect(x0,P.y-4.5,b,15,"#F1F4F6");let x=x0;
+   sp.forEach((c,k)=>{const w=c.w*f;let t=String(z[k]==null?"":z[k]);while(t.length>3&&pdfBreite(t,8.5)>w-10)t=t.slice(0,-2)+"…";P.text(c.a=="r"?x+w-6:x+6,P.y,t,{gr:8.5,a:c.a,fett:!!(z.fett&&k==0)});x+=w;});P.y-=15;});P.y-=8;};
+ P.kacheln=(k)=>{P.platz(58);const n=k.length,gap=8,w=(P.W-2*P.R-gap*(n-1))/n;k.forEach(([wert,lab],i)=>{const x=P.R+i*(w+gap);P.rect(x,P.y-38,w,48,"#F1F4F6");P.rect(x,P.y+8,w,2,i%2?"#C6F432":"#22D3EE");
+   P.text(x+10,P.y-10,wert,{gr:15,fett:true});P.text(x+10,P.y-28,lab,{gr:8,f:"#6B7280"});});P.y-=60;};
+ P.diagramm=(pkte,o={})=>{if(pkte.length<2)return;const h=140;P.platz(h+30);const x0=P.R+34,x1=P.W-P.R,y0=P.y-h,y1=P.y-6;
+  const ys=pkte.map(p=>p[1]);let mn=Math.min(...ys),mx=Math.max(...ys);if(mx-mn<1){mn-=0.5;mx+=0.5;}const pad=(mx-mn)*0.12;mn-=pad;mx+=pad;
+  const t0=pkte[0][0],t1=pkte[pkte.length-1][0]||t0+1,X=t=>x0+(t-t0)/((t1-t0)||1)*(x1-x0),Y=v=>y0+(v-mn)/(mx-mn)*(y1-y0);
+  for(let i=0;i<=3;i++){const v=mn+(mx-mn)*i/3,y=Y(v);P.linie([[x0,y],[x1,y]],"#E5E7EB",0.6);P.text(x0-6,y-3,expZ(v,1),{gr:7.5,a:"r",f:"#6B7280"});}
+  P.linie(pkte.map(p=>[X(p[0]),Y(p[1])]),o.f||"#0E9AB0",2);
+  if(pkte.length<=40)pkte.forEach(p=>P.rect(X(p[0])-1.6,Y(p[1])-1.6,3.2,3.2,o.f||"#0E9AB0"));
+  P.text(x0,y0-12,o.von||"",{gr:7.5,f:"#6B7280"});P.text(x1,y0-12,o.bis||"",{gr:7.5,f:"#6B7280",a:"r"});P.y=y0-26;};
+ P.fertig=(fuss)=>{const enc=new TextEncoder(),obj=[];const n=P.seiten.length;
+  P.seiten.forEach((s,i)=>{s.push(`${pdfFarbe("#E5E7EB")} RG 0.6 w ${P.R} 40 m ${P.W-P.R} 40 l S`);
+   s.push(`BT ${pdfFarbe("#6B7280")} rg /F1 7.5 Tf ${P.R} 28 Td (${pdfTxt(fuss)}) Tj ET`);const st="Seite "+(i+1)+" von "+n;
+   s.push(`BT ${pdfFarbe("#6B7280")} rg /F1 7.5 Tf ${(P.W-P.R-pdfBreite(st,7.5)).toFixed(1)} 28 Td (${pdfTxt(st)}) Tj ET`);});
+  // 1 Katalog, 2 Seitenbaum, 3/4 Schriften, dann je Seite: Seite + Inhalt
+  obj[1]="<< /Type /Catalog /Pages 2 0 R >>";
+  obj[2]=`<< /Type /Pages /Count ${n} /Kids [${P.seiten.map((_,i)=>(5+2*i)+" 0 R").join(" ")}] >>`;
+  obj[3]="<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>";
+  obj[4]="<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>";
+  P.seiten.forEach((s,i)=>{const inhalt=s.join("\n");
+   obj[5+2*i]=`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${P.W} ${P.H}] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents ${6+2*i} 0 R >>`;
+   obj[6+2*i]=`<< /Length ${inhalt.length} >>\nstream\n${inhalt}\nendstream`;});
+  obj.push(`<< /Title (${pdfTxt("GainPilot – Bericht")}) /Producer (GainPilot ${PUBLIC_V}) /CreationDate (D:${new Date().toISOString().replace(/[-:T]/g,"").slice(0,14)}) >>`);
+  const info=obj.length-1;let out="%PDF-1.4\n%\xE2\xE3\xCF\xD3\n";const pos=[];
+  for(let i=1;i<obj.length;i++){pos[i]=out.length;out+=`${i} 0 obj\n${obj[i]}\nendobj\n`;}
+  const xref=out.length;out+=`xref\n0 ${obj.length}\n0000000000 65535 f \n`+pos.slice(1).map(p=>String(p).padStart(10,"0")+" 00000 n \n").join("");
+  out+=`trailer\n<< /Size ${obj.length} /Root 1 0 R /Info ${info} 0 R >>\nstartxref\n${xref}\n%%EOF\n`;
+  const b=new Uint8Array(out.length);for(let i=0;i<out.length;i++)b[i]=out.charCodeAt(i)&255;return b;};
+ P.seite();return P;}
+function expPdf(D){const P=pdfNeu(),bis=todayISO(),von=EXP.tage?expAb():[...(D.g||[]).map(x=>x.d),...(D.e||[]).map(x=>x.d),...(D.t||[]).map(x=>x.d),...(D.l||[]).map(x=>x.d)].sort()[0]||bis;
+ const tage=Math.max(1,Math.round((new Date(bis)-new Date(von))/864e5)+1),nf0=x=>Math.round(x).toLocaleString("de-DE");
+ // Kopf
+ P.rect(0,P.H-110,P.W,110,"#111317");P.rect(0,P.H-113,P.W/2,3,"#22D3EE");P.rect(P.W/2,P.H-113,P.W/2,3,"#C6F432");
+ P.text(P.R,P.H-56,"GainPilot",{gr:12,fett:true,f:"#C6F432"});P.text(P.R,P.H-82,"Dein Fortschrittsbericht",{gr:22,fett:true,f:"#FFFFFF"});
+ P.text(P.R,P.H-100,fmtDat(von)+" – "+fmtDat(bis)+" · "+tage+" Tage",{gr:9.5,f:"#9AA3AF"});
+ P.text(P.W-P.R,P.H-56,"Erstellt am "+fmtDat(bis),{gr:8.5,f:"#9AA3AF",a:"r"});P.y=P.H-140;
+ // Überblick
+ const k=[];
+ if(D.g&&D.g.length){const a=D.g[0].kg,b=D.g[D.g.length-1].kg,d=b-a;k.push([expZ(b,1)+" kg",D.g.length>1?"Gewicht ("+(d>0?"+":d<0?"–":"±")+expZ(Math.abs(d),1)+" kg)":"Gewicht"]);}
+ if(D.e&&D.e.length){const m=D.e.filter(x=>x.n);if(m.length)k.push([nf0(m.reduce((a,x)=>a+x.k,0)/m.length),"kcal pro Tag (Ø)"]);}
+ if(D.t&&D.t.length)k.push([String(new Set(D.t.map(x=>x.d)).size),"Trainingstage"]);
+ if(D.l&&D.l.length)k.push([expZ(D.l.reduce((a,x)=>a+x.km,0),1)+" km",D.l.length+" "+(D.l.length==1?"Lauf":"Läufe")]);
+ if(k.length)P.kacheln(k.slice(0,4));
+ // Gewicht
+ if(D.g&&D.g.length){P.abschnitt("Gewicht");const ms=x=>new Date(x+"T12:00:00").getTime();
+  if(D.g.length>1)P.diagramm(D.g.map(x=>[ms(x.d),x.kg]),{von:fmtDat(D.g[0].d),bis:fmtDat(D.g[D.g.length-1].d)});
+  const wo={};D.g.forEach(x=>{const w=weekKey(new Date(x.d+"T12:00:00"));(wo[w]=wo[w]||[]).push(x);});
+  const zeilen=Object.keys(wo).sort().map(w=>{const l=wo[w],avg=l.reduce((a,x)=>a+x.kg,0)/l.length;return ["Woche ab "+fmtDat(w),l.length,expZ(Math.min(...l.map(x=>x.kg)),1),expZ(Math.max(...l.map(x=>x.kg)),1),expZ(avg,1)];});
+  for(let i=1;i<zeilen.length;i++){const d=parseFloat(zeilen[i][4].replace(",","."))-parseFloat(zeilen[i-1][4].replace(",","."));zeilen[i].push((d>0?"+":d<0?"–":"±")+expZ(Math.abs(d),1));}
+  if(zeilen.length)zeilen[0].push("");
+  P.tabelle([{t:"Woche",w:150},{t:"Messungen",w:70,a:"r"},{t:"Min (kg)",w:70,a:"r"},{t:"Max (kg)",w:70,a:"r"},{t:"Ø (kg)",w:70,a:"r"},{t:"Veränderung",w:80,a:"r"}],zeilen.slice(-30));}
+ // Ernährung
+ if(D.e&&D.e.length){P.abschnitt("Ernährung");const m=D.e.filter(x=>x.n),avg=f=>m.length?m.reduce((a,x)=>a+x[f],0)/m.length:0;
+  if(m.length)P.absatz(`An ${m.length} von ${tage} Tagen protokolliert. Durchschnitt: ${nf0(avg("k"))} kcal${S.kcal?" (Ziel "+nf0(S.kcal)+")":""}, ${nf0(avg("p"))} g Eiweiß${S.prot?" (Ziel "+nf0(S.prot)+")":""}, ${nf0(avg("h"))} g Kohlenhydrate, ${nf0(avg("f"))} g Fett.`);
+  P.tabelle([{t:"Datum",w:90},{t:"kcal",w:70,a:"r"},{t:"Eiweiß (g)",w:75,a:"r"},{t:"KH (g)",w:65,a:"r"},{t:"Fett (g)",w:65,a:"r"},{t:"Wasser (l)",w:70,a:"r"}],
+   D.e.slice().reverse().map(x=>[fmtDat(x.d),x.n?nf0(x.k):"–",x.n?nf0(x.p):"–",x.n?nf0(x.h):"–",x.n?nf0(x.f):"–",x.w?expZ(x.w/1000,1):"–"]));}
+ // Training
+ if(D.t&&D.t.length){P.abschnitt("Krafttraining");const ue={};D.t.forEach(x=>{const u=ue[x.n]=ue[x.n]||{s:0,v:0,b:null,tage:new Set()};u.s++;u.v+=x.kg*x.r;u.tage.add(x.d);if(x.e&&(!u.b||x.e>u.b.e))u.b=x;});
+  P.absatz(`${new Set(D.t.map(x=>x.d)).size} Trainingstage, ${D.t.length} Sätze, ${nf0(D.t.reduce((a,x)=>a+x.kg*x.r,0))} kg bewegtes Gewicht. Das geschätzte Maximalgewicht (1RM) wird aus Gewicht und Wiederholungen berechnet.`);
+  P.tabelle([{t:"Übung",w:150},{t:"Tage",w:45,a:"r"},{t:"Sätze",w:45,a:"r"},{t:"Bester Satz",w:90,a:"r"},{t:"1RM (kg)",w:65,a:"r"},{t:"Volumen (kg)",w:80,a:"r"}],
+   Object.keys(ue).sort((a,b)=>ue[b].s-ue[a].s).map(n=>{const u=ue[n];return [n,u.tage.size,u.s,u.b?expZ(u.b.kg)+" kg × "+u.b.r:"–",u.b?expZ(u.b.e,1):"–",nf0(u.v)];}));
+  P.y-=2;P.platz(40);P.text(P.R,P.y,"Einheiten im Detail",{gr:10.5,fett:true});P.y-=16;
+  const tg={};D.t.forEach(x=>{((tg[x.d]=tg[x.d]||{})[x.n]=tg[x.d][x.n]||[]).push(x);});const zeilen=[];
+  Object.keys(tg).sort().reverse().forEach(d=>Object.keys(tg[d]).forEach((n,i)=>{const z=[i?"":fmtDat(d),n,tg[d][n].map(x=>(x.kg?expZ(x.kg):"KG")+"×"+x.r).join("  ")];if(!i)z.fett=true;zeilen.push(z);}));
+  P.tabelle([{t:"Datum",w:75},{t:"Übung",w:140},{t:"Sätze (kg × Wiederholungen)",w:260}],zeilen);}
+ // Laufen
+ if(D.l&&D.l.length){P.abschnitt("Laufen");const km=D.l.reduce((a,x)=>a+x.km,0),sec=D.l.reduce((a,x)=>a+x.sec,0);
+  P.absatz(`${D.l.length} ${D.l.length==1?"Lauf":"Läufe"}, ${expZ(km,1)} km, Gesamtzeit ${fmtDur(sec)}, Ø Pace ${fmtDur(sec/km)} min/km. Längster Lauf: ${expZ(Math.max(...D.l.map(x=>x.km)),1)} km.`);
+  P.tabelle([{t:"Datum",w:80},{t:"Distanz",w:65,a:"r"},{t:"Dauer",w:65,a:"r"},{t:"Pace (/km)",w:70,a:"r"},{t:"Puls",w:50,a:"r"},{t:"RPE",w:45,a:"r"},{t:"Notiz",w:120}],
+   D.l.slice().reverse().map(x=>[fmtDat(x.d),expZ(x.km,2)+" km",fmtDur(x.sec),fmtDur(x.sec/x.km),x.hr||"–",x.rpe||"–",x.note||""]));}
+ P.platz(40);P.y-=6;P.absatz("Alle Werte stammen aus deinen eigenen Einträgen in GainPilot. Der Bericht ersetzt keine ärztliche oder ernährungswissenschaftliche Beratung.",{gr:8,f:"#9AA3AF"});
+ return P.fertig("GainPilot "+PUBLIC_V+" · Bericht vom "+fmtDat(bis));}
 function hatDaten(){return Object.keys(S.plan||{}).length||Object.keys(S.log||{}).length||Object.keys(S.sets||{}).length||Object.keys(S.weight||{}).length||(S.custom||[]).length;}
 function backupFaellig(){
  if(!hatDaten())return null;
