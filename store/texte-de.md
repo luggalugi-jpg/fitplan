@@ -2,10 +2,10 @@
 
 Zum Kopieren in Play Console und App Store Connect. In Klammern die Höchstlänge, dahinter die tatsächliche Länge.
 
-## Play: App-Name (max. 30) – 27 Zeichen
+## Play: App-Name (max. 30) – 9 Zeichen
 
 ```
-GainPilot: Essen & Training
+GainPilot
 ```
 
 ## Apple: Name (max. 30) – 9 Zeichen

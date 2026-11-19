@@ -19,7 +19,7 @@ Play Console → **Alle Apps → App erstellen**
 
 | Feld | Eingabe |
 |---|---|
-| App-Name | `GainPilot: Essen & Training` |
+| App-Name | `GainPilot` |
 | Standardsprache | Deutsch – de-DE |
 | App oder Spiel | App |
 | Kostenlos oder kostenpflichtig | Kostenlos (Premium läuft später als In-App-Abo – das geht auch bei kostenlosen Apps) |
