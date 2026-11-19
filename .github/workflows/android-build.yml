@@ -23,6 +23,12 @@ jobs:
           M=android/app/src/main/AndroidManifest.xml
           grep -q ACCESS_FINE_LOCATION $M || sed -i 's#</manifest>#    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />\n    <uses-feature android:name="android.hardware.location.gps" android:required="false" />\n</manifest>#' $M
           grep -E "LOCATION|location.gps" $M
+      - name: Hochformat und Werbe-ID nicht erzwingen (Tablets erlauben, keine AD_ID)
+        run: |
+          M=android/app/src/main/AndroidManifest.xml
+          grep -q 'xmlns:tools' $M || sed -i 's#<manifest xmlns:android="http://schemas.android.com/apk/res/android"#<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"#' $M
+          grep -q 'screen.portrait' $M || sed -i 's#</manifest>#    <uses-feature android:name="android.hardware.screen.portrait" android:required="false" />\n    <uses-feature android:name="android.hardware.camera" android:required="false" />\n    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove" />\n</manifest>#' $M
+          grep -E "xmlns:tools|screen.portrait|hardware.camera|AD_ID" $M
       - name: Startmodus für In-App-Käufe (RevenueCat braucht singleTop)
         run: |
           M=android/app/src/main/AndroidManifest.xml

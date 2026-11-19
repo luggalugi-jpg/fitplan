@@ -59,7 +59,7 @@ KRAFTTRAINING
 • 55 Trainingspläne aus bewährten Systemen wie Ganzkörper, Push/Pull/Beine, PHUL, 5×5 und GVT
 • Sätze abhaken, die Pause startet von selbst – mit Pausen-Timer und Benachrichtigung
 • Smarte Steigerung: Vorschläge für mehr Gewicht, Hinweise bei Plateaus und Deload-Wochen
-• 3D-Anleitung mit hervorgehobenen Muskeln für jede Übung
+• 3D-Animationen mit hervorgehobenen Muskeln für die wichtigsten Übungen
 • Neue Bestwerte als Bild teilen
 
 LAUFEN
@@ -80,9 +80,6 @@ PAUSENSPIELE & LEVEL
 
 FORTSCHRITT
 • Gewichtsverlauf mit 7-Tage-Trend, Analyse mit Kalorienempfehlung und Wochenrückblick
-
-PREMIUM (OPTIONAL)
-Das Wichtigste ist kostenlos. Mit Premium entfallen alle Grenzen: unbegrenzte automatische Pläne, der ganze Verlauf, alle Pausenspiele und 3D-Anleitungen, große Freundesgruppen, mehr Designs für Bestwert-Bilder und der Export als PDF-Bericht und Excel-Tabelle.
 
 DEINE DATEN BLEIBEN BEI DIR
 Keine Werbung, kein Tracking. Deine Einträge bleiben auf deinem Gerät. Nur wenn du selbst Rangliste oder Cloud-Sicherung einschaltest, wird das Nötigste an unseren Server in der EU übertragen.
@@ -112,3 +109,11 @@ Erste Version im Store: über 3.000 Rezepte, Kraft- und Laufpläne, Rangliste mi
 | Werbung | Nein |
 | Gesundheits-Apps-Erklärung (Play) | Kategorie „Fitness“ und „Ernährung und Diät“ ankreuzen; kein Medizinprodukt. |
 | App-Zugriff für Prüfer | „Alle Funktionen sind ohne Anmeldung nutzbar.“ Kein Login nötig. Hinweis an Prüfer: „Die Foto-Analyse ist optional und braucht einen eigenen Google-Gemini-Schlüssel. Konto und Rangliste sind freiwillig; die Rangliste startet man unter Training → Heute → Rangliste mit einem beliebigen Spitznamen.“ |
+
+
+## Später, wenn Premium live ist – Absatz für die Beschreibung (vor „DEINE DATEN“ einfügen)
+
+```
+PREMIUM (OPTIONAL)
+Das Wichtigste ist kostenlos. Mit Premium entfallen alle Grenzen: unbegrenzte automatische Pläne, der ganze Verlauf, alle Pausenspiele und 3D-Anleitungen, große Freundesgruppen, mehr Designs für Bestwert-Bilder und der Export als PDF-Bericht und Excel-Tabelle.
+```
