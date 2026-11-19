@@ -1,0 +1,27 @@
+name: 3 · AAB für Play-Upload bereitstellen
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Lauf-ID von '2 · Android-App bauen'"
+        required: true
+permissions:
+  contents: write
+  actions: read
+jobs:
+  bereitstellen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ github.token }}
+          path: art
+      - name: Auf Zweig play-upload legen
+        run: |
+          f=$(find art -name '*.aab' | head -1); echo "$f"; ls -l "$f"
+          mkdir out && cp "$f" out/app-release.aab && cd out
+          git init -q && git checkout -q -b play-upload
+          git config user.name "github-actions" && git config user.email "actions@github.com"
+          git add app-release.aab && git commit -q -m "AAB aus Lauf ${{ inputs.run_id }}"
+          git push -f -q "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" play-upload
