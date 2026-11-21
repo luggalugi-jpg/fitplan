@@ -5,7 +5,7 @@ on:
     inputs:
       modell:
         description: "Modell"
-        default: "Helsinki-NLP/opus-mt-tc-big-de-en"
+        default: "facebook/wmt19-de-en"
 
 permissions:
   contents: write
@@ -28,11 +28,11 @@ jobs:
         run: |
           python - <<'PY'
           import json, time, torch
-          from transformers import MarianMTModel, MarianTokenizer
+          from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
           torch.set_num_threads(4)
           import os
-          name=os.environ.get("MODELL") or "Helsinki-NLP/opus-mt-tc-big-de-en"
-          tok=MarianTokenizer.from_pretrained(name); mod=MarianMTModel.from_pretrained(name).eval()
+          name=os.environ.get("MODELL") or "facebook/wmt19-de-en"
+          tok=AutoTokenizer.from_pretrained(name); mod=AutoModelForSeq2SeqLM.from_pretrained(name).eval()
           inp=json.load(open("mt/mt-in.json"))
           out={}
           t0=time.time()
@@ -43,7 +43,7 @@ jobs:
               for s in range(0,len(order),16):
                   idx=order[s:s+16]; batch=[liste[i] for i in idx]
                   enc=tok(batch,return_tensors="pt",padding=True,truncation=True,max_length=400)
-                  with torch.no_grad(): gen=mod.generate(**enc,num_beams=4,max_new_tokens=400)
+                  with torch.no_grad(): gen=mod.generate(**enc,num_beams=3,max_new_tokens=400)
                   dec=tok.batch_decode(gen,skip_special_tokens=True)
                   for i,d in zip(idx,dec): tmp[i]=d
                   if s%320==0: print(teil,s,len(liste),round(time.time()-t0),"s",flush=True)
