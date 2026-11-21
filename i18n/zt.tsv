@@ -1,0 +1,259 @@
+0	Breakfast (sweet)
+1	Breakfast (savoury)
+2	Shakes & smoothies
+3	Chicken
+4	Turkey
+5	Beef & pork
+6	Fish & seafood
+7	Vegetarian
+8	Vegan
+9	Salads
+10	Soups & stews
+11	Pasta
+12	Wraps, sandwiches & bowls
+13	Snacks
+14	Desserts & baking
+15	Oven dishes
+16	Milk 1.5% fat
+17	Whey protein powder (vanilla)
+18	Cinnamon
+19	Blueberries
+20	Greek yoghurt 0.2% fat
+21	Almond drink, unsweetened
+22	Peanut butter (100%)
+23	Banana (peeled)
+24	Cocoa powder (low fat)
+25	Sour cherries (jar, drained)
+26	Erythritol
+27	Mango
+28	Desiccated coconut
+29	Honey
+30	Pumpkin seeds
+31	Egg (size M, without shell)
+32	Baking powder
+33	Rapeseed oil
+34	Wholemeal spelt flour
+35	Raisins
+36	Butter
+37	Apple sauce, unsweetened
+38	Vanilla extract
+39	Raspberries
+40	Dark chocolate 85%
+41	Millet (dry)
+42	Buckwheat (dry)
+43	Ground linseed
+44	Wholemeal toast
+45	Cottage cheese
+46	Natural yoghurt 1.5% fat
+47	Lemon juice
+48	Hokkaido pumpkin
+49	Maple syrup
+50	Kiwi
+51	Spinach (fresh or frozen)
+52	Rice cakes
+53	Peach
+54	Dates (dried)
+55	Ginger
+56	Basil
+57	Feta
+58	Spring onions
+59	Avocado (flesh)
+60	Cherry tomatoes
+61	Cucumber
+62	Radishes
+63	Fresh herbs
+64	Light cream cheese
+65	Smoked salmon
+66	Chopped tomatoes (tin)
+67	Garlic
+68	Spices (dried)
+69	Parsley
+70	Leek
+71	Wholemeal tortilla wrap
+72	Black beans (tin, drained)
+73	Tomato salsa
+74	Grated cheese, light (16% fat)
+75	Sliced turkey breast
+76	Lettuce (romaine/iceberg)
+77	Medium mustard
+78	Sesame seeds
+79	Smoked tofu
+80	Rocket
+81	Hummus
+82	Sweet potato (raw)
+83	Vegetable stock (prepared)
+84	Parmesan
+85	Potatoes (raw)
+86	Lean cooked ham
+87	Light mozzarella
+88	Balsamic vinegar
+89	Kidney beans (tin, drained)
+90	Coriander (fresh)
+91	Chicken breast fillet (raw)
+92	Pea protein powder
+93	Almond butter (100%)
+94	Orange
+95	Beetroot (cooked)
+96	Lime juice
+97	Red curry paste
+98	Green beans
+99	Rice noodles (dry)
+100	Stir-fry vegetables (frozen, without sauce)
+101	Sesame oil
+102	Cornflour
+103	Wholemeal couscous (dry)
+104	Basil pesto
+105	Sweetcorn (tin, drained)
+106	Chickpeas (tin, drained)
+107	Peas (frozen)
+108	Brussels sprouts
+109	Brown rice (dry)
+110	Bulgur (dry)
+111	Red cabbage
+112	Sriracha/chilli sauce
+113	Edamame (frozen, shelled)
+114	White wine or apple cider vinegar
+115	Celery
+116	Aubergine
+117	Olives (pitted)
+118	Turkey breast fillet (raw)
+119	Turkey mince (raw)
+120	Tomato purée
+121	Pak choi
+122	Breadcrumbs (wholemeal)
+123	Lamb's lettuce
+124	Pomegranate seeds
+125	White cabbage
+126	Kale
+127	Beef rump steak (raw)
+128	Beef mince 5% fat (raw)
+129	Beef goulash from the leg (raw)
+130	Pork tenderloin (raw)
+131	Polenta/cornmeal (dry)
+132	Green asparagus
+133	Salmon fillet (raw)
+134	Cod fillet (raw)
+135	Capers
+136	Prawns (raw, peeled)
+137	Pollock fillet (raw)
+138	Trout fillet (raw)
+139	Fennel
+140	Brown/green lentils (dry)
+141	Roasted peanuts
+142	Tahini (sesame paste)
+143	Durum wheat pasta (dry)
+144	Ricotta
+145	Tempeh
+146	Soy chunks (dry)
+147	Miso paste
+148	White beans (tin, drained)
+149	Kohlrabi
+150	Red lentil pasta (dry)
+151	Rice paper
+152	Popcorn kernels
+153	Coconut oil
+154	Gelatine
+155	Salt & pepper
+156	White sandwich bread
+157	Chocolate hazelnut spread
+158	Strawberry jam
+159	Vanilla skyr
+160	Wheat roll
+161	Pretzel stick
+162	Ciabatta
+163	Bagel
+164	Salami
+165	Gouda (medium-aged)
+166	Emmental
+167	Mayonnaise
+168	Red onion
+169	Leberkäse (Bavarian meatloaf)
+170	Gherkin
+171	Bacon
+172	Baguette
+173	Mixed rye bread
+174	Wheat pitta bread
+175	Flatbread
+176	Spaghetti (dry)
+177	Whipping cream 30%
+178	Jalapeños
+179	Gorgonzola
+180	Bratwurst
+181	Sour cream 10%
+182	Soured cream 24%
+183	Mascarpone
+184	Rigatoni (dry)
+185	Potato gnocchi (fresh)
+186	Cheese tortellini (fresh)
+187	Ricotta and spinach ravioli (fresh)
+188	Egg spaetzle (fresh)
+189	Oven chips
+190	Fried potatoes (prepared)
+191	Potato dumplings (prepared)
+192	Pork schnitzel (raw)
+193	Teriyaki sauce
+194	BBQ sauce
+195	Sweet chilli sauce
+196	Falafel (cooked)
+197	Dill (fresh)
+198	Plain wheat flour
+199	Cheddar
+200	Fresh goat's cheese
+201	Pizza dough (raw)
+202	Tarte flambée dough (raw)
+203	Puff pastry (raw)
+204	Sugar
+205	Tortilla chips
+206	Butter croissant
+207	White bread
+208	Soft pretzel
+209	Brioche bun
+210	Burger bun
+211	Hot dog bun
+212	Camembert
+213	Weisswurst (Bavarian white sausage)
+214	Chicken nuggets
+215	Crème fraîche
+216	Icing sugar
+217	Fresh yeast
+218	Tomato ketchup
+219	Remoulade
+220	Curry sauce
+221	Hoisin sauce
+222	Udon noodles (fresh)
+223	Glass noodles (dry)
+224	Vanilla ice cream
+225	Vanilla pudding (prepared)
+226	Coconut flakes
+227	Crisps
+228	Gherkins (drained)
+229	Cooking spray / rapeseed oil
+230	Cornmeal (polenta, dry)
+231	Black tea (brewed)
+232	Coffee (brewed)
+233	Orange juice
+234	Apple juice
+235	Oat drink, unsweetened
+236	Whole milk 3.5%
+237	Rice cakes / rice snacks
+238	Marshmallows
+239	Serving = 1 muffin
+240	Serving = 1 biscuit
+241	Serving = 2 muffins
+242	Serving = 1 roll
+243	4 wraps
+244	3 wraps
+245	3 tortillas
+246	vegan with soy yoghurt
+247	vegan without Parmesan
+248	4 wraps = 2 quesadillas
+249	2 wraps
+250	Serving = 2 scoops
+251	Serving = 1 bar
+252	Serving = 5 balls
+253	Serving = 1 piece
+254	Serving = 1 slice
+255	Serving = 1 ice cream
+256	Serving = 1 glass
+257	Nutritional values calculated from the ingredient base; amounts as raw/purchase weight.
+258	Nutritional values estimated from the stated ingredient amounts.

@@ -1,0 +1,248 @@
+0	--- Log (newest first) ---
+1	– or have a look under More → Guide.
+2	, before that
+3	, the last one is relegated
+4	, the top
+5	, the bottom {0} are relegated
+6	: please enter a value between
+7	: successful (
+8	: empty response
+11	. Use › to browse there.
+12	. The weight trend alone isn't enough for that.
+13	. The database is available under the Open Database License (ODbL), the contents under the Database Contents License.
+14	. You start in week
+15	. Run days from your running plan count too.
+31	· {0} kg in this period
+32	· {0}× on the podium
+33	· {1} g protein · {2} g carbs · {3} g fat
+35	· 🏆 New record (estimated 1RM
+36	· 🔥 {0} days in a row
+37	· 1 of
+38	· current
+39	· Report from
+40	· Cloud on
+41	· you are in place
+42	· appears at
+43	· done ✓
+44	· Bodyweight: only enter extra weight, otherwise 0
+45	· Rest
+47	· created by you
+48	· Enter time in seconds
+49	'Basic templates'
+50	‹ All guides
+51	‹ All groups
+52	‹ All systems
+53	‹ Back
+54	” to
+55	”? Existing exercises will be replaced.
+56	” is now your gym.
+57	”?
+58	Remove “{0}” as your gym? You can set a new gym in 7 days at the earliest.
+59	Remove “{0}” from the group?
+60	Delete “{0}”?
+61	Report “{0}”? Use this for unrealistic values or an inappropriate nickname.
+62	“Block Drop” and the other break games are our own implementations.
+63	({0} kg)
+64	(current)
+65	(also check your spam folder).
+66	(top 100)
+67	(you)
+68	(free round: half XP)
+69	(loaded:
+70	(per
+71	(empty)
+72	(none)
+73	(test mode)
+74	(goal
+75	) I suggest
+76	). Loosen the filters or clear the block list.
+78	[not serialisable]
+79	{0} – story format for Instagram, WhatsApp & co.
+80	{0} · {1} days per week · approx. {2} min
+81	{0} ({1} kg)
+82	{0} ({1} km)
+83	{0} {1} league · {2} · until {3}
+84	{0} {1}, {2} km, total time {3}, avg pace {4} min/km. Longest run: {5} km.
+85	{0} /km{1}
+87	{0} The search uses Open Food Facts and needs an internet connection.
+88	{0} A deload week at about 60% weight often helps you make progress again afterwards.
+89	Remove {0}
+90	{0} free
+91	Try {0} free, then {1}{2}
+92	{0} per session ·
+94	{0} kcal
+95	{0} kcal · {1} g protein · {2} g carbs · {3} g fat
+96	{0} kg
+97	{0} kg · {1} reps
+98	{0} kg{1}
+99	{0} km in {1}
+100	Report {0}
+101	{0} report(s) waiting for internet.
+102	{0} items
+106	{0} days · {1} weeks
+107	{0} days ({1} weeks)
+108	{0} training days, {1} sets, {2} kg moved. The estimated max weight (1RM) is calculated from weight and reps.
+109	{0} results{1}
+110	{0} exercises in {1} groups
+111	{0} of {1}
+112	{0} of {1} done
+113	{0} of {1} planned
+114	{0} of {1} l
+115	{0} of approx. {1} min · {2} km
+116	{0} characters · {1} entries
+117	{0} league: place {1} of {2} · {3} points
+118	{0}: {1} kg × {2} · 1RM ≈ {3} kg
+119	{0}{1} kg vs. last week
+120	{0}{1} kg/week
+121	{0}The subscription renews automatically unless cancelled at least 24 hours before it ends. Cancel any time in the subscription settings of your {1} account.
+122	{0}Enter the result after your run.
+123	{1} · {2} weeks · {3} runs per week · {4}
+124	{1} · change
+125	{1} done
+126	{1} kcal
+127	{1} kcal · {2} g protein
+128	{1} kg
+129	{1} km · {2}
+130	{1} of {2}
+131	{1} of {2} done
+132	{1} of {2} kcal
+133	{1}{2} kg per week
+134	{1}{2} km
+135	{1}× per week
+136	{11}{12}. New month, new group.
+137	{15} of {16}
+138	{18} games played
+139	{2} (seconds)
+140	{2} {3} · about {4} m away
+141	{2} to {3} kg per week
+142	{2} kcal
+143	{2} kcal · {3} g protein
+144	{2} kcal · {3} g protein per 100 g · serving {4} g
+145	{2} kg
+146	Delete {2}
+147	{2} variants
+148	{2} XP
+149	{3} + {4} custom
+150	{3} reminders per day
+151	{3} kcal
+152	{3} kcal · {4} g protein
+153	{3} kg
+154	{3} km · {4} runs · {5}
+155	{3} days
+156	{3} of {4}
+157	{3}orange dot: longest run
+158	{4} · {5} weeks · {6} runs per week
+159	{4} / {5} XP to level {6}
+160	{4} favourites · {5} blocked
+161	{4} days
+162	{5} – {6} kg
+163	{5} per week
+164	{5} of {6} g
+165	{5}{6} kg
+166	{6} km ({7})
+167	{6} of {7} kcal eaten
+168	{7} kcal · {8} g protein
+169	{7}{8} kcal · {9} g protein
+170	{8} set {9}
+171	{9} measurements{10}
+173	{const e=document.getElementById('wv');if(e)e.focus()},60)">Log weight
+175	{name}, address as above
+182	/year
+184	/km slower
+185	/km faster
+186	/month
+189	/rep
+194	% above your goal of
+195	% below your goal of
+197	+ Add {1}
+198	+ Custom
+199	+ Create your own dish
+200	+ Add your own supplement
+201	+ Bottle
+202	+ Log a free run
+203	+ Add dish
+204	+ Glass
+205	+ Again
+206	+ Set
+207	+{0} kg more than your old best
+208	+{4} XP{5}{6}{7}
+209	× {0} rep{1}
+210	× BW
+214	| custom:
+215	| Dishes:
+217	| Pixel ratio:
+218	| Recipes:
+219	− Set
+220	≈ {0} per month
+221	⌫ Back
+222	⏱ Quick
+223	▥ Scan barcode
+224	▶ Guide
+225	☁️ Automatic backup of all your data
+226	★ Favourites
+227	⚖️ Weight
+230	✓ done
+231	✓ Done
+232	✓ done
+233	✓ Counted for the leaderboard
+234	✓ Premium is active
+235	➕ Mental maths
+236	⭐ Level {0} reached – {1}!
+237	🍽️ Nutrition
+238	🎨 Colour word
+239	🎮 Break games
+240	🎮 Season {0} · until {1}
+241	🎮 Games (season)
+242	🎮 Play
+243	🎯 Daily challenge
+244	🏃 Run
+245	🏃 Running score
+246	🏃 Running
+247	🏆 The next round counts for the leaderboard.
+248	🏆 New personal best: +
+249	🏆 New record
+250	🏆 View leaderboard
+251	🏆 Your leaderboard place and nickname are kept
+252	🏋️ Strength
+253	🏋️ Strength score
+254	🏋️ Training
+255	🏟️ Which gym are you at?
+256	🏟️ My gym
+257	🏟️ My gym · {0} {1}
+258	👥 Friends group · {0} {1}
+259	💪 High protein
+260	📄 PDF report
+261	📅 Consistency (30 days)
+262	📉 No new personal best for {0} sessions. If it stays that way, a different rep range for 3–4 weeks (e.g. 5–6 instead of 8–12) or a lighter week helps.
+263	📊 CSV (Excel)
+264	📍 Getting your location …
+265	📖 All guides
+266	📖 How to log your food
+267	📱 Switch phones without losing data
+268	📷 Estimate a dish from a photo
+269	📷 Restart camera
+270	📸 Share your best as an image
+271	📸 Share
+272	🔎 Use database
+273	🔎 Search, e.g. barcode, rest, backup
+274	🔒 See older values with Premium
+275	🔒 Unlimited with Premium
+276	🔒 Premium
+278	🔤 Word scramble
+279	🧘 Deload week until {0}
+280	🧠 Colour sequence
+281	🧱 Block Drop
+282	🚫 Never suggest
+283	0 points
+284	1 to 16, mistakes cost 2 s
+285	1 serving
+286	1. Provider and scope
+287	1. Controller
+288	10 per completed exercise (max. 12 per day), +30 for a complete planned workout, +25 per new personal best (max. 3 per day), streak bonus up to +20 per training day. Counted break games earn points, but at most a quarter of your monthly points. Up to 30 people per group; at the end of the month the best move up to the next league. Unusual jumps are checked and not counted.
+289	100 games
+291	12 months
+292	13 November 2026
+294	14 days
+296	18 November 2026
+298	2 boiled eggs with carrots
+299	2. Principle: your data stays on your device

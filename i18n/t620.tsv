@@ -1,0 +1,307 @@
+621	Fried potatoes
+622	Bratwurst
+623	Broccoli
+624	Broccoli (cooked)
+625	Bronze
+626	Bread & bakery
+627	Toast the bread if you like. Slice the cucumber. Spread the cottage cheese on the bread and top with cucumber. Drizzle with olive oil, season with salt and pepper.
+628	Bread roll
+629	Browser
+630	browser
+631	Chest
+635	Bulgur (cooked)
+636	Burger (cheeseburger)
+637	Butter
+638	Buttermilk with protein
+639	bytes
+640	approx.
+641	approx. {0} kcal
+642	approx. {1} min
+643	approx. {4} min · {5}
+644	Cashew nuts
+645	Cashews
+646	Challenge
+647	Mushrooms
+648	Champion
+649	Chia seeds
+650	Chili con carne
+651	Chili sin carne with rice
+652	Crisps
+654	Load from cloud:
+655	Cloud backup {4}
+656	Turn on cloud backup: automatically store a copy of all app data on the server
+657	Turn on cloud backup? A copy of all app data – including weight, nutrition and training – will be transferred encrypted and stored on the server (Supabase, Paris).
+658	Cloud backup loaded
+659	Cloud backup deleted.
+660	Cloud backup saved
+661	Cloud backup later:
+662	Cloud backup:
+663	Code
+664	Cola
+666	Cornflakes
+667	Couscous (cooked)
+668	Croissant
+669	Crunches
+670	Curry with rice
+671	Currywurst
+672	as “
+673	The app uses this to calculate your needs. Everything stays on your device.
+674	Thanks, your report has been received.
+675	The subscription renews automatically for the same period unless cancelled at least 24 hours before it ends. You can cancel at any time in the subscription settings of your Google Play account or Apple ID; deleting the app does not end the subscription. After cancelling, Premium stays active until the end of the paid period.
+676	The date is in the past.
+677	The date is in the future.
+678	The end must be after the start.
+679	breakfast
+680	This only works in the app from the store.
+681	That didn't work
+682	That didn't work.
+683	That's already your gym.
+684	This may take a few seconds.
+685	The new password must be different from the old one.
+686	The password needs at least 8 characters.
+687	The password is too weak. Use at least 8 characters.
+688	That was the last automatic {0} this month (free).
+689	The target date is in the past. Choose a new date.
+690	File could not be read:
+691	File could not be read.
+692	Save or send file
+693	Data & backup
+694	Data imported.
+695	Import data
+696	Export data {0}
+697	Data deleted:
+698	Database with amount
+699	Privacy
+700	Privacy, legal notice, health notice
+701	Privacy policy
+702	Date
+703	Duration
+704	Duration (min or mm:ss)
+705	High amounts over a long time can cause copper deficiency. Do not exceed the amount on the pack.
+706	There's no guide for that yet. Try another word, e.g. “barcode”, “rest” or “backup”.
+707	Your browser can't recognise barcodes itself. Type in the number under the barcode.
+708	Your progress report
+709	Your estimated requirement is about
+710	Your weight is currently moving in the other direction.
+711	Your account
+712	Your plan starts on
+713	Your location is too imprecise right now. Allow the app to use your precise location and try again.
+714	Your location is only compared with your gym on this device and is not sent anywhere.
+715	Your location is only sent to find gyms nearby and is not stored. Only the gym's location and the fact that you train there are stored. You can switch once a week.
+716	Your gym isn't listed?
+717	Your pace so far
+718	Your pace matches your goal. Stick to your calorie goal and check again in one to two weeks.
+719	Your pace is slightly off, but the change needed is small (under 100 kcal). Stick to your goal and check again in one to two weeks.
+720	Your sign-in for
+721	Your data stays with you
+722	Your email
+723	Your group has room for {0} people.
+724	Your class (optional)
+725	Your class:
+726	Your values as a table for Excel or Numbers (CSV) or as a clear PDF report – e.g. for your coach or doctor.
+727	Your reps drop a lot from set to set. Try {0} rest instead of {1}.
+728	Your XP
+729	End deload week
+730	Deload week started
+731	Deload week started. The suggestions now use lighter weights.
+732	Start deload week
+733	Deload week: today {0} kg instead of {1} kg, one set fewer is fine
+734	Deload week: today only about {0}{1} per set, nice and easy
+735	The API key was rejected. Check it under More → Photo analysis.
+736	Your needs depend on blood levels, sun and diet. High doses only after talking to a doctor.
+737	The code has 6 characters.
+738	The service is busy right now. Try again in a few minutes.
+739	The service is busy right now. Wait {0} seconds and try again …
+740	Google's service is busy right now. This is temporary. Try again in a few minutes or use the database.
+741	Exporting as CSV and PDF report is part of Premium. Backing up as a file stays free.
+742	The purchase didn't work:
+743	The link is invalid or has expired. Just request a new one.
+744	The next set is waiting.
+745	The plan ends in time for the date and starts on {0}. {1}
+746	The plan is complete.
+747	The plan starts in
+748	The scanner is loaded once from Google Play. Please try again in a moment.
+749	The key stays on your device only. When analysing, the photo is sent to Google.
+750	Your location is still too imprecise (± {0} m). Move near a window or the entrance and try again.
+751	Details:
+752	German
+753	December
+754	Diagnostic log
+755	Show diagnostic log
+756	Delete diagnostic log
+757	Delete diagnostic log?
+758	Save diagnostic log
+759	Diamond
+760	The request took too long (8 s). Check your connection.
+761	The analysis took too long. Try again or reduce the image size under More → Photo analysis.
+762	The offers couldn't be loaded. Check your internet connection.
+763	The response couldn't be read. Try again.
+765	The app contains no ads, no analytics or tracking tools and does not share data for advertising.
+766	The app does not replace medical advice.
+767	The app is not intended for children under 16.
+769	The two passwords don't match.
+770	The top {0} move up
+771	The file anleitung.js is missing. Reopen the app with internet.
+772	The file laufanleitungen.js is missing.
+773	The file laufplaene.js is missing. Upload it next to essensplan.html and reopen the app.
+774	The file rezepte.js is missing or can't be reached.{0} Upload rezepte.js next to essensplan.html and reopen the app.
+775	Your data stays stored until you delete it in the app under “Data & backup” or uninstall the app. Leaderboard data on the server is deleted as soon as you stop taking part; account and cloud backup as soon as you delete the account. Subscription data at RevenueCat is deleted once it is no longer needed for managing the subscription and legal retention obligations. If you deleted the app without ending your participation, email us your nickname and we'll delete it.
+776	Your phone schedules the reminders itself. They arrive even when the app is closed and don't need internet.
+777	GainPilot's basic features are free. Additional features are available with an optional Premium subscription (section 3). Which features are free and which belong to Premium is shown in the app under “More → Premium” and on the payment page.
+778	The AI estimates calories and protein
+779	The last measurement is more than two weeks old.
+780	The list came back empty.
+781	The amounts are common guideline values. If you have a medical condition, are pregnant or take medication, check with a doctor first.
+782	The break games can only be played there. You save a gym right on site when you open the games.{0}
+783	The leaderboard is not enabled on the server right now.
+784	The backup couldn't be loaded.
+785	The games can only be played at your gym. Check once and they're unlocked for 3 hours.
+786	Taking part in the leaderboard and friends groups is optional. Nicknames and group names must not insult anyone, infringe anyone's rights or contain other people's real names. Results must be achieved honestly. Violations can lead to entries being removed and participants being excluded.
+787	The trial is free and ends automatically after {0}; if you don't cancel before then, the paid subscription starts afterwards.
+788	The templates are rough guidelines. Rule of thumb: 1.6 to 2.2 g protein per kg body weight; to lose weight about 300 to 500 kcal below your needs, to build muscle about 200 to 300 kcal above.
+789	The values look unrealistic. Please check.
+790	These gyms already exist here:
+791	Use this template
+792	This week
+793	This week → next week
+794	These ingredients aren't on the list. Tap “buy” if you're missing them.
+795	Delete this run?
+796	Use this plan
+797	Copy this day
+798	This day → whole week
+799	This device can't determine a location.
+800	This product isn't listed on Open Food Facts.
+801	Difference
+802	Dips
+803	Distance
+804	Distance (km)
+805	Distance per run
+806	Doner kebab (meat in bread)
+807	Can
+808	Download failed:
+809	Rotate
+810	You're signed out. Sign in again under More → Account & cloud.
+811	You're about {0} away from “{1}”. The games are only available at the gym.
+812	You're a bit slower than needed.
+813	You're well on track.
+814	You're not in a group yet.
+815	You're offline. The search needs internet.
+816	You're going faster than needed.
+817	You're already in “
+818	You have the right to access, rectification, erasure, restriction of processing, data portability, objection and withdrawal of consent given (Art. 15–21 GDPR). As we don't store your app data, you can exercise most rights directly in the app. You can also complain to a data protection supervisory authority, for example the one where you live.
+819	On average you eat
+820	You can save at most {0} gyms. Delete one first under More → Training & rest.
+821	Your protein is below 85% of your goal.
+822	You're taking part as “{0}”. Transferred are nickname, avatar, training days, personal bests, best running time, counted game results and group memberships{1}.{2}
+823	You're not taking part. No data is sent to a server.
+824	You're using the free version.
+825	You've been training for {0} weeks in a row. A lighter week gives muscles, tendons and joints time to recover.
+826	Average of
+827	Average:
+828	Dürüm
+829	Confirm email
+830	Email confirmed. Now open GainPilot on your phone and tap “I've confirmed” under More → Account.
+831	Resend email
+832	Email or password is incorrect.
+833	Email has been sent again.
+835	Egg (60 g each)
+836	Eggs
+837	Eggs (size M)
+838	Hard-boil the eggs for 8 min, cool in cold water and peel, or fry them. Halve and stone the avocado, mash the flesh with a fork and season with salt, pepper and a little lemon juice. Toast the bread if you like and spread with the avocado cream. Slice the tomatoes and lay them on top with the sliced eggs.
+839	Hard-boil the eggs for 8–10 min, cool in cold water and peel. Peel the carrots, cut into sticks and eat on the side.
+840	Put the eggs into boiling water and hard-boil for 8–10 min. Cool in cold water and peel. Eat with a little salt.
+841	Whisk the eggs with a pinch of salt and pepper. Let them set in a non-stick pan over medium heat for 2–3 min, stirring. Dice the tomatoes and add them or eat them on the side. Serve with the wholemeal bread.
+842	Whisk the eggs with salt and pepper. Dice the pepper and fry in a non-stick pan for 3 min. Pour the egg mixture over it, let it set over low heat and fold. Serve with cottage cheese and wholemeal bread.
+843	Custom
+844	Your own designs and no logo with Premium
+845	custom dishes
+846	Custom dishes
+847	Delete custom dishes
+848	Custom dishes and recipes
+849	Custom exercise
+850	custom exercise created
+851	Custom template
+852	our own compilation for GainPilot. Nutritional values are calculated from the ingredients.
+853	Custom dish
+854	custom dish saved
+855	Custom supplement
+856	custom supplement created
+857	Egg white
+858	You can save a new gym from {0}.
+859	One set has to stay. Use ✕ to remove the whole exercise.
+860	A pace of about 0.25 to 0.75 kg per week is considered well tolerated. Much more is usually not sustainable.
+861	and skip the first weeks. Use it anyway?
+862	Another gym is possible from
+863	You can save another gym from {0}.
+864	a snack
+865	.
+866	Scheduled
+867	Logged at
+868	logged,
+869	Session completed
+870	Session loaded
+871	Sessions
+872	Sessions completed
+873	Sessions from your running plan
+874	Sessions in the template
+875	Sessions in detail
+876	Shopping
+877	Shopping list
+878	Shopping list copied to the clipboard.
+879	Copy invitation:
+880	Invitation copied – paste it into WhatsApp & co.
+881	Invite code
+882	One-off, forever
+883	One-off payment, no subscription.
+884	Intake ticked off
+885	Intake undone
+886	When to take
+887	Stew
+888	Delete entry
+889	Entries
+891	Add yesterday's entries to today?
+892	entries).
+893	Log
+894	Individual sessions
+895	Ice cream
+896	Iron
+897	Iron Biter
+898	Iron Friend
+899	Protein
+900	Protein (g)
+901	Protein intake
+902	Electrolytes
+903	Recommendation
+904	End of Premium:
+905	If Premium ends, your data is kept; Premium features are then locked again.
+907	Remove
+908	Removed.
+909	Relief:
+910	Trend
+911	Peas
+912	Strawberries
+913	Wash, hull and cut the strawberries. Stir into the low-fat quark and season with cinnamon or sweetener if you like.
+914	Peanut butter
+915	Peanuts
+916	Experienced
+917	Achievement unlocked
+918	Achievements
+919	Enter result
+920	Enter result ›
+921	Recovery:
+922	Reminders
+923	Reminders scheduled
+924	detected – games unlocked for 3 hours.
+925	Allow them for GainPilot in the settings of your {0}, otherwise no reminder will arrive.
+926	3–20 characters allowed: letters, numbers, full stop, hyphen and underscore.
+927	Completed exercises
+930	Nutrition
+931	Try again
+932	Only from plan start
+933	Just look around first
+934	Refunds and any statutory right of withdrawal follow the rules of the store you bought from.
+935	Refunds and withdrawal:
+936	First round
+937	Create a group and invite friends by code or link. In the group you see overall rating, strength, running, game season and monthly league – only among yourselves.
+938	Created on
+939	created:

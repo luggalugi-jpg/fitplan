@@ -1,0 +1,274 @@
+0	Base endurance – basic 2 days
+1	Base endurance
+2	Beginner
+3	General aerobic endurance
+4	Easy start with two easy sessions; build consistency first.
+5	Easy base run
+6	5–10 min walking and very easy jogging
+7	25–40 min easy (RPE 2–4/10; able to speak in full sentences)
+8	5 min walking
+9	Zone 2 / RPE 2–4
+10	Keep the pace deliberately low; walking breaks are allowed.
+11	Long run
+12	10 min easy start
+13	45–75 min easy; run-walk if needed
+14	5–10 min walking
+15	Zone 2 / RPE 3–4
+16	Prioritise duration over pace; drink enough.
+17	Base building – week 1
+18	Base building – week 2
+19	Base building – week 3
+20	Recovery and technique
+21	Base building – week 5
+22	Base building – week 6
+23	Base building – week 7
+24	Base building – week 8
+25	Only increase one load variable at a time (duration, distance or intensity). Increase volume only gradually; don't use a rigid 10% rule as a guarantee.
+26	Recovery week in week 4; reduce earlier if you have pain or unusual fatigue.
+27	Easy = RPE 2–4/10, speaking in full sentences; tempo/threshold = RPE 6–7/10; intervals = RPE 8–9/10, no all-out sprinting.
+28	At least 48 hours between hard running sessions.
+29	Stop and get the cause checked if you have sharp, increasing pain or pain that changes your running style.
+30	Base endurance – basic 3 days
+31	Three easy sessions, one of them a bit longer.
+32	Easy run with strides
+33	10 min easy
+34	20–30 min easy + 4 × 15–20 s fast/relaxed with 60–90 s walking break
+35	5–10 min easy
+36	Easy + technique
+37	Strides are not all-out sprints.
+38	Base endurance – basic 4 days
+39	Advanced
+40	Aerobic endurance
+41	Four runs, mostly easy; only short strides as a technique stimulus.
+42	Recovery run
+43	15–25 min very easy (RPE 2–3/10)
+44	Very easy / RPE 2–3
+45	Only do it if your legs and general condition feel good.
+46	Base endurance – basic 5 days
+47	Experienced
+48	Aerobic endurance and running economy
+49	High frequency at mostly low intensity; adjust volume to your previous training.
+50	Base endurance – zone 2 focus
+51	Aerobic base
+52	All runs at a calm conversational intensity, no tempo session.
+53	Interval training – short intervals 2 days
+54	Interval training
+55	Speed and VO₂max
+56	One intense and one easy session; not on consecutive days.
+57	12–15 min easy + running drills
+58	6 × 2 min fast (RPE 8/10), each with 2 min very easy jogging/walking
+59	Near VO₂max / RPE 8
+60	Run the repetitions evenly; stop if your technique falls apart.
+61	Interval training – short intervals 3 days
+62	One interval session per week plus easy runs.
+63	Interval training – 400 m based
+64	5 km pace and VO₂max
+65	For runners with solid base endurance; don't force the number of repetitions.
+66	15 min easy
+67	6–8 × 400 m brisk (RPE 8), 200 m jog in between
+68	RPE 8
+69	Run on a track or a flat, measured route; even splits.
+70	Interval training – long intervals
+71	Near-threshold endurance
+72	Longer effort blocks for trained runners.
+73	Long intervals
+74	4 × 4 min brisk (RPE 7–8), 3 min easy jog
+75	RPE 7–8
+76	Even effort; not all-out.
+77	Interval training – pyramid intervals
+78	Pace changes and running economy
+79	Pyramid-shaped effort with controlled jogging breaks.
+80	Pyramid intervals
+81	12–15 min easy
+82	1–2–3–2–1 min brisk; between all sections jog easily for the same length of time
+83	Control the effort and don't run the shorter sections all-out.
+84	Tempo training – threshold run 2 days
+85	Tempo training
+86	Running pace and threshold
+87	One tempo session and one easy run; only with an existing running base.
+88	Tempo run
+89	12–15 min easy + 3 strides
+90	2 × 8–12 min brisk (RPE 6–7/10), 3 min jog in between
+91	Threshold / RPE 6–7
+92	Controlled hard, no sprinting.
+93	Tempo training – threshold run 3 days
+94	One threshold session per week, the rest easy.
+95	Tempo training – tempo blocks 4 days
+96	Speed endurance
+97	Two easy sessions flank the tempo session and the long run.
+98	Tempo blocks
+99	3 × 8 min at RPE 6–7, 3 min jog in between
+100	RPE 6–7
+101	Block pace should be controlled and repeatable.
+102	Tempo training – progression run
+103	Pacing and endurance
+104	Learn to raise the pace gradually within one session.
+105	Progression run
+106	30 min progressive: 10 min easy, 10 min moderate, 10 min brisk (max. RPE 7)
+107	Progressive / RPE 3–7
+108	No sprinting; the last minutes stay under control.
+109	Tempo training – fartlek and tempo
+110	Varied pace ability
+111	Combines free fartlek and a structured tempo session; dose the load carefully.
+112	Fartlek
+113	6 × (1 min brisk + 2 min easy), choose any terrain
+114	Varying / RPE 4–7
+115	Go by feel; keep the fast sections under control.
+116	Fartlek – 2 days
+117	Variety and endurance
+118	Easy pace changes without rigid pace targets.
+119	Fartlek – 3 days
+120	Pace changes
+121	One fartlek per week, supplemented by easy endurance runs.
+122	Fartlek – 4 days
+123	Running economy and endurance
+124	Four sessions with one varied tempo day.
+125	Fartlek – terrain fartlek
+126	Adaptability
+127	Use natural terrain instead of exact interval times.
+128	Terrain fartlek
+129	35 min rolling terrain: climbs brisk, flat sections easy, downhill controlled
+130	5 min easy
+131	By feel / RPE 3–7
+132	Go by perceived effort rather than pace.
+133	Fartlek – short pace changes
+134	Running economy
+135	Short fast sections with generous recovery.
+136	Short pace changes
+137	12 min easy
+138	10 × (30 s quick + 90 s easy)
+139	8 min easy
+140	RPE 7 in the quick parts
+141	The fast sections stay relaxed and technically clean.
+142	Hill running – hill intervals 2 days
+143	Hill running
+144	Running strength
+145	One hill session and one easy run; plan enough recovery.
+146	Hill intervals
+147	15 min easy + mobility
+148	6 × 30–45 s powerfully uphill, walk easily back down
+149	Strength endurance / RPE 7–8
+150	Short, moderate incline; don't sprint downhill.
+151	Hill running – hill intervals 3 days
+152	Running strength and endurance
+153	Short hill intervals once a week.
+154	Hill running – hill endurance 4 days
+155	Strength endurance
+156	For runners with experience on hilly terrain.
+157	Longer hill repeats
+158	5 × 2 min uphill at RPE 7, walk/jog easily downhill
+159	RPE 7
+160	Keep the gradient moderate; controlled downhill.
+161	Hill running – trail-oriented
+162	Trail readiness
+163	Focus on strength endurance and running safely on changing surfaces.
+164	50–70 min on varied terrain, walking sections on steep climbs allowed
+165	RPE 3–5
+166	Prioritise time and elevation over pace.
+167	Hill running – hill running technique
+168	Running technique and strength
+169	Short hill efforts plus strides and a long run.
+170	5 km preparation – 5 km beginner 3 days
+171	Run 5 km continuously
+172	Eight-week start with run-walk intervals; the goal is to finish healthy, not a target time.
+173	5 min brisk walking
+174	10 × (1 min easy running + 2 min walking)
+175	Beginner / RPE 3–4
+176	Only increase the running parts if the session stays pain-free.
+177	Longer run-walk
+178	6 × (3 min easy running + 1 min walking)
+179	RPE 3–4
+180	Only lengthen running sections if pain-free.
+181	Taper / race preparation
+182	5 km preparation – improve 5 km time 3 days
+183	Improve 5 km time
+184	One easy run, intervals and a longer base run.
+185	5 km preparation – 5 km 4 days
+186	Four runs with one tempo and one longer session.
+187	5 km preparation – 5 km interval focus
+188	For runners with a solid base and experience with intervals.
+189	5 × 3 min at your target 5 km effort (RPE 8), 2 min jogging break
+190	Choose a realistic target pace; even repetitions.
+191	5 km preparation – 5 km 5 days
+192	Five sessions with two quality sessions; only with enough running history.
+193	10 km preparation – 10 km beginner 3 days
+194	Finish 10 km healthy
+195	Three runs, mostly easy; build up the long run gradually.
+196	Base building – week 9
+197	10 km preparation – 10 km standard 4 days
+198	Classic mix of intervals, threshold and long run.
+199	10 km preparation – 10 km 3 days time-efficient
+200	Three runs per week; deliberately limit intensity.
+201	10 km preparation – 10 km 5 days
+202	Improve 10 km time
+203	Five sessions with a maximum of two quality days.
+204	10 km preparation – 10 km tempo focus
+205	Threshold performance
+206	More threshold work, fewer hard short intervals.
+207	Half marathon – half marathon beginner 3 days
+208	Half marathon
+209	Finish a half marathon
+210	Three running sessions; extend the long run carefully. Requirement: able to run 5–10 km easily.
+211	Base building – week 10
+212	Base building – week 11
+213	Half marathon – half marathon standard 4 days
+214	Four sessions with intervals, threshold and long run.
+215	Half marathon – half marathon 5 days
+216	Improve half marathon time
+217	Five sessions; keep recovery runs very easy.
+218	Half marathon – half marathon 3 days endurance
+219	Endurance for 21.1 km
+220	Focus on steady endurance development and the long run.
+221	Half marathon – half marathon threshold
+222	Threshold performance and race pace
+223	One structured threshold session, long runs and recovery.
+224	Marathon – marathon beginner 4 days
+225	Marathon
+226	Finish a marathon healthy
+227	Only for runners with a solid base and experience with longer runs; individual peak volumes needed.
+228	Base building – week 12
+229	Base building – week 13
+230	Base building – week 14
+231	Base building – week 15
+232	Marathon – marathon standard 5 days
+233	Marathon performance
+234	Five sessions with two quality days; increase long runs gradually.
+235	Marathon – marathon 4 days time-efficient
+236	Finish a marathon
+237	Four running sessions; long run and weekly volume must match your starting level.
+238	Marathon – marathon base block
+239	Aerobic marathon base
+240	Early preparation block with mostly easy runs; not a complete race plan.
+241	Marathon – marathon 5 days volume-focused
+242	Volume-focused variant; only with a stable running history and sufficient recovery.
+243	Run-walk start – Couch to 5K 2 days
+244	From walking to running 5 km
+245	Two sessions with run-walk intervals; repeat any week if needed.
+246	Run-walk start – Couch to 5K 3 days
+247	Three short sessions with a rest day between runs.
+248	8 × (90 s running + 90 s walking)
+249	Only increase if the last session went well.
+250	Run-walk start – comeback 2 days
+251	Getting back into running
+252	Very conservative comeback; if you have symptoms, pause training and get it checked.
+253	Run-walk start – comeback 3 days
+254	Consistency and resilience
+255	Run-walk intervals and short easy runs; no tempo sessions.
+256	Run-walk start – running base after a break
+257	Rebuild running volume
+258	Only for people who used to run regularly; start well below your old level.
+259	Polarised training – 80/20 3 days
+260	Polarised training
+261	Endurance performance
+262	Mostly easy time with one short intense session; distribute by training time, not just by counting sessions.
+263	Polarised training – 80/20 4 days
+264	One intense session, the rest easy; reduce the intensity further if needed.
+265	Polarised training – 80/20 5 days
+266	Endurance and performance
+267	Lots of easy minutes and one clear intense stimulus; monitor total load.
+268	Polarised training – pyramidal 4 days
+269	Aerobic and threshold performance
+270	Pyramidal: lots easy, some moderate, little high-intensity.
+271	Polarised training – base plus interval 2 days
+272	Time-efficient endurance
+273	One easy and one intense session; enough recovery in between.

@@ -89,10 +89,10 @@ Eine einfache Anleitung zu allen Funktionen findest du direkt in der App.
 Hinweis: GainPilot ersetzt keine ärztliche oder ernährungsmedizinische Beratung. Nährwerte und Pläne sind Richtwerte.
 ```
 
-## Neuigkeiten dieser Version – 107 Zeichen
+## Neuigkeiten dieser Version
 
 ```
-Erste Version im Store: über 3.000 Rezepte, Kraft- und Laufpläne, Rangliste mit Freundesgruppen und Studio.
+Neu: GainPilot gibt es jetzt auch auf Englisch. Fenster lassen sich nach unten wegwischen.
 ```
 
 ## Weitere Angaben
@@ -103,7 +103,7 @@ Erste Version im Store: über 3.000 Rezepte, Kraft- und Laufpläne, Rangliste mi
 | Zweitkategorie (Apple) | Essen und Trinken |
 | Preis | Kostenlos (Empfehlung für den Start) |
 | Altersfreigabe | Fragebogen ehrlich ausfüllen: keine Gewalt, kein Glücksspiel. **Nutzer können interagieren: Ja** (Spitznamen in der Rangliste, Freundesgruppen; kein Chat, keine Fotos). **Digitale Käufe: Ja** (Premium-Abo). Ergebnis voraussichtlich USK ab 0 / PEGI 3 mit Hinweis „Nutzerinteraktion, In-App-Käufe“; Apple 4+. |
-| Datenschutz-URL | `https://luggalugi-jpg.github.io/fitplan/datenschutz.html` |
+| Datenschutz-URL | `https://luggalugi-jpg.github.io/fitplan/datenschutz.html` (englisch: `privacy.html`) |
 | Support-/Kontakt-URL | `https://luggalugi-jpg.github.io/fitplan/impressum.html` |
 | Kontakt-E-Mail | gainpilot.app@gmail.com |
 | Werbung | Nein |

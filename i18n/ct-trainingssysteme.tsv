@@ -1,0 +1,249 @@
+0	Full body – beginner 3 days
+1	Full body
+2	Beginner
+3	Muscle building and technique
+4	Full-body training with moderate volume and frequent practice of the basic movements.
+5	Gym
+6	Barbell
+7	Dumbbells
+8	Cable machine
+9	Machines
+10	When you reach the top of the rep range in all working sets with clean technique and the stated RIR, increase the weight next time by about 2–5% (1–2 kg for small isolation exercises).
+11	Every 4–8 weeks or with persistent fatigue, reduce set volume by about 30–50% for one week.
+12	At least 48 hours until the next hard session for the same muscle group.
+13	Full body A
+14	Squats
+15	Bench press
+16	Barbell row
+17	Shoulder press
+18	Plank
+19	Full body B
+20	Deadlift
+21	Incline bench press
+22	Pull-ups
+23	Lunges
+24	Face pulls
+25	Crunches
+26	Full body C
+27	Leg press
+28	Dips
+29	Dumbbell row
+30	Leg curl
+31	Lateral raises
+32	Side plank
+33	30 s per side
+34	Full body – strength 3 days
+35	Advanced
+36	Strength and muscle building
+37	Three non-consecutive sessions focusing on compound exercises.
+38	Strength A
+39	Strength B
+40	Strength C
+41	Full body – hypertrophy 3 days
+42	Hypertrophy
+43	Slightly higher rep counts and additional volume for muscle building.
+44	Hypertrophy A
+45	Lat pulldown
+46	Hip thrust
+47	Hypertrophy B
+48	Biceps curls
+49	Hypertrophy C
+50	Full body – 2-day schedule
+51	General fitness and muscle building
+52	Two sessions per week for few available training days.
+53	Full body – 4-day microcycle
+54	Muscle building
+55	Four shorter full-body sessions with changing focus and moderate set volume.
+56	Full body D
+57	Hammer curls
+58	Upper / lower – 4 days classic
+59	Upper / lower
+60	Each main muscle group is typically worked twice a week.
+61	Upper body A
+62	Cable triceps pushdown
+63	Lower body A
+64	Calf raises
+65	Upper body B
+66	Lower body B
+67	Leg extension
+68	Leg raises
+69	Upper / lower – 4 days strength-focused
+70	Heavy compound exercises with longer rests, supplemented by accessory exercises.
+71	Upper body heavy
+72	Lower body heavy
+73	Upper body volume
+74	Lower body volume
+75	Upper / lower – 3 days flexible
+76	Upper/lower rotating
+77	Rotating upper/lower sessions; the following week, start with the next session in line.
+78	Upper body
+79	Lower body
+80	Upper / lower – 5 days with focus
+81	Upper/lower + focus
+82	Experienced
+83	Muscle building with extra volume
+84	Four base sessions plus one moderate weak-point session.
+85	Weak points
+86	Upper / lower – hypertrophy
+87	More moderate reps, controlled execution and sufficient weekly volume.
+88	Push Pull Legs – PPL 3 days
+89	Push Pull Legs
+90	Each session focuses on one movement and muscle group.
+91	Push
+92	Pull
+93	Legs
+94	Push Pull Legs – PPL 6 days
+95	Push/Pull/Legs x2
+96	PPL cycle twice, with one heavier and one volume-focused round.
+97	Push heavy
+98	Pull heavy
+99	Legs heavy
+100	Push volume
+101	Pull volume
+102	Legs volume
+103	Push Pull Legs – PPL 5 days rolling
+104	PPL rolling
+105	Five training days; the PPL cycle continues on rather than restarting every week.
+106	Push Pull Legs – PPL 4 days
+107	Four days per week, PPL sessions rotate across the weeks.
+108	Push/pull accessory
+109	Push Pull Legs – PPL beginner 3 days
+110	Technique and muscle building
+111	Reduced set volume and generous rests.
+112	Push-ups
+113	Bro split – 5 days classic
+114	Bro split
+115	Chest/back/shoulders/legs/arms
+116	One muscle group focus per session; each muscle group is usually trained directly once a week.
+117	Chest
+118	Back
+119	Back extensions
+120	Shoulders
+121	Front raises
+122	Arms
+123	Wrist curls
+124	Bro split – 4 days compact
+125	Chest/back/legs/shoulders+arms
+126	Combines smaller muscle groups so the split fits into four days.
+127	Shoulders and arms
+128	Bro split – 6 days with weak points
+129	Chest/back/shoulders/legs/arms/focus
+130	Muscle building and specialisation
+131	Five classic sessions plus one light weak-point session.
+132	Bro split – moderate hypertrophy
+133	Moderate rep ranges and controlled sets instead of maximum load.
+134	Bro split – beginner 4 days
+135	Upper body/legs/push/pull
+136	General muscle development
+137	Shorter split with reduced sets; for beginners usually not as efficient as full body.
+138	Arnold split – 6 days classic
+139	Arnold split
+140	Chest+back/shoulders+arms/legs x2
+141	High frequency with three rotating sessions, each done twice a week.
+142	Chest and back
+143	Shoulders and arms
+144	Chest and back volume
+145	Shoulders and arms volume
+146	Arnold split – 5 days rolling
+147	Arnold A/B/C rotating
+148	Five sessions; the three training days rotate through the weekly rhythm.
+149	Arnold split – 4 days adapted
+150	Adapted variant with more recovery between sessions.
+151	Arnold split – hypertrophy 6 days
+152	Volume-focused Arnold split with controlled RIR.
+153	Arnold split – beginner 3 days
+154	Simplified variant with three sessions; not the classic Arnold frequency.
+155	Chest/back
+156	PHUL – 4 days standard
+158	Strength and hypertrophy
+159	Power Hypertrophy Upper Lower: two strength-focused and two volume-focused days.
+164	PHUL – 3 days compact
+165	A compromise of two power/volume focus days and one full-body day.
+167	PHUL – 5 days extra volume
+168	Upper/lower x2 + accessory
+169	Four core PHUL sessions plus an optional weak-point session.
+170	Accessory
+171	PHUL – hypertrophy-focused
+172	Upper/lower x2
+173	Hypertrophy with a strength base
+174	Volume days get slightly more weight in the weekly plan than the power days.
+175	PHUL – strength-focused
+176	Strength gains plus muscle building
+177	Compound exercises mostly in the 3–6 rep range; moderate accessory work.
+178	PHAT – 5 days standard
+180	Power Hypertrophy Adaptive Training: two upper/lower body power days plus three hypertrophy days.
+181	Back and shoulders
+182	Chest and arms
+183	PHAT – 4 days reduced
+184	Reduced PHAT variant for better recovery.
+185	PHAT – 6 days extended
+187	Only for people who recover well; adjust volume carefully.
+189	PHAT – beginner adapted
+190	Strength base and muscle building
+191	Beginner-friendly PHAT-inspired plan with fewer working sets.
+192	5x5 – StrongLifts-inspired
+193	A/B alternating
+194	Base strength
+195	Three full-body sessions with 5x5 on the main exercises; alternating A/B.
+198	5x5 – Madcow-inspired
+199	Strength gains
+200	Three days with ramping working sets; no max attempts every session.
+201	Monday
+202	5 ramping
+203	Wednesday
+204	Friday
+205	5x5 – technique focus
+206	Technique and base strength
+207	Submaximal loads, clean reps and steady progression.
+208	5x5 – 4-day upper lower
+209	Sets of 5 on the main exercises with supplementary volume.
+214	5x5 – strength base 2 days
+215	Two alternating sessions for limited training time.
+216	German Volume Training – 10x10 basic version
+218	Chest/back/legs/shoulders+arms
+219	Hypertrophy / volume
+220	Classic 10x10 protocol only for selected main exercises; with clearly reduced additional work.
+221	Shoulders and abs
+222	German Volume Training – 6x10 beginner
+223	Reduced GVT variant as an introduction to high volume.
+224	German Volume Training – 8x8 variant
+225	High number of sets at moderate load; watch total volume closely.
+226	German Volume Training – antagonists 10x10
+227	Antagonist main exercises with sufficient rest and clean technique.
+228	German Volume Training – 3 days full body reduced
+229	Only one 6x6 or 5x10 main exercise per session; not the full 10x10 volume.
+230	HIT / High Intensity Training – one set close to failure
+232	Time-efficient muscle building
+233	A few hard working sets per exercise; long recovery and controlled technique.
+234	HIT / High Intensity Training – 2 days full body
+235	Two short sessions, no forced reps and no risky max attempts.
+236	HIT / High Intensity Training – 3-day split
+237	A few very demanding sets per muscle group; not for beginners or poor recovery.
+238	HIT / High Intensity Training – machine-focused
+239	Muscle building with low technique risk
+240	Machine-focused variant; train under control and use safety features.
+241	HIT / High Intensity Training – double progression
+242	Increase the rep range first, only then increase the weight; sets mostly at 1–2 RIR.
+243	Torso / limbs – 4 days
+244	Torso / limbs
+245	Torso/limbs x2
+246	Two torso days for chest/back/shoulders and two limb days for arms/legs.
+251	Torso / limbs – 3 days rolling
+252	Torso/limbs rotating
+253	Three sessions per week, alternating torso and limbs over two weeks.
+256	Torso / limbs – 5 days with focus
+257	Torso/limbs + focus
+258	Four base days plus one targeted weak-point day.
+259	Focus
+260	Torso / limbs – hypertrophy
+261	Volume-focused sessions with moderate rep counts.
+262	Torso / limbs – strength and volume
+263	First torso/limbs round heavy, second with more reps.
+264	Torso heavy
+265	Limbs heavy
+266	Torso volume
+267	Limbs volume
+268	Torso / limbs – 2 days compact
+269	Torso/limbs A/B
+270	Muscle building with little time
+271	Two alternating near-full-body sessions with a torso and limb focus.

@@ -214,7 +214,7 @@ window.HILFE = {
        "Trag ihn unter <b>Mehr → Foto-Analyse</b> ein.",
        "Jetzt kannst du beim Essen-Hinzufügen ein Foto machen und die KI schätzt die Nährwerte." ] },
      { h: "Training & Pausen", p: "Unter <b>Mehr → Training & Pausen</b> stellst du ein, wie lang die Satzpause ist, siehst deine Pausenspiele mit Rekorden und verwaltest deine gespeicherten Gyms." } ],
-    tipps: [ "Die Schätzung per Foto ist ein Richtwert. Für genaue Werte wieg dein Essen oder scanne den Barcode." ] },
+    tipps: [ "Die Schätzung per Foto ist ein Richtwert. Für genaue Werte wieg dein Essen oder scanne den Barcode.", "Die App gibt es auf Deutsch und Englisch. Unter <b>Mehr → Sprache · Language</b> stellst du sie um." ] },
 
   { id: "premium", ic: "✨", t: "Premium", kurz: "Was ist kostenlos, was gibt's mit Premium?",
     ziel: { tab: "more", mtab: "premium" },

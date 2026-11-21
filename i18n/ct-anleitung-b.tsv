@@ -1,0 +1,108 @@
+120	Only at the gym
+121	Open <b>More → Training & rest</b> and save your gym while you're there.
+122	From then on the games can only be played at the gym – that keeps the focus on training.
+123	Your location is only compared on your phone.
+124	Level and XP
+125	You earn XP for completed exercises, complete workouts, personal bests, runs and games. With it you climb the athlete levels – from “Warm-up set” to “Legend”. Tap your level card to see what earns how much XP.
+126	Only the first round after a ticked-off set counts for the leaderboard. You can play further rounds freely.
+127	Reaction Rush is free to play; Premium unlocks all seven games.
+128	Running
+129	Running goal, running plan and logging runs
+130	Set up a running plan
+131	Open <b>Training</b> and choose <b>Running</b> at the top.
+132	Under <b>Goal & plan</b> you set your running goal, e.g. 10 km on a specific date or simply running regularly.
+133	Choose a suitable plan and your running days.
+134	Logging runs
+135	Under <b>Week</b> you see your planned sessions.
+136	After the run, enter distance and duration – and if you like, heart rate, effort and a note. The app calculates the pace.
+137	Went for a spontaneous run? Use <b>+ Log a free run</b>.
+138	How do I run the session?
+139	Every session has a <b>📖 Guide</b>. It tells you how fast to run and what to pay attention to. You'll also find all guides under <b>Guides</b>.
+140	History
+141	Under <b>History</b> you see your pace, your distances and your kilometres per week.
+142	New to running? Read the guide “How fast should I run?” first.
+143	Progress
+144	Weight, analysis and weekly review
+145	Weight
+146	Open <b>Progress → Weight</b> and tap <b>Log weight</b>.
+147	It's best to weigh yourself in the morning, after the toilet and before breakfast.
+148	The curve shows your 7-day trend. It's more meaningful than individual days.
+149	Analysis
+150	Under <b>Analysis</b> the app evaluates the last few weeks: does your weight trend match your goal? Are you eating enough protein? Are you training regularly? If needed, you adjust your calorie goal right there.
+151	Weeks
+152	Under <b>Weeks</b> you compare what you planned with what you actually ate.
+153	In the free version the charts show the last 4 weeks; Premium shows your whole history.
+154	You'll find the history for each exercise under <b>Training → Strength → Exercises</b>.
+155	Leaderboard
+156	Compare yourself with others – optional
+157	Join in
+158	Open <b>Training → Strength → Today</b> and tap the leaderboard card.
+159	Choose a nickname and an avatar and agree. You don't need an email.
+160	If you like, enter your sex, age group and weight. That way you're compared fairly with people who match you. Others don't see these details.
+161	The scores
+162	<b>Strength & running</b>: your strength relative to your body weight and your best running time. <b>Games</b>: your monthly rating from the break games. <b>Overall</b>: everything together plus consistency, with tiers from Rookie to Legend – plus the monthly league with promotion and relegation. <b>Friends</b>: your groups and your gym.
+163	Friends group
+164	Open the leaderboard and switch to <b>Friends</b>.
+165	Create a group and give it a name.
+166	Share the code or link with your friends. Anyone who enters or taps it is in.
+167	My gym
+168	Go to your gym and open <b>Leaderboard → Friends</b>.
+169	Tap <b>Set gym</b> and allow location access.
+170	Choose your gym from the list or create it with a new name. Now you can see who's the strongest at your gym.
+171	Stopping
+172	Under <b>More → Data & backup</b> you can end your participation at any time. All your data on the server is then deleted immediately.
+173	Unrealistic values aren't counted. If you spot a cheater, report them with the report button.
+174	Backup, account & export
+175	Don't lose data, switch phones
+176	Backup as a file (free)
+177	Open <b>More → Data & backup</b>.
+178	Tap <b>Create / share backup</b> and save the file, e.g. in your cloud or by emailing it to yourself.
+179	On a new phone, tap <b>Import data</b> and choose the file.
+180	Account with cloud backup
+181	Open <b>More → Account & cloud</b> and enter your email address.
+182	Confirm the email and set a password.
+183	From then on the app backs up your data automatically. On a new phone you simply sign in.
+184	Export data (Premium)
+185	Open <b>More → Data & backup</b> and scroll to <b>Export data</b>.
+186	Choose the period and what to include: weight, nutrition, training, running.
+187	Tap <b>PDF report</b> (e.g. for your coach or doctor) or <b>CSV (Excel)</b> for your own analysis.
+188	Without an account and without a backup, your data is gone if you delete the app or lose your phone. So back up regularly.
+189	Settings & reminders
+190	Goals, rest, reminders, photo analysis
+191	Change goals
+192	Under <b>More → Goals & nutrition</b> you change your goal or set calories, protein, carbohydrates and fat by hand.
+193	Reminders
+194	Open <b>More → Reminders</b>.
+195	Switch on what the app should remind you about: training, water or meals.
+196	Set the times and allow notifications when your phone asks.
+197	Set up photo analysis
+198	Get a free key from Google AI Studio (Gemini).
+199	Enter it under <b>More → Photo analysis</b>.
+200	Now you can take a photo when adding food and the AI estimates the nutritional values.
+201	Training & rest
+202	Under <b>More → Training & rest</b> you set how long the rest between sets is, see your break games with records and manage your saved gyms.
+203	The photo estimate is a guideline. For exact values, weigh your food or scan the barcode.
+204	Premium
+205	What's free, and what do you get with Premium?
+206	Free
+207	Logging food, barcode, recipes, weekly plan and shopping list, training and running plans, logging sets and runs, leaderboard, backup – the essentials are always free. A few extras are limited: 2 automatic meal and training plans per month, charts of the last 4 weeks, one break game, 3D guides for 8 basic exercises and your own friends groups of up to 3 people.
+208	With Premium
+209	All limits are gone: unlimited plans, your whole history, all break games, all 3D guides, large friends groups, more designs for personal-best images and export as PDF and Excel.
+210	Manage subscription
+211	Under <b>More → Premium</b> you see your subscription, can restore a purchase (e.g. on a new phone) and get to subscription management in the Play Store or App Store. You can cancel there at any time.
+212	FAQ
+213	When something doesn't work
+214	The barcode isn't found
+215	Not every product is in the database. Then enter the nutritional values with <b>Enter yourself</b> – next time you'll find it under “Recently eaten”.
+216	The camera doesn't start
+217	Allow the app to access the camera in your phone's settings (Apps → GainPilot → Permissions).
+218	I don't get any reminders
+219	Check whether notifications are allowed for GainPilot and whether battery saver is restricting the app.
+220	Is there an update?
+221	The app notices new versions by itself and shows a notice. Under <b>More → About the app</b> you see your version.
+222	Something isn't working properly
+223	Open <b>More → About the app</b>.
+224	Tap <b>Save diagnostic log</b>.
+225	Send us the file together with a short description. It only contains technical details, no food or training data.
+226	I have a new phone
+227	With an account you simply sign in. Without an account, create a backup on the old phone and import it on the new one (see “Backup, account & export”).
