@@ -2,6 +2,11 @@ name: 4 · Texte maschinell übersetzen (DE → EN)
 # Übersetzt mt/mt-in.json auf dem Zweig, mit dem der Lauf gestartet wurde, und legt mt/mt-out.json dort ab.
 on:
   workflow_dispatch:
+    inputs:
+      modell:
+        description: "Modell"
+        default: "Helsinki-NLP/opus-mt-tc-big-de-en"
+
 permissions:
   contents: write
 jobs:
@@ -18,12 +23,15 @@ jobs:
           pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
           pip install --quiet transformers sentencepiece sacremoses
       - name: Übersetzen
+        env:
+          MODELL: ${{ inputs.modell }}
         run: |
           python - <<'PY'
           import json, time, torch
           from transformers import MarianMTModel, MarianTokenizer
           torch.set_num_threads(4)
-          name="Helsinki-NLP/opus-mt-de-en"
+          import os
+          name=os.environ.get("MODELL") or "Helsinki-NLP/opus-mt-tc-big-de-en"
           tok=MarianTokenizer.from_pretrained(name); mod=MarianMTModel.from_pretrained(name).eval()
           inp=json.load(open("mt/mt-in.json"))
           out={}
@@ -32,13 +40,13 @@ jobs:
               res=[]
               order=sorted(range(len(liste)),key=lambda i:len(liste[i]))
               tmp=[None]*len(liste)
-              for s in range(0,len(order),24):
-                  idx=order[s:s+24]; batch=[liste[i] for i in idx]
+              for s in range(0,len(order),16):
+                  idx=order[s:s+16]; batch=[liste[i] for i in idx]
                   enc=tok(batch,return_tensors="pt",padding=True,truncation=True,max_length=400)
                   with torch.no_grad(): gen=mod.generate(**enc,num_beams=4,max_new_tokens=400)
                   dec=tok.batch_decode(gen,skip_special_tokens=True)
                   for i,d in zip(idx,dec): tmp[i]=d
-                  if s%480==0: print(teil,s,len(liste),round(time.time()-t0),"s",flush=True)
+                  if s%320==0: print(teil,s,len(liste),round(time.time()-t0),"s",flush=True)
               out[teil]=tmp
           json.dump(out,open("mt/mt-out.json","w"),ensure_ascii=False)
           PY
