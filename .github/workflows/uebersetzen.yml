@@ -1,0 +1,48 @@
+name: 4 · Texte maschinell übersetzen (DE → EN)
+# Übersetzt mt/mt-in.json auf dem Zweig, mit dem der Lauf gestartet wurde, und legt mt/mt-out.json dort ab.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  uebersetzen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Pakete
+        run: |
+          pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet transformers sentencepiece sacremoses
+      - name: Übersetzen
+        run: |
+          python - <<'PY'
+          import json, time, torch
+          from transformers import MarianMTModel, MarianTokenizer
+          torch.set_num_threads(4)
+          name="Helsinki-NLP/opus-mt-de-en"
+          tok=MarianTokenizer.from_pretrained(name); mod=MarianMTModel.from_pretrained(name).eval()
+          inp=json.load(open("mt/mt-in.json"))
+          out={}
+          t0=time.time()
+          for teil,liste in inp.items():
+              res=[]
+              order=sorted(range(len(liste)),key=lambda i:len(liste[i]))
+              tmp=[None]*len(liste)
+              for s in range(0,len(order),24):
+                  idx=order[s:s+24]; batch=[liste[i] for i in idx]
+                  enc=tok(batch,return_tensors="pt",padding=True,truncation=True,max_length=400)
+                  with torch.no_grad(): gen=mod.generate(**enc,num_beams=4,max_new_tokens=400)
+                  dec=tok.batch_decode(gen,skip_special_tokens=True)
+                  for i,d in zip(idx,dec): tmp[i]=d
+                  if s%480==0: print(teil,s,len(liste),round(time.time()-t0),"s",flush=True)
+              out[teil]=tmp
+          json.dump(out,open("mt/mt-out.json","w"),ensure_ascii=False)
+          PY
+      - name: Ergebnis sichern
+        run: |
+          git config user.name "github-actions"; git config user.email "actions@github.com"
+          git add mt/mt-out.json && git commit -q -m "Maschinelle Übersetzung" && git push -q
