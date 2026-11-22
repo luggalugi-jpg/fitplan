@@ -12,7 +12,7 @@ window.HILFE = {
        "Öffne <b>Mehr → Ziele & Nährwerte</b> und wähle dein Ziel, z. B. Abnehmen oder Muskelaufbau. Die App rechnet daraus deine Kalorien und dein Eiweiß pro Tag aus.",
        "Unter <b>Training</b> suchst du dir einen Trainingsplan aus, unter <b>Planen</b> füllst du deine Essenswoche.",
        "Im Bereich <b>Heute</b> trägst du ein, was du isst. Fertig!" ] },
-     { h: "So ist die App aufgebaut", p: "Unten findest du fünf Bereiche: <b>Heute</b> (Essen eintragen), <b>Planen</b> (Essenswoche, Einkauf, Rezepte), <b>Training</b> (Kraft und Laufen), <b>Fortschritt</b> (Gewicht und Auswertung) und <b>Mehr</b> (Einstellungen). Du kannst auch nach links und rechts wischen, um zwischen den Bereichen zu wechseln." },
+     { h: "So ist die App aufgebaut", p: "Unten findest du vier Bereiche: <b>Heute</b> (Essen eintragen), <b>Training</b> (Kraft und Laufen), <b>Planen</b> (Essenswoche, Einkauf, Rezepte) und <b>Fortschritt</b> (Gewicht, Level, Rangliste und Auswertung). Die Einstellungen unter <b>Mehr</b> öffnest du über das Personen-Symbol oben rechts. Du kannst auch nach links und rechts wischen, um zwischen den Bereichen zu wechseln." },
      { h: "Deine Daten", p: "Alles, was du einträgst, bleibt auf deinem Handy. Du brauchst kein Konto. Nur wenn du selbst die Rangliste oder die Cloud-Sicherung einschaltest, wird etwas an unseren Server geschickt." } ],
     tipps: [ "Fenster, die von unten hochkommen, schließt du, indem du sie nach unten wischst – oder mit dem Knopf Abbrechen.", "Die App funktioniert auch ohne Internet. Nur Barcode-Suche, Foto-Analyse, Rangliste und Cloud brauchen eine Verbindung.",
       "Oben im Bereich findest du ein <b>?</b> – es öffnet direkt die passende Anleitung." ] },

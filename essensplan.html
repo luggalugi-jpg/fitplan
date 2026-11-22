@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<script src="i18n.js?v=3.75"></script>
+<script src="i18n.js?v=3.76"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111317">
 <title>GainPilot</title>
@@ -355,6 +355,75 @@ small{line-height:1.4}
 .swb.on{background:var(--brand)}.swb.on::after{left:25px}
 .vs button,.satz .chkc.on{color:var(--on)}
 @media (max-width:360px){.satz{gap:4px}.satz .sn{min-width:38px;font-size:13px}.satz input.n{width:54px}.satz i{min-width:20px;font-size:12px}}
+/* 3.76 ruhiges Design: weniger Rahmen, eine Hauptsache pro Seite */
+.card,.athk,.smk{border-color:transparent}
+.ph{margin:14px 2px 18px}
+.ph h1{font-size:30px;letter-spacing:-.8px}
+.tl2{display:flex;flex-direction:column;gap:2px;min-width:0}
+.dlab{border:0;background:none;padding:0;color:var(--mut);font:inherit;font-size:14px;text-align:left;cursor:pointer}
+.hq.pf{display:grid;place-items:center;color:var(--txt);width:40px;height:40px;flex-basis:40px}
+.hq.pf svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
+.hq{background:transparent}
+.sub{background:none;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:0;gap:22px}
+.sub button{flex:0 0 auto;border-radius:0;padding:10px 0;font-size:15px;font-weight:500;border-bottom:2px solid transparent}
+.sub button.on{background:none;color:var(--txt);font-weight:650;border-bottom-color:var(--brand)}
+.wkpick{background:none;border:0;padding:0 0 4px}
+.wkpick .nav{background:transparent}
+.days button{border:0;background:none;border-radius:99px;min-width:40px}
+.days button.on{background:var(--brand)}
+.days button.td:not(.on){box-shadow:inset 0 0 0 2px var(--brand)}
+.hero2{margin:4px 0 22px}
+.nxt{background:var(--card);border-radius:20px;padding:18px;margin:0 0 18px;display:flex;flex-direction:column;gap:4px}
+.nxt .r{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--mut);margin-bottom:6px}
+.nxt .ey{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand)}
+.nxt>b{font-size:20px;font-weight:650;letter-spacing:-.2px;line-height:1.25}
+.nxt>small{color:var(--mut);font-size:14px}
+.nxt .r2{display:flex;gap:10px;margin-top:12px}.nxt .r2 .btn{margin:0;border-radius:99px}.nxt .r2 .btn:first-child{flex:1}.nxt .r2 .btn.g{flex:none;padding-left:20px;padding-right:20px}
+.list2{margin:0 0 18px}
+.list2 .mrow{padding:12px 0}.list2 .mrow+.mrow{border-top-color:#1F232A}
+.kc{color:var(--mut);font-size:13px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.chkc{width:28px;height:28px}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 12px}
+.tile{position:relative;background:var(--card);border-radius:16px;display:flex}
+.tile .tm{flex:1;min-width:0;display:flex;align-items:center;gap:12px;border:0;background:none;color:var(--txt);font:inherit;text-align:left;padding:12px 14px;min-height:60px;cursor:pointer}
+.tile .tm b{display:block;font-size:14px}.tile .tm small{display:block;color:var(--mut);font-size:12px}
+.tile .ti svg{width:20px;height:20px;stroke:var(--brand);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block}
+.tile .ti.w svg{stroke:var(--cyan)}
+.tile .tx{border:0;background:none;color:var(--mut);font-size:18px;width:40px;flex:none;cursor:pointer;font-family:inherit}
+.fab{width:56px;height:56px;padding:0;justify-content:center;background:var(--txt);right:20px;bottom:calc(88px + env(safe-area-inset-bottom))}
+.fab svg{width:24px;height:24px}
+nav{background:var(--bg);border-top-color:#1F232A}
+.wkc{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin:0 0 16px}
+.wkc button{border:0;background:none;color:var(--txt);font:inherit;display:flex;flex-direction:column;align-items:center;gap:6px;padding:2px 0;cursor:pointer}
+.wkc small{font-size:12px;color:var(--mut)}
+.wkc span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:600;box-shadow:inset 0 0 0 1px var(--line)}
+.wkc span svg{width:15px;height:15px;stroke:var(--on);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.wkc .ok span{background:var(--brand);box-shadow:none;color:var(--on)}
+.wkc .pl:not(.ok) span{box-shadow:inset 0 0 0 1px var(--mut)}
+.wkc .on span{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--txt)}
+.wkc .td small{color:var(--brand);font-weight:700}
+.chips2{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 12px}
+.chips2 button{border:1px solid var(--line);background:none;color:var(--txt);border-radius:99px;padding:0 16px;min-height:44px;font:inherit;font-size:14px;cursor:pointer}
+.nxt .bar{height:6px}
+.tile.wide{width:100%;border:0;color:var(--txt);font:inherit;text-align:left;align-items:center;gap:14px;padding:14px 16px;margin:4px 0 14px;cursor:pointer}
+.tile.wide .t{flex:1;min-width:0}.tile.wide b{display:block;font-size:15px}.tile.wide small{display:block;color:var(--mut);font-size:13px}
+.ti.g{width:36px;height:36px;border-radius:50%;background:var(--grad);display:grid;place-items:center;flex:none}
+.ti.g svg{width:18px;height:18px;stroke:var(--on);fill:none;stroke-width:2;stroke-linejoin:round}
+.chev{color:var(--mut);font-size:20px}
+.dayr{width:100%;border:0;background:none;color:var(--txt);font:inherit;text-align:left;cursor:pointer;gap:16px}
+.dayr .dl{width:34px;display:flex;flex-direction:column;line-height:1.2}.dayr .dl small{font-size:12px;color:var(--mut)}.dayr .dl b{font-size:17px}
+.dayr .dl.td small{color:var(--brand);font-weight:700}
+.dayr .t b{font-weight:500;font-size:14px;margin-bottom:8px}.dayr .bar{display:block;height:4px;margin:0}
+.wbig{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:0 2px 14px}
+.wbig small{display:block;color:var(--mut);font-size:13px}
+.wbig b{font-size:40px;font-weight:750;letter-spacing:-1.2px;line-height:1.05;font-variant-numeric:tabular-nums}.wbig b span{font-size:18px;font-weight:500;color:var(--mut);letter-spacing:0}
+.wbig .wd{text-align:right;color:var(--brand);font-weight:650;font-size:14px;padding-bottom:4px}.wbig .wd small{font-weight:500;margin-top:2px}
+.grp{background:var(--card);border-radius:20px;padding:4px 14px;margin:0 0 12px}
+.grp .athk{background:none;border:0;border-radius:0;margin:0;padding:12px 0}
+.grp .athk+.athk{border-top:1px solid #23272E}
+.btn,.add,.bar i{background:var(--brand)}
+.mx .bar{height:4px}
+.ok.pl{background:var(--txt);color:var(--on);border-radius:99px;font-weight:650;min-height:40px;padding:0 14px}
 </style>
 </head>
 <body>
@@ -362,10 +431,9 @@ small{line-height:1.4}
 <main id="app"></main>
 <nav>
 <button data-t="eat" class="on"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.2"/></svg></span>Heute</button>
-<button data-t="plan"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>Planen</button>
 <button data-t="fit"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 7v10M17.5 7v10M3.5 9.5v5M20.5 9.5v5M6.5 12h11"/></svg></span>Training</button>
+<button data-t="plan"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>Planen</button>
 <button data-t="prog"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 18.5 9 12l4 3.5 7.5-9"/><path d="M15 6.5h5.5V12"/></svg></span>Fortschritt</button>
-<button data-t="more"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="18.5" cy="12" r="1.3"/></svg></span>Mehr</button>
 </nav>
 <script src="rezepte.js"></script>
 <script src="trainingssysteme.js"></script>
@@ -460,7 +528,7 @@ if(typeof RDB!=="undefined"&&typeof FOODS_NEU!=="undefined")(function(){
   if(dup)return;FOODS.push({n:a[0],k:a[1],p:a[2],h:a[3],f:a[4],g:a[5]});bases.push(w);});
 })();
 const fitsSlot=(m,s)=>m.c==s||(m.x&&m.x.indexOf(s)>=0);
-const PUBLIC_V="3.75";
+const PUBLIC_V="3.76";
 /* Anbieter für Impressum und Datenschutz – vor der Veröffentlichung ausfüllen */
 const ANBIETER={name:"Luca Preikschas",anschrift:"Herzog-Wilhelm-Str. 32, 94572 Schöfweg",mail:"gainpilot.app@gmail.com"};
 const RECHT={"ds": "<h2>Datenschutzerklärung</h2>\n<p><b>Stand:</b> 18. November 2026</p>\n<h3>1. Verantwortlicher</h3>\n<p>{name}<br>{anschrift}<br>E-Mail: {mail}</p>\n<h3>2. Grundsatz: Deine Daten bleiben auf deinem Gerät</h3>\n<p>GainPilot funktioniert ohne Benutzerkonto und ohne eigenen Server. Alles, was du einträgst – Essensplan, Mahlzeiten, Gewicht, Trainings, Läufe, Supplements, Ziele und Einstellungen – wird ausschließlich lokal im Speicher der App auf deinem Gerät abgelegt. Wir erhalten diese Daten nicht und können sie nicht einsehen. Ausnahmen sind die freiwillige Rangliste, das freiwillige Konto mit Cloud-Sicherung und ein freiwilliges Premium-Abo (Abschnitt 3).</p>\n<p>Die App enthält keine Werbung, keine Analyse- oder Tracking-Werkzeuge und gibt keine Daten zu Werbezwecken weiter.</p>\n<p>Angaben wie Körpergewicht, Ernährung und Trainingsdaten können Gesundheitsdaten sein. Sie werden nur auf deinem Gerät verarbeitet, um dir die Funktionen der App bereitzustellen.</p>\n<h3>3. Funktionen mit Internetverbindung</h3>\n<p>Nur die folgenden Funktionen nehmen Verbindung zu Diensten Dritter auf, und zwar nur, wenn du sie selbst auslöst:</p>\n<p><b>Foto-Analyse (optional):</b> Wenn du unter „Foto-Analyse“ einen eigenen Schlüssel für die Google Gemini API hinterlegst und ein Foto analysieren lässt, wird das Foto zusammen mit einer Anweisung direkt von deinem Gerät an Google gesendet (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Verarbeitung auch in den USA möglich). Google verarbeitet die Daten nach den Bedingungen, die du mit Google für deinen Schlüssel vereinbart hast. Dein Schlüssel wird nur auf deinem Gerät gespeichert und nicht in Sicherungsdateien übernommen. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO), die du jederzeit widerrufen kannst, indem du den Schlüssel löschst.</p>\n<p><b>Barcode-Suche:</b> Wenn du einen Barcode scannst oder eingibst, wird die Produktnummer an Open Food Facts gesendet (Open Food Facts, 21 rue des Iles, 94100 Saint-Maur-des-Fossés, Frankreich), um Nährwerte abzurufen. Dabei wird technisch bedingt deine IP-Adresse übertragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir gewünschten Funktion).</p>\n<p><b>Webversion:</b> Wenn du die App im Browser nutzt, wird sie über GitHub Pages ausgeliefert (GitHub B.V., Niederlande / GitHub, Inc., USA). Dabei verarbeitet GitHub technisch notwendige Zugriffsdaten wie die IP-Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (sichere Bereitstellung der Webseite).</p><p><b>Rangliste (freiwillig):</b> Nur wenn du unter „Rangliste“ ausdrücklich einwilligst, überträgt die App Daten an unseren Server: eine zufällige Nutzerkennung (ohne E-Mail-Adresse oder Klarnamen), deinen Spitznamen und Avatar, je Trainingstag die Zahl erledigter Übungen und ob das geplante Training komplett war, deine Trainings-Serie, deinen besten Satz je Übung (Gewicht, Wiederholungen und das daraus geschätzte Maximalgewicht), deinen schnellsten Lauf ab 3 km der letzten 60 Tage (Datum, Distanz und Dauer), die Ergebnisse gewerteter Pausenspiele mit Start- und Endzeit sowie die Freundesgruppen, die du erstellst oder denen du beitrittst. Wenn du unter „Freunde“ dein Studio festlegst, wird dein aktueller Standort einmalig an den Server geschickt, nur um Studios in der Nähe zu finden – er wird dabei nicht gespeichert. Gespeichert werden der Name und der Ort des Studios (auf etwa 10 m gerundet) sowie dass du dort trainierst und wann du es zuletzt gewechselt hast. Freiwillig kommen Geschlecht, Altersgruppe und Körpergewicht hinzu, damit du nur mit ähnlichen Personen verglichen wirst. Daraus werden Kraft- und Lauf-Wertung, die monatliche Spiele-Saison, das Gesamt-Rating und die Monatsliga berechnet. Andere Teilnehmer sehen deinen Spitznamen und Avatar zusammen mit deinen Wertungspunkten (Kraft, Lauf, Spiele, Gesamt) und Platzierungen in den Ranglisten sowie deine Punkte in deiner Liga-Gruppe. Mitglieder deiner Freundesgruppen und alle, die dasselbe Studio festgelegt haben, sehen zusätzlich deine Liga-Stufe und Monatspunkte. Den Ort des Studios sehen andere nicht, nur seinen Namen und – bei der Auswahl vor Ort – die ungefähre Entfernung. Einzelne Gewichte, Laufzeiten oder Spielergebnisse sehen andere nicht. Geschlecht, Altersgruppe und Körpergewicht sehen andere nicht. Auffällige Werte und Meldungen anderer Teilnehmer werden gespeichert, um Missbrauch zu prüfen. Der Server wird von Supabase Pte. Ltd. (65 Chulia Street #38-02/03, OCBC Centre, Singapur 049513) als Auftragsverarbeiter betrieben, das Rechenzentrum steht in Paris (EU). Soweit Supabase von außerhalb der EU auf Daten zugreift, geschieht das auf Grundlage der EU-Standardvertragsklauseln. Rechtsgrundlage ist deine ausdrückliche Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO). Du kannst sie jederzeit widerrufen, indem du unter „Daten &amp; Sicherung“ die Teilnahme beendest – dann werden alle Ranglisten-Daten auf dem Server sofort gelöscht.</p><p><b>Konto und Cloud-Sicherung (freiwillig):</b> Wenn du unter „Konto &amp; Cloud“ ein Konto erstellst, speichern wir deine E-Mail-Adresse und dein Passwort (nur als verschlüsselter Hash) auf unserem Server, um dich anzumelden, dir Bestätigungs- und Passwort-Links zu schicken und dein Konto zu schützen. Für den Versand dieser E-Mails setzen wir einen E-Mail-Dienstleister als Auftragsverarbeiter ein. Schaltest du die Cloud-Sicherung ein, wird eine komprimierte Kopie aller App-Daten – einschließlich Gesundheitsdaten wie Gewicht, Ernährung und Training, aber ohne den Schlüssel für die Foto-Analyse – übertragen und gespeichert. Sie wird bei jeder neuen Sicherung ersetzt. Server, Auftragsverarbeiter und Standardvertragsklauseln sind dieselben wie bei der Rangliste (Supabase, Rechenzentrum in Paris). Rechtsgrundlage für das Konto ist Art. 6 Abs. 1 lit. b DSGVO (von dir gewünschte Funktion), für die Cloud-Sicherung deine ausdrückliche Einwilligung (Art. 6 Abs. 1 lit. a, Art. 9 Abs. 2 lit. a DSGVO). Du kannst die Cloud-Sicherung jederzeit ausschalten und löschen oder unter „Konto &amp; Cloud“ dein Konto löschen – dann werden Konto, Sicherung und Ranglisten-Daten auf dem Server sofort gelöscht.</p>\n<p><b>Premium-Abo (In-App-Kauf, freiwillig):</b> Wenn du in der App aus dem Play Store oder App Store ein Premium-Abo abschließt, wickeln ausschließlich Google (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) bzw. Apple (Apple Distribution International Ltd., Hollyhill Industrial Estate, Hollyhill, Cork, Irland) die Zahlung in eigener Verantwortung ab; wir erhalten keine Zahlungs- oder Kontodaten. Zur Verwaltung des Abos – Prüfung, ob Premium aktiv ist, Verlängerung und Wiederherstellen von Käufen – nutzen wir RevenueCat, Inc. (1032 E Brandon Blvd #3003, Brandon, FL 33511, USA) als Auftragsverarbeiter. Dabei werden eine zufällige App-Nutzerkennung (nimmst du an der Rangliste teil oder hast ein Konto, deine Server-Kennung), Kauf- und Transaktionsdaten (Produkt, Kauf- und Ablaufdatum, Preis, Währung, Store-Land), technische Angaben wie Betriebssystem und App-Version sowie die IP-Adresse verarbeitet. Die Verarbeitung findet in den USA statt; Grundlage der Übermittlung sind die EU-Standardvertragsklauseln. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Erfüllung des Abo-Vertrags), für gesetzliche Aufbewahrungspflichten Art. 6 Abs. 1 lit. c DSGVO. Ob Premium aktiv ist, speichert die App zusätzlich lokal auf deinem Gerät. Nimmst du an der Rangliste teil, speichert der Server zusätzlich, ob bei dir Premium aktiv ist – das bestimmt, wie viele Personen deine eigenen Freundesgruppen aufnehmen können. In der Webversion gibt es keine Käufe und keine Übertragung an RevenueCat.</p>\n<h3>4. Berechtigungen</h3>\n<p><b>Kamera:</b> nur zum Scannen von Barcodes und für Fotos zur Foto-Analyse, jeweils erst wenn du die Funktion startest. <b>Benachrichtigungen:</b> nur für lokale Erinnerungen, die du selbst einschaltest (Ende der Satzpause, Training, Wasser, Mahlzeiten); sie werden auf dem Gerät erzeugt, nicht über einen Server. <b>Standort:</b> nur, damit die Pausenspiele in deinem Gym freigeschaltet werden – beim Speichern eines Gyms und wenn du ein Spiel startest. Der Standort wird ausschließlich auf deinem Gerät mit den gespeicherten Gym-Koordinaten verglichen und nicht an uns oder Dritte übertragen. Gespeichert werden nur die Koordinaten deiner Gyms, auf dem Gerät und in Sicherungsdateien, die du selbst erstellst.</p>\n<h3>5. Sicherungen und Diagnoseprotokoll</h3>\n<p>Sicherungsdateien und das Diagnoseprotokoll entstehen nur, wenn du sie selbst erstellst. Wohin du sie speicherst oder sendest, entscheidest du. Das Diagnoseprotokoll enthält technische Angaben zur Fehlersuche (z. B. App-Version, Gerätetyp, Fehlermeldungen) und bleibt auf deinem Gerät, bis du es teilst.</p>\n<h3>6. Speicherdauer und Löschung</h3>\n<p>Die Daten bleiben gespeichert, bis du sie in der App unter „Daten & Sicherung“ löschst oder die App deinstallierst. Ranglisten-Daten auf dem Server werden gelöscht, sobald du die Teilnahme beendest; Konto und Cloud-Sicherung, sobald du das Konto löschst. Abo-Daten bei RevenueCat werden gelöscht, sobald sie für die Abo-Verwaltung und gesetzliche Aufbewahrungspflichten nicht mehr nötig sind. Hast du die App ohne Beenden der Teilnahme gelöscht, schreib uns eine E-Mail mit deinem Spitznamen, dann löschen wir sie.</p>\n<h3>7. Deine Rechte</h3>\n<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch und Widerruf erteilter Einwilligungen (Art. 15–21 DSGVO). Da wir deine App-Daten nicht speichern, kannst du die meisten Rechte direkt in der App ausüben. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der Behörde deines Wohnorts.</p>\n<h3>8. Kinder</h3>\n<p>Die App richtet sich nicht an Kinder unter 16 Jahren.</p>\n<h3>9. Änderungen</h3>\n<p>Wir passen diese Erklärung an, wenn sich die App oder die Rechtslage ändert. Es gilt die jeweils in der App veröffentlichte Fassung.</p>", "imp": "<h2>Impressum</h2>\n<p>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</p>\n<p>{name}<br>{anschrift}</p>\n<p><b>Kontakt:</b> E-Mail: {mail}</p>\n<p><b>Verantwortlich für den Inhalt:</b> {name}, Anschrift wie oben</p>", "ges": "<h2>Gesundheitshinweis</h2>\n<p>GainPilot ist ein Hilfsmittel zur Planung von Ernährung und Training. Die App ist kein Medizinprodukt und ersetzt keine ärztliche, ernährungsmedizinische oder sportmedizinische Beratung.</p>\n<p>Kalorienbedarf, Nährwerte, Portionsgrößen, Supplementmengen, Trainings- und Laufpläne sind Richtwerte und Vorlagen. Sie berücksichtigen keine Erkrankungen, Medikamente, Schwangerschaft oder individuelle Belastbarkeit. Die Bedarfsberechnung ist eine Schätzung (Mifflin-St.-Jeor-Formel). Foto-Analysen und Produktdaten aus Open Food Facts können ungenau sein.</p>\n<p>Sprich vor einer deutlichen Ernährungsumstellung, vor Nahrungsergänzungsmitteln und vor dem Beginn eines intensiven Trainings mit einer Ärztin oder einem Arzt, besonders bei Vorerkrankungen. Brich das Training bei Schmerzen, Schwindel oder Atemnot ab.</p>", "liz": "<h2>Quellen und Lizenzen</h2>\n<p><b>Produktdaten:</b> Barcode-Suche mit Daten von <a href=\"https://world.openfoodfacts.org\">Open Food Facts</a>. Die Datenbank steht unter der Open Database License (ODbL), die Inhalte unter der Database Contents License.</p>\n<p><b>Foto-Analyse:</b> Google Gemini API, nur mit deinem eigenen Schlüssel.</p>\n<p><b>Rezepte, Lebensmittel, Übungen, Trainings- und Laufpläne:</b> eigene Zusammenstellung für GainPilot. Die Nährwerte sind aus den Zutaten berechnet.</p>\n<p><b>Spiele:</b> „Blocksturz“ und die übrigen Pausenspiele sind eigene Umsetzungen.</p>", "nb": "<h2>Nutzungsbedingungen</h2>\n<p><b>Stand:</b> 13. November 2026</p>\n<h3>1. Anbieter und Geltung</h3>\n<p>GainPilot wird angeboten von {name}, {anschrift}, E-Mail: {mail}. Diese Bedingungen gelten für die Nutzung von GainPilot als Web-App und als App aus Google Play und dem Apple App Store.</p>\n<h3>2. Leistungen</h3>\n<p>Die Grundfunktionen von GainPilot sind kostenlos. Zusätzliche Funktionen gibt es mit einem freiwilligen Premium-Abo (Abschnitt 3). Welche Funktionen kostenlos sind und welche zu Premium gehören, steht in der App unter „Mehr → Premium“ und auf der Bezahlseite.</p>\n<p>Pläne, Anleitungen, Nährwerte und Auswertungen sind allgemeine Informationen und ersetzen keine ärztliche oder ernährungsfachliche Beratung; es gilt der Gesundheitshinweis. Online-Funktionen wie Rangliste, Konto, Cloud-Sicherung und Barcode-Suche brauchen eine Internetverbindung und Dienste Dritter; eine ständige Verfügbarkeit können wir nicht zusagen. Funktionen können weiterentwickelt, geändert oder eingestellt werden; Premium-Funktionen werden während einer bezahlten Laufzeit nicht ohne gleichwertigen Ersatz eingeschränkt.</p>\n<h3>3. Premium-Abo</h3>\n<p><b>Laufzeiten und Preise:</b> Premium gibt es als Abo mit monatlicher oder jährlicher Laufzeit und gegebenenfalls als einmaligen Kauf ohne Laufzeit. Der Preis und die Laufzeit werden vor dem Kauf im Store angezeigt; es gilt der dort angezeigte Preis.</p>\n<p><b>Kauf und Zahlung:</b> Kauf, Zahlung und Rechnung laufen ausschließlich über Google Play bzw. den Apple App Store. Dafür gelten zusätzlich die Bedingungen des jeweiligen Stores.</p>\n<p><b>Testphase:</b> Wird eine kostenlose Testphase angeboten, ist sie für die angezeigte Dauer kostenlos. Kündigst du nicht spätestens 24 Stunden vor ihrem Ende, geht sie automatisch in das gewählte kostenpflichtige Abo über. Eine Testphase gibt es je Person und Store nur einmal.</p>\n<p><b>Automatische Verlängerung und Kündigung:</b> Das Abo verlängert sich automatisch um die gleiche Laufzeit, wenn es nicht spätestens 24 Stunden vor Ablauf gekündigt wird. Kündigen kannst du jederzeit in den Abo-Einstellungen deines Google-Play-Kontos bzw. deiner Apple-ID; das Löschen der App beendet das Abo nicht. Nach einer Kündigung bleibt Premium bis zum Ende der bezahlten Laufzeit aktiv.</p>\n<p><b>Erstattungen und Widerruf:</b> Erstattungen und ein gesetzliches Widerrufsrecht richten sich nach den Regeln des Stores, über den du gekauft hast.</p>\n<p><b>Preisänderungen:</b> Preisänderungen für laufende Abos werden über den Store angekündigt und gelten nach dessen Regeln frühestens für die nächste Laufzeit.</p>\n<p><b>Ende von Premium:</b> Endet Premium, bleiben deine Daten erhalten; Premium-Funktionen sind dann wieder gesperrt.</p>\n<p><b>Käufe wiederherstellen:</b> Auf einem neuen Gerät stellst du Premium über „Käufe wiederherstellen“ mit demselben Store-Konto wieder her.</p>\n<h3>4. Gratis-Premium für Einladungen</h3>\n<p>Bieten wir für das Einladen von Freunden kostenlose Premium-Zeit an, gelten die dabei angezeigten Bedingungen. Ein Anspruch darauf besteht nicht. Bei Missbrauch, etwa mit Scheinkonten, können Gutschriften verweigert oder entzogen werden.</p>\n<h3>5. Rangliste und Gruppen</h3>\n<p>Die Teilnahme an Rangliste und Freundesgruppen ist freiwillig. Spitznamen und Gruppennamen dürfen niemanden beleidigen, keine fremden Rechte verletzen und keine echten Namen anderer Personen enthalten. Ergebnisse müssen ehrlich zustande kommen. Bei Verstößen können Einträge entfernt und Teilnehmer ausgeschlossen werden.</p>\n<h3>6. Haftung</h3>\n<p>Wir haften unbeschränkt bei Vorsatz und grober Fahrlässigkeit, bei Verletzung von Leben, Körper oder Gesundheit sowie nach dem Produkthaftungsgesetz. Bei leichter Fahrlässigkeit haften wir nur bei Verletzung einer wesentlichen Vertragspflicht und begrenzt auf den vorhersehbaren, typischen Schaden. Für die kostenlosen Funktionen haften wir im Übrigen nur bei Vorsatz und grober Fahrlässigkeit. Für Datenverlust haften wir nur in dem Umfang, der bei regelmäßiger Datensicherung entstanden wäre – nutze dafür die Sicherung in der App.</p>\n<h3>7. Änderungen dieser Bedingungen</h3>\n<p>Wir können diese Bedingungen ändern, etwa wenn sich die App oder die Rechtslage ändert. Wesentliche Änderungen teilen wir in der App mit. Für laufende Abos gelten Änderungen, die dich benachteiligen, frühestens ab der nächsten Laufzeit.</p>\n<h3>8. Schlussbestimmungen</h3>\n<p>Es gilt deutsches Recht. Ist dein gewöhnlicher Aufenthalt in einem anderen Staat der EU, bleiben dir die zwingenden Verbraucherschutzvorschriften dieses Staates erhalten. Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Sollte eine Bestimmung unwirksam sein, bleiben die übrigen wirksam.</p>"};
@@ -742,10 +810,15 @@ var swipeRichtung=0;let lastView="";
 const TITEL={plan:"Planen",fit:"Training",prog:"Fortschritt",more:"Mehr"};
 const MEHR=[["profil","Profil & Gewicht","👤"],["ziele","Ziele & Nährwerte","🎯"],["training","Training & Pausen","⏱"],["erinnerung","Erinnerungen","🔔"],["sprache","Sprache · Language","🌐"],["hilfe","Anleitung","📖"],["premium","Premium","✨"],["konto","Konto & Cloud","☁️"],["ki","Foto-Analyse","📷"],["daten","Daten & Sicherung","💾"],["info","Über die App","ℹ️"],["recht","Rechtliches","§"]];
 function kopf(){
- if(tab=="eat")return "";
+ const pf=`<button class="hq pf" aria-label="Profil und Einstellungen" onclick="mehrOeffnen()">${PF_SVG}</button>`;
+ if(tab=="eat"){const d=dateOf(S.wk,S.day),h=dISO(S.wk,S.day)==todayISO();
+  return `<div class="ph"><div class="tl2"><button class="dlab" aria-expanded="${!!S.eatCal}" onclick="S.eatCal=!S.eatCal;render()">${d.toLocaleDateString(GP_LOC,h?{weekday:"long",day:"numeric",month:"long"}:{day:"numeric",month:"long",year:"numeric"})} <span aria-hidden="true">▾</span></button><h1>${h?"Heute":d.toLocaleDateString(GP_LOC,{weekday:"long"})}</h1></div><div class="phr">${h?"":'<button class="ok" onclick="S.eatCal=false;goToday()">Heute</button>'}${pf}</div></div>`;}
  if(tab=="more"&&S.mtab){const e=MEHR.find(x=>x[0]==S.mtab);return `<div class="ph"><div class="tl"><button class="back" aria-label="Zurück zu Mehr" onclick="S.mtab=null;render()">‹</button><h1 style="font-size:22px">${e?e[1]:"Mehr"}</h1></div></div>`;}
- const r=tab=="fit"?`<div class="seg2" role="tablist"><button class="${S.tmode!="lauf"?"on":""}" onclick="S.tmode='kraft';save();render()">Kraft</button><button class="${S.tmode=="lauf"?"on":""}" onclick="S.tmode='lauf';save();render()">Laufen</button></div>`:"";
- return `<div class="ph"><h1>${TITEL[tab]}</h1><div class="phr">${r}<button class="hq" aria-label="Anleitung zu diesem Bereich" onclick="hilfeZeigen(hilfeKontext())">?</button></div></div>`;}
+ if(tab=="more")return `<div class="ph"><div class="tl"><button class="back" aria-label="Zurück" onclick="tabWechsel(S.vorMehr&&S.vorMehr!='more'?S.vorMehr:'eat')">‹</button><h1>Mehr</h1></div><div class="phr"><button class="hq" aria-label="Anleitung" onclick="hilfeZeigen(hilfeKontext())">?</button></div></div>`;
+ const r=tab=="prog"?`<button class="ok pl" onclick="wSheet()">+ Gewicht</button>`:tab=="fit"?`<div class="seg2" role="tablist"><button class="${S.tmode!="lauf"?"on":""}" onclick="S.tmode='kraft';save();render()">Kraft</button><button class="${S.tmode=="lauf"?"on":""}" onclick="S.tmode='lauf';save();render()">Laufen</button></div>`:"";
+ return `<div class="ph"><h1>${TITEL[tab]}</h1><div class="phr">${r}${tab=="fit"?"":`<button class="hq" aria-label="Anleitung zu diesem Bereich" onclick="hilfeZeigen(hilfeKontext())">?</button>`}${pf}</div></div>`;}
+const PF_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c1.2-3.5 3.8-5 7-5s5.8 1.5 7 5"/></svg>';
+function mehrOeffnen(){if(tab!="more")S.vorMehr=tab;S.mtab=null;tabWechsel("more");}
 function render(){
  document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.t==tab));
  let h;
@@ -753,7 +826,7 @@ function render(){
   h+={plan:viewPlan,shop:viewShop,meals:viewMeals}[sub.plan]();}
  else if(tab=="fit"){if(!S.wkLock){S.wk=weekOf(0);S.day=dayIndex(new Date());}
   h=viewTrain();}
- else if(tab=="prog"){h=subTabs([["weight","Gewicht"],["ana","Analyse"],["week","Wochen"]]);h+={weight:viewWeight,ana:viewAnalyse,week:viewWeek}[sub.prog]();}
+ else if(tab=="prog"){h=sub.prog=="weight"?"":`<button class="lnk" style="margin:0 0 8px" onclick="sub.prog='weight';render()">‹ Fortschritt</button>`;h+={weight:viewWeight,ana:viewAnalyse,week:viewWeek}[sub.prog]();}
  else if(tab=="more"){h=viewSettings();}
  else{if(!S.wkLock){S.wk=weekOf(0);S.day=dayIndex(new Date());}
   h=viewEat();}
@@ -768,7 +841,8 @@ function render(){
 /* ---------- PLANEN ---------- */
 function viewPlan(){
  const wk=S.wk,d=S.day,t=totals(wk,d),key=pk(wk,d);
- let h=weekBar();
+ if(!S.planTag)return viewPlanWoche();
+ let h=`<button class="lnk" style="margin:0 0 8px" onclick="S.planTag=0;save();render()">‹ Ganze Woche</button>`+weekBar();
  let wk_k=0,wk_p=0;for(let q=0;q<7;q++){const x=totals(wk,q);wk_k+=x.k;wk_p+=x.p;}
  h+=`<div class="card"><div class="row" style="margin-top:0"><b style="font-size:16px">${fmtDay(wk,d)}</b><span>${nf(t.k)} von ${nf(S.kcal)} kcal</span></div>
  <div class="bar"><i class="${t.k>S.kcal*1.05?'over':''}" style="width:${Math.min(100,t.k/S.kcal*100)}%"></i></div>
@@ -785,8 +859,16 @@ function viewPlan(){
   h+=`<button class="addl" onclick="choose('${key}','${s}')">+ Gericht hinzufügen</button></div>`;
  });
  h+=planSuppKarte();
- h+=`<div class="card"><h4>Woche automatisch füllen</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">Aus deinen Zielen entsteht ein Vorschlag, den du danach anpasst.</small>
- <button class="btn" onclick="vorschlagSheet()">Wochenvorschlag …</button><button class="btn g" onclick="planWerkzeuge()">Kopieren & Ziele</button></div>`;
+ return h;
+}
+function viewPlanWoche(){
+ const wk=S.wk,heute=todayISO();
+ let h=`<div class="wkpick"><button class="nav" aria-label="Vorherige Woche" onclick="wkShift(-1)">‹</button><span>${fmtWeek(wk)}</span><button class="nav" aria-label="Nächste Woche" onclick="wkShift(1)">›</button></div>`;
+ h+=`<button class="tile wide" onclick="vorschlagSheet()"><span class="ti g"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/></svg></span><span class="t"><b>Woche automatisch füllen</b><small>Passend zu ${nf(S.kcal)} kcal und ${S.prot} g Eiweiß</small></span><span class="chev" aria-hidden="true">›</span></button>`;
+ h+=`<div class="list2">${DAYS.map((x,i)=>{const d=dISO(wk,i),n=entries(wk,i).length,t=totals(wk,i),pc=Math.min(100,t.k/S.kcal*100);
+  return `<button class="mrow dayr" onclick="S.day=${i};S.wkLock=true;S.planTag=1;save();render();scrollTo(0,0)"><span class="dl ${d==heute?'td':''}"><small>${DAYS[i]}</small><b>${+d.slice(8,10)}</b></span>
+  <span class="t"><b>${n?n+" "+(n==1?"Gericht":"Gerichte")+" · "+nf(t.k)+" kcal":"Noch nichts geplant"}</b><span class="bar"><i class="${t.k>S.kcal*1.05?'over':pc<90?'kh':''}" style="width:${n?pc:0}%"></i></span></span><span class="chev" aria-hidden="true">›</span></button>`;}).join("")}</div>`;
+ h+=`<button class="lnk" style="display:block;margin:4px auto 0" onclick="planWerkzeuge()">Kopieren & Ziele</button>`;
  return h;
 }
 function planSuppKarte(){const d=dISO(S.wk,S.day),pl=S.supp[d]||[];
@@ -1676,18 +1758,18 @@ function volOf(d,wk,i){ // Gesamtvolumen eines Tages in kg
 function viewTrain(){
  if(S.tmode=="lauf")return viewRun();
  let sub2=(S.tsub||"day");if(sub2=="weight"){S.tsub="day";sub2="day";}
+ if(sub2=="day")return tDay();
  const on=sub2=="lib"?"prog":sub2;
- let h=`<div class="sub">${[["day","Heute"],["plan","Woche"],["prog","Übungen"],["stdplan","Plan"]].map(([k,n])=>`<button class="${on==k?'on':''}" onclick="S.tsub='${k}';save();render()">${n}</button>`).join("")}</div>`;
- h+={day:tDay,plan:tPlan,stdplan:viewTrainPlan,prog:tProg,lib:tLib}[sub2]();
+ let h=`<button class="lnk" style="margin:0 0 8px" onclick="S.tsub='day';save();render()">‹ Training heute</button><div class="sub">${[["plan","Woche"],["prog","Übungen"],["stdplan","Plan"]].map(([k,n])=>`<button class="${on==k?'on':''}" onclick="S.tsub='${k}';save();render()">${n}</button>`).join("")}</div>`;
+ h+={plan:tPlan,stdplan:viewTrainPlan,prog:tProg,lib:tLib}[sub2]();
  return h;
 }
 function tBars(){
- const wk=S.wk;
- const days=DAYS.map((x,i)=>{const d=dISO(wk,i),t=S.train[wk+"|"+i]||[];
-  return `<button class="${i==S.day?'on':''} ${d==todayISO()?'td':''}" onclick="S.day=${i};S.wkLock=true;save();render()">${DAYS[i]}<small>${+d.slice(8,10)}</small>${t.length?'<i></i>':''}</button>`;}).join("");
- return `<div class="wkpick"><button class="nav" aria-label="Vorherige Woche" onclick="wkShift(-1)">‹</button><span>${tagLabel(wk,S.day)}${dISO(wk,S.day)==todayISO()?'':'<button class="heute" onclick="goToday()">Heute</button>'}</span><button class="nav" aria-label="Nächste Woche" onclick="wkShift(1)">›</button></div><div class="days">${days}</div>`;
+ const wk=S.wk,heute=todayISO();
+ const days=DAYS.map((x,i)=>{const d=dISO(wk,i),t=S.train[wk+"|"+i]||[],ok=Object.keys((S.sets||{})[d]||{}).some(n=>echteEinheit(d,n));
+  return `<button class="${i==S.day?'on':''} ${d==heute?'td':''} ${ok?'ok':''} ${t.length?'pl':''}" aria-label="${dateOf(wk,i).toLocaleDateString(GP_LOC,{weekday:"long",day:"numeric",month:"long"})}${ok?tr(", trainiert"):t.length?tr(", geplant"):""}" onclick="S.day=${i};S.wkLock=true;save();render()"><small>${DAYS[i]}</small><span>${ok?CHK:+d.slice(8,10)}</span></button>`;}).join("");
+ return `<div class="wkc">${days}</div>${dISO(wk,S.day)==heute?"":`<button class="lnk" style="margin:-6px 0 10px" onclick="goToday()">‹ Zurück zu heute</button>`}`;
 }
-
 /* ---------- Training: Vorbelegung, Rekorde, Pausentimer ---------- */
 const e1rm=(kg,reps)=>{kg=+kg||0;reps=+reps||0;return kg>0&&reps>0?kg*(1+Math.min(reps,30)/30):0;};
 function echteEinheit(d,n){ // wurde diese Übung an dem Tag wirklich trainiert (nicht nur geplant)?
@@ -2905,15 +2987,25 @@ function tDay(){
  const wk=S.wk,i=S.day,key=wk+"|"+i,d=dISO(wk,i);
  if(!S.train[key])S.train[key]=[];
  tagVorbereiten(d,key);
- const vol=volOf(d,wk,i);
+ const vol=volOf(d,wk,i),L=S.train[key]||[];
  let h=tBars();
- const fert=(S.train[key]||[]).filter(n=>prDone(d,n)).length;
- if(d==todayISO())h+=athKarte()+rlKarte()+serieZeile(trainSerie(),"Trainings in Folge")+deloadKarte();
- h+=`<div class="card"><div class="row" style="margin-top:0"><b style="font-size:16px">${(S.train[key]||[]).length?"Training":"Kein Training geplant"}</b><span class="badge">${fert} von ${(S.train[key]||[]).length} erledigt</span></div>
- ${(S.train[key]||[]).length?bar("",fert,(S.train[key]||[]).length,""):""}
- ${vol.kg||vol.reps?`<div class="row"><span>Volumen</span><span>${nf(vol.kg)} kg · ${vol.reps} Wiederholungen</span></div>`:""}</div>`;
- if(!(S.train[key]||[]).length)h+=`<div class="card"><div class="empty">Noch keine Übung. Wähle unten eine aus.</div></div>`;
- (S.train[key]||[]).forEach(n=>{
+ const fert=L.filter(n=>prDone(d,n)).length;
+ if(d==todayISO())h+=serieZeile(trainSerie(),"Trainings in Folge")+deloadKarte();
+ const los=L.length&&(S.tGo==d||fert>0||L.some(n=>((S.sets[d]||{})[n]||[]).some(x=>x.ok||x.u))||d<todayISO());
+ const saetze=L.reduce((a,n)=>a+(((S.sets[d]||{})[n]||[]).length),0);
+ if(!L.length){
+  h+=`<section class="nxt"><span class="ey">${d==todayISO()?"Heute":fmtDay(wk,i)}</span><b>Kein Training geplant</b><small>Setz eine Einheit aus deinem Plan ein oder wähl einzelne Übungen.</small>
+  <div class="r2">${einheiten().length?`<button class="btn" onclick="einheitWahl()">Einheit einsetzen</button>`:""}<button class="btn g" onclick="exSheet()">+ Übung</button></div></section>`;}
+ else if(!los){
+  h+=`<section class="nxt"><span class="ey">${d==todayISO()?"Heute":fmtDay(wk,i)}</span><b>Training</b><small>${L.length} Übungen · ${saetze} Sätze</small>
+  <div class="r2"><button class="btn" onclick="S.tGo='${d}';save();render()">▶ Training starten</button></div></section>`;
+  h+=`<div class="list2">${L.map((n,k)=>{const e=exById(n),st=(S.sets[d]||{})[n]||[],x=st[0];
+   return `<div class="mrow"><span class="kc" style="width:22px">${k+1}</span><div class="t"><b>${esc(e?e.n:n)}</b></div><span class="kc">${st.length?st.length+" × "+(x?satzText(n,x):""):""}</span></div>`;}).join("")}</div>`;}
+ else{
+  h+=`<section class="nxt"><div class="r"><span class="ey">${d==todayISO()?"Heute":fmtDay(wk,i)}</span><span>${fert} von ${L.length} erledigt</span></div>
+  <div class="bar" style="margin:6px 0 2px"><i style="width:${Math.round(fert/L.length*100)}%"></i></div>
+  ${vol.kg||vol.reps?`<small>Volumen: ${nf(vol.kg)} kg · ${vol.reps} Wiederholungen</small>`:""}</section>`;
+  L.forEach(n=>{
   const e=exById(n),sets=(S.sets[d]&&S.sets[d][n])||[];
   const lz=letzteSaetze(n,d),best0=bestesE1(n,d),jetzt=Math.max(0,...sets.map(x=>e1rm(x.kg,x.reps)));
   const rekord=best0>0&&jetzt>best0+0.05&&echteEinheit(d,n);
@@ -2934,18 +3026,19 @@ function tDay(){
   <div class="brow"><button class="btn g" onclick="setAdd('${d}','${jq(n)}')">+ Satz</button><button class="btn g" aria-label="Letzten Satz entfernen" onclick="setWeg('${d}','${jq(n)}')">− Satz</button>
   <button class="btn g" onclick="restStart(${ps})">⏱ ${fmtPause(ps)}</button>
   <button class="btn ${fertig?'':'g'}" onclick="prTick('${d}','${jq(n)}')">${fertig?"✓ Fertig":"Fertig"}</button></div></div>`;});
- h+=`<div class="card"><h4>Übung hinzufügen</h4><input class="n" id="exq" oninput="exSearch()" placeholder="Übung suchen, z. B. Kniebeugen"><div id="exres"></div>
- <div class="brow"><button class="btn g" onclick="exNewForm()">+ Eigene</button><button class="btn g" onclick="S.tsub='lib';save();render()">Alle Übungen</button></div><button class="btn g" onclick="gOpen()">🎮 Pausenspiele</button></div>
- <details class="card"><summary>Ganze Einheit einsetzen</summary><small style="display:block;color:var(--mut);margin:-4px 0 8px">Setzt eine fertige Einheit deiner Vorlage auf diesen Tag.</small>
- ${einheiten().map((e,ix)=>`<button class="btn g" onclick="loadSplit(splitName(),${ix})">${esc(e[0])}</button>`).join("")||"<small>Keine Vorlage gewählt.</small>"}</details>`;
- 
+ }
+ h+=`<div class="chips2">${L.length?`<button onclick="exSheet()">+ Übung</button>`:""}<button onclick="S.tsub='stdplan';save();render()">Plan wechseln</button><button onclick="S.tsub='prog';save();render()">Übungen</button><button onclick="S.tsub='plan';save();render()">Woche</button><button onclick="gOpen()">Pausenspiele</button></div>`;
  return h;
 }
+function exSheet(){sheet(`<h4>Übung hinzufügen</h4><input class="n" id="exq" oninput="exSearch()" placeholder="Übung suchen, z. B. Kniebeugen" autocomplete="off"><div id="exres"></div>
+ <div class="brow"><button class="btn g" onclick="closeSheet();exNewForm()">+ Eigene</button><button class="btn g" onclick="closeSheet();S.tsub='lib';save();render()">Alle Übungen</button></div><button class="btn g" style="width:100%" onclick="closeSheet()">Schließen</button>`);setTimeout(()=>{const q=$("#exq");if(q)q.focus();},50);}
+function einheitWahl(){sheet(`<h4>Einheit einsetzen</h4><small style="display:block;color:var(--mut);margin:-4px 0 10px">Setzt eine fertige Einheit aus „${esc(splitName())}“ auf diesen Tag.</small>
+ ${einheiten().map((e,ix)=>`<button class="btn g" style="width:100%" onclick="closeSheet();loadSplit(splitName(),${ix})">${esc(e[0])}</button>`).join("")}<button class="btn g" style="width:100%" onclick="closeSheet()">Abbrechen</button>`);}
 function exSearch(){
  const q=($("#exq")&&$("#exq").value||"").toLowerCase().trim();
  if(!q){$("#exres").innerHTML="";return;}
  const r=allEx().filter(e=>e.n.toLowerCase().includes(q)||tr(e.n).toLowerCase().includes(q)).slice(0,6);
- $("#exres").innerHTML=r.map(e=>`<div class="opt" onclick="exAdd('${jq(e.n)}')"><b>${esc(e.n)}</b><small>${esc(e.m)} · ${esc(e.g.join(", "))}</small></div>`).join("")||"<small>Nichts gefunden.</small>";
+ $("#exres").innerHTML=r.map(e=>`<div class="opt" onclick="closeSheet();exAdd('${jq(e.n)}')"><b>${esc(e.n)}</b><small>${esc(e.m)} · ${esc(e.g.join(", "))}</small></div>`).join("")||"<small>Nichts gefunden.</small>";
 }
 function exAdd(n){const key=S.wk+"|"+S.day;S.train[key]=S.train[key]||[];if(!S.train[key].includes(n))S.train[key].push(n);
  logInfo("training","Übung hinzugefügt",{tag:key,uebung:n});save();render();}
@@ -3156,38 +3249,32 @@ function wKachel(){
  <div style="margin-top:10px"><button class="btn g" onclick="tab='prog';sub.prog='weight';save();render();setTimeout(()=>{const e=document.getElementById('wv');if(e)e.focus()},60)">Gewicht eintragen</button></div></div>`;
 }
 function viewWeight(){
- const w=S.weight||{};
- const ks=Object.keys(w).sort();
- const start=S.wStart||(ks.length?+w[ks[0]]:null);
- const ziel=S.wGoal||null;
- let h=`<div class="card"><h4>Gewicht eintragen</h4>
- <div class="g2"><div><label>Gewicht (kg)</label><input class="n" id="wv" type="number" step="0.1" inputmode="decimal" placeholder="${ks.length?w[ks[ks.length-1]]:"z. B. 82,5"}"></div>
- <div><label>Datum</label><input class="n" type="date" id="wd" value="${todayISO()}"></div></div>
- <button class="btn" style="width:100%;margin:0" onclick="wAdd()">Speichern</button></div>`;
- const zielKarte=`<details class="card"><summary>Start- und Zielgewicht</summary>
+ const w=S.weight||{},ks=Object.keys(w).sort();
+ const start=S.wStart||(ks.length?+w[ks[0]]:null),ziel=S.wGoal||null;
+ let h="";
+ if(ks.length){const letzte=+w[ks[ks.length-1]],dz=start?letzte-start:0,f=x=>(x>=0?"+":"−")+Math.abs(x).toFixed(1).replace(".",",");
+  h+=`<section class="wbig"><div><small>Aktuell · ${fmtDat(ks[ks.length-1])}</small><b>${letzte.toFixed(1).replace(".",",")} <span>kg</span></b></div>
+  <span class="wd">${start&&Math.abs(dz)>=0.05?f(dz)+" kg seit Start":""}${ziel?`<small>noch ${Math.abs(letzte-ziel).toFixed(1).replace(".",",")} kg bis ${String(ziel).replace(".",",")} kg</small>`:""}</span></section>`;
+  h+=wChart();}
+ else h+=`<section class="nxt"><b>Noch kein Gewicht eingetragen</b><small>Trag dein Gewicht regelmäßig ein, dann siehst du hier deinen Verlauf.</small><div class="r2"><button class="btn" onclick="wSheet()">Gewicht eintragen</button></div></section>`;
+ const zeile=(fn,ic,t,sm)=>`<button class="athk" onclick="${fn}"><span class="athl" style="background:var(--brand-l);color:var(--brand)">${ic}</span><div><b>${t}</b><small style="display:block">${sm}</small></div><span aria-hidden="true" style="color:var(--mut)">›</span></button>`;
+ h+=`<div class="grp">${athKarte()}${rlKarte()}${zeile("sub.prog='ana';render()","📊","Analyse","Kalorien-Empfehlung aus deinem Verlauf")}${zeile("sub.prog='week';render()","🗓","Wochenrückblick","Essen, Training und Gewicht pro Woche")}</div>`;
+ if(ks.length)h+=`<details class="card"><summary>Alle Messungen</summary>${ks.slice(-20).reverse().map(k=>`<div class="row"><span>${fmtDat(k)}</span><span>${(+w[k]).toFixed(1).replace(".",",")} kg <button class="x" aria-label="Messung vom ${fmtDat(k)} löschen" onclick="wDel('${k}')">✕</button></span></div>`).join("")}</details>`;
+ h+=`<details class="card"><summary>Start- und Zielgewicht</summary>
  <label>Startgewicht (kg)</label><input class="n" type="number" step="0.1" id="ws" value="${start?Math.round(start*10)/10:""}" onchange="S.wStart=+this.value||null;save();render()">
  <label>Zielgewicht (kg)</label><input class="n" type="number" step="0.1" id="wg" value="${ziel||""}" onchange="S.wGoal=+this.value||null;save();render()"></details>`;
- if(ks.length){
-  const letzte=+w[ks[ks.length-1]],vorher=ks.length>1?+w[ks[ks.length-2]]:letzte;
-  const min=Math.min(...ks.map(k=>+w[k])),max=Math.max(...ks.map(k=>+w[k]));
-  h+=`<div class="card"><h4>Überblick</h4>
-  <div class="row"><b>Aktuell</b><span>${letzte.toFixed(1)} kg <small style="color:var(--mut)">(${fmtDat(ks[ks.length-1])})</small></span></div>
-  <div class="row"><span>Veränderung zur letzten Messung</span><span>${(letzte-vorher>=0?"+":"")+(letzte-vorher).toFixed(1)} kg</span></div>
-  ${start?`<div class="row"><span>Seit Start</span><span>${(letzte-start>=0?"+":"")+(letzte-start).toFixed(1)} kg</span></div>`:""}
-  ${ziel?`<div class="row"><span>Bis zum Ziel</span><span>${(letzte-ziel).toFixed(1)} kg</span></div>${(()=>{const ges=Math.abs((start||letzte)-ziel),rest=Math.abs(letzte-ziel),pc=ges>0.05?Math.max(0,Math.min(100,Math.round((1-rest/ges)*100))):100;return `<div class="row"><span>Fortschritt zum Ziel</span><span>${pc} %</span></div><div class="bar"><i style="width:${pc}%"></i></div>`;})()}`:""}
-  <div class="row"><span>Spanne</span><span>${min.toFixed(1)} – ${max.toFixed(1)} kg</span></div>
-  <div class="row"><span>Messungen</span><span>${ks.length}</span></div></div>`;
-  h+=wChart();
-  h+=`<details class="card"><summary>Alle Messungen</summary>${ks.slice(-20).reverse().map(k=>`<div class="row"><span>${fmtDat(k)}</span><span>${(+w[k]).toFixed(1).replace(".",",")} kg <button class="x" aria-label="Messung vom ${fmtDat(k)} löschen" onclick="wDel('${k}')">✕</button></span></div>`).join("")}</details>`;
-  }
- return h+zielKarte;
+ return h;
 }
+function wSheet(){const w=S.weight||{},ks=Object.keys(w).sort();
+ sheet(`<h4>Gewicht eintragen</h4><div class="g2"><div><label>Gewicht (kg)</label><input class="n" id="wv" type="number" step="0.1" inputmode="decimal" placeholder="${ks.length?w[ks[ks.length-1]]:"z. B. 82,5"}"></div>
+ <div><label>Datum</label><input class="n" type="date" id="wd" value="${todayISO()}"></div></div>
+ <button class="btn" style="width:100%" onclick="wAdd()">Speichern</button><button class="btn g" style="width:100%" onclick="closeSheet()">Abbrechen</button>`);setTimeout(()=>{const q=$("#wv");if(q)q.focus();},50);}
 function wAdd(){const d=$("#wd").value,v=parseFloat(($("#wv").value||"").replace(",","."));
  if(!d||!isFinite(v)){toast("Bitte Datum und Gewicht eingeben.");return;}
  if(v<20||v>400){toast("Bitte ein Gewicht zwischen 20 und 400 kg eingeben.");return;}
  if(d>todayISO()){toast("Das Datum liegt in der Zukunft.");return;}
  S.weight=S.weight||{};S.weight[d]=v;if(!S.wStart)S.wStart=v;
- save();logInfo("gewicht","Gewicht eingetragen",{datum:d,kg:v});render();toast("Gewicht gespeichert: "+String(v).replace(".",",")+" kg.");}
+ save();logInfo("gewicht","Gewicht eingetragen",{datum:d,kg:v});closeSheet();render();toast("Gewicht gespeichert: "+String(v).replace(".",",")+" kg.");}
 function wDel(k){if(!confirm("Messung vom "+fmtDat(k)+" löschen?"))return;delete S.weight[k];save();render();}
 /* ---------- EINSTELLUNGEN ---------- */
 /* ---------- Anleitung zu allen Funktionen (Inhalte in anleitung.js) ---------- */
@@ -3846,38 +3933,42 @@ function suppRow(isoD,x){const info=x.x||{};return `<div class="mrow"><button cl
  <div class="t"><b>💊 ${esc(x.n)}</b><small>${[info.e,info.w].filter(Boolean).map(esc).join(" · ")}${suppSerie(x.n)>=2?" · 🔥 "+suppSerie(x.n)+" Tage":""}</small></div></div>`;}
 function viewEat(){
  const isoD=dISO(S.wk,S.day),t=eaten(isoD),log=S.log[isoD]||[],rest=S.kcal-t.k,key=pk(S.wk,S.day);
- let h=weekBar();
+ let h=S.eatCal||isoD!=todayISO()?weekBar():"";
  if(isoD==todayISO())h+=serieZeile(essSerie(),"Tage in Folge mit Essprotokoll");
- h+=`<div class="card"><div class="hero"><div class="ring">${ringSvg(t.k,S.kcal)}<div class="c"><b>${nf(Math.abs(rest))}</b><span>${rest>=0?"kcal übrig":"kcal drüber"}</span></div></div>
- <div class="mx">${mxRow("Eiweiß",t.p,S.prot,"")}${mxRow("Kohlenhydrate",t.h,S.kh,"kh")}${mxRow("Fett",t.f,S.fett,"fe")}</div></div>
- <div class="sum">${nf(t.k)} von ${nf(S.kcal)} kcal gegessen</div></div>`;
- const pl=entries(S.wk,S.day),refs=pl.map(({s,i,e})=>key+s+i+":"+e.id+":"+e.q);
+ h+=`<div class="hero hero2"><div class="ring">${ringSvg(t.k,S.kcal)}<div class="c"><b>${nf(Math.abs(rest))}</b><span>${rest>=0?"kcal übrig":"kcal drüber"}</span></div></div>
+ <div class="mx">${mxRow("Eiweiß",t.p,S.prot,"")}${mxRow("Kohlenhydrate",t.h,S.kh,"kh")}${mxRow("Fett",t.f,S.fett,"fe")}</div></div>`;
+ const pl=entries(S.wk,S.day),ref=({s,i,e})=>key+s+i+":"+e.id+":"+e.q,refs=pl.map(ref);
  const sup=suppOf(isoD),supUsed=new Set();
  const extra=log.map((e,i)=>({e,i})).filter(({e})=>!e.ref||!refs.includes(e.ref));
+ const ORD={f:0,m:1,s:2,a:3},offen=pl.filter(x=>!log.some(y=>y.ref==ref(x)));
+ const nx=offen.find(x=>ORD[x.s]>=ORD[slotJetzt()])||offen[0];
+ if(nx){const {s,i,e,m}=nx;
+  h+=`<section class="nxt"><div class="r"><span class="ey">Als Nächstes · ${SLOTS.find(x=>x[0]==s)[1]}</span><span>${nf(m.k*e.q)} kcal</span></div><b>${esc(m.n)}</b><small>${e.q!=1?String(e.q).replace(".",",")+" Portionen · ":""}${Math.round(m.p*e.q)} g Eiweiß</small>
+  <div class="r2"><button class="btn" onclick="tickPlan('${s}',${i})">Gegessen</button><button class="btn g" onclick="showRecipe(${m.id})">Rezept</button></div></section>`;}
+ const ex=({e,i},name)=>`<div class="mrow"><span class="chkc on dot" aria-hidden="true">${CHK}</span><div class="t"><b>${esc(e.n)}</b><small>${name?name+" · ":""}${Math.round(e.p)} g Eiweiß</small></div><span class="kc">${nf(e.k)} kcal</span><button class="x" aria-label="Eintrag löschen" onclick="delLog(${i})">✕</button></div>`;
+ let L="";
  SLOTS.forEach(([s,name])=>{
-  const it=pl.filter(x=>x.s==s),ex=extra.filter(({e})=>e.s==s),sp=sup.filter(x=>suppSlot(x.x)==s);sp.forEach(x=>supUsed.add(x.n));
-  const ist=it.filter(({i,e})=>log.some(x=>x.ref==key+s+i+":"+e.id+":"+e.q)).reduce((a,{e,m})=>a+m.k*e.q,0)+ex.reduce((a,{e})=>a+(+e.k||0),0);
-  const soll=it.reduce((a,{e,m})=>a+m.k*e.q,0);
-  h+=`<div class="card meal-c"><div class="mh"><span class="mi">${SLOT_IC[s]}</span><b>${name}</b><span class="mk">${soll?nf(ist)+" / "+nf(soll):nf(ist)} kcal</span></div>`;
-  it.forEach(({i,e,m})=>{const on=log.some(x=>x.ref==key+s+i+":"+e.id+":"+e.q);
-   h+=`<div class="mrow"><button class="chkc ${on?'on':''}" aria-label="${on?'Als nicht gegessen markieren':'Als gegessen markieren'}" onclick="tickPlan('${s}',${i})">${CHK}</button>
-   <div class="t" onclick="showRecipe(${m.id})"><b>${esc(m.n)}</b><small>${e.q!=1?String(e.q).replace(".",",")+"× · ":""}${Math.round(m.k*e.q)} kcal · ${Math.round(m.p*e.q)} g Eiweiß</small></div></div>`;});
-  ex.forEach(({e,i})=>{h+=`<div class="mrow"><span class="chkc on dot" aria-hidden="true">${CHK}</span><div class="t"><b>${esc(e.n)}</b><small>${Math.round(e.k)} kcal · ${Math.round(e.p)} g Eiweiß</small></div><button class="x" aria-label="Eintrag löschen" onclick="delLog(${i})">✕</button></div>`;});
-  sp.forEach(x=>{h+=suppRow(isoD,x);});
-  h+=`<button class="addl" onclick="addSheet('${s}')">+ ${name} hinzufügen</button></div>`;});
- const rest2=extra.filter(({e})=>!e.s||!SLOTS.some(([s])=>s==e.s)),spRest=sup.filter(x=>!supUsed.has(x.n));
- if(rest2.length){h+=`<div class="card meal-c"><div class="mh"><span class="mi">📝</span><b>Weitere Einträge</b><span class="mk">${nf(rest2.reduce((a,{e})=>a+(+e.k||0),0))} kcal</span></div>`;
-  rest2.forEach(({e,i})=>{h+=`<div class="mrow"><span class="chkc on dot" aria-hidden="true">${CHK}</span><div class="t"><b>${esc(e.n)}</b><small>${Math.round(e.k)} kcal · ${Math.round(e.p)} g Eiweiß</small></div><button class="x" aria-label="Eintrag löschen" onclick="delLog(${i})">✕</button></div>`;});
-  h+=`</div>`;}
- if(spRest.length){const n=spRest.filter(x=>x.taken).length;
-  h+=`<div class="card meal-c"><div class="mh"><span class="mi">💊</span><b>Supplements</b><span class="mk">${n} von ${spRest.length}</span></div>${spRest.map(x=>suppRow(isoD,x)).join("")}</div>`;}
- if(!pl.length&&!log.length)h+=`<div class="hint">Für diesen Tag ist noch nichts geplant. <button class="lnk" onclick="tab='plan';sub.plan='plan';render()">Im Wochenplan planen</button></div>`;
+  pl.filter(x=>x.s==s&&x!==nx).forEach(x=>{const {i,e,m}=x,on=log.some(y=>y.ref==ref(x));
+   L+=`<div class="mrow"><button class="chkc ${on?'on':''}" aria-label="${on?'Als nicht gegessen markieren':'Als gegessen markieren'}" onclick="tickPlan('${s}',${i})">${CHK}</button>
+   <div class="t" onclick="showRecipe(${m.id})"><b>${esc(m.n)}</b><small>${name}${e.q!=1?" · "+String(e.q).replace(".",",")+"×":""}</small></div><span class="kc">${nf(m.k*e.q)} kcal</span></div>`;});
+  extra.filter(({e})=>e.s==s).forEach(x=>{L+=ex(x,name);});
+  sup.filter(x=>suppSlot(x.x)==s).forEach(x=>{supUsed.add(x.n);L+=suppRow(isoD,x);});});
+ extra.filter(({e})=>!e.s||!SLOTS.some(([s])=>s==e.s)).forEach(x=>{L+=ex(x,"");});
+ sup.filter(x=>!supUsed.has(x.n)).forEach(x=>{L+=suppRow(isoD,x);});
+ if(L)h+=`<div class="list2">${L}</div>`;
+ if(!pl.length&&!log.length)h+=`<div class="hint">Für diesen Tag ist noch nichts geplant. <button class="lnk" onclick="tab='plan';sub.plan='plan';S.planTag=1;render()">Im Wochenplan planen</button></div>`;
+ h+=heuteKacheln(isoD);
  h+=runHeute();
- h+=wasserKarte(isoD);
- h+=`<button class="lnk" style="display:block;margin:14px auto 0;color:var(--mut)" onclick="hilfeZeigen('heute')">📖 So trägst du dein Essen ein</button>`;
- h+=`<button class="fab" onclick="addSheet()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Essen</button><div style="height:64px" aria-hidden="true"></div>`;
+ h+=`<button class="lnk" style="display:block;margin:14px auto 0;color:var(--mut)" onclick="hilfeZeigen('heute')">So trägst du dein Essen ein</button>`;
+ h+=`<button class="fab" aria-label="Essen eintragen" onclick="addSheet()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div style="height:64px" aria-hidden="true"></div>`;
  return h;
 }
+const DROP_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>',HANTEL_SVG='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 7v10M17.5 7v10M3.5 9.5v5M20.5 9.5v5M6.5 12h11"/></svg>';
+function wasserMenu(){sheet(`<h4>Wasser</h4><button class="btn g" onclick="closeSheet();wasser(-250)">− 250 ml</button><button class="btn g" onclick="closeSheet();wasser(500)">+ Flasche (500 ml)</button><button class="btn g" onclick="closeSheet();wasserZielForm()">Tagesziel ändern</button><button class="btn g" onclick="closeSheet()">Schließen</button>`);}
+function heuteKacheln(isoD){const ml=((S.water||{})[isoD])||0,ziel=S.waterGoal||2500,l=x=>String(Math.round(x/10)/100).replace(".",",");
+ const tr0=S.train[S.wk+"|"+S.day]||[],fert=tr0.filter(n=>prDone(isoD,n)).length;
+ return `<div class="tiles"><div class="tile"><button class="tm" onclick="wasser(250)" aria-label="Ein Glas Wasser (250 ml) hinzufügen"><span class="ti w">${DROP_SVG}</span><span><b>${l(ml)} / ${l(ziel)} l</b><small>+ Glas</small></span></button><button class="tx" aria-label="Wasser: weitere Optionen" onclick="wasserMenu()">⋯</button></div>
+ <div class="tile"><button class="tm" onclick="S.tsub='day';tabWechsel('fit')"><span class="ti">${HANTEL_SVG}</span><span><b>${tr0.length?(fert==tr0.length?"Training erledigt":"Training"):"Kein Training"}</b><small>${tr0.length?(fert?fert+" von "+tr0.length+" Übungen":tr0.length+" Übungen"):"Tippen zum Planen"}</small></span></button></div></div>`;}
 function addSheet(slot){
  ADD_SLOT=slot||slotJetzt();
  const isoD=dISO(S.wk,S.day),zl=zuletztGegessen(isoD).slice(0,4);
@@ -3961,7 +4052,7 @@ function tabWechsel(t){if(t=="eat"&&tab!="eat")S.wkLock=false;
  tab=t;render();}
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>tabWechsel(b.dataset.t));
 /* ---------- Wischen zwischen den Hauptbereichen ---------- */
-const TAB_REIHE=["eat","plan","fit","prog","more"];
+const TAB_REIHE=["eat","fit","plan","prog"];
 (function(){const app=$("#app");if(!app)return;let st=null;
  const sperre=el=>{for(let e=el;e&&e!==document.body&&e.nodeType==1;e=e.parentElement){
    if(e.matches&&e.matches("input,textarea,select,[contenteditable],canvas,.days,.wkpick,.noswipe"))return true;

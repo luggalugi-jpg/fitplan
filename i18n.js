@@ -12,7 +12,7 @@
  window.sprache=function(w){try{if(w)localStorage.setItem("gp_lang",w);else localStorage.removeItem("gp_lang");}catch(e){}location.reload();};
  try{document.documentElement.lang=L;}catch(e){}
  if(L!=="en")return;
- var v="3.75";
+ var v="3.76";
  document.write('<script src="lang-en.js?v='+v+'"><\/script><script src="rezepte-en.js?v='+v+'"><\/script><script>GP_I18N_START()<\/script>');
 
  window.GP_I18N_START=function(){
@@ -27,7 +27,7 @@
   var CACHE=new Map();
   var FRAG=[];D.forEach(function(v,k){if(k.length>=9&&/[A-Za-zÄÖÜäöüß]{3,}.* |^[^ ]*[äöüßÄÖÜ]/.test(k)&&k.length<200&&!(window.GP_EN_REZ||{})[k])FRAG.push(k);});FRAG.sort(function(a,b){return b.length-a.length;});
   var MONATE="January|February|March|April|May|June|July|August|September|October|November|December";var MRE=new RegExp("\\b(\\d{1,2})\\. ("+MONATE+")\\b","g");
-  function zahl(s){return s.replace(/(\d),(\d)/g,"$1.$2").replace(MRE,"$1 $2");}
+  function zahl(s){return s.replace(/(\d),(\d{1,2})(?!\d)/g,"$1.$2").replace(MRE,"$1 $2");}
   var BUCHST=/[A-Za-zÄÖÜäöüß]/;
   function wortzahl(c){var m=c.match(/[A-Za-zÄÖÜäöüß]{2,}/g);return m?m.length:0;}
   function buchst(x){return (x.match(/[A-Za-zÄÖÜäöüß]/g)||[]).length;}
