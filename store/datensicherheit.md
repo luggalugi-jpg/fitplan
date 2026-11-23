@@ -1,7 +1,7 @@
 # Angaben zum Datenschutz in den Stores
 
 Grundlage: Die App speichert alles nur auf dem Gerät. Daten verlassen das Gerät nur bei drei Funktionen, die der Nutzer selbst auslöst (die dritte ist die freiwillige Rangliste, siehe unten):
-1. **Foto-Analyse** (optional, eigener Google-Gemini-Schlüssel): Das Foto geht direkt an Google.
+1. **Foto-Analyse** (optional): Das Foto geht über den eigenen Server (Supabase-Funktion „foto“, Paris) an Google Gemini (kostenpflichtiger API-Zugang, kein Training). Gespeichert wird nur ein Tageszähler je zufälliger Geräte-Kennung (7 Tage). Mit eigenem Schlüssel geht es direkt an Google.
 2. **Barcode-Suche**: Die Produktnummer geht an Open Food Facts (keine personenbezogenen Daten außer der technisch nötigen IP-Adresse).
 
 Diese Antworten sind ein Vorschlag nach bestem Wissen, keine Rechtsberatung. Du bist für die Angaben verantwortlich.
