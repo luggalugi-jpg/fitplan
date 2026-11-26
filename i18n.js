@@ -12,7 +12,7 @@
  window.sprache=function(w){try{if(w)localStorage.setItem("gp_lang",w);else localStorage.removeItem("gp_lang");}catch(e){}location.reload();};
  try{document.documentElement.lang=L;}catch(e){}
  if(L!=="en")return;
- var v="3.77";
+ var v="3.78";
  document.write('<script src="lang-en.js?v='+v+'"><\/script><script src="rezepte-en.js?v='+v+'"><\/script><script>GP_I18N_START()<\/script>');
 
  window.GP_I18N_START=function(){
