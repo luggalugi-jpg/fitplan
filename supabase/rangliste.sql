@@ -557,7 +557,7 @@ begin
   if not found then return jsonb_build_object('ok', false, 'profil', false); end if;
   mk := gp_kraft_wert(u); ml := gp_lauf_wert(u);
   create temp table if not exists gp_tmp_kl(uid uuid, nick text, avatar int, k int, l int) on commit drop;
-  delete from gp_tmp_kl;
+  delete from gp_tmp_kl where true; -- where true: Supabase blockt DELETE ohne WHERE
   insert into gp_tmp_kl
     select p.id, p.nick, p.avatar, gp_kraft_wert(p.id), gp_lauf_wert(p.id) from gp_profile p
      where coalesce(p_alle, false)
@@ -608,7 +608,7 @@ begin
   if not exists (select 1 from gp_profile where id = u) then return jsonb_build_object('ok', false, 'profil', false); end if;
   select * into me from gp_werte(u);
   create temp table if not exists gp_tmp_g(uid uuid, g int) on commit drop;
-  delete from gp_tmp_g;
+  delete from gp_tmp_g where true; -- where true: Supabase blockt DELETE ohne WHERE
   insert into gp_tmp_g select p.id, (select w.gesamt from gp_werte(p.id) w) from gp_profile p;
   select count(*) filter (where g > 0), count(*) filter (where g > me.gesamt) + 1 into n, pl from gp_tmp_g;
   select coalesce(jsonb_agg(jsonb_build_object('id', a.uid, 'nick', p.nick, 'avatar', p.avatar, 'wert', a.g, 'rang', gp_rang(a.g), 'ich', a.uid = u) order by a.g desc), '[]')
@@ -875,3 +875,11 @@ end $$;
 -- Gesperrte Spitznamen: Nutzer mit sehr vielen Auffälligkeiten erscheinen weiter, können aber per
 -- "update public.gp_profile set league = 0 where …" oder Löschen manuell behandelt werden.
 -- Meldungen ansehen:  select r.*, p.nick from public.gp_report r join public.gp_profile p on p.id = r.target order by r.at desc;
+
+-- 3.79: Indizes für Fremdschlüssel (Supabase-Performance-Hinweis)
+create index if not exists gp_fgroup_owner_idx on public.gp_fgroup (owner);
+create index if not exists gp_member_uid_idx on public.gp_member (uid);
+create index if not exists gp_report_reporter_idx on public.gp_report (reporter);
+create index if not exists gp_report_target_idx on public.gp_report (target);
+create index if not exists gp_season_uid_idx on public.gp_season (uid);
+create index if not exists gp_studio_owner_idx on public.gp_studio (owner);
